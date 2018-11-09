@@ -5,9 +5,11 @@ import java.util.Scanner;
 public class task10 {
     public static void main(String args[]) {
         String filename = "Students.txt";
-        String filename2 = "Courses.txt"
-        ArrayList<Student> StudentsAl = StudentDB.readStudents(filename);
-        ArrayList<Course> CourseAl = CourseDB.readCourses(filename2);
+        String filename2 = "Courses.txt";
+        StudentDB students = new StudentDB();
+        students.readStudents(filename);
+        CourseDB courses = new CourseDB();
+        courses.readCourses(filename2);
 
         // Get the ID of the student and do an error check (is student's ID inside the database?)
 

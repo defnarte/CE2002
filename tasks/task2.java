@@ -5,9 +5,11 @@ import java.util.Scanner;
 public class task2 {
     public static void main(String args[]) {
         String filename = "Students.txt";
-        String filename2 = "Courses.txt"
-        ArrayList<Student> StudentsAl = StudentDB.readStudents(filename);
-        ArrayList<Course> CourseAl = CourseDB.readCourses(filename2);
+        String filename2 = "Courses.txt";
+        StudentDB students = new StudentDB();
+        students.readStudents(filename);
+        CourseDB courses = new CourseDB();
+        courses.readCourses(filename2);
 
         // Error check for course name (Illegal characters)
             // Error check if the course name already exists in the course database
