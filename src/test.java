@@ -10,7 +10,7 @@ public class test {
 		students.readStudents(filename);
 		
 		// Change this index to switch to the next student
-		int index = 0;
+		int index = 1;
 		System.out.printf("Printing details for student %d: \n",(index+1));
 		System.out.println("Student name: " + students.getStudent(index).getStudentName());
 		System.out.println("StudentID: " + students.getStudent(index).getStudentID());
@@ -23,6 +23,7 @@ public class test {
 		CourseDB courses = new CourseDB();
 		courses.readCourses(filename2);
 		
+		index = 0;
 		System.out.printf("Printing details for %d th course: \n",(index+1));
 		System.out.println("Course name: " + courses.getCourse(index).getCourseID());
 		System.out.println("Students enrolled: " + courses.getCourse(index).getstudentsMatricNumbers());
