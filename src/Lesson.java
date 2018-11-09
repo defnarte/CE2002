@@ -1,9 +1,9 @@
-enum LessonType
-{
-	LECTURE,
-	TUTORIAL,
-	LAB,
-}
+//enum LessonType
+//{
+//	LECTURE,
+//	TUTORIAL,
+//	LAB,
+//}
 
 /**
  * This entity class holds information regarding an instance of Lesson in an instance of Course
@@ -15,10 +15,10 @@ enum LessonType
 public class Lesson
 {
 	private String lessonID;
-	private LessonType lessonType;
+	private String lessonType;
 	private int vacancy;
 
-	public Lesson(String lessonID, LessonType lessonType, int vacancy)
+	public Lesson(String lessonID, String lessonType, int vacancy)
 	{
 		this.lessonID = lessonID;
 		this.lessonType = lessonType;
@@ -30,10 +30,10 @@ public class Lesson
 		return lessonID;
 	}
 
-	public LessonType getLessonType()
-	{
-		return lessonType;
-	}
+//	public LessonType getLessonType()
+//	{
+//		return lessonType;
+//	}
 	
 	public int getVacancy()
 	{

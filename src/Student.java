@@ -3,7 +3,7 @@ public class Student
 {
 	private String name;
 	private String matriculationNumber;
-	private ArrayList<Course> courses;
+	private ArrayList<String> courses;
 	private ArrayList<ArrayList<String>> lessons;
 
 	// Used when creating adding a new student
@@ -11,12 +11,11 @@ public class Student
 	{
 		this.name = name;
 		this.matriculationNumber = matriculationNumber;
-		this.courses = new ArrayList<Course>();
-		// this.courses = new ArrayList<String>();
+		this.courses = new ArrayList<String>();
 	}
 
 	// Used when loading StudentDB
-	Student(String name, String matriculationNumber, ArrayList<Course> courses, ArrayList<ArrayList<String>> lessons)
+	Student(String name, String matriculationNumber, ArrayList<String> courses, ArrayList<ArrayList<String>> lessons)
 	{
 		this.name = name;
 		this.matriculationNumber = matriculationNumber;
@@ -34,12 +33,12 @@ public class Student
 		return matriculationNumber;
 	}
 
-	public ArrayList<Course> getCourses()
+	public ArrayList<String> getCourses()
 	{
 		return courses;
 	}
 
-	public void addCourse(Course course)
+	public void addCourse(String course)
 	{
 		this.courses.add(course);
 	}

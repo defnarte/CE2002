@@ -21,7 +21,7 @@ public class Course
 	private String courseID;
 	private String courseName;
 	
-	private Faculty courseCoordinator;
+//	private Faculty courseCoordinator;
 	private ArrayList<String> studentsMatricNumbers;
 	// originally named marks; Why is a collection of CourseWorks named marks?
 	private ArrayList<CourseWork[]> courseWorkMarks; 
@@ -31,12 +31,11 @@ public class Course
 	private double totalMark;
 	Scanner scan = new Scanner(System.in); // Why is there input in an entity class?
 
-	public Course(String courseID, String courseName, Faculty courseCoordinator, ArrayList<String> studentsMatricNumbers, ArrayList<CourseWork[]> courseWorkMarks,
+	public Course(String courseID, String courseName,  ArrayList<String> studentsMatricNumbers, ArrayList<CourseWork[]> courseWorkMarks,
 			ArrayList<Lesson> lessons)
 	{
 		this.courseName = courseName;
 		this.courseID = courseID;
-		this.courseCoordinator = courseCoordinator;
 		this.studentsMatricNumbers = studentsMatricNumbers;
 		this.courseWorkMarks = courseWorkMarks;
 		this.lessons = lessons;
@@ -47,26 +46,23 @@ public class Course
 		this.courseID = courseID;
 	}
 
-<<<<<<< HEAD
-=======
 	public String getCourseID()
 	{
 		return courseID;
 	}
->>>>>>> 83d7f93d4d8da9da4932fd438515e209e720604b
 	public String getCourseName()
 	{
 		return courseName;
 	}
 	
-	public Faculty getCourseCoordinator()
-	{
-		return courseCoordinator;
-	}
-	public void setCourseCoordinator(Faculty courseCoordinator)
-	{
-		this.courseCoordinator = courseCoordinator;
-	}
+//	public Faculty getCourseCoordinator()
+//	{
+//		return courseCoordinator;
+//	}
+//	public void setCourseCoordinator(Faculty courseCoordinator)
+//	{
+//		this.courseCoordinator = courseCoordinator;
+//	}
 
 	public ArrayList<String> getstudentsMatricNumbers()
 	{

@@ -31,6 +31,21 @@ public class StudentDB {
 			System.out.println(" " + student.getID());
 		}
 	}
+	public boolean checkStudentName(String name) {
+		for (int i=0; i<students.size(); i++) {
+			if (students.get(i).getName().equals(name)) 
+				return true;
+		}
+		return false;
+	}
+	public boolean checkStudentMatNo(String MatNo) {
+		for (int i=0; i<students.size(); i++) {
+			if (students.get(i).getID().equals(MatNo)) 
+				return true;
+		}
+		return false;
+		
+	}
 	
 	// Read the textfile as a stringArray
 	public static List read(String filename) throws FileNotFoundException

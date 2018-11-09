@@ -25,6 +25,21 @@ public class CourseDB {
 			System.out.println(" " + course.getCourseID());
 		}
 	}
+	public boolean checkCourseName(String name) {
+		for (int i=0; i<courses.size(); i++) {
+			if (courses.get(i).getCourseName().equals(name)) 
+				return true;
+		}
+		return false;
+	}
+	public boolean checkCourseID(String courseID) {
+		for (int i=0; i<courses.size(); i++) {
+			if (courses.get(i).getCourseID().equals(courseID)) 
+				return true;
+		}
+		return false;
+		
+	}
 	// Read the textfile as a stringArray
 	public static List read(String filename) throws FileNotFoundException {
 		Scanner sc = new Scanner(new FileInputStream(filename));
