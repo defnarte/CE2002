@@ -9,11 +9,29 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.StringTokenizer;
 
-public class StudentDB
-{
+public class StudentDB {
+	private ArrayList<Student> students;
 	public static final String SEPARATOR = "|";
 	public static final String SEPARATOR2 = ",";
 
+	public StudentDB() {
+		students = new ArrayList<Student>();
+	}
+	public void addStudent(Student student) {
+		students.add(student);
+	}
+	public Student getStudent(int index){
+		return students.get(index);
+	}
+	public void printStudentList() {
+		for (int i = 0; i < students.size(); i++)
+		{
+			Student student = (Student) students.get(i);
+			System.out.print(student.getName());
+			System.out.println(" " + student.getID());
+		}
+	}
+	
 	// Read the textfile as a stringArray
 	public static List read(String filename) throws FileNotFoundException
 	{
@@ -33,7 +51,7 @@ public class StudentDB
 	}
 
 	// Create the database
-	public static ArrayList<Student> readStudents(String filename) throws IOException
+	public void readStudents(String filename) throws IOException
 	{
 		ArrayList stringArray = (ArrayList) read(filename);
 		ArrayList alr = new ArrayList();
@@ -45,22 +63,20 @@ public class StudentDB
 
 			String name = star.nextToken().trim();
 			String matriculationNumber = star.nextToken().trim();
-			ArrayList<String> courses = new ArrayList<String>(
-					Arrays.asList(star.nextToken().trim().split("\\s*,\\s*")));
+			ArrayList<String> courses = new ArrayList<String>(Arrays.asList(star.nextToken().trim().split("\\s*,\\s*")));
 			ArrayList<ArrayList<String>> lessons = stringsplit(star.nextToken().trim(), "_");
 
 			Student stu = new Student(name, matriculationNumber, courses, lessons);
-			alr.add(stu);
+			students.add(stu);
 		}
-		return alr;
 	}
 
-	public static void saveStudents(String filename, List al) throws IOException
+	public void saveStudents(String filename) throws IOException
 	{
 		List alw = new ArrayList();
-		for (int i = 0; i < al.size(); i++)
+		for (int i = 0; i < students.size(); i++)
 		{
-			Student stu = (Student) al.get(i);
+			Student stu = (Student) students.get(i);
 			StringBuilder st = new StringBuilder();
 			st.append(stu.getName().trim());
 			st.append(SEPARATOR);

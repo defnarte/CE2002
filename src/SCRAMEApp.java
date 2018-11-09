@@ -10,8 +10,11 @@ public class SCRAMEApp
 	{
 
 		String filename = "Students.txt";
-		ArrayList<Student> students = StudentDB.readStudents(filename);
-		// ArrayList CourseAl = CourseDB.readCourses(filename);
+		String filename2 = "Courses.txt";
+		StudentDB students = new StudentDB();
+		students.readStudents(filename);
+		CourseDB courses = new CourseDB();
+		courses.readCourses(filename2);
 
 		System.out.println("Welcome to SCRAME");
 		
@@ -47,37 +50,17 @@ public class SCRAMEApp
 					// Error check
 					System.out.println("Enter the student's ID: ");
 					String matriculationNumber = sc.next();
-					Student stu = new Student(name, matriculationNumber);
-					students.add(stu);
-					StudentDB.saveStudents("Students.txt", students);
+					Student student = new Student(name, matriculationNumber);
+					students.addStudent(student);
+					//students.saveStudents("Students.txt");
 
 					System.out.println("List of all students:");
-					for (int i = 0; i < students.size(); i++)
-					{
-						Student stu2 = (Student) students.get(i);
-						System.out.print(stu2.getName());
-						System.out.println(" " + stu2.getID());
-					}
+					students.printStudentList();
 					break;
 				case 2:
 					break;
 				case 3:
-					System.out.println("Enter the student's ID: ");
-					String studentID = sc.next();
-					System.out.println("Enter courseID to be added: ");
-					String courseID = sc.next();
-					for (int i = 0; i < students.size(); i++)
-					{
-						Student stu3 = (Student) students.get(i);
-						if (studentID.equals(stu3.getID()))
-						{
-							stu3.addCourse(courseID);
-							StudentDB.saveStudents("Students.txt", students);
-							System.out.println("Course added!");
 
-							break;
-						}
-					}
 				case 4:
 				case 5:
 				case 6:

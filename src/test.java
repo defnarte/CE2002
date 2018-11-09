@@ -3,33 +3,33 @@ import java.util.ArrayList;
 
 public class test {
 	public static void main(String args[]) throws IOException {
+		
 		String filename = "Students.txt";
-		ArrayList<Student> StudentAl = StudentDB.readStudents(filename);
-		Student stu = StudentAl.get(0);
+		StudentDB students = new StudentDB();
+		students.readStudents(filename);
 		
-		System.out.println("Printing details for student:");
-		System.out.println(stu.getName());
-		System.out.println(stu.getID());
-		System.out.println(stu.getCourses());
-		System.out.println(stu.getLessons());
-		
+		int index = 0;
+		System.out.printf("Printing details for student %d: \n",index);
+		System.out.println(students.getStudent(index).getName());
+		System.out.println(students.getStudent(index).getID());
+		System.out.println(students.getStudent(index).getCourses());
+		System.out.println(students.getStudent(index).getLessons());
 		
 		System.out.println("");
 		
 		String filename2 = "Courses.txt";
-		ArrayList<Course> CoursesAl = CourseDB.readCourses(filename2);
-		Course course = CoursesAl.get(0);
+		CourseDB courses = new CourseDB();
+		courses.readCourses(filename2);
 		
-		System.out.println("Printing details for course:");
-		System.out.println(course.getCourse());
-		System.out.println(course.getCourseID());
-		System.out.println(course.getmatNos());
-		System.out.println(course.getMarks().get(0)[0].getCourseWorkMarks());
-		System.out.println(course.getMarks().get(0)[0].getWeightage());
-		System.out.println(course.getMarks().get(1)[0].getCourseWorkMarks());
-		System.out.println(course.getMarks().get(1)[0].getWeightage());
-		System.out.println(course.getLessons().get(0).getLessonID());
-		System.out.println(course.getLessons().get(0).getLessonType());
-		System.out.println(course.getLessons().get(0).getVacancy());
+		System.out.printf("Printing details for course %d: \n",index);
+		System.out.println(courses.getCourse(index).getCourseID());
+		System.out.println(courses.getCourse(index).getmatNos());
+		System.out.println(courses.getCourse(index).getMarks().get(0)[0].getCourseWorkMarks());
+		System.out.println(courses.getCourse(index).getMarks().get(0)[0].getWeightage());
+		System.out.println(courses.getCourse(index).getMarks().get(1)[0].getCourseWorkMarks());
+		System.out.println(courses.getCourse(index).getMarks().get(1)[0].getWeightage());
+		System.out.println(courses.getCourse(index).getLessons().get(0).getLessonID());
+		System.out.println(courses.getCourse(index).getLessons().get(0).getLessonType());
+		System.out.println(courses.getCourse(index).getLessons().get(0).getVacancy());
 	}
 }

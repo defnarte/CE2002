@@ -8,7 +8,23 @@ import java.util.Scanner;
 import java.util.StringTokenizer;
 
 public class CourseDB {
+	private ArrayList<Course> courses;
 	public static final String SEPARATOR = "|";
+	
+	public CourseDB(){
+		courses = new ArrayList<Course>();
+	}
+	public Course getCourse(int index) {
+		return courses.get(index);
+	}
+	public void printCourseList() {
+		for (int i = 0; i < courses.size(); i++)
+		{
+			Course course = (Course) courses.get(i);
+			System.out.print(course.getCourseName());
+			System.out.println(" " + course.getCourseID());
+		}
+	}
 	// Read the textfile as a stringArray
 	public static List read(String filename) throws FileNotFoundException {
 		Scanner sc = new Scanner(new FileInputStream(filename));
@@ -24,7 +40,7 @@ public class CourseDB {
 	    return data;
 	}
 	// Create the database
-	public static ArrayList<Course> readCourses(String filename) throws IOException {
+	public void readCourses(String filename) throws IOException {
 		ArrayList stringArray = (ArrayList) read(filename);
 		ArrayList alr = new ArrayList();
 		
@@ -67,9 +83,8 @@ public class CourseDB {
 				lessons.add(lesson);
 			}
 			Course course = new Course(courseID, courseName, matNos, marks, lessons);
-			alr.add(course);
+			courses.add(course);
 		}
-		return alr;
 	}
 	public static ArrayList<ArrayList<String>> stringsplit(String st,String SEP) {
 		StringTokenizer star = new StringTokenizer(st,SEP);

@@ -25,7 +25,7 @@ public class Course
 		this.courseID = courseID;
 	}
 
-	public String getCourse()
+	public String getCourseName()
 	{
 		return courseName;
 	}
