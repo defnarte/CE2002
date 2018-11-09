@@ -29,6 +29,10 @@ public class Lesson
 	{
 		return lessonID;
 	}
+	public String getLessonType()
+	{
+		return lessonType;
+	}
 
 //	public LessonType getLessonType()
 //	{

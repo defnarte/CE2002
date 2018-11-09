@@ -1,11 +1,6 @@
-package tests;
+
 import java.io.IOException;
 import java.util.ArrayList;
-
-import Course;
-import CourseDB;
-import Student;
-import StudentDB;
 
 public class test {
 	public static void main(String args[]) throws IOException {
@@ -29,11 +24,11 @@ public class test {
 		
 		System.out.printf("Printing details for course %d: \n",index);
 		System.out.println(courses.getCourse(index).getCourseID());
-		System.out.println(courses.getCourse(index).getmatNos());
-		System.out.println(courses.getCourse(index).getMarks().get(0)[0].getCourseWorkMarks());
-		System.out.println(courses.getCourse(index).getMarks().get(0)[0].getWeightage());
-		System.out.println(courses.getCourse(index).getMarks().get(1)[0].getCourseWorkMarks());
-		System.out.println(courses.getCourse(index).getMarks().get(1)[0].getWeightage());
+		System.out.println(courses.getCourse(index).getstudentsMatricNumbers());
+		System.out.println(courses.getCourse(index).getcourseWorkMarks().get(0)[0].getCourseWorkMarks());
+		System.out.println(courses.getCourse(index).getcourseWorkMarks().get(0)[0].getWeightage());
+		System.out.println(courses.getCourse(index).getcourseWorkMarks().get(1)[0].getCourseWorkMarks());
+		System.out.println(courses.getCourse(index).getcourseWorkMarks().get(1)[0].getWeightage());
 		System.out.println(courses.getCourse(index).getLessons().get(0).getLessonID());
 		System.out.println(courses.getCourse(index).getLessons().get(0).getLessonType());
 		System.out.println(courses.getCourse(index).getLessons().get(0).getVacancy());
