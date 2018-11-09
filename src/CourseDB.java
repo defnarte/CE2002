@@ -20,6 +20,23 @@ public class CourseDB {
 	public Course getCourse(int index) {
 		return courses.get(index);
 	}
+	public int getMarkIndex(String courseID, String matriculationNumber) {
+		for (int i = 0; i < courses.size(); i++)
+		{
+			// If the course matches the given courseID
+			if (courses.get(i).getCourseID().equals(courseID)) {
+				
+				for (int j=0; j<courses.get(i).getstudentsMatricNumbers().size() ; j++) {
+					// If one of the matriculation numbers in the course matches the given matriculation number
+					if (courses.get(i).getstudentsMatricNumbers().get(j).equals(matriculationNumber)) {
+						// Return the index (Recall matriculation number and courseMark share a 1 to 1 correspondence)
+						return j;
+					}
+				}
+			}
+		}
+		return -1;
+	}
 	public void printCourseList() {
 		for (int i = 0; i < courses.size(); i++)
 		{
