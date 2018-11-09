@@ -46,6 +46,30 @@ public class StudentDB {
 		return false;
 		
 	}
+	public void printListCourseID(String courseID){
+		// For each student
+		for (int i=0; i<students.size(); i++) {
+			// Check the student's registered courses
+			for (int j=0; j<students.get(i).getStudentCourses().size(); j++) {
+				if (students.get(i).getStudentCourses().get(j).equals(courseID)) {
+					System.out.println(students.get(i).getStudentName() + " " + students.get(i).getStudentID());
+				}
+			}
+		}
+	}
+	public void printListLessonID(String lessonID){
+		// For each student
+		for (int i=0; i<students.size(); i++) {
+			// Check the student's registered indexes
+			for (int j=0; j<students.get(i).getStudentLessons().size(); j++) {
+				for (int k=0; k<students.get(i).getStudentLessons().get(j).size(); k++) {
+					if (students.get(i).getStudentLessons().get(j).get(k).equals(lessonID)) {
+						System.out.println(students.get(i).getStudentName() + " " + students.get(i).getStudentID());
+					}
+				}
+			}
+		}
+	}
 	
 	// Read the textfile as a stringArray
 	public static List read(String filename) throws FileNotFoundException

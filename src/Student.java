@@ -32,7 +32,6 @@ public class Student
 	{
 		return matriculationNumber;
 	}
-
 	public ArrayList<String> getStudentCourses()
 	{
 		return courses;
