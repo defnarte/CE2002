@@ -1,5 +1,11 @@
+package tests;
 import java.io.IOException;
 import java.util.ArrayList;
+
+import Course;
+import CourseDB;
+import Student;
+import StudentDB;
 
 public class test {
 	public static void main(String args[]) throws IOException {
