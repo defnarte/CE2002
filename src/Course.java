@@ -107,7 +107,8 @@ public class Course
 		lesson.addStudent(matricNumber);
 		vacancy--;
 	}
-
+	
+	// deletion of Student from a Lesson should be the responsibility of Lesson, not Course
 	public void deleteStudent(String matricNumber, Lesson lesson)
 	{
 		if (lessons.size() == 0)
@@ -120,7 +121,8 @@ public class Course
 		vacancy++;
 	}
 
-	
+	// it is NOT the Course's responsibility to PRINT its studentList
+	// a boundary class shd use this class' getStudents() method to print the list of students
 	public void printList(String Index, ArrayList<String> arrIndex, ArrayList<ArrayList<String>> arrStudentList)
 	{
 		int i = searchIndex(Index, arrIndex);

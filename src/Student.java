@@ -4,7 +4,7 @@ public class Student
 	private String name;
 	private String matriculationNumber;
 	private ArrayList<String> courses;
-	private ArrayList<ArrayList<String>> lessons;
+	private ArrayList<ArrayList<String>> lessons; // a collection of collection of lessons
 
 	// Used when creating adding a new student
 	Student(String name, String matriculationNumber)
