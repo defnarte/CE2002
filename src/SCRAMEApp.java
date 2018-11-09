@@ -22,6 +22,7 @@ public class SCRAMEApp
 		{
 			printMenu();
 			
+			// TO-DO: place this do-while loop in a method
 			do
 			{
 				System.out.println("Select an option:");
