@@ -1,5 +1,14 @@
 import java.util.*;
 
+enum Grade
+{
+	APLUS, A, AMINUS,
+	BPLUS, B, BMINUS,
+	CPLUS, C,
+	DPLUS, D,
+	F,
+}
+
 /**
  * This entity class holds information regarding a particular Course.
  * 

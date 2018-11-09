@@ -1,35 +1,36 @@
 /**
  * This entity class holds information for an instance of Faculty.
  * 
+ * last-updated: 2018-11-09
  * @author Jason
  *
  */
 public class Faculty
 {
-	private String facultyID;
-	private String facultyName;
+	private String id;
+	private String name;
 	
-	public Faculty(String facultyID, String facultyName)
+	public Faculty(String id, String name)
 	{
-		this.facultyID = facultyID;
-		this.facultyName = facultyName;
-	}
-	
-	public String getFacultyID()
-	{
-		return facultyID;
-	}
-	public void setFacultyID(String facultyID)
-	{
-		this.facultyID = facultyID;
+		this.id = id;
+		this.name = name;
 	}
 	
-	public String getFacultyName()
+	public String getid()
 	{
-		return facultyName;
+		return id;
 	}
-	public void setFacultyName(String facultyName)
+	public void setid(String id)
 	{
-		this.facultyName = facultyName;
+		this.id = id;
+	}
+	
+	public String getname()
+	{
+		return name;
+	}
+	public void setname(String name)
+	{
+		this.name = name;
 	}
 }
