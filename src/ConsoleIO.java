@@ -13,9 +13,10 @@ public class ConsoleIO
 		System.out.println("Course\t\t\tGrade\n" + 
 							"----------------------------------------------");
 		
-		for(Course course: student.getCourses())
-		{
-			System.out.println(course.getCourseID() + "\t" + course.getCourseName() + "\t\t" /*+ course.getGrade*/);
-		}
+//		for(Course course: student.getCourses())
+//		{
+//			System.out.println(course.getCourseID() + "\t" + course.getCourseName() + "\t\t" /*+ course.getGrade*/);
+//		}
+		
 	}
 }

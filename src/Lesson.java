@@ -8,7 +8,7 @@
 /**
  * This entity class holds information regarding an instance of Lesson in an instance of Course
  * 
- * last-updated: 2018-1-09
+ * last-updated: 2018-11-09
  * @author Jason
  *
  */

@@ -1,5 +1,6 @@
 /**
- * This entity class holds information for an instance of Faculty.
+ * This entity class holds information for a faculty member.
+ * A faculty member may be the course coordinator of a particular Course.
  * 
  * last-updated: 2018-11-09
  * @author Jason
@@ -16,11 +17,11 @@ public class Faculty
 		this.name = name;
 	}
 	
-	public String getid()
+	public String getID()
 	{
 		return id;
 	}
-	public void setid(String id)
+	public void setID(String id)
 	{
 		this.id = id;
 	}
