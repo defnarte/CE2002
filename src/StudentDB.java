@@ -23,6 +23,15 @@ public class StudentDB {
 	public Student getStudent(int index){
 		return students.get(index);
 	}
+	public int getStudentIndex(String matriculationNumber) {
+		for (int i = 0; i < students.size(); i++)
+		{
+			if (students.get(i).getStudentID().equals(matriculationNumber)) {
+				return i;
+			}
+		}
+		return -1;
+	}
 	public void printStudentList() {
 		for (int i = 0; i < students.size(); i++)
 		{
