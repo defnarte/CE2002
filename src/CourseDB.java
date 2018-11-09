@@ -71,7 +71,7 @@ public class CourseDB {
 			ArrayList<String> matNos= new ArrayList<String>(Arrays.asList(star.nextToken().trim().split("\\s*,\\s*")));
 			
 			ArrayList<String> weightageString = new ArrayList<String>(Arrays.asList(star.nextToken().trim().split("\\s*,\\s*")));
-			int x = weightageString.size()-1;
+			int x = weightageString.size();
 			double weightage[] = new double[x];
 			for (int k = 0; k < x; k++) {
 				weightage[k] = Double.parseDouble(weightageString.get(k));
@@ -85,19 +85,20 @@ public class CourseDB {
 				CourseWork[] courseWorkFull = new CourseWork[x];
 				for (int m = 0; m < x; m++) {
 					marksStudent[m] = Double.parseDouble(marksString.get(l).get(m));
-					CourseWork courseWorkInd = new CourseWork(weightage[m],marksStudent[m]);
-					courseWorkFull[m] = courseWorkInd;
+					CourseWork courseWorkIndividual = new CourseWork(weightage[m],marksStudent[m]);
+					courseWorkFull[m] = courseWorkIndividual;
 				}
 				courseWorkMarks.add(courseWorkFull);
 			}
 			ArrayList<String> lessonIDs = new ArrayList<String>(Arrays.asList(star.nextToken().trim().split("\\s*,\\s*")));
 			ArrayList<String> lessonTypes = new ArrayList<String>(Arrays.asList(star.nextToken().trim().split("\\s*,\\s*")));
+			ArrayList<String> totalSize = new ArrayList<String>(Arrays.asList(star.nextToken().trim().split("\\s*,\\s*")));
 			ArrayList<String> vacancy = new ArrayList<String>(Arrays.asList(star.nextToken().trim().split("\\s*,\\s*")));
 			
 			ArrayList<Lesson> lessons = new ArrayList<Lesson>();
 			int u = lessonIDs.size();
 			for (int p = 0; p < u; p++) {
-				Lesson lesson = new Lesson(lessonIDs.get(p),lessonTypes.get(p),Integer.parseInt(vacancy.get(p)));
+				Lesson lesson = new Lesson(lessonIDs.get(p),lessonTypes.get(p),Integer.parseInt(totalSize.get(p)),Integer.parseInt(vacancy.get(p)));
 				lessons.add(lesson);
 			}
 			Course course = new Course(courseID, courseName, matNos, courseWorkMarks, lessons);

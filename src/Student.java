@@ -23,27 +23,27 @@ public class Student
 		this.lessons = lessons;
 	}
 
-	public String getName()
+	public String getStudentName()
 	{
 		return name;
 	}
 
-	public String getID()
+	public String getStudentID()
 	{
 		return matriculationNumber;
 	}
 
-	public ArrayList<String> getCourses()
+	public ArrayList<String> getStudentCourses()
 	{
 		return courses;
 	}
 
-	public void addCourse(String course)
+	public void enrolCourse(String course)
 	{
 		this.courses.add(course);
 	}
 
-	public ArrayList<ArrayList<String>> getLessons()
+	public ArrayList<ArrayList<String>> getStudentLessons()
 	{
 		return lessons;
 	}

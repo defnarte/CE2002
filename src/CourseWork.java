@@ -9,7 +9,7 @@ public class CourseWork {
 	public double getWeightage() {
 		return weightage;
 	}
-	public double getCourseWorkMarks() {
+	public double getMarks() {
 		return marks;
 	}
 }

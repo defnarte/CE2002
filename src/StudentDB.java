@@ -27,20 +27,20 @@ public class StudentDB {
 		for (int i = 0; i < students.size(); i++)
 		{
 			Student student = (Student) students.get(i);
-			System.out.print(student.getName());
-			System.out.println(" " + student.getID());
+			System.out.print(student.getStudentName());
+			System.out.println(" " + student.getStudentID());
 		}
 	}
 	public boolean checkStudentName(String name) {
 		for (int i=0; i<students.size(); i++) {
-			if (students.get(i).getName().equals(name)) 
+			if (students.get(i).getStudentName().equals(name)) 
 				return true;
 		}
 		return false;
 	}
 	public boolean checkStudentMatNo(String MatNo) {
 		for (int i=0; i<students.size(); i++) {
-			if (students.get(i).getID().equals(MatNo)) 
+			if (students.get(i).getStudentID().equals(MatNo)) 
 				return true;
 		}
 		return false;
@@ -93,11 +93,11 @@ public class StudentDB {
 		{
 			Student stu = (Student) students.get(i);
 			StringBuilder st = new StringBuilder();
-			st.append(stu.getName().trim());
+			st.append(stu.getStudentName().trim());
 			st.append(SEPARATOR);
-			st.append(stu.getID().trim());
+			st.append(stu.getStudentID().trim());
 			st.append(SEPARATOR);
-			ArrayList<String> courses = stu.getCourses();
+			ArrayList<String> courses = stu.getStudentCourses();
 			for (int j = 0; j < courses.size(); j++)
 			{
 				st.append(courses.get(j));
