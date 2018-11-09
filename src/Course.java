@@ -1,14 +1,5 @@
 import java.util.*;
 
-enum Grade
-{
-	APLUS, A, AMINUS,
-	BPLUS, B, BMINUS,
-	CPLUS, C,
-	DPLUS, D,
-	F,
-}
-
 /**
  * This entity class holds information regarding a particular Course.
  * 
@@ -23,7 +14,8 @@ public class Course
 	
 //	private Faculty courseCoordinator;
 	private ArrayList<String> studentsMatricNumbers;
-	// originally named marks; Why is a collection of CourseWorks named marks?
+	// originally named marks; Why is a collection of collection of CourseWork named marks?
+	// Why is there even a need for a collection of collection of CourseWork?
 	private ArrayList<CourseWork[]> courseWorkMarks; 
 	private ArrayList<Lesson> lessons;
 	
