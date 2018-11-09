@@ -34,10 +34,10 @@ public class task2 {
                 Lesson(lessonID,lessonType,vacancy)
 
         Course course = new Course(courseName, classID, weightage, ArrayList<Lesson> lessons);
-        CourseAl.add(course);
-        CourseDB.saveCourses("Courses.txt", CourseAl);
+        courses.addCourse(course);
+        //courses.saveCourses("Courses.txt", CourseAl);
 
         // Print list of all courses
-        CourseAl.printCourseList();
+        courses.printCourseList();
     } 
 }

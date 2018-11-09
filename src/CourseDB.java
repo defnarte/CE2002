@@ -14,6 +14,9 @@ public class CourseDB {
 	public CourseDB(){
 		courses = new ArrayList<Course>();
 	}
+	public void addCourse(Course course) {
+		courses.add(course);
+	}
 	public Course getCourse(int index) {
 		return courses.get(index);
 	}
@@ -75,7 +78,7 @@ public class CourseDB {
 			}
 			ArrayList<ArrayList<String>> marksString = stringsplit(star.nextToken().trim(),"_");
 			// 80,60    50,50
-			ArrayList<CourseWork[]> marks = new ArrayList<CourseWork[]>();
+			ArrayList<CourseWork[]> courseWorkMarks = new ArrayList<CourseWork[]>();
 			int y = marksString.size();
 			for (int l = 0; l < y; l++) {
 				double[] marksStudent = new double[x];
@@ -85,7 +88,7 @@ public class CourseDB {
 					CourseWork courseWorkInd = new CourseWork(weightage[m],marksStudent[m]);
 					courseWorkFull[m] = courseWorkInd;
 				}
-				marks.add(courseWorkFull);
+				courseWorkMarks.add(courseWorkFull);
 			}
 			ArrayList<String> lessonIDs = new ArrayList<String>(Arrays.asList(star.nextToken().trim().split("\\s*,\\s*")));
 			ArrayList<String> lessonTypes = new ArrayList<String>(Arrays.asList(star.nextToken().trim().split("\\s*,\\s*")));
@@ -97,7 +100,7 @@ public class CourseDB {
 				Lesson lesson = new Lesson(lessonIDs.get(p),lessonTypes.get(p),Integer.parseInt(vacancy.get(p)));
 				lessons.add(lesson);
 			}
-			Course course = new Course(courseID, courseName, matNos, marks, lessons);
+			Course course = new Course(courseID, courseName, matNos, courseWorkMarks, lessons);
 			courses.add(course);
 		}
 	}
