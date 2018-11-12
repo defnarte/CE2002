@@ -72,10 +72,10 @@ public class StudentDB {
 	}
 	
 	// Read the textfile as a stringArray
-	public static List read(String filename) throws FileNotFoundException
+	public static List<String> read(String filename) throws FileNotFoundException
 	{
 		Scanner sc = new Scanner(new FileInputStream(filename));
-		List data = new ArrayList();
+		List<String> data = new ArrayList<String>();
 		try
 		{
 			while (sc.hasNextLine())
@@ -92,8 +92,7 @@ public class StudentDB {
 	// Create the database
 	public void readStudents(String filename) throws IOException
 	{
-		ArrayList stringArray = (ArrayList) read(filename);
-		ArrayList alr = new ArrayList();
+		ArrayList<String> stringArray = (ArrayList<String>) read(filename);
 
 		for (int i = 0; i < stringArray.size(); i++)
 		{
@@ -112,7 +111,7 @@ public class StudentDB {
 
 	public void saveStudents(String filename) throws IOException
 	{
-		List alw = new ArrayList();
+		List<String> alw = new ArrayList<String>();
 		for (int i = 0; i < students.size(); i++)
 		{
 			Student stu = (Student) students.get(i);
@@ -133,7 +132,7 @@ public class StudentDB {
 		write(filename, alw);
 	}
 
-	public static void write(String fileName, List data) throws IOException
+	public static void write(String fileName, List<String> data) throws IOException
 	{
 		PrintWriter out = new PrintWriter(new FileWriter(fileName));
 		try
