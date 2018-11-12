@@ -3,7 +3,7 @@ package tests;
 import courses.Course;
 import consoleIO.CreationInterface;
 import grading.OverallResults;
-import registration.CourseRegistrationHandler;
+import registration.*;
 import universityMembers.FacultyMember;
 import universityMembers.Student;
 
@@ -26,8 +26,8 @@ public class TestMarksEntry
 		
 		Student testStudent = new Student("S9876543A","John Doe");
 		
-		CourseRegistrationHandler.register(testStudent, testCourse);
-		System.out.println(testStudent.getCoursesRegistered().get(0) + " constructed successfully");
+		CourseRegistrationRecord newRecord = CourseRegistrationHandler.register(testStudent, testCourse);
+		System.out.println(newRecord + " constructed successfully");
 		
 		
 	}
