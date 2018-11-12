@@ -127,7 +127,7 @@ public class Course
 			return false;
 	}
 	
-	public void addComponent(ComponentWeightage newComponent)
+	public void addComponentWeightage(ComponentWeightage newComponent)
 	{
 		components.add(newComponent);
 	}

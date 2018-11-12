@@ -6,7 +6,7 @@ import courses.*;
 /**
  * Control class for creation of course
  * 
- * @version 1.1
+ * @version 1.2
  * @since 2018/11/12
  * @author Jason
  *
@@ -67,14 +67,16 @@ public class CreationInterface
 
 			if (userChoice == 1)
 			{
-				ComponentWeightage newComponent = new ComponentWeightage(componentName, componentWeightage);
-				course.addComponent(newComponent);
+				ComponentWeightage newComponentWeightage = new ComponentWeightage(componentName, componentWeightage);
+				course.addComponentWeightage(newComponentWeightage);
 			}
 			else
 			{
-				AggregateComponentWeightage newComponent = new AggregateComponentWeightage(componentName, componentWeightage);
+				AggregateComponentWeightage newAggregateComponentWeightage = 
+						new AggregateComponentWeightage(componentName, componentWeightage);
 
-				String numOfSubcomponentsPrompt = "Enter number of subcomponents for " + newComponent.getName() + ": ";
+				String numOfSubcomponentsPrompt = "Enter number of subcomponents for " + 
+													newAggregateComponentWeightage.getName() + ": ";
 				int numOfSubcomponents = ConsoleInputInterface.getUserPositiveIntInput(numOfSubcomponentsPrompt);
 
 				int subcomponentsTotalWeightage = 100;
@@ -85,21 +87,23 @@ public class CreationInterface
 					ConsoleInputInterface.consoleScanner.nextLine();
 					String subcomponentName = ConsoleInputInterface.consoleScanner.nextLine();
 
-					String subcomponentWeightagePrompt = "Enter the weightage of " + subcomponentName + " within "
-							+ newComponent.getName() + " out of 100 (" + subcomponentsTotalWeightage + " remaining): ";
+					String subcomponentWeightagePrompt = "Enter the weightage of " + 
+							subcomponentName + " within " + newAggregateComponentWeightage.getName() + 
+								" out of 100 (" + subcomponentsTotalWeightage + " remaining): ";
 					int subcomponentWeightage = ConsoleInputInterface
 							.getUserPositiveIntInput(subcomponentWeightagePrompt, subcomponentsTotalWeightage);
 					
 					subcomponentsTotalWeightage -= subcomponentWeightage;
 
-					ComponentWeightage newSubcomponent = new ComponentWeightage(subcomponentName, subcomponentWeightage);
-					newComponent.addSubcomponentWeightage(newSubcomponent);
+					ComponentWeightage newSubcomponentWeightage = 
+							new ComponentWeightage(subcomponentName, subcomponentWeightage);
+					newAggregateComponentWeightage.addSubcomponentWeightage(newSubcomponentWeightage);
 					
 					if(subcomponentsTotalWeightage == 0)
 						break;
 				}
 
-				course.addComponent(newComponent);
+				course.addComponentWeightage(newAggregateComponentWeightage);
 			}
 			
 			if(componentsTotalWeightage == 0)

@@ -69,9 +69,6 @@ public class CourseRegistrationHandler
 				
 		}
 		
-		/**
-		 * 
-		 */
 		return false; // DeregistrationOutcome.NOT_REGISTERED;
 	}
 }
