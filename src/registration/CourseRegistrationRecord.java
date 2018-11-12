@@ -41,4 +41,11 @@ public class CourseRegistrationRecord
 	{
 		this.results = results;
 	}
+	
+	@Override
+	public String toString()
+	{
+		return "CourseRegistrationRecord [" + registeredStudent.toString() + " is registered for " + 
+				registeredCourse.getCourseCode() + ' ' + registeredCourse.getName() + ']';
+	}
 }

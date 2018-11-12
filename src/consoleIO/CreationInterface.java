@@ -89,6 +89,8 @@ public class CreationInterface
 							+ newComponent.getName() + " out of 100 (" + subcomponentsTotalWeightage + " remaining): ";
 					int subcomponentWeightage = ConsoleInputInterface
 							.getUserPositiveIntInput(subcomponentWeightagePrompt, subcomponentsTotalWeightage);
+					
+					subcomponentsTotalWeightage -= subcomponentWeightage;
 
 					ComponentWeightage newSubcomponent = new ComponentWeightage(subcomponentName, subcomponentWeightage);
 					newComponent.addSubcomponentWeightage(newSubcomponent);
