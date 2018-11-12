@@ -9,7 +9,7 @@ import universityMembers.Student;
 
 /**
  * 
- * @version 1.0
+ * @version 1.1
  * @since 2018/11/12
  * @author Jason
  *
@@ -28,5 +28,7 @@ public class TestMarksEntry
 		
 		CourseRegistrationHandler.register(testStudent, testCourse);
 		System.out.println(testStudent.getCoursesRegistered().get(0) + " constructed successfully");
+		
+		
 	}
 }

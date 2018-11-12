@@ -94,11 +94,16 @@ public class CreationInterface
 
 					ComponentWeightage newSubcomponent = new ComponentWeightage(subcomponentName, subcomponentWeightage);
 					newComponent.addSubcomponentWeightage(newSubcomponent);
+					
+					if(subcomponentsTotalWeightage == 0)
+						break;
 				}
 
 				course.addComponent(newComponent);
 			}
-
+			
+			if(componentsTotalWeightage == 0)
+				break;
 		}
 
 	}
