@@ -4,13 +4,13 @@ import courses.ComponentWeightage;
 
 public class ComponentResult implements IWeightedMarks
 {
-	ComponentWeightage weightage;
-	private int rawMarks;
+	private ComponentWeightage weightage;
+	private int marks;
 	
-	public ComponentResult(ComponentWeightage weightage, int rawMarks)
+	public ComponentResult(ComponentWeightage weightage, int marks)
 	{
 		this.weightage = weightage;
-		this.rawMarks = rawMarks;
+		this.marks = marks;
 	}
 	
 	public String getName()
@@ -22,24 +22,24 @@ public class ComponentResult implements IWeightedMarks
 		return weightage.getWeightage();
 	}
 	
-	public int getMarks()
+	public double getMarks()
 	{
-		return rawMarks;
+		return marks;
 	}
-	public void setMarks(int rawMarks)
+	public void setMarks(int marks)
 	{
-		this.rawMarks = rawMarks;
+		this.marks = marks;
 	}
 	
 	@Override
 	public double computeWeightedMarks()
 	{
-		return getWeightage() * rawMarks / 100.0;
+		return getWeightage() * marks / 100.0;
 	}
 	
 	@Override
 	public String toString()
 	{
-		return getName() + " (" + getWeightage() + "%): " + rawMarks;
+		return getName() + " (" + getWeightage() + "%): " + String.format("%.1f", marks);
 	}
 }

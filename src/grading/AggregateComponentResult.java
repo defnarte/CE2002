@@ -5,14 +5,13 @@ import java.util.ArrayList;
 import courses.AggregateComponentWeightage;
 import courses.ComponentWeightage;
 
-public class AggregateComponentResult implements IWeightedMarks
+public class AggregateComponentResult extends ComponentResult implements IWeightedMarks
 {
-	AggregateComponentWeightage weightage;
 	ArrayList<ComponentResult> subcomponentResultList;
 	
 	public AggregateComponentResult(AggregateComponentWeightage weightage)
 	{
-		this.weightage = weightage;
+		super(weightage,0);
 		
 		for(ComponentWeightage subcomponentWeightage: weightage.getSubcomponentWeightageList())
 		{
@@ -64,10 +63,11 @@ public class AggregateComponentResult implements IWeightedMarks
 	
 	public int getWeightage()
 	{
-		return weightage.getWeightage();
+		return super.getWeightage();
 	}
 
-	public double getAggregatedMarks()
+	@Override
+	public double getMarks()
 	{
 		int aggregatedMarks = 0;
 		
@@ -82,6 +82,19 @@ public class AggregateComponentResult implements IWeightedMarks
 	@Override
 	public double computeWeightedMarks()
 	{
-		return weightage.getWeightage() * getAggregatedMarks() / 100.0;
+		return super.getWeightage() * getMarks() / 100.0;
+	}
+	
+	@Override
+	public String toString()
+	{
+		String subcomponentString = "";
+		
+		for(ComponentResult subcomponentResult: subcomponentResultList)
+		{
+			subcomponentString += "\t\t" + subcomponentResult.toString() + '\n';
+		}
+		
+		return super.toString() + subcomponentString;
 	}
 }

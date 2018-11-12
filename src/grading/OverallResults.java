@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class OverallResults implements Gradeable
 {
 	private int overallMarks;
-	private ArrayList<ComponentResult> componentsMarks;
+	private ArrayList<ComponentResult> componentResultList;
 	
 //	public Results(ArrayList<Component> components)
 //	{
@@ -21,9 +21,9 @@ public class OverallResults implements Gradeable
 	{
 		return overallMarks;
 	}
-	public ArrayList<ComponentResult> getComponentsMarks()
+	public ArrayList<ComponentResult> getComponentResultList()
 	{
-		return componentsMarks;
+		return componentResultList;
 	}
 	
 	public Grade computeGrade()
