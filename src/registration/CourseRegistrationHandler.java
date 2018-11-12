@@ -3,24 +3,31 @@ package registration;
 import universityMembers.Student;
 import courses.Course;
 
-enum RegistrationOutcome
-{
-	ALREADY_REGISTERED, // registration failed as student is already registered for this course this semester
-	NO_VACANCY, // registration failed as there is no vacancy in this course
-	REGISTRATION_SUCCESS,
-}
-enum DeregistrationOutcome
-{
-	NOT_REGISTERED, // de-registration failed as the student is not registered for this course
-	DEREGISTRATION_SUCCESS,
-}
+/**
+ * 
+ * @version 1.1
+ * @since 2018/11/12
+ * @author Jason
+ *
+ */
+//enum RegistrationOutcome
+//{
+//	ALREADY_REGISTERED, // registration failed as student is already registered for this course this semester
+//	NO_VACANCY, // registration failed as there is no vacancy in this course
+//	REGISTRATION_SUCCESS,
+//}
+//enum DeregistrationOutcome
+//{
+//	NOT_REGISTERED, // de-registration failed as the student is not registered for this course
+//	DEREGISTRATION_SUCCESS,
+//}
 
 public class CourseRegistrationHandler
 {
-	public static RegistrationOutcome register(Student student, Course course)
+	public static CourseRegistrationRecord register(Student student, Course course)
 	{
 		if(course.getVacancy() == 0)
-			return RegistrationOutcome.NO_VACANCY;
+			return null; // RegistrationOutcome.NO_VACANCY;
 		
 		/**
 		 * Checks if student is already registered for this course this semester.
@@ -30,17 +37,17 @@ public class CourseRegistrationHandler
 		for(CourseRegistrationRecord registration: course.getRegistrations())
 		{
 			if(registration.getRegisteredStudent() == student)
-				return RegistrationOutcome.ALREADY_REGISTERED;
+				return null; // RegistrationOutcome.ALREADY_REGISTERED;
 		}
 		
 		CourseRegistrationRecord newRegistration = new CourseRegistrationRecord(student,course);
 		student.addCourse(newRegistration);
 		course.addRegistration(newRegistration);
 		
-		return RegistrationOutcome.REGISTRATION_SUCCESS;
+		return newRegistration; // RegistrationOutcome.REGISTRATION_SUCCESS;
 	}
 	
-	public static DeregistrationOutcome deregister(Student student, Course course)
+	public static boolean deregister(Student student, Course course)
 	{
 		/**
 		 * Checks if student is registered for this course this semester.
@@ -57,14 +64,11 @@ public class CourseRegistrationHandler
 				student.dropCourse(registration);
 				course.dropRegistration(registration);
 				
-				return DeregistrationOutcome.DEREGISTRATION_SUCCESS;
+				return true; // DeregistrationOutcome.DEREGISTRATION_SUCCESS;
 			}
 				
 		}
 		
-		/**
-		 * 
-		 */
-		return DeregistrationOutcome.NOT_REGISTERED;
+		return false; // DeregistrationOutcome.NOT_REGISTERED;
 	}
 }

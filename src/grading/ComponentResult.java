@@ -2,6 +2,13 @@ package grading;
 
 import courses.ComponentWeightage;
 
+/**
+ * 
+ * @version 1.0
+ * @since 2018/11/12
+ * @author Jason
+ *
+ */
 public class ComponentResult implements IWeightedMarks
 {
 	private ComponentWeightage weightage;
