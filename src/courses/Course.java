@@ -33,6 +33,15 @@ public class Course
 	 * @param courseCoordinator
 	 * @param maxNumOfIntakes
 	 */
+	public Course(String courseCode, String courseName, int maxNumOfIntakes)
+	{
+		this.courseCode = courseCode;
+		this.name = courseName;
+		this.maxNumOfIntakes = maxNumOfIntakes;
+		
+		registrations = new ArrayList<CourseRegistrationRecord>();
+		components = new ArrayList<ComponentWeightage>();
+	}
 	public Course(String courseCode, String courseName, FacultyMember courseCoordinator, int maxNumOfIntakes)
 	{
 		this.courseCode = courseCode;
@@ -130,6 +139,10 @@ public class Course
 	public void addComponent(ComponentWeightage newComponent)
 	{
 		components.add(newComponent);
+	}
+	public ArrayList<ComponentWeightage> getComponents() 
+	{
+		return components;
 	}
 	
 	/**
