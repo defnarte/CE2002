@@ -1,11 +1,11 @@
 package tests;
 
-import grading.Results;
+//import grading.OverallResults;
 
 public class TestMarksEntry
 {
 	public static void main()
 	{
-		Results newResults = new Results();
+//		OverallResults newResults = new OverallResults();
 	}
 }

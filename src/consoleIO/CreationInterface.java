@@ -1,7 +1,6 @@
 package consoleIO;
 
 import universityMembers.FacultyMember;
-import grading.*;
 import courses.*;
 
 /**
@@ -68,12 +67,12 @@ public class CreationInterface
 
 			if (userChoice == 1)
 			{
-				Component newComponent = new Component(componentName, componentWeightage);
+				ComponentWeightage newComponent = new ComponentWeightage(componentName, componentWeightage);
 				course.addComponent(newComponent);
 			}
 			else
 			{
-				AggregateComponent newComponent = new AggregateComponent(componentName, componentWeightage);
+				AggregateComponentWeightage newComponent = new AggregateComponentWeightage(componentName, componentWeightage);
 
 				String numOfSubcomponentsPrompt = "Enter number of subcomponents for " + newComponent.getName() + ": ";
 				int numOfSubcomponents = ConsoleInputInterface.getUserPositiveIntInput(numOfSubcomponentsPrompt);
@@ -91,8 +90,8 @@ public class CreationInterface
 					int subcomponentWeightage = ConsoleInputInterface
 							.getUserPositiveIntInput(subcomponentWeightagePrompt, subcomponentsTotalWeightage);
 
-					Component subcomponent = new Component(subcomponentName, subcomponentWeightage);
-					newComponent.addSubcomponent(subcomponent);
+					ComponentWeightage newSubcomponent = new ComponentWeightage(subcomponentName, subcomponentWeightage);
+					newComponent.addSubcomponentWeightage(newSubcomponent);
 				}
 
 				course.addComponent(newComponent);

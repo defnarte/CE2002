@@ -2,13 +2,13 @@ package registration;
 
 import universityMembers.Student;
 import courses.Course;
-import grading.Results;
+import grading.OverallResults;
 
 public class CourseRegistrationRecord
 {
 	private Student registeredStudent;
 	private Course registeredCourse;
-	private Results results;
+	private OverallResults results;
 	
 	public CourseRegistrationRecord(Student student, Course course)
 	{
@@ -26,11 +26,11 @@ public class CourseRegistrationRecord
 		return registeredCourse;
 	}
 	
-	public Results getResults()
+	public OverallResults getResults()
 	{
 		return results;
 	}
-	public void setResults(Results results)
+	public void setResults(OverallResults results)
 	{
 		this.results = results;
 	}

@@ -2,7 +2,6 @@ package courses;
 
 import universityMembers.FacultyMember;
 import registration.CourseRegistrationRecord;
-import grading.Component;
 
 import java.util.ArrayList;
 
@@ -23,7 +22,7 @@ public class Course
 	private int maxNumOfIntakes; // maximum number of student intakes for this course
 	
 	private ArrayList<CourseRegistrationRecord> registrations; // registrations for this course
-	private ArrayList<Component> components;
+	private ArrayList<ComponentWeightage> components;
 	
 	/**
 	 * Constructor for course that initialises the course's code, name, coordinator and maximum number of student intakes,
@@ -42,7 +41,7 @@ public class Course
 		this.maxNumOfIntakes = maxNumOfIntakes;
 		
 		registrations = new ArrayList<CourseRegistrationRecord>();
-		components = new ArrayList<Component>();
+		components = new ArrayList<ComponentWeightage>();
 	}
 	
 	/**
@@ -128,7 +127,7 @@ public class Course
 			return false;
 	}
 	
-	public void addComponent(Component newComponent)
+	public void addComponent(ComponentWeightage newComponent)
 	{
 		components.add(newComponent);
 	}
@@ -158,7 +157,7 @@ public class Course
 	{
 		String componentString = "";
 		
-		for(Component component: components)
+		for(ComponentWeightage component: components)
 		{
 			componentString += '\t' + component.toString() + '\n';
 		}

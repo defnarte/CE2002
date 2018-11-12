@@ -2,10 +2,10 @@ package grading;
 
 import java.util.ArrayList;
 
-public class Results implements Gradeable
+public class OverallResults implements Gradeable
 {
 	private int overallMarks;
-	private ArrayList<ComponentMarks> componentsMarks;
+	private ArrayList<ComponentResult> componentsMarks;
 	
 //	public Results(ArrayList<Component> components)
 //	{
@@ -21,7 +21,7 @@ public class Results implements Gradeable
 	{
 		return overallMarks;
 	}
-	public ArrayList<ComponentMarks> getComponentsMarks()
+	public ArrayList<ComponentResult> getComponentsMarks()
 	{
 		return componentsMarks;
 	}
