@@ -61,9 +61,9 @@ public class CourseDB {
 		
 	}
 	// Read the textfile as a stringArray
-	public static List read(String filename) throws FileNotFoundException {
+	public static List<String> read(String filename) throws FileNotFoundException {
 		Scanner sc = new Scanner(new FileInputStream(filename));
-		List data = new ArrayList();
+		List<String> data = new ArrayList<String>();
 	    try {
 	        while (sc.hasNextLine()){
 	          data.add(sc.nextLine());
@@ -76,8 +76,7 @@ public class CourseDB {
 	}
 	// Create the database
 	public void readCourses(String filename) throws IOException {
-		ArrayList stringArray = (ArrayList) read(filename);
-		ArrayList alr = new ArrayList();
+		ArrayList<String> stringArray = (ArrayList<String>) read(filename);
 		
 		for (int i = 0; i < stringArray.size(); i++) {
 			String st = (String) stringArray.get(i);
