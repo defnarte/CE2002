@@ -13,7 +13,7 @@ import courses.*;
  */
 public class CreationInterface
 {
-	public static Course createCourse(FacultyMember courseCoordinator)
+	public static void createCourse(FacultyMember courseCoordinator)
 	{
 		System.out.println("\n---Creating new course---");
 
@@ -30,14 +30,12 @@ public class CreationInterface
 
 		Course newCourse = new Course(courseCode, courseName, courseCoordinator, maxNumOfIntakes);
 
-		newCourse.createComponents();
+		createCourseComponents(newCourse);
 
 		System.out.println("\nCreated course:\n" + newCourse.toString());
-		
-		return newCourse;
 	}
 
-	public static void createCourseComponents(Course course)
+	private static void createCourseComponents(Course course)
 	{
 		String numOfComponentsPrompt = "Enter number of components for " + course.getCourseCode() + ": ";
 		int numOfComponents = ConsoleInputInterface.getUserPositiveIntInput(numOfComponentsPrompt);

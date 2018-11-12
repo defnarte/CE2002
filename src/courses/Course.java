@@ -5,8 +5,6 @@ import registration.CourseRegistrationRecord;
 
 import java.util.ArrayList;
 
-import consoleIO.CreationInterface;
-
 /**
  * This class holds information of a course.
  * 
@@ -24,7 +22,7 @@ public class Course
 	private int maxNumOfIntakes; // maximum number of student intakes for this course
 	
 	private ArrayList<CourseRegistrationRecord> registrations; // registrations for this course
-	private ArrayList<ComponentWeightage> componentWeightageList;
+	private ArrayList<ComponentWeightage> components;
 	
 	/**
 	 * Constructor for course that initialises the course's code, name, coordinator and maximum number of student intakes,
@@ -43,7 +41,7 @@ public class Course
 		this.maxNumOfIntakes = maxNumOfIntakes;
 		
 		registrations = new ArrayList<CourseRegistrationRecord>();
-		componentWeightageList = new ArrayList<ComponentWeightage>();
+		components = new ArrayList<ComponentWeightage>();
 	}
 	
 	/**
@@ -129,15 +127,9 @@ public class Course
 			return false;
 	}
 	
-	public void createComponents()
-	{
-		this.componentWeightageList = new ArrayList<ComponentWeightage>();
-		CreationInterface.createCourseComponents(this);
-	}
-	
 	public void addComponent(ComponentWeightage newComponent)
 	{
-		componentWeightageList.add(newComponent);
+		components.add(newComponent);
 	}
 	
 	/**
@@ -165,7 +157,7 @@ public class Course
 	{
 		String componentString = "";
 		
-		for(ComponentWeightage component: componentWeightageList)
+		for(ComponentWeightage component: components)
 		{
 			componentString += '\t' + component.toString() + '\n';
 		}
