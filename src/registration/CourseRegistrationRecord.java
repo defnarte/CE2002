@@ -6,7 +6,7 @@ import grading.OverallResults;
 
 /**
  * 
- * @version 1.0
+ * @version 1.2
  * @since 2018/11/12
  * @author Jason
  *
@@ -15,12 +15,13 @@ public class CourseRegistrationRecord
 {
 	private Student registeredStudent;
 	private Course registeredCourse;
-	private OverallResults results;
+	private OverallResults overallResults;
 	
 	public CourseRegistrationRecord(Student student, Course course)
 	{
 		this.registeredStudent = student;
 		this.registeredCourse = course;
+		this.overallResults = new OverallResults(course.getAllComponentsWeightage());
 	}
 	
 	public Student getRegisteredStudent()
@@ -33,19 +34,23 @@ public class CourseRegistrationRecord
 		return registeredCourse;
 	}
 	
-	public OverallResults getResults()
+	public OverallResults getOverallResults()
 	{
-		return results;
+		return overallResults;
 	}
-	public void setResults(OverallResults results)
+	public void setOverallResults(OverallResults overallResults)
 	{
-		this.results = results;
+		this.overallResults = overallResults;
+	}
+	public void setTargetComponentResult(String targetName, int rawMarks)
+	{
+		this.overallResults.setTargetComponentResult(targetName, rawMarks);
 	}
 	
 	@Override
 	public String toString()
 	{
-		return "CourseRegistrationRecord [" + registeredStudent.toString() + " is registered for " + 
+		return "CourseRegistrationRecord [student: " + registeredStudent.toString() + ", course: " + 
 				registeredCourse.getCourseCode() + ' ' + registeredCourse.getName() + ']';
 	}
 }

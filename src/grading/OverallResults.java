@@ -7,7 +7,7 @@ import courses.ComponentWeightage;
 
 /**
  * 
- * @version 1.0
+ * @version 1.1
  * @since 2018/11/12
  * @author Jason
  *
@@ -52,9 +52,36 @@ public class OverallResults implements Gradeable
 	{
 		return componentResultList;
 	}
+	public boolean setTargetComponentResult(String targetName, int rawMarks)
+	{
+		for(ComponentResult componentResult: componentResultList)
+		{
+			if(componentResult.getName() == targetName && !(componentResult instanceof AggregateComponentResult))
+			{
+				componentResult.setMarks(rawMarks);
+				return true;
+			}
+		}
+		
+		return false;
+	}
 	
+	@Override
 	public Grade computeGrade()
 	{
 		return Grade.F; // placeholder
+	}
+	
+	@Override
+	public String toString()
+	{
+		String overallResultsString = "";
+		
+		for(ComponentResult componentResult: componentResultList)
+		{
+			overallResultsString += componentResult.toString();
+		}
+		
+		return overallResultsString;
 	}
 }

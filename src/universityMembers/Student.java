@@ -7,8 +7,8 @@ import java.util.ArrayList;
 /**
  * This class holds information of a university student (undergraduate).
  * 
- * @version 1.0
- * @since 2018/11/10
+ * @version 1.1
+ * @since 2018/11/12
  * @author Jason
  * 
  */
@@ -49,4 +49,9 @@ public class Student extends UniversityMember
 		registeredCourses.remove(courseRegistrationRecord);
 	}
 	
+	@Override
+	public String toString()
+	{
+		return "Student[" + super.toString() + ']';
+	}
 }

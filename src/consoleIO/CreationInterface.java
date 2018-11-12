@@ -111,7 +111,10 @@ public class CreationInterface
 			}
 			
 			if(componentsTotalWeightage == 0)
+			{
+				System.out.println(); // just printing newline
 				break;
+			}
 		}
 
 	}
