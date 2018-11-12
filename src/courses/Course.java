@@ -5,10 +5,12 @@ import registration.CourseRegistrationRecord;
 
 import java.util.ArrayList;
 
+import consoleIO.CreationInterface;
+
 /**
  * This class holds information of a course.
  * 
- * @version 1.1
+ * @version 1.2
  * @since 2018/11/12
  * @author Jason
  *
@@ -130,6 +132,12 @@ public class Course
 	public void addComponentWeightage(ComponentWeightage newComponent)
 	{
 		components.add(newComponent);
+	}
+	public void setAllComponentsWeightage()
+	{
+		components = new ArrayList<ComponentWeightage>();
+		
+		CreationInterface.createCourseComponents(this);
 	}
 	
 	/**

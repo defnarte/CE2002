@@ -23,6 +23,10 @@ public class TestMarksEntry
 		
 		Course testCourse = CreationInterface.createCourse(testCoordinator);
 		System.out.println(testCourse.getCourseCode() + ' ' + testCourse.getName() + " constructed successfully");
+		System.out.println(testCourse);
+		
+		testCourse.setAllComponentsWeightage();
+		System.out.println(testCourse);
 		
 		Student testStudent = new Student("S9876543A","John Doe");
 		
