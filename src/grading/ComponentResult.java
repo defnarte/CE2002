@@ -12,6 +12,11 @@ public class ComponentResult implements IWeightedMarks
 		this.weightage = weightage;
 		this.marks = marks;
 	}
+	public ComponentResult(ComponentWeightage weightage)
+	{
+		this.weightage = weightage;
+		this.marks = 0;
+	}
 	
 	public String getName()
 	{

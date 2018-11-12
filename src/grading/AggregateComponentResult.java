@@ -11,7 +11,7 @@ public class AggregateComponentResult extends ComponentResult implements IWeight
 	
 	public AggregateComponentResult(AggregateComponentWeightage weightage)
 	{
-		super(weightage,0);
+		super(weightage);
 		
 		for(ComponentWeightage subcomponentWeightage: weightage.getSubcomponentWeightageList())
 		{
