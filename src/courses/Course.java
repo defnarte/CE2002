@@ -8,8 +8,8 @@ import java.util.ArrayList;
 /**
  * This class holds information of a course.
  * 
- * @version 1.0
- * @since 2018/11/10
+ * @version 1.1
+ * @since 2018/11/12
  * @author Jason
  *
  */

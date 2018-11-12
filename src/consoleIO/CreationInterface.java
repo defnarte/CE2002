@@ -6,14 +6,14 @@ import courses.*;
 /**
  * Control class for creation of course
  * 
- * @version 1.0
- * @since 2018/11/11
+ * @version 1.1
+ * @since 2018/11/12
  * @author Jason
  *
  */
 public class CreationInterface
 {
-	public static void createCourse(FacultyMember courseCoordinator)
+	public static Course createCourse(FacultyMember courseCoordinator)
 	{
 		System.out.println("\n---Creating new course---");
 
@@ -33,6 +33,8 @@ public class CreationInterface
 		createCourseComponents(newCourse);
 
 		System.out.println("\nCreated course:\n" + newCourse.toString());
+		
+		return newCourse;
 	}
 
 	private static void createCourseComponents(Course course)
