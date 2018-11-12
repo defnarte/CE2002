@@ -18,8 +18,5 @@ public class task7 {
         // Loop through matNos of that course to find the student's index
             // Once found, loop through the size of courseWork and ask for input. Skip the first coursework (assumed to be exam)
 
-
-
-
     }
 }
