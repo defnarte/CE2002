@@ -5,6 +5,13 @@ import java.util.ArrayList;
 import courses.AggregateComponentWeightage;
 import courses.ComponentWeightage;
 
+/**
+ * 
+ * @version 1.0
+ * @since 2018/11/12
+ * @author Jason
+ *
+ */
 public class AggregateComponentResult extends ComponentResult implements IWeightedMarks
 {
 	ArrayList<ComponentResult> subcomponentResultList;

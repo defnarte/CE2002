@@ -13,10 +13,8 @@ import courses.*;
  */
 public class CreationInterface
 {
-	public static void createCourse()
+	public static void createCourse(FacultyMember courseCoordinator)
 	{
-		FacultyMember testFacultyMem = new FacultyMember("S1234567A", "Jane Doe");
-
 		System.out.println("\n---Creating new course---");
 
 		// start of getting course meta data
@@ -30,7 +28,7 @@ public class CreationInterface
 		int maxNumOfIntakes = ConsoleInputInterface.getUserPositiveIntInput(intakePrompt);
 		// end of getting course meta data
 
-		Course newCourse = new Course(courseCode, courseName, testFacultyMem, maxNumOfIntakes);
+		Course newCourse = new Course(courseCode, courseName, courseCoordinator, maxNumOfIntakes);
 
 		createCourseComponents(newCourse);
 

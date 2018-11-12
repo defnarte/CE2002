@@ -3,6 +3,13 @@ package registration;
 import universityMembers.Student;
 import courses.Course;
 
+/**
+ * 
+ * @version 1.0
+ * @since 2018/11/12
+ * @author Jason
+ *
+ */
 enum RegistrationOutcome
 {
 	ALREADY_REGISTERED, // registration failed as student is already registered for this course this semester

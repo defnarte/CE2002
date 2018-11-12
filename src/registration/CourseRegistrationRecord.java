@@ -4,6 +4,13 @@ import universityMembers.Student;
 import courses.Course;
 import grading.OverallResults;
 
+/**
+ * 
+ * @version 1.0
+ * @since 2018/11/12
+ * @author Jason
+ *
+ */
 public class CourseRegistrationRecord
 {
 	private Student registeredStudent;

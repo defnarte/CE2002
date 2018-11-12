@@ -2,6 +2,13 @@ package courses;
 
 import java.util.ArrayList;
 
+/**
+ * 
+ * @version 1.0
+ * @since 2018/11/12
+ * @author Jason
+ *
+ */
 public class AggregateComponentWeightage extends ComponentWeightage
 {
 	private ArrayList<ComponentWeightage> subcomponents;
