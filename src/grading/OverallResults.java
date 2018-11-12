@@ -52,11 +52,12 @@ public class OverallResults implements Gradeable
 	{
 		return componentResultList;
 	}
+	
 	public boolean setTargetComponentResult(String targetName, int rawMarks)
 	{
 		for(ComponentResult componentResult: componentResultList)
 		{
-			if(componentResult.getName() == targetName && !(componentResult instanceof AggregateComponentResult))
+			if(componentResult.getName().equals(targetName) && !(componentResult instanceof AggregateComponentResult))
 			{
 				componentResult.setMarks(rawMarks);
 				return true;

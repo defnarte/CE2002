@@ -1,13 +1,14 @@
 package registration;
 
 import universityMembers.Student;
+import consoleIO.MarksEntryInterface;
 import courses.Course;
 import grading.OverallResults;
 
 /**
  * 
- * @version 1.2
- * @since 2018/11/12
+ * @version 1.3
+ * @since 2018/11/13
  * @author Jason
  *
  */
@@ -38,13 +39,17 @@ public class CourseRegistrationRecord
 	{
 		return overallResults;
 	}
-	public void setOverallResults(OverallResults overallResults)
+//	public void setOverallResults(OverallResults overallResults)
+//	{
+//		this.overallResults = overallResults;
+//	}
+	public boolean setTargetComponentResult(String targetName, int rawMarks)
 	{
-		this.overallResults = overallResults;
+		return this.overallResults.setTargetComponentResult(targetName, rawMarks);
 	}
-	public void setTargetComponentResult(String targetName, int rawMarks)
+	public void enterMarks()
 	{
-		this.overallResults.setTargetComponentResult(targetName, rawMarks);
+		MarksEntryInterface.enterMarks(this);
 	}
 	
 	@Override

@@ -45,11 +45,11 @@ public class AggregateComponentWeightage extends ComponentWeightage
 	@Override
 	public String toString()
 	{
-		String subcomponentString = "\n";
+		String subcomponentString = "";
 		
 		for(ComponentWeightage subcomponent: subcomponents)
 		{
-			subcomponentString += "\t\t" + subcomponent.toString() + '\n';
+			subcomponentString += "\t" + subcomponent.toString() + '\n';
 		}
 		
 		return super.toString() + subcomponentString;

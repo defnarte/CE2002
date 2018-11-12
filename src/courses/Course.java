@@ -171,7 +171,7 @@ public class Course
 		
 		for(ComponentWeightage component: componentWeightageList)
 		{
-			componentString += '\t' + component.toString() + '\n';
+			componentString += component.toString();
 		}
 		
 		return "---" + courseCode + ' ' + name + 

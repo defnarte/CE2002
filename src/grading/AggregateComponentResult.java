@@ -96,13 +96,13 @@ public class AggregateComponentResult extends ComponentResult implements IWeight
 	@Override
 	public String toString()
 	{
-		String subcomponentString = "\n";
+		String subcomponentString = "";
 		
 		for(ComponentResult subcomponentResult: subcomponentResultList)
 		{
-			subcomponentString += "\t\t" + subcomponentResult.toString() + '\n';
+			subcomponentString += "\t" + subcomponentResult.toString();
 		}
 		
-		return super.toString() + '\n' + subcomponentString;
+		return super.toString() + subcomponentString;
 	}
 }
