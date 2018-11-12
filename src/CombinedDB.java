@@ -11,7 +11,13 @@ import grading.ComponentResult;
 import grading.OverallResults;
 import registration.CourseRegistrationRecord;
 import universityMembers.*;
-
+/**
+ * 
+ * @version 1.0
+ * @since 2018/11/12
+ * @author Isaac
+ *
+ */
 public class CombinedDB {
 	private ArrayList<Student> students;
 	private ArrayList<Course> courses;
@@ -102,7 +108,7 @@ public class CombinedDB {
 				String componentName = weightageString.get(j);
 				int componentWeightage = Integer.parseInt(weightageString.get(j+1));
 				ComponentWeightage component = new ComponentWeightage(componentName,componentWeightage);
-				course.addComponent(component);
+				course.addComponentWeightage(component);
 				j++;
 				}
 			System.out.println(course);
