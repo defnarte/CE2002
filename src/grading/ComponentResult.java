@@ -52,6 +52,6 @@ public class ComponentResult implements IWeightedMarks
 	@Override
 	public String toString()
 	{
-		return getName() + " (" + getWeightage() + "%): " + String.format("%.1f", marks);
+		return getName() + " (" + getWeightage() + "%): " + String.format("%.1f", (double)marks);
 	}
 }

@@ -50,7 +50,8 @@ public class CreationInterface
 
 			// start of getting component's meta data
 			System.out.print("Enter the name of this component: ");
-			ConsoleInputInterface.consoleScanner.nextLine(); // read in the newline char in buffer
+			if(ConsoleInputInterface.consoleScanner.hasNextLine())
+				ConsoleInputInterface.consoleScanner.nextLine(); // read in newline char in buffer
 			String componentName = ConsoleInputInterface.consoleScanner.nextLine();
 
 			String componentWeightagePrompt = "Enter the weightage of " + componentName + " out of 100 ("
@@ -84,7 +85,8 @@ public class CreationInterface
 				for (int j = 1; j <= numOfSubcomponents; ++j)
 				{
 					System.out.print("Enter the name of subcomponent " + j + ": ");
-					ConsoleInputInterface.consoleScanner.nextLine(); // read in the newline char in buffer
+					if(ConsoleInputInterface.consoleScanner.hasNextLine())
+						ConsoleInputInterface.consoleScanner.nextLine(); // read in newline char in buffer
 					String subcomponentName = ConsoleInputInterface.consoleScanner.nextLine();
 
 					String subcomponentWeightagePrompt = "Enter the weightage of " + 

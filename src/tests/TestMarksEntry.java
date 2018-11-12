@@ -44,7 +44,8 @@ public class TestMarksEntry
 		}
 		
 		System.out.print("Enter your choice: ");
-		ConsoleInputInterface.consoleScanner.nextLine(); // remove newline char from buffer
+		if(ConsoleInputInterface.consoleScanner.hasNextLine())
+			ConsoleInputInterface.consoleScanner.nextLine(); // read in newline char in buffer
 		String componentNameInput = ConsoleInputInterface.consoleScanner.nextLine();
 		
 		String markEntryPrompt = "Enter the raw marks (out of 100) for " + componentNameInput + ": ";
