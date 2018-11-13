@@ -3,7 +3,7 @@ package registration;
 import universityMembers.Student;
 import courses.Course;
 import grading.OverallResults;
-
+import java.util.ArrayList;
 /**
  * 
  * @version 1.0
@@ -15,6 +15,7 @@ public class CourseRegistrationRecord
 {
 	private Student registeredStudent;
 	private Course registeredCourse;
+	private ArrayList<String> lessons;
 	private OverallResults results;
 	
 	public CourseRegistrationRecord(Student student, Course course)

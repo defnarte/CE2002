@@ -58,7 +58,7 @@ public class CombinedDB {
 			
 			String name = studentStar.nextToken().trim();
 			String matriculationNumber = studentStar.nextToken().trim();
-			Student student = new Student(name,matriculationNumber);		
+			Student student = new Student(matriculationNumber,name);	
 			
 			ArrayList<String> coursesEnrolled = new ArrayList<String>(Arrays.asList(studentStar.nextToken().trim().split("\\s*,\\s*")));
 			ArrayList<ArrayList<String>> marksObtained = stringsplit(studentStar.nextToken().trim(),"_");
@@ -68,7 +68,7 @@ public class CombinedDB {
 				// Check each of the courses in the courseDB
 				for (int j=0; j < courses.size(); j++) {
 					// If a course code in the courseDB matches the course code in the student text file, create a CourseRegistrationRecord object.
-					if (courses.get(j).getCourseCode().equals(coursesEnrolled.get(j))) {
+					if (courses.get(j).getCourseCode().equals(coursesEnrolled.get(k))) {
 						CourseRegistrationRecord courseRecord = new CourseRegistrationRecord(student,courses.get(j));
 						student.addCourse(courseRecord);
 						courses.get(j).addRegistration(courseRecord);
@@ -111,7 +111,6 @@ public class CombinedDB {
 				course.addComponentWeightage(component);
 				j++;
 				}
-			System.out.println(course);
 			courses.add(course);
 		}
 	}

@@ -18,9 +18,9 @@ public class demo {
 		ArrayList<Course> courseAl = database.getCourseAl();
 		
 		int index = 0;
-		studentAl.get(index).getfullName();
-		studentAl.get(index).getID();
-		studentAl.get(index).getCoursesRegistered();
+		System.out.println(studentAl.get(index).getfullName());
+		System.out.println(studentAl.get(index).getID());
+		System.out.println(studentAl.get(index).getCoursesRegistered());
 
 	}
 }

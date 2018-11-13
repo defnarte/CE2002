@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 
+import lessons.Lesson;
+
 enum Grade
 {
 	APLUS, A, AMINUS,

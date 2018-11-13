@@ -1,3 +1,4 @@
+package lessons;
 //enum LessonType
 //{
 //	LECTURE,
