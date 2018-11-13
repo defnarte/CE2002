@@ -56,5 +56,7 @@ public class Lesson
 	{
 		return vacancy;
 	}
-	
+	public void enrolStudent() {
+		vacancy--;
+	}
 }

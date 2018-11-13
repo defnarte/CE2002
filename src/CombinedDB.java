@@ -76,8 +76,12 @@ public class CombinedDB {
 						CourseRegistrationRecord courseRecord = new CourseRegistrationRecord(student,courses.get(j),lessonsRegisteredCourse);
 						student.addCourse(courseRecord);
 						courses.get(j).addRegistration(courseRecord);
-						
-					// Additionally, add the marks scored by the student for this course
+						// Change the vacancy of the lessons enrolled accordingly
+						for (String lesson:lessonsRegisteredCourse) {
+								courses.get(j).getLesson(lesson).enrolStudent();
+						}
+					}
+						// Additionally, add the marks scored by the student for this course
 						ArrayList<String> marksObtainedCourse = marksObtained.get(k);
 						ArrayList<ComponentWeightage> componentWeightageList = new ArrayList<ComponentWeightage>();
 						ArrayList<ComponentWeightage> components = courses.get(j).getComponents();
@@ -89,10 +93,9 @@ public class CombinedDB {
 //						}
 //						OverallResults results = new OverallResults(componentWeightageList);
 //						courseRecord.setResults(results);
-					}
 				}
-			}
 			students.add(student);
+			}
 		}
 	}
 	
@@ -123,8 +126,8 @@ public class CombinedDB {
 				String lessonType = lessonString.get(0); 
 				String lessonID = lessonString.get(1);
 				int totalSize = Integer.parseInt(lessonString.get(2));
-				int vacancy = Integer.parseInt(lessonString.get(3));
-				Lesson lesson = new Lesson(lessonID,lessonType,totalSize,vacancy);
+				//int vacancy = Integer.parseInt(lessonString.get(3));
+				Lesson lesson = new Lesson(lessonID,lessonType,totalSize);
 				course.addLesson(lesson);
 			}
 			courses.add(course);
