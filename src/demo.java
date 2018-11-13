@@ -60,6 +60,7 @@ public class demo {
 				System.out.println("Select an option:");
 				System.out.println("1 - Print student list by index");
 				System.out.println("2 - Print all students");
+				System.out.println("3 - Check avaliable slot");
 				int choice = sc.nextInt();
 				switch (choice) {
 					case 1:
@@ -69,7 +70,15 @@ public class demo {
 						break;
 					case 2:
 						courseAl.get(i).printAllStudents(lessonType);
-					default: 
+						break;
+					case 3: 
+						System.out.println("Enter an index: ");
+						String lessonIndex2 = sc.next();
+						int vacancy = courseAl.get(i).getLesson(lessonIndex2).getVacancy();
+						int totalSize = courseAl.get(i).getLesson(lessonIndex2).getTotalSize();
+						System.out.printf("%s %d/%d",lessonIndex2,vacancy,totalSize);
+						break;
+					default:
 						break;
 				}
 			}			

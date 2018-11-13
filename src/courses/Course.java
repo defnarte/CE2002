@@ -175,6 +175,14 @@ public class Course
 	{
 		registrations.remove(courseRegistrationRecord);
 	}
+	public Lesson getLesson(String lessonID) {
+		for (Lesson lesson:lessons) {
+			if (lesson.getLessonID().equals(lessonID)) 
+				return lesson;
+		}
+		System.out.println("LessonID not found.");
+		return null;
+	}
 	public ArrayList<Lesson> getLessons() {
 		return lessons;
 	}
