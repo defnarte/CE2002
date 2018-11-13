@@ -9,6 +9,7 @@ import java.util.StringTokenizer;
 import courses.*;
 import grading.ComponentResult;
 import grading.OverallResults;
+import lessons.Lesson;
 import registration.CourseRegistrationRecord;
 import universityMembers.*;
 /**
@@ -61,6 +62,7 @@ public class CombinedDB {
 			Student student = new Student(matriculationNumber,name);	
 			
 			ArrayList<String> coursesEnrolled = new ArrayList<String>(Arrays.asList(studentStar.nextToken().trim().split("\\s*,\\s*")));
+			ArrayList<ArrayList<String>> lessonsRegistered = stringsplit(studentStar.nextToken().trim(),"_");
 			ArrayList<ArrayList<String>> marksObtained = stringsplit(studentStar.nextToken().trim(),"_");
 			
 			// For each of the courses for a particular student in the student text file
@@ -69,9 +71,12 @@ public class CombinedDB {
 				for (int j=0; j < courses.size(); j++) {
 					// If a course code in the courseDB matches the course code in the student text file, create a CourseRegistrationRecord object.
 					if (courses.get(j).getCourseCode().equals(coursesEnrolled.get(k))) {
-						CourseRegistrationRecord courseRecord = new CourseRegistrationRecord(student,courses.get(j));
+						// Include the lessons the student registered for
+						ArrayList<String> lessonsRegisteredCourse = lessonsRegistered.get(k);
+						CourseRegistrationRecord courseRecord = new CourseRegistrationRecord(student,courses.get(j),lessonsRegisteredCourse);
 						student.addCourse(courseRecord);
 						courses.get(j).addRegistration(courseRecord);
+						
 					// Additionally, add the marks scored by the student for this course
 						ArrayList<String> marksObtainedCourse = marksObtained.get(k);
 						ArrayList<ComponentWeightage> componentWeightageList = new ArrayList<ComponentWeightage>();
@@ -111,6 +116,17 @@ public class CombinedDB {
 				course.addComponentWeightage(component);
 				j++;
 				}
+			
+			ArrayList<ArrayList<String>> lessonList = stringsplit(courseStar.nextToken().trim(),"_");
+			for (int k = 0; k < lessonList.size(); k++) {
+				ArrayList<String> lessonString = lessonList.get(k);
+				String lessonType = lessonString.get(0); 
+				String lessonID = lessonString.get(1);
+				int totalSize = Integer.parseInt(lessonString.get(2));
+				int vacancy = Integer.parseInt(lessonString.get(3));
+				Lesson lesson = new Lesson(lessonID,lessonType,totalSize,vacancy);
+				course.addLesson(lesson);
+			}
 			courses.add(course);
 		}
 	}
@@ -125,16 +141,5 @@ public class CombinedDB {
 		}
 		return stringList;
 	}
-//	public static ArrayList<ArrayList<String>> stringsplit(String st,String SEP) {
-//	StringTokenizer star = new StringTokenizer(st,SEP);
-//	ArrayList<ArrayList<String>> stringList = new ArrayList<ArrayList<String>>();
-//	int n = star.countTokens();
-//	for (int j = 0; j < n; j++) {
-//		ArrayList<String> arrlist = new ArrayList<String>(Arrays.asList(star.nextToken().trim().split("\\s*,\\s*")));
-//		stringList.add(arrlist);
-//	}
-//	return stringList;
-//}
-//}
 }
 

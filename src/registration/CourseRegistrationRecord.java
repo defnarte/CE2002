@@ -18,10 +18,11 @@ public class CourseRegistrationRecord
 	private ArrayList<String> lessons;
 	private OverallResults results;
 	
-	public CourseRegistrationRecord(Student student, Course course)
+	public CourseRegistrationRecord(Student student, Course course, ArrayList<String> lessons)
 	{
 		this.registeredStudent = student;
 		this.registeredCourse = course;
+		this.lessons = lessons;
 	}
 	
 	public Student getRegisteredStudent()
@@ -33,7 +34,9 @@ public class CourseRegistrationRecord
 	{
 		return registeredCourse;
 	}
-	
+	public ArrayList<String> getLessonList() {
+		return lessons;
+	}
 	public OverallResults getResults()
 	{
 		return results;
@@ -42,11 +45,13 @@ public class CourseRegistrationRecord
 	{
 		this.results = results;
 	}
-	
 	@Override
 	public String toString()
 	{
 		return "CourseRegistrationRecord [" + registeredStudent.toString() + " is registered for " + 
 				registeredCourse.getCourseCode() + ' ' + registeredCourse.getName() + ']';
+	}
+	public void printStudent() {
+		
 	}
 }

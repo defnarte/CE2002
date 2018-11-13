@@ -54,6 +54,7 @@ public class Course
 		this.coordinator = courseCoordinator;
 		this.maxNumOfIntakes = maxNumOfIntakes;
 		
+		lessons = new ArrayList<Lesson>();
 		registrations = new ArrayList<CourseRegistrationRecord>();
 		components = new ArrayList<ComponentWeightage>();
 	}
@@ -174,7 +175,31 @@ public class Course
 	{
 		registrations.remove(courseRegistrationRecord);
 	}
-	
+	public ArrayList<Lesson> getLessons() {
+		return lessons;
+	}
+	public void addLesson(Lesson lesson) {
+		lessons.add(lesson);
+	}
+	public void printSomeStudents(String lessonID) {
+		System.out.println("List of students:");
+		for (int i=0; i<registrations.size(); i++) {
+			ArrayList<String> studentLessons = registrations.get(i).getLessonList();
+			for (int j=0; j < studentLessons.size(); j++) {
+				if (studentLessons.get(j).equals(lessonID)) {
+					System.out.println(registrations.get(i).getRegisteredStudent().getfullName());
+				}
+			}
+		}
+	}
+	public void printAllStudents(String lessonType) {
+		for (Lesson lesson : lessons) {
+			if(lesson.getLessonType().equals(lessonType)) {
+				String lessonID = lesson.getLessonID();
+				printSomeStudents(lessonID);
+			}
+		}
+	}
 	@Override
 	public String toString()
 	{
