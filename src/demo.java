@@ -7,7 +7,9 @@ import java.util.Scanner;
 import java.util.Set;
 
 import courses.Course;
+import grading.ComponentResult;
 import lessons.Lesson;
+import registration.CourseRegistrationRecord;
 import universityMembers.Student;
 
 public class demo {
@@ -23,10 +25,10 @@ public class demo {
 		ArrayList<Student> studentAl = database.getStudentAl();
 		ArrayList<Course> courseAl = database.getCourseAl();
 		
-		int index = 0;
+		int index = 1;
 //		System.out.println(studentAl.get(index).getfullName());
 //		System.out.println(studentAl.get(index).getID());
-//		System.out.println(studentAl.get(index).getCoursesRegistered());
+//		System.out.println(studentAl.get(index).getCoursesRegistered().get(1).getResults().getOverallMarks());
 //		
 //		System.out.println(courseAl.get(index).getLessons().get(index).getLessonID());
 //		System.out.println(courseAl.get(index).getLessons().get(index).getLessonType());
@@ -37,24 +39,30 @@ public class demo {
 		System.out.println("Enter the course code: ");
 		String courseCode = sc.next();	
 		
-		for (int i=0; i<courseAl.size(); i++) {
-			if (courseAl.get(i).getCourseCode().equals(courseCode)) {
+		// Tasks 4 and 5
+		for (int i=0; i<courseAl.size(); i++) 
+		{
+			if (courseAl.get(i).getCourseCode().equals(courseCode)) 
+			{
 				System.out.println("All lesson types under this course: ");
 				ArrayList<Lesson> lessons = courseAl.get(i).getLessons();
 				ArrayList<String> lessonListType = new ArrayList<String>();
-				for (int j = 0; j<lessons.size(); j++) {
+				for (int j = 0; j<lessons.size(); j++) 
+				{
 					lessonListType.add(lessons.get(j).getLessonType());
 				}
 				// Find all unique lesson types
 				Set<String> uniqueLessonType = new HashSet<String>(lessonListType);
 				Iterator<String> it = uniqueLessonType.iterator();
-				while (it.hasNext()) {
+				while (it.hasNext()) 
+				{
 					System.out.println(it.next());
 				}
 				System.out.println("Enter a lesson type to print by: ");
 				String lessonType = sc.next();
 				System.out.printf("All indexes for %s:\n",lessonType);
-				for (Lesson lesson : courseAl.get(i).getLessons()) {
+				for (Lesson lesson : courseAl.get(i).getLessons()) 
+				{
 					System.out.println(lesson.getLessonID());
 				}
 				System.out.println("Select an option:");
@@ -62,7 +70,8 @@ public class demo {
 				System.out.println("2 - Print all students");
 				System.out.println("3 - Check avaliable slot");
 				int choice = sc.nextInt();
-				switch (choice) {
+				switch (choice) 
+				{
 					case 1:
 						System.out.println("Enter an index: ");
 						String lessonIndex = sc.next();
@@ -76,12 +85,57 @@ public class demo {
 						String lessonIndex2 = sc.next();
 						int vacancy = courseAl.get(i).getLesson(lessonIndex2).getVacancy();
 						int totalSize = courseAl.get(i).getLesson(lessonIndex2).getTotalSize();
-						System.out.printf("%s %d/%d",lessonIndex2,vacancy,totalSize);
+						System.out.printf("%s %d/%d\n",lessonIndex2,vacancy,totalSize);
 						break;
 					default:
 						break;
 				}
 			}			
+		}
+		// Tasks 9 and 10
+		System.out.println("Enter the course code: ");
+		String courseCode2 = sc.next();	
+		for (int i=0; i<courseAl.size(); i++) 
+		{
+			if (courseAl.get(i).getCourseCode().equals(courseCode)) 
+			{
+
+				System.out.println("Printing Course Statistics:");
+				ArrayList<CourseRegistrationRecord> courseRegistrations = courseAl.get(i).getRegistrations();
+				double[] mean = new double[courseRegistrations.get(0).getResults().getComponentResultList().size()];
+				double overall = 0;  
+				for (int j = 0; j<courseRegistrations.size(); j++) 
+				{
+					ArrayList<ComponentResult> resultsList = courseRegistrations.get(j).getResults().getComponentResultList();
+					overall += courseRegistrations.get(j).getResults().getOverallMarks();
+					for (int k=0; k<resultsList.size(); k++) {
+						mean[k] += resultsList.get(k).getMarks();
+					}
+				}
+				System.out.println("Overall mean: " + overall/courseRegistrations.size());
+				int numberOfComponents = courseRegistrations.get(0).getResults().getComponentResultList().size();
+				for (int l=0; l<courseRegistrations.get(0).getResults().getComponentResultList().size(); l++) {
+					
+					System.out.println("Mean for " +courseRegistrations.get(0).getResults().getComponentResultList().get(l).getName() + " : " + mean[l]/numberOfComponents);
+				}
+			}
+		}
+		System.out.println("Enter the StudentID: ");
+		String studentID = sc.next();	
+		for (int i=0; i<studentAl.size(); i++) 
+		{
+			if (studentAl.get(i).getID().equals(studentID)) 
+			{
+
+				System.out.println("Printing Student Transcript for " + studentAl.get(i).getID() + ":");
+				ArrayList<CourseRegistrationRecord> coursesRegistered = studentAl.get(i).getCoursesRegistered();
+				for (CourseRegistrationRecord courseRegistered:coursesRegistered) 
+				{
+					System.out.println(courseRegistered.getRegisteredCourse().getCourseCode() + " " 
+							+ courseRegistered.getRegisteredCourse().getName() + " "
+							+ courseRegistered.getResults().getOverallMarks());
+				}
+			}
 		}
 	}
 }

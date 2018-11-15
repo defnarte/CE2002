@@ -16,6 +16,10 @@ public class OverallResults implements Gradeable
 {
 	private ArrayList<ComponentResult> componentResultList;
 	
+	public OverallResults()
+	{
+		this.componentResultList = new ArrayList<ComponentResult>();
+	}
 	public OverallResults(ArrayList<ComponentWeightage> componentWeightageList)
 	{
 		componentResultList = new ArrayList<ComponentResult>();
@@ -35,6 +39,11 @@ public class OverallResults implements Gradeable
 			
 			componentResultList.add(newComponentResult);
 		}
+	}
+	
+	public void setOverallResults(ArrayList<ComponentResult> componentResultList)
+	{
+		this.componentResultList = componentResultList;
 	}
 	
 	public double getOverallMarks()

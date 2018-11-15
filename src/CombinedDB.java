@@ -13,30 +13,45 @@ import lessons.Lesson;
 import registration.CourseRegistrationRecord;
 import universityMembers.*;
 /**
- * 
+ * This Class reads 
  * @version 1.0
  * @since 2018/11/12
  * @author Isaac
  *
  */
-public class CombinedDB {
+public class CombinedDB 
+{
 	private ArrayList<Student> students;
 	private ArrayList<Course> courses;
 	public static final String SEPARATOR = "|";
-
-	public CombinedDB() {
+	
+	/**
+	 * 
+	 */
+	public CombinedDB() 
+	{
 		this.students = new ArrayList<Student>();
 		this.courses = new ArrayList<Course>();
 	}
-	public ArrayList<Student> getStudentAl() {
+	/**
+	 * 
+	 * @return
+	 */
+	public ArrayList<Student> getStudentAl() 
+	{
 		return students;
 	}
-	
-	public ArrayList<Course> getCourseAl() {
+	/**
+	 * 
+	 * @return
+	 */
+	public ArrayList<Course> getCourseAl() 
+	{
 		return courses;
 	}
 	
-	public static ArrayList<String> read(String filename) throws FileNotFoundException {
+	public static ArrayList<String> read(String filename) throws FileNotFoundException
+	{
 		Scanner sc = new Scanner(new FileInputStream(filename));
 		ArrayList<String> data = new ArrayList<String>();
 	    try {
@@ -50,10 +65,12 @@ public class CombinedDB {
 	    return data;
 	}
 	
-	public void readStudentDB(String studentFilename) throws IOException {
+	public void readStudentDB(String studentFilename) throws IOException 
+	{
 		ArrayList<String> studentStringArray = read(studentFilename);
 		
-		for (int i = 0; i < studentStringArray.size(); i++) {
+		for (int i = 0; i < studentStringArray.size(); i++) 
+		{
 			String st = (String) studentStringArray.get(i);
 			StringTokenizer studentStar = new StringTokenizer(st,SEPARATOR);
 			
@@ -66,40 +83,47 @@ public class CombinedDB {
 			ArrayList<ArrayList<String>> marksObtained = stringsplit(studentStar.nextToken().trim(),"_");
 			
 			// For each of the courses for a particular student in the student text file
-			for (int k=0; k < coursesEnrolled.size(); k++) {
+			for (int k=0; k < coursesEnrolled.size(); k++) 
+			{
 				// Check each of the courses in the courseDB
-				for (int j=0; j < courses.size(); j++) {
+				for (int j=0; j < courses.size(); j++) 
+				{
 					// If a course code in the courseDB matches the course code in the student text file, create a CourseRegistrationRecord object.
-					if (courses.get(j).getCourseCode().equals(coursesEnrolled.get(k))) {
+					if (courses.get(j).getCourseCode().equals(coursesEnrolled.get(k))) 
+					{
 						// Include the lessons the student registered for
 						ArrayList<String> lessonsRegisteredCourse = lessonsRegistered.get(k);
 						CourseRegistrationRecord courseRecord = new CourseRegistrationRecord(student,courses.get(j),lessonsRegisteredCourse);
-						student.addCourse(courseRecord);
-						courses.get(j).addRegistration(courseRecord);
 						// Change the vacancy of the lessons enrolled accordingly
 						for (String lesson:lessonsRegisteredCourse) {
 								courses.get(j).getLesson(lesson).enrolStudent();
-						}
-					}
+						}					
 						// Additionally, add the marks scored by the student for this course
 						ArrayList<String> marksObtainedCourse = marksObtained.get(k);
-						ArrayList<ComponentWeightage> componentWeightageList = new ArrayList<ComponentWeightage>();
+						ArrayList<ComponentResult> componentResultList = new ArrayList<ComponentResult>();
 						ArrayList<ComponentWeightage> components = courses.get(j).getComponents();
-//						for (int l = 0; l < marksObtainedCourse.size(); l++) {
-//							ComponentWeightage weightage = components.get(l);
-//							int marks = Integer.parseInt(marksObtainedCourse.get(l));
-//							ComponentResult compresult = new ComponentResult(weightage,marks);
-//							componentWeightageList.add(compResult)
-//						}
-//						OverallResults results = new OverallResults(componentWeightageList);
-//						courseRecord.setResults(results);
+						for (int l = 0; l < marksObtainedCourse.size(); l++) {
+							ComponentWeightage weightage = components.get(l);
+							int marks = Integer.parseInt(marksObtainedCourse.get(l));
+							ComponentResult compResult = new ComponentResult(weightage,marks);
+							componentResultList.add(compResult);
+						}
+						OverallResults results = new OverallResults();
+						results.setOverallResults(componentResultList);
+						courseRecord.setResults(results);
+						
+						student.addCourse(courseRecord);
+						courses.get(j).addRegistration(courseRecord);
+					}
+					
 				}
-			students.add(student);
 			}
+			students.add(student);
 		}
 	}
 	
-	public void readCourseDB(String courseFilename) throws IOException {
+	public void readCourseDB(String courseFilename) throws IOException 
+	{
 		ArrayList<String> courseStringArray = read(courseFilename);
 		
 		for (int i = 0; i < courseStringArray.size(); i++) {
@@ -134,7 +158,8 @@ public class CombinedDB {
 		}
 	}
 	
-	public static ArrayList<ArrayList<String>> stringsplit(String st,String SEP) {
+	public static ArrayList<ArrayList<String>> stringsplit(String st,String SEP) 
+	{
 		StringTokenizer star = new StringTokenizer(st,SEP);
 		ArrayList<ArrayList<String>> stringList = new ArrayList<ArrayList<String>>();
 		int n = star.countTokens();

@@ -48,5 +48,8 @@ public class Student extends UniversityMember
 	{
 		registeredCourses.remove(courseRegistrationRecord);
 	}
-	
+//	public void printTranscript() {
+//		for (CourseRegistrationRecord registeredCourse:registeredCourses) {
+//		}
+//	}
 }
