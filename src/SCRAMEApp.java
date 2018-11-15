@@ -4,17 +4,19 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import courses.Course;
+import universityMembers.Student;
+
 public class SCRAMEApp
 {
 	public static void main(String args[]) throws IOException
 	{
-/*
-		String filename = "Students.txt";
-		String filename2 = "Courses.txt";
-		StudentDB students = new StudentDB();
-		students.readStudents(filename);
-		CourseDB courses = new CourseDB();
-		courses.readCourses(filename2);
+		String studentFilename = "Students.txt";
+		String courseFilename = "Courses.txt";
+		
+		CombinedDB database = new CombinedDB();
+		database.readCourseDB(courseFilename);
+		database.readStudentDB(studentFilename);
 
 		System.out.println("Welcome to SCRAME");
 		
@@ -52,11 +54,11 @@ public class SCRAMEApp
 					System.out.println("Enter the student's ID: ");
 					String matriculationNumber = sc.next();
 					Student student = new Student(name, matriculationNumber);
-					students.addStudent(student);
+					database.addStudent(student);
 					//students.saveStudents("Students.txt");
 
 					System.out.println("List of all students:");
-					students.printStudentList();
+					database.printStudentList();
 					break;
 				case 2:
 					break;
@@ -77,7 +79,6 @@ public class SCRAMEApp
 		} while (choice != 11);
 		
 		sc.close();
-		*/
 	}
 	
 	public static void printMenu()

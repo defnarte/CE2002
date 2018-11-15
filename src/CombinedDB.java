@@ -49,6 +49,22 @@ public class CombinedDB
 	{
 		return courses;
 	}
+	public void addStudent(Student student) 
+	{
+		students.add(student);
+	}
+	public void addCourse(Course course) 
+	{
+		courses.add(course);
+	}
+	
+	public void printStudentList() 
+	{
+		for (Student student:students) 
+		{
+			System.out.println(student.getfullName() + student.getID());
+		}
+	}
 	
 	public static ArrayList<String> read(String filename) throws FileNotFoundException
 	{
