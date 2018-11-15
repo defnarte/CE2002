@@ -7,6 +7,7 @@ import java.util.Scanner;
 import java.util.Set;
 
 import courses.Course;
+import database.CombinedDB;
 import grading.ComponentResult;
 import lessons.Lesson;
 import registration.CourseRegistrationRecord;
@@ -19,11 +20,9 @@ public class demo {
 		String courseFilename = "Courses.txt";
 		
 		CombinedDB database = new CombinedDB();
-		database.readCourseDB(courseFilename);
-		database.readStudentDB(studentFilename);
+		ArrayList<Course> courses = database.readCourseDB(courseFilename);
+		ArrayList<Student> students = database.readStudentDB(studentFilename);
 		
-		ArrayList<Student> studentAl = database.getStudentAl();
-		ArrayList<Course> courseAl = database.getCourseAl();
 		
 		int index = 1;
 //		System.out.println(studentAl.get(index).getfullName());
@@ -40,12 +39,12 @@ public class demo {
 		String courseCode = sc.next();	
 		
 		// Tasks 4 and 5
-		for (int i=0; i<courseAl.size(); i++) 
+		for (int i=0; i<courses.size(); i++) 
 		{
-			if (courseAl.get(i).getCourseCode().equals(courseCode)) 
+			if (courses.get(i).getCourseCode().equals(courseCode)) 
 			{
 				System.out.println("All lesson types under this course: ");
-				ArrayList<Lesson> lessons = courseAl.get(i).getLessons();
+				ArrayList<Lesson> lessons = courses.get(i).getLessons();
 				ArrayList<String> lessonListType = new ArrayList<String>();
 				for (int j = 0; j<lessons.size(); j++) 
 				{
@@ -61,7 +60,7 @@ public class demo {
 				System.out.println("Enter a lesson type to print by: ");
 				String lessonType = sc.next();
 				System.out.printf("All indexes for %s:\n",lessonType);
-				for (Lesson lesson : courseAl.get(i).getLessons()) 
+				for (Lesson lesson : courses.get(i).getLessons()) 
 				{
 					System.out.println(lesson.getLessonID());
 				}
@@ -75,16 +74,16 @@ public class demo {
 					case 1:
 						System.out.println("Enter an index: ");
 						String lessonIndex = sc.next();
-						courseAl.get(i).printSomeStudents(lessonIndex);
+						courses.get(i).printSomeStudents(lessonIndex);
 						break;
 					case 2:
-						courseAl.get(i).printAllStudents(lessonType);
+						courses.get(i).printAllStudents(lessonType);
 						break;
 					case 3: 
 						System.out.println("Enter an index: ");
 						String lessonIndex2 = sc.next();
-						int vacancy = courseAl.get(i).getLesson(lessonIndex2).getVacancy();
-						int totalSize = courseAl.get(i).getLesson(lessonIndex2).getTotalSize();
+						int vacancy = courses.get(i).getLesson(lessonIndex2).getVacancy();
+						int totalSize = courses.get(i).getLesson(lessonIndex2).getTotalSize();
 						System.out.printf("%s %d/%d\n",lessonIndex2,vacancy,totalSize);
 						break;
 					default:
@@ -95,13 +94,13 @@ public class demo {
 		// Tasks 9 and 10
 		System.out.println("Enter the course code: ");
 		String courseCode2 = sc.next();	
-		for (int i=0; i<courseAl.size(); i++) 
+		for (int i=0; i<courses.size(); i++) 
 		{
-			if (courseAl.get(i).getCourseCode().equals(courseCode)) 
+			if (courses.get(i).getCourseCode().equals(courseCode)) 
 			{
 
 				System.out.println("Printing Course Statistics:");
-				ArrayList<CourseRegistrationRecord> courseRegistrations = courseAl.get(i).getRegistrations();
+				ArrayList<CourseRegistrationRecord> courseRegistrations = courses.get(i).getRegistrations();
 				double[] mean = new double[courseRegistrations.get(0).getResults().getComponentResultList().size()];
 				double overall = 0;  
 				for (int j = 0; j<courseRegistrations.size(); j++) 
@@ -122,13 +121,13 @@ public class demo {
 		}
 		System.out.println("Enter the StudentID: ");
 		String studentID = sc.next();	
-		for (int i=0; i<studentAl.size(); i++) 
+		for (int i=0; i<students.size(); i++) 
 		{
-			if (studentAl.get(i).getID().equals(studentID)) 
+			if (students.get(i).getID().equals(studentID)) 
 			{
 
-				System.out.println("Printing Student Transcript for " + studentAl.get(i).getID() + ", " + studentAl.get(i).getfullName() + ":");
-				ArrayList<CourseRegistrationRecord> coursesRegistered = studentAl.get(i).getCoursesRegistered();
+				System.out.println("Printing Student Transcript for " + students.get(i).getID() + ", " + students.get(i).getfullName() + ":");
+				ArrayList<CourseRegistrationRecord> coursesRegistered = students.get(i).getCoursesRegistered();
 				for (CourseRegistrationRecord courseRegistered:coursesRegistered) 
 				{
 					System.out.println(courseRegistered.getRegisteredCourse().getCourseCode() + " " 

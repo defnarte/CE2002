@@ -1,3 +1,4 @@
+package database;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -25,26 +26,12 @@ public class CombinedDB
 	private ArrayList<Course> courses;
 	public static final String SEPARATOR = "|";
 	
-	/**
-	 * 
-	 */
 	public CombinedDB() 
 	{
 		this.students = new ArrayList<Student>();
 		this.courses = new ArrayList<Course>();
 	}
-	/**
-	 * 
-	 * @return
-	 */
-	public ArrayList<Student> getStudentAl() 
-	{
-		return students;
-	}
-	/**
-	 * 
-	 * @return
-	 */
+
 	public ArrayList<Course> getCourseAl() 
 	{
 		return courses;
@@ -81,7 +68,7 @@ public class CombinedDB
 	    return data;
 	}
 	
-	public void readStudentDB(String studentFilename) throws IOException 
+	public ArrayList<Student> readStudentDB(String studentFilename) throws IOException 
 	{
 		ArrayList<String> studentStringArray = read(studentFilename);
 		
@@ -136,9 +123,10 @@ public class CombinedDB
 			}
 			students.add(student);
 		}
+		return students;
 	}
 	
-	public void readCourseDB(String courseFilename) throws IOException 
+	public ArrayList<Course> readCourseDB(String courseFilename) throws IOException 
 	{
 		ArrayList<String> courseStringArray = read(courseFilename);
 		
@@ -172,6 +160,7 @@ public class CombinedDB
 			}
 			courses.add(course);
 		}
+		return courses;
 	}
 	
 	public static ArrayList<ArrayList<String>> stringsplit(String st,String SEP) 

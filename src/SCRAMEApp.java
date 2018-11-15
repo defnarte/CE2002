@@ -5,6 +5,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import courses.Course;
+import database.CombinedDB;
 import universityMembers.Student;
 
 public class SCRAMEApp
