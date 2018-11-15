@@ -31,19 +31,6 @@ public class CombinedDB
 		this.students = new ArrayList<Student>();
 		this.courses = new ArrayList<Course>();
 	}
-
-	public ArrayList<Course> getCourseAl() 
-	{
-		return courses;
-	}
-	public void addStudent(Student student) 
-	{
-		students.add(student);
-	}
-	public void addCourse(Course course) 
-	{
-		courses.add(course);
-	}
 	
 	public void printStudentList() 
 	{
@@ -68,7 +55,7 @@ public class CombinedDB
 	    return data;
 	}
 	
-	public ArrayList<Student> readStudentDB(String studentFilename) throws IOException 
+	public ArrayList<Student> readStudentDB(String studentFilename, ArrayList<Course> courses) throws IOException 
 	{
 		ArrayList<String> studentStringArray = read(studentFilename);
 		

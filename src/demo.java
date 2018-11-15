@@ -21,7 +21,7 @@ public class demo {
 		
 		CombinedDB database = new CombinedDB();
 		ArrayList<Course> courses = database.readCourseDB(courseFilename);
-		ArrayList<Student> students = database.readStudentDB(studentFilename);
+		ArrayList<Student> students = database.readStudentDB(studentFilename,courses);
 		
 		
 		int index = 1;
