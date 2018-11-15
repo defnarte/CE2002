@@ -13,7 +13,8 @@ import grading.ComponentResult;
 import grading.OverallResults;
 import lessons.Lesson;
 import registration.CourseRegistrationRecord;
-import universityMembers.*;
+import universityMembers.FacultyMember;
+import universityMembers.Student;
 
 /**
  * This class is an entity, control and boundary class...

@@ -25,7 +25,7 @@ public class SCRAMEApp
 		
 		CombinedDB database = new CombinedDB();
 		CourseDB courses = new CourseDB(database.readCourseDB(courseFilename));
-		StudentDB students = new StudentDB(database.readStudentDB(studentFilename,courses.getCourseAl()));
+		StudentDB students = new StudentDB(database.readStudentDB(studentFilename));
 		
 		System.out.println("Welcome to SCRAME");
 		
@@ -296,9 +296,9 @@ public class SCRAMEApp
 							{
 								System.out.println(courseRegistered.getRegisteredCourse().getCourseCode() + " " 
 										+ courseRegistered.getRegisteredCourse().getName() + " "
-										+ courseRegistered.getResults().getOverallMarks() + " "
-										+ courseRegistered.getResults().computeGrade());
-								ArrayList<ComponentResult> componentResultList = courseRegistered.getResults().getComponentResultList();
+										+ courseRegistered.getOverallResults().getOverallMarks() + " "
+										+ courseRegistered.getOverallResults().computeGrade());
+								ArrayList<ComponentResult> componentResultList = courseRegistered.getOverallResults().getComponentResultList();
 								for (ComponentResult componentResult:componentResultList) {
 									System.out.println("       " + componentResult.getName() + " " + componentResult.getMarks());
 								}

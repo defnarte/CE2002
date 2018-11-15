@@ -1,8 +1,10 @@
 package control;
 
-import universityMembers.FacultyMember;
 import consoleIO.ConsoleInputInterface;
-import courses.*;
+import courses.AggregateComponentWeightage;
+import courses.ComponentWeightage;
+import courses.Course;
+import universityMembers.FacultyMember;
 
 /**
  * This class handles the creation of other Classes.

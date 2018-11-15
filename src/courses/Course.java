@@ -1,12 +1,10 @@
 package courses;
 
 import java.util.ArrayList;
+
 import universityMembers.FacultyMember;
 import registration.CourseRegistrationRecord;
-
-import java.util.ArrayList;
-
-//import control.CreationHandler;
+import control.CreationHandler;
 import lessons.Lesson;
 
 /**
@@ -47,7 +45,7 @@ public class Course
 		
 		lessons = new ArrayList<Lesson>();
 		registrations = new ArrayList<CourseRegistrationRecord>();
-		components = new ArrayList<ComponentWeightage>();
+		componentWeightageList = new ArrayList<ComponentWeightage>();
 	}
 	public Course(String courseCode, String courseName, FacultyMember courseCoordinator, int maxNumOfIntakes)
 	{
@@ -157,7 +155,7 @@ public class Course
 	{
 		componentWeightageList = new ArrayList<ComponentWeightage>();
 
-		CreationInterface.createCourseComponents(this);
+		CreationHandler.createCourseComponents(this);
 	}
 
 	public ArrayList<ComponentWeightage> getAllComponentsWeightage()
