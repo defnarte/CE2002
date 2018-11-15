@@ -70,7 +70,21 @@ public class OverallResults implements Gradeable
 	@Override
 	public Grade computeGrade()
 	{
-		return Grade.F; // placeholder
+		int marks = (int) Math.round(getOverallMarks());
+		if (marks < 40) 
+		{
+			return Grade.values()[0];
+		}
+		else if (marks > 80)
+		{
+			return Grade.values()[10];
+		}
+		else 
+		{
+			// how does this work?
+			marks = (int) (this.getOverallMarks()-40)/5 + 1;
+			return Grade.values()[marks];
+		}
 	}
 	
 	@Override

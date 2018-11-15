@@ -40,7 +40,7 @@ public class CourseRegistrationHandler
 				return null; // RegistrationOutcome.ALREADY_REGISTERED;
 		}
 		
-		CourseRegistrationRecord newRegistration = new CourseRegistrationRecord(student,course);
+		CourseRegistrationRecord newRegistration = new CourseRegistrationRecord(student,course,null);
 		student.addCourse(newRegistration);
 		course.addRegistration(newRegistration);
 		

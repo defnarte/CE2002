@@ -1,5 +1,6 @@
 package registration;
 
+import java.util.ArrayList;
 import universityMembers.Student;
 import consoleIO.MarksEntryInterface;
 import courses.Course;
@@ -16,12 +17,14 @@ public class CourseRegistrationRecord
 {
 	private Student registeredStudent;
 	private Course registeredCourse;
+	private ArrayList<String> lessons;
 	private OverallResults overallResults;
 	
-	public CourseRegistrationRecord(Student student, Course course)
+	public CourseRegistrationRecord(Student student, Course course,ArrayList<String> lessons)
 	{
 		this.registeredStudent = student;
 		this.registeredCourse = course;
+		this.lessons = lessons;
 		this.overallResults = new OverallResults(course.getAllComponentsWeightage());
 	}
 	
@@ -33,6 +36,10 @@ public class CourseRegistrationRecord
 	public Course getRegisteredCourse()
 	{
 		return registeredCourse;
+	}
+	public ArrayList<String> getLessonList() 
+	{
+		return lessons;
 	}
 	
 	public OverallResults getOverallResults()

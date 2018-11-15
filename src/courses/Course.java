@@ -1,10 +1,9 @@
 package courses;
 
+import java.util.ArrayList;
 import universityMembers.FacultyMember;
 import registration.CourseRegistrationRecord;
-
-import java.util.ArrayList;
-
+import lessons.Lesson;
 import consoleIO.CreationInterface;
 
 /**
@@ -19,16 +18,18 @@ public class Course
 {
 	private String courseCode; // course code
 	private String name; // course name
-	
+
 	private FacultyMember coordinator; // course coordinator
 	private int maxNumOfIntakes; // maximum number of student intakes for this course
-	
-	private ArrayList<CourseRegistrationRecord> registrations; // registrations for this course
+
+	private ArrayList<Lesson> lessons;
 	private ArrayList<ComponentWeightage> componentWeightageList;
-	
+	private ArrayList<CourseRegistrationRecord> registrations; // registrations for this course
+
 	/**
-	 * Constructor for course that initialises the course's code, name, coordinator and maximum number of student intakes,
-	 * as well as the list of registrations for this course with an empty list.
+	 * Constructor for course that initialises the course's code, name, coordinator
+	 * and maximum number of student intakes, as well as the list of registrations
+	 * for this course with an empty list.
 	 * 
 	 * @param courseCode
 	 * @param courseName
@@ -41,11 +42,12 @@ public class Course
 		this.name = courseName;
 		this.coordinator = courseCoordinator;
 		this.maxNumOfIntakes = maxNumOfIntakes;
-		
-		registrations = new ArrayList<CourseRegistrationRecord>();
+
+		lessons = new ArrayList<Lesson>();
 		componentWeightageList = new ArrayList<ComponentWeightage>();
+		registrations = new ArrayList<CourseRegistrationRecord>();
 	}
-	
+
 	/**
 	 * Getter for course code.
 	 * 
@@ -55,6 +57,7 @@ public class Course
 	{
 		return courseCode;
 	}
+
 	/**
 	 * Setter for course code.
 	 * 
@@ -63,7 +66,7 @@ public class Course
 	{
 		this.courseCode = courseCode;
 	}
-	
+
 	/**
 	 * Getter for course name.
 	 * 
@@ -73,6 +76,7 @@ public class Course
 	{
 		return name;
 	}
+
 	/**
 	 * Setter for course name.
 	 * 
@@ -81,7 +85,7 @@ public class Course
 	{
 		this.name = courseName;
 	}
-	
+
 	/**
 	 * Getter for course coordinator.
 	 * 
@@ -91,6 +95,7 @@ public class Course
 	{
 		return coordinator;
 	}
+
 	/**
 	 * Setter for course coordinator.
 	 * 
@@ -99,11 +104,12 @@ public class Course
 	{
 		this.coordinator = courseCoordinator;
 	}
-	
+
 	/**
-	 * This method gets the number of vacancy (remaining slots for student intakes) for this course.
-	 * Number of vacancy is calculated through maximum number of student intakes minus current number of 
-	 * student intakes (given by number of registrations for this course).
+	 * This method gets the number of vacancy (remaining slots for student intakes)
+	 * for this course. Number of vacancy is calculated through maximum number of
+	 * student intakes minus current number of student intakes (given by number of
+	 * registrations for this course).
 	 * 
 	 * @return vacancy
 	 */
@@ -111,39 +117,41 @@ public class Course
 	{
 		return maxNumOfIntakes - registrations.size();
 	}
+
 	/**
-	 * Setter for maximum number of intakes.
-	 * Returns true if maximum number of intakes is set successfully.
-	 * Returns false if maximum number of intakes is NOT set, 
-	 * as the number of students registered for this course is more than the new maximum.
+	 * Setter for maximum number of intakes. Returns true if maximum number of
+	 * intakes is set successfully. Returns false if maximum number of intakes is
+	 * NOT set, as the number of students registered for this course is more than
+	 * the new maximum.
 	 * 
 	 */
 	public boolean setMaxNumOfIntakes(int maxNumOfIntakes)
 	{
-		if(maxNumOfIntakes > registrations.size())
+		if (maxNumOfIntakes > registrations.size())
 		{
 			this.maxNumOfIntakes = maxNumOfIntakes;
 			return true;
-		}
-		else
+		} else
 			return false;
 	}
-	
+
 	public void addComponentWeightage(ComponentWeightage newComponent)
 	{
 		componentWeightageList.add(newComponent);
 	}
+
 	public void setAllComponentsWeightage()
 	{
 		componentWeightageList = new ArrayList<ComponentWeightage>();
-		
+
 		CreationInterface.createCourseComponents(this);
 	}
+
 	public ArrayList<ComponentWeightage> getAllComponentsWeightage()
 	{
 		return componentWeightageList;
 	}
-	
+
 	/**
 	 * Getter for registrations for this course.
 	 * 
@@ -153,30 +161,80 @@ public class Course
 	{
 		return registrations;
 	}
-	
+
 	// TO-DO: add comments
 	public void addRegistration(CourseRegistrationRecord newCourseRegistrationRecord)
 	{
 		registrations.add(newCourseRegistrationRecord);
 	}
+
 	public void dropRegistration(CourseRegistrationRecord courseRegistrationRecord)
 	{
 		registrations.remove(courseRegistrationRecord);
 	}
-	
+
+	public Lesson getLesson(String lessonID)
+	{
+		for (Lesson lesson : lessons)
+		{
+			if (lesson.getLessonID().equals(lessonID))
+				return lesson;
+		}
+		System.out.println("LessonID not found.");
+		return null;
+	}
+
+	public ArrayList<Lesson> getLessons()
+	{
+		return lessons;
+	}
+
+	public void addLesson(Lesson lesson)
+	{
+		lessons.add(lesson);
+	}
+
+	// TO-DO: move this method to a display class
+	public void printSomeStudents(String lessonID)
+	{
+		System.out.println("List of students:");
+		for (int i = 0; i < registrations.size(); i++)
+		{
+			ArrayList<String> studentLessons = registrations.get(i).getLessonList();
+			for (int j = 0; j < studentLessons.size(); j++)
+			{
+				if (studentLessons.get(j).equals(lessonID))
+				{
+					System.out.println(registrations.get(i).getRegisteredStudent().getfullName());
+				}
+			}
+		}
+	}
+
+	// TO-DO: move this method to a display class
+	public void printAllStudents(String lessonType)
+	{
+		for (Lesson lesson : lessons)
+		{
+			if (lesson.getLessonType().equals(lessonType))
+			{
+				String lessonID = lesson.getLessonID();
+				printSomeStudents(lessonID);
+			}
+		}
+	}
+
 	@Override
 	public String toString()
 	{
 		String componentString = "";
-		
-		for(ComponentWeightage component: componentWeightageList)
+
+		for (ComponentWeightage component : componentWeightageList)
 		{
 			componentString += component.toString();
 		}
-		
-		return "---" + courseCode + ' ' + name + 
-				"---\nCourse Coordinator: " + coordinator + 
-				"\nmaximum number of intakes: " + maxNumOfIntakes + 
-				"\nComponents: \n" + componentString;
+
+		return "---" + courseCode + ' ' + name + "---\nCourse Coordinator: " + coordinator
+				+ "\nmaximum number of intakes: " + maxNumOfIntakes + "\nComponents: \n" + componentString;
 	}
 }
