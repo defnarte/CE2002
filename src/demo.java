@@ -127,13 +127,18 @@ public class demo {
 			if (studentAl.get(i).getID().equals(studentID)) 
 			{
 
-				System.out.println("Printing Student Transcript for " + studentAl.get(i).getID() + ":");
+				System.out.println("Printing Student Transcript for " + studentAl.get(i).getID() + ", " + studentAl.get(i).getfullName() + ":");
 				ArrayList<CourseRegistrationRecord> coursesRegistered = studentAl.get(i).getCoursesRegistered();
 				for (CourseRegistrationRecord courseRegistered:coursesRegistered) 
 				{
 					System.out.println(courseRegistered.getRegisteredCourse().getCourseCode() + " " 
 							+ courseRegistered.getRegisteredCourse().getName() + " "
-							+ courseRegistered.getResults().getOverallMarks());
+							+ courseRegistered.getResults().getOverallMarks() + " "
+							+ courseRegistered.getResults().computeGrade());
+					ArrayList<ComponentResult> componentResultList = courseRegistered.getResults().getComponentResultList();
+					for (ComponentResult componentResult:componentResultList) {
+						System.out.println("       " + componentResult.getName() + " " + componentResult.getMarks());
+					}
 				}
 			}
 		}
