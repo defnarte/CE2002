@@ -49,20 +49,6 @@ public class CourseDB {
 		return -1;
 	}
 	
-	public void printLessonList(String lessonType) 
-	{
-		for (Course registeredCourse:courses) 
-		{
-			ArrayList<Lesson> lessons = registeredCourse.getLessons();
-			for (Lesson lesson:lessons) 
-			{
-				if (lesson.getLessonType().equals(lessonType))
-					System.out.println(lesson.getLessonID());
-					
-			}
-		}
-	}
-	
 	public void printCourseList() {
 		for (Course registeredCourse:courses) 
 		{

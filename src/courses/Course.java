@@ -189,6 +189,15 @@ public class Course
 	public void addLesson(Lesson lesson) {
 		lessons.add(lesson);
 	}
+	public void printLessonList(String lessonType) 
+	{
+		for (Lesson lesson:lessons) 
+		{
+			if (lesson.getLessonType().equals(lessonType))
+				System.out.println(lesson.getLessonID());
+					
+		}
+	}
 	public void printSomeStudents(String lessonID) {
 		System.out.println("List of students:");
 		for (int i=0; i<registrations.size(); i++) {
@@ -208,6 +217,7 @@ public class Course
 			}
 		}
 	}
+	
 	@Override
 	public String toString()
 	{

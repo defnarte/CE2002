@@ -72,11 +72,18 @@ public class SCRAMEApp
 					students.printStudentList();
 					break;
 				case 2:
-					System.out.println("Enter the name of the student: ");
+					System.out.println("Enter the name of the course: ");
 					String name2 = sc.next();
 					if (!(checkInput(name2,1)))
 					{
 						System.out.println("Error! Please enter only letters and spaces.");
+						break;
+					}
+					System.out.println("Enter the course code: ");
+					String courseCode2 = sc.next();
+					if (!(checkInput(courseCode2,2)))
+					{
+						System.out.println("Error! Please enter only letters and digits.");
 						break;
 					}
 					break;
@@ -125,7 +132,7 @@ public class SCRAMEApp
 								{
 									System.out.println("Register for " + uniqueLesson);
 									System.out.println("List of indexes:");
-									courses.printLessonList(uniqueLesson);
+									courses.getCourseAl().get(courseIndex).printLessonList(uniqueLesson);
 									
 									String lessonIndex = sc.next();	
 								}
@@ -180,13 +187,13 @@ public class SCRAMEApp
 					break;
 				case 5:
 					System.out.println("Enter a course code: ");
-					String courseCode2 = sc.next();
-					if (!(checkInput(courseCode2,2)))
+					String courseCode3 = sc.next();
+					if (!(checkInput(courseCode3,2)))
 					{
 						System.out.println("Error! Please enter only letters and digits.");
 						break;
 					}
-					int courseIndex2 = courses.checkCourse(courseCode2);
+					int courseIndex2 = courses.checkCourse(courseCode3);
 					if (courseIndex2 != -1) 
 					{
 						System.out.println("All lesson types under this course: ");
@@ -219,6 +226,12 @@ public class SCRAMEApp
 							case 1:
 								System.out.println("Enter an index: ");
 								String lessonIndex = sc.next();
+								if (!(checkInput(lessonIndex,2))) 
+								{
+									System.out.println("Error! Please enter only letters and digits.");
+									break;
+								}
+								
 								System.out.println(courses.getCourseAl().get(courseIndex2));
 								courses.getCourseAl().get(courseIndex2).printSomeStudents(lessonIndex);
 								break;
@@ -234,13 +247,13 @@ public class SCRAMEApp
 						System.out.println("Course not found in database!");
 				case 6:
 					System.out.println("Enter a course code: ");
-					String courseCode3 = sc.next();
-					if (!(checkInput(courseCode3,2)))
+					String courseCode4 = sc.next();
+					if (!(checkInput(courseCode4,2)))
 					{
 						System.out.println("Error! Please enter only letters and digits.");
 						break;
 					}
-					int courseIndex3 = courses.checkCourse(courseCode3);
+					int courseIndex3 = courses.checkCourse(courseCode4);
 					if (courseIndex3 != -1) 
 					{
 						
@@ -250,13 +263,13 @@ public class SCRAMEApp
 					break;
 				case 7:
 					System.out.println("Enter a course code: ");
-					String courseCode4 = sc.next();
-					if (!(checkInput(courseCode4,2)))
+					String courseCode5 = sc.next();
+					if (!(checkInput(courseCode5,2)))
 					{
 						System.out.println("Error! Please enter only letters and digits.");
 						break;
 					}
-					int courseIndex4 = courses.checkCourse(courseCode4);
+					int courseIndex4 = courses.checkCourse(courseCode5);
 					if (courseIndex4 != -1) 
 					{
 						
@@ -266,13 +279,13 @@ public class SCRAMEApp
 					break;
 				case 8:
 					System.out.println("Enter a course code: ");
-					String courseCode5 = sc.next();
-					if (!(checkInput(courseCode5,2)))
+					String courseCode6 = sc.next();
+					if (!(checkInput(courseCode6,2)))
 					{
 						System.out.println("Error! Please enter only letters and digits.");
 						break;
 					}
-					int courseIndex5 = courses.checkCourse(courseCode5);
+					int courseIndex5 = courses.checkCourse(courseCode6);
 					if (courseIndex5 != -1) 
 					{
 						
