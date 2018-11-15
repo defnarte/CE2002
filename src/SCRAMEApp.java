@@ -324,7 +324,7 @@ public class SCRAMEApp
 							"4.  Check available slot in a class (vacancy in a class)\n" + 
 							"5.  Print student list by lecture, tutorial or laboratory session for a course.\n" + 
 							"6.  Enter course assessment components weightage\n" + 
-							"7.  Enter coursework mark – inclusive of its components.\n" + 
+							"7.  Enter coursework mark ï¿½ inclusive of its components.\n" + 
 							"8.  Enter exam mark\n" + 
 							"9.  Print course statistics\n" + 
 							"10. Print student transcript.\n" +

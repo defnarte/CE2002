@@ -19,6 +19,7 @@ public class AggregateComponentResult extends ComponentResult implements IWeight
 	public AggregateComponentResult(AggregateComponentWeightage weightage)
 	{
 		super(weightage);
+		subcomponentResultList = new ArrayList<ComponentResult>();
 		
 		for(ComponentWeightage subcomponentWeightage: weightage.getSubcomponentWeightageList())
 		{
@@ -99,7 +100,7 @@ public class AggregateComponentResult extends ComponentResult implements IWeight
 		
 		for(ComponentResult subcomponentResult: subcomponentResultList)
 		{
-			subcomponentString += "\t\t" + subcomponentResult.toString() + '\n';
+			subcomponentString += "\t" + subcomponentResult.toString();
 		}
 		
 		return super.toString() + subcomponentString;

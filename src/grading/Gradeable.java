@@ -7,18 +7,20 @@ package grading;
  * @author Jason
  *
  */
+
 //Grade Scoring Table
-//A+	10
-//A 80 marks	9
-//A- 75 marks	8
-//B+ 70 marks	7
-//B 65 marks	6
-//B- 60 marks	5
-//C+ 55 marks	4
-//C 50 marks	3
-//C- 45 marks	2
-//D 40 marks	1	
-//F 0 marks		0
+//A+				10
+//A 	80 marks	9
+//A- 	75 marks	8
+//B+ 	70 marks	7
+//B 	65 marks	6
+//B- 	60 marks	5
+//C+ 	55 marks	4
+//C 	50 marks	3
+//C- 	45 marks	2
+//D 	40 marks	1	
+//F 	0 marks		0
+
 enum Grade
 {
 	F,
