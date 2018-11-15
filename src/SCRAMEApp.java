@@ -8,7 +8,7 @@ public class SCRAMEApp
 {
 	public static void main(String args[]) throws IOException
 	{
-
+/*
 		String filename = "Students.txt";
 		String filename2 = "Courses.txt";
 		StudentDB students = new StudentDB();
@@ -77,6 +77,7 @@ public class SCRAMEApp
 		} while (choice != 11);
 		
 		sc.close();
+		*/
 	}
 	
 	public static void printMenu()
