@@ -25,7 +25,7 @@ public class SCRAMEApp
 		
 		CombinedDB database = new CombinedDB();
 		CourseDB courses = new CourseDB(database.readCourseDB(courseFilename));
-		StudentDB students = new StudentDB(database.readStudentDB(studentFilename,courses.getCourseAl()));
+		StudentDB students = new StudentDB(database.readStudentDB(studentFilename));
 		
 		System.out.println("Welcome to SCRAME");
 		
@@ -309,9 +309,9 @@ public class SCRAMEApp
 							{
 								System.out.println(courseRegistered.getRegisteredCourse().getCourseCode() + " " 
 										+ courseRegistered.getRegisteredCourse().getName() + " "
-										+ courseRegistered.getResults().getOverallMarks() + " "
-										+ courseRegistered.getResults().computeGrade());
-								ArrayList<ComponentResult> componentResultList = courseRegistered.getResults().getComponentResultList();
+										+ courseRegistered.getOverallResults().getOverallMarks() + " "
+										+ courseRegistered.getOverallResults().computeGrade());
+								ArrayList<ComponentResult> componentResultList = courseRegistered.getOverallResults().getComponentResultList();
 								for (ComponentResult componentResult:componentResultList) {
 									System.out.println("       " + componentResult.getName() + " " + componentResult.getMarks());
 								}
@@ -337,7 +337,7 @@ public class SCRAMEApp
 							"4.  Check available slot in a class (vacancy in a class)\n" + 
 							"5.  Print student list by lecture, tutorial or laboratory session for a course.\n" + 
 							"6.  Enter course assessment components weightage\n" + 
-							"7.  Enter coursework mark – inclusive of its components.\n" + 
+							"7.  Enter coursework mark ï¿½ inclusive of its components.\n" + 
 							"8.  Enter exam mark\n" + 
 							"9.  Print course statistics\n" + 
 							"10. Print student transcript.\n" +

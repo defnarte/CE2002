@@ -49,7 +49,7 @@ public class AggregateComponentWeightage extends ComponentWeightage
 		
 		for(ComponentWeightage subcomponent: subcomponents)
 		{
-			subcomponentString += "\t\t" + subcomponent.toString() + '\n';
+			subcomponentString += "\t" + subcomponent.toString() + '\n';
 		}
 		
 		return super.toString() + subcomponentString;

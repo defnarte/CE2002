@@ -7,7 +7,7 @@ import courses.ComponentWeightage;
 
 /**
  * 
- * @version 1.0
+ * @version 1.1
  * @since 2018/11/12
  * @author Jason
  *
@@ -62,19 +62,50 @@ public class OverallResults implements Gradeable
 		return componentResultList;
 	}
 	
+	public boolean setTargetComponentResult(String targetName, int rawMarks)
+	{
+		for(ComponentResult componentResult: componentResultList)
+		{
+			if(componentResult.getName().equals(targetName) && !(componentResult instanceof AggregateComponentResult))
+			{
+				componentResult.setMarks(rawMarks);
+				return true;
+			}
+		}
+		
+		return false;
+	}
+	
+	@Override
 	public Grade computeGrade()
 	{
-		int marks = (int) this.getOverallMarks();
+		int marks = (int) Math.round(getOverallMarks());
 		if (marks < 40) 
 		{
 			return Grade.values()[0];
 		}
-		else if (marks > 80){
+		else if (marks > 80)
+		{
 			return Grade.values()[10];
 		}
-		else {
+		else 
+		{
+			// how does this work?
 			marks = (int) (this.getOverallMarks()-40)/5 + 1;
 			return Grade.values()[marks];
 		}
+	}
+	
+	@Override
+	public String toString()
+	{
+		String overallResultsString = "";
+		
+		for(ComponentResult componentResult: componentResultList)
+		{
+			overallResultsString += componentResult.toString();
+		}
+		
+		return overallResultsString;
 	}
 }

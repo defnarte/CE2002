@@ -21,13 +21,13 @@ public class demo {
 		
 		CombinedDB database = new CombinedDB();
 		ArrayList<Course> courses = database.readCourseDB(courseFilename);
-		ArrayList<Student> students = database.readStudentDB(studentFilename,courses);
+		ArrayList<Student> students = database.readStudentDB(studentFilename);
 		
 		
 		int index = 1;
 //		System.out.println(studentAl.get(index).getfullName());
 //		System.out.println(studentAl.get(index).getID());
-//		System.out.println(studentAl.get(index).getCoursesRegistered().get(1).getResults().getOverallMarks());
+//		System.out.println(studentAl.get(index).getCoursesRegistered().get(1).getOverallResults().getOverallMarks());
 //		
 //		System.out.println(courseAl.get(index).getLessons().get(index).getLessonID());
 //		System.out.println(courseAl.get(index).getLessons().get(index).getLessonType());
@@ -101,21 +101,21 @@ public class demo {
 
 				System.out.println("Printing Course Statistics:");
 				ArrayList<CourseRegistrationRecord> courseRegistrations = courses.get(i).getRegistrations();
-				double[] mean = new double[courseRegistrations.get(0).getResults().getComponentResultList().size()];
+				double[] mean = new double[courseRegistrations.get(0).getOverallResults().getComponentResultList().size()];
 				double overall = 0;  
 				for (int j = 0; j<courseRegistrations.size(); j++) 
 				{
-					ArrayList<ComponentResult> resultsList = courseRegistrations.get(j).getResults().getComponentResultList();
-					overall += courseRegistrations.get(j).getResults().getOverallMarks();
+					ArrayList<ComponentResult> resultsList = courseRegistrations.get(j).getOverallResults().getComponentResultList();
+					overall += courseRegistrations.get(j).getOverallResults().getOverallMarks();
 					for (int k=0; k<resultsList.size(); k++) {
 						mean[k] += resultsList.get(k).getMarks();
 					}
 				}
 				System.out.println("Overall mean: " + overall/courseRegistrations.size());
-				int numberOfComponents = courseRegistrations.get(0).getResults().getComponentResultList().size();
-				for (int l=0; l<courseRegistrations.get(0).getResults().getComponentResultList().size(); l++) {
+				int numberOfComponents = courseRegistrations.get(0).getOverallResults().getComponentResultList().size();
+				for (int l=0; l<courseRegistrations.get(0).getOverallResults().getComponentResultList().size(); l++) {
 					
-					System.out.println("Mean for " +courseRegistrations.get(0).getResults().getComponentResultList().get(l).getName() + " : " + mean[l]/numberOfComponents);
+					System.out.println("Mean for " +courseRegistrations.get(0).getOverallResults().getComponentResultList().get(l).getName() + " : " + mean[l]/numberOfComponents);
 				}
 			}
 		}
@@ -132,9 +132,9 @@ public class demo {
 				{
 					System.out.println(courseRegistered.getRegisteredCourse().getCourseCode() + " " 
 							+ courseRegistered.getRegisteredCourse().getName() + " "
-							+ courseRegistered.getResults().getOverallMarks() + " "
-							+ courseRegistered.getResults().computeGrade());
-					ArrayList<ComponentResult> componentResultList = courseRegistered.getResults().getComponentResultList();
+							+ courseRegistered.getOverallResults().getOverallMarks() + " "
+							+ courseRegistered.getOverallResults().computeGrade());
+					ArrayList<ComponentResult> componentResultList = courseRegistered.getOverallResults().getComponentResultList();
 					for (ComponentResult componentResult:componentResultList) {
 						System.out.println("       " + componentResult.getName() + " " + componentResult.getMarks());
 					}
