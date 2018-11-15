@@ -5,7 +5,7 @@ import registration.CourseRegistrationRecord;
 
 import java.util.ArrayList;
 
-import consoleIO.CreationInterface;
+import control.CreationHandler;
 import lessons.Lesson;
 
 /**
@@ -153,7 +153,7 @@ public class Course
 	public void setAllComponentsWeightage()
 	{
 		components = new ArrayList<ComponentWeightage>();
-		CreationInterface.createCourseComponents(this);
+		CreationHandler.createCourseComponents(this);
 	}
 	
 	/**

@@ -1,7 +1,7 @@
 package tests;
 
+import control.CreationHandler;
 import courses.Course;
-import consoleIO.CreationInterface;
 import grading.OverallResults;
 import registration.*;
 import universityMembers.FacultyMember;
@@ -21,7 +21,7 @@ public class TestMarksEntry
 		FacultyMember testCoordinator = new FacultyMember("S1234567","Jane Doe");
 		System.out.println(testCoordinator + " constructed successfully");
 		
-		Course testCourse = CreationInterface.createCourse(testCoordinator);
+		Course testCourse = CreationHandler.createCourse(testCoordinator);
 		System.out.println(testCourse.getCourseCode() + ' ' + testCourse.getName() + " constructed successfully");
 		System.out.println(testCourse);
 		

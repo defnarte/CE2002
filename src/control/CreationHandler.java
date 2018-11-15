@@ -1,17 +1,18 @@
-package consoleIO;
+package control;
 
 import universityMembers.FacultyMember;
+import consoleIO.ConsoleInputInterface;
 import courses.*;
 
 /**
- * Control class for creation of course
+ * This class handles the creation of other Classes.
  * 
  * @version 1.2
  * @since 2018/11/12
  * @author Jason
  *
  */
-public class CreationInterface
+public class CreationHandler
 {
 	public static Course createCourse(FacultyMember courseCoordinator)
 	{
