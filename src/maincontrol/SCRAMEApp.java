@@ -309,45 +309,100 @@ public class SCRAMEApp
 					break;
 				case 8:
 					System.out.println("Enter a course code: ");
-					String courseCode6 = ConsoleInputInterface.consoleScanner.next();
-					if (!(checkInput(courseCode6, 2)))
+					String courseCode8 = ConsoleInputInterface.consoleScanner.next();
+					if (!(checkInput(courseCode8, 2)))
 					{
 						System.out.println("Error! Please enter only letters and digits.");
 						break;
 					}
-					int courseIndex5 = courses.checkCourse(courseCode6);
+					int courseIndex5 = courses.checkCourse(courseCode8);
 					if (courseIndex5 != -1)
 					{
+						System.out.println("Enter the student's ID: ");
+						String matriculationNumber3 = ConsoleInputInterface.consoleScanner.next();
+						if (!(checkInput(matriculationNumber3, 2)))
+						{
+							System.out.println("Error! Please enter only letters and digits.");
+							break;
+						}
+						int studentIndex3 = students.checkStudent(matriculationNumber3);
+						if (studentIndex3 != -1)
+						{
+							// Check the student is registered for the course
+							if (courses.getCourseAl().get(courseIndex5).checkStudent(matriculationNumber3))
+							{
+								ArrayList<ComponentWeightage> components = courses.getCourseAl().get(courseIndex5)
+										.getAllComponentsWeightage();
+								for (ComponentWeightage component : components)
+								{
+									if (component.getName().equals("Exam"))
+									{
+										int recordIndex = students.getStudentAl().get(studentIndex3)
+												.searchRecord(courseCode8);
+										{
+											MarksEntryInterface.enterMarks(students.getStudentAl().get(studentIndex3)
+													.getCoursesRegistered().get(recordIndex));
+										}
 
-					}
+									}
+								}
+							} else
+								System.out.println("Student not registered for this course!");
+						} else
+							System.out.println("Student not found in database!");
+					} else
+						System.out.println("Course not found in database!");
 					break;
 				case 9:
-					System.out.println("Enter the course code:");
-					String courseCode7 = ConsoleInputInterface.consoleScanner.next();
-					if (!checkInput(courseCode7, 2))
-					{
-						System.out.println("Error! Please enter only letters and digits.");
-						break;
-					}
-					int courseIndex6 = courses.checkCourse(courseCode7);
+					System.out.println("Enter the course:");
+					String coursecode11 = ConsoleInputInterface.consoleScanner.next();
+					int courseIndex6 = courses.checkCourse(coursecode11);
 					if (courseIndex6 != -1)
 					{
-						ArrayList<CourseRegistrationRecord> courseRecords = courses.getCourseAl().get(courseIndex6).getRegistrations();
-						for (CourseRegistrationRecord courseRecord:courseRecords)
+						System.out.println("Show grade percentage for:");
+						System.out.println("1 - Overall");
+						System.out.println("2 - Exam only");
+						System.out.println("3 - Coursework only");
+						int choice = ConsoleInputInterface.consoleScanner.nextInt();
+						double[] courseStat = new double[11];
+						ArrayList<CourseRegistrationRecord> registrations = courses.getCourseAl().get(courseIndex6).getRegistrations();
+						switch (choice) 
 						{
-							double[] courseStat = new double[10];
-							ArrayList<ComponentResult> components = courseRecord.getOverallResults().getComponentResultList();
-							for (ComponentResult component:components) 
-							{
-						
-							}
+							case 1:
+								for (CourseRegistrationRecord registration:registrations)
+								{
+									courseStat[registration.getOverallResults().computeGrade().getValue()]++;
+								}
+								break;
+							case 2:
+								for (CourseRegistrationRecord registration:registrations)
+								{
+									int index = 0;
+									if (registration.getOverallResults().getComponentResultList().get(index).getName().equals("Exam"))
+										courseStat[registration.getOverallResults().getComponentResultList().get(index).computeGrade().getValue()]++;
+									index++;
+								}
+								break;
+							case 3:
+								for (CourseRegistrationRecord registration:registrations)
+								{
+									int index = 0;
+									if (registration.getOverallResults().getComponentResultList().get(index).getName().equals("Exam"))
+										courseStat[registration.getOverallResults().getComponentResultList().get(index).computeGrade().getValue()]++;
+									index++;
+								}
+								break;
+							default:
+								break;
 						}
-						for (int i = 0; i < 11; i++)
+						for (int i=0; i<11; i++)
 						{
 							courseStat[i] = courseStat[i]/registrations.size() * 100;
-							System.out.printf("%s %.2f %% \n",Grade.valueOf(i),courseStat[i]);
+							System.out.printf("%s %.2f %%\n",Grade.valueOf(i),courseStat[i]);
 						}
 					}
+					else
+						System.out.println("Course not found in database!");
 					break;
 				case 10:
 					System.out.println("Enter the student's ID: ");

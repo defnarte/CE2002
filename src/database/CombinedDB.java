@@ -36,14 +36,6 @@ public class CombinedDB
 		this.courses = new ArrayList<Course>();
 	}
 
-	public void printStudentList()
-	{
-		for (Student student : students)
-		{
-			System.out.println(student.getfullName() + student.getID());
-		}
-	}
-
 	public static ArrayList<String> read(String filename) throws FileNotFoundException
 	{
 		Scanner sc = new Scanner(new FileInputStream(filename));
