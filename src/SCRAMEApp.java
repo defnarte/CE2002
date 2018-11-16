@@ -111,14 +111,14 @@ public class SCRAMEApp
 						}
 						int courseIndex = courses.checkCourse(courseCode);
 						if (courseIndex != -1) 
-						{
-							System.out.printf("Registering %s into %s...\n", matriculationNumber2,courseCode);
-							// Code for adding a student into lessons
-							ArrayList<Lesson> lessons = courses.getCourseAl().get(courseIndex).getLessons();
-							for (Lesson lesson:lessons)
+						{	
+							if (!courses.getCourseAl().get(courseIndex).checkStudent(matriculationNumber2))
 							{
-								// Find all unique lesson types
+								System.out.printf("Registering %s into %s...\n", matriculationNumber2,courseCode);
+								// Code for adding a student into lessons
+								ArrayList<Lesson> lessons = courses.getCourseAl().get(courseIndex).getLessons();
 								ArrayList<String> lessonListType = new ArrayList<String>();
+								// Find all unique lesson types
 								for (int j = 0; j<lessons.size(); j++) 
 								{
 									lessonListType.add(lessons.get(j).getLessonType());
@@ -130,16 +130,25 @@ public class SCRAMEApp
 								{
 									uniqueLessonListType.add((String) it.next().toString());
 								}
+								System.out.println(uniqueLessonListType);
 								for (String uniqueLesson:uniqueLessonListType)
 								{
 									System.out.println("Register for " + uniqueLesson);
 									System.out.println("List of indexes:");
 									courses.getCourseAl().get(courseIndex).printLessonList(uniqueLesson);
 									
-									String lessonIndex = sc.next();	
+									System.out.println("Select an index to register for:");
+									String lessonIndex = sc.next();
+									while(!courses.getCourseAl().get(courseIndex).getLesson(lessonIndex).enrolStudent())
+									{
+										System.out.println("Choose another index:");
+										lessonIndex = sc.next();
+									}
 								}
 							}
-						}
+							else 
+								System.out.println("Student already registered in this course.");
+							}
 						else
 							System.out.println("Course not found in database!");
 					}
@@ -329,7 +338,16 @@ public class SCRAMEApp
 					int courseIndex6 = courses.checkCourse(courseCode7);
 					if (courseIndex6 != -1) 
 					{
+						ArrayList<CourseRegistrationRecord> courseRecords = courses.getCourseAl().get(courseIndex6).getRegistrations();
+						for (CourseRegistrationRecord courseRecord:courseRecords)
+						{
+							double[] courseStat = new double[10];
+							ArrayList<ComponentResult> components = courseRecord.getOverallResults().getComponentResultList();
+							for (ComponentResult component:components) 
+							{
 						
+							}
+						}
 					}
 					break;
 				case 10:

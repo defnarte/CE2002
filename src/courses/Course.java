@@ -231,7 +231,7 @@ public class Course
 			}
 		}
 	}
-
+	
 	// TO-DO: move this method to a display class
 	public void printAllStudents(String lessonType)
 	{
