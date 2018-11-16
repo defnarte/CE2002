@@ -2,9 +2,9 @@ package courses;
 
 import java.util.ArrayList;
 
+import creation.CreationHandler;
 import universityMembers.FacultyMember;
 import registration.CourseRegistrationRecord;
-import control.CreationHandler;
 import lessons.Lesson;
 
 /**

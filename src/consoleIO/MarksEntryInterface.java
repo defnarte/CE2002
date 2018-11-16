@@ -1,6 +1,7 @@
 package consoleIO;
 
 import courses.ComponentWeightage;
+import grading.Markable;
 import registration.*;
 
 /**
@@ -28,8 +29,8 @@ public class MarksEntryInterface
 			System.out.print("Enter your choice: ");
 			String componentNameInput = ConsoleInputInterface.consoleScanner.nextLine();
 			
-			String markEntryPrompt = "Enter the raw marks (out of 100) for " + componentNameInput + ": ";
-			int rawMarks = ConsoleInputInterface.getUserPositiveIntInput(markEntryPrompt, 100);
+			String markEntryPrompt = "Enter the raw marks (out of " + Markable.MAX_MARKS +") for " + componentNameInput + ": ";
+			int rawMarks = ConsoleInputInterface.getUserPositiveIntInput(markEntryPrompt, Markable.MAX_MARKS);
 			
 			markEntrySucess = record.setTargetComponentResult(componentNameInput, rawMarks);
 			
