@@ -126,8 +126,10 @@ public class ConsoleInputInterface
 			{
 				if(stringFormatType == 1)
 					System.out.println("Error! Please enter only letters and spaces.");
-				else
+				else if (stringFormatType == 2)
 					System.out.println("Error! Please enter only letters and digits.");
+				else
+					System.out.println("Error! Please enter only digits.");
 			}
 		} while(!isFormatCorrect);
 		
@@ -146,9 +148,15 @@ public class ConsoleInputInterface
 		// Check letters and digits
 		else if (stringFormatType == 2)
 		{
-			Pattern p2 = Pattern.compile("^[A-Za-z0-9]+$");
-			Matcher m2 = p2.matcher(input);
-			stringMatch = m2.matches();
+			Pattern p = Pattern.compile("^[A-Za-z0-9]+$");
+			Matcher m = p.matcher(input);
+			stringMatch = m.matches();
+		}
+		else if (stringFormatType == 3)
+		{
+			Pattern p = Pattern.compile("^[0-9]+$");
+			Matcher m = p.matcher(input);
+			stringMatch = m.matches();
 		}
 		return stringMatch;
 	}

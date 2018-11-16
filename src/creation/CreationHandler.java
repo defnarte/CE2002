@@ -1,11 +1,14 @@
 package creation;
 
+import java.util.ArrayList;
+
 import consoleIO.ConsoleInputInterface;
 import courses.AggregateComponentWeightage;
 import courses.ComponentWeightage;
 import courses.Course;
 import database.FacultyDB;
 import grading.Markable;
+import lessons.Lesson;
 import universityMembers.*;
 
 /**
@@ -107,5 +110,29 @@ public class CreationHandler
 			}
 		}
 
+	}
+	public static void createLessons(Course course) 
+	{
+		ArrayList<Lesson> lessons = new ArrayList<Lesson>();
+		boolean choice = true;
+		do
+		{
+			String lessonType = ConsoleInputInterface.getUserStringInput("Enter the type of lesson to add:",1);
+			String numOfLessonsPrompt = "Enter the number of " + lessonType + "s to add:";
+			int numOfLessons = ConsoleInputInterface.getUserPositiveIntInput(numOfLessonsPrompt);
+			for (int i = 1; i <= numOfLessons; i++)
+			{
+				System.out.println("Getting input for " + lessonType + " " + i);
+				String lessonID = ConsoleInputInterface.getUserStringInput("Enter lessonID:",3);
+				int totalSize = ConsoleInputInterface.getUserPositiveIntInput("Enter number of vacancies:");
+				Lesson lesson = new Lesson(lessonID,lessonType,totalSize);
+				lessons.add(lesson);
+			}
+			choice = ConsoleInputInterface.getUserBooleanInput("Do you want to add another lesson (Y/N)? ");
+		} while (choice);
+		for (Lesson lesson:lessons) 
+		{
+			course.addLesson(lesson);
+		}
 	}
 }

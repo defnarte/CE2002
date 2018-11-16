@@ -72,6 +72,7 @@ public class SCRAMEApp
 					
 					FacultyMember courseCoordinator = CreationHandler.createFacultyMember(faculty);
 					Course newCourse = CreationHandler.createCourse(courseCoordinator);
+					CreationHandler.createLessons(newCourse);
 					courses.addCourse(newCourse);
 					break;
 				case 3:

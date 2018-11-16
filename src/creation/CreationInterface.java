@@ -47,10 +47,7 @@ public class CreationInterface
 		System.out.print("Enter course name: ");
 		String courseName = ConsoleInputInterface.consoleScanner.nextLine();
 
-		String intakePrompt = "Enter number of intake for " + courseCode + ": ";
-		int maxNumOfIntakes = ConsoleInputInterface.getUserPositiveIntInput(intakePrompt);
-
-		return new Course(courseCode, courseName, maxNumOfIntakes);
+		return new Course(courseCode, courseName);
 	}
 	
 	/**
