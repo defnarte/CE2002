@@ -123,9 +123,8 @@ public class DatabaseIO
 			String courseCode = courseStar.nextToken().trim();
 			String courseName = courseStar.nextToken().trim();
 			String facultyID = courseStar.nextToken().trim();
-			int maxNumOfIntakes = Integer.parseInt(courseStar.nextToken().trim());
 			FacultyMember facultyMember = facultyDB.getFacultyMember(facultyID);
-			Course course = new Course(courseCode, courseName, facultyMember, maxNumOfIntakes);
+			Course course = new Course(courseCode, courseName, facultyMember);
 
 			ArrayList<String> weightageString = new ArrayList<String>(
 					Arrays.asList(courseStar.nextToken().trim().split("\\s*,\\s*")));
