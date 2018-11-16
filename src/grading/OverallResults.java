@@ -84,7 +84,7 @@ public class OverallResults implements Gradeable
 		{
 			return Grade.values()[0];
 		}
-		else if (marks > 80)
+		else if (marks > 85)
 		{
 			return Grade.values()[10];
 		}

@@ -126,7 +126,7 @@ public class SCRAMEApp
 								ArrayList<String> uniqueLessonListType = new ArrayList<String>();
 								while (it.hasNext()) 
 								{
-									uniqueLessonListType.add((String) it.toString());
+									uniqueLessonListType.add((String) it.next().toString());
 								}
 								for (String uniqueLesson:uniqueLessonListType)
 								{

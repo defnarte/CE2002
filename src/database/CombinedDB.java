@@ -75,7 +75,7 @@ public class CombinedDB
 			Student student = new Student(matriculationNumber, name);
 
 			ArrayList<String> coursesEnrolled = new ArrayList<String>(
-					Arrays.asList(studentStar.nextToken().trim().split("\\s*,\\s*")));
+			Arrays.asList(studentStar.nextToken().trim().split("\\s*,\\s*")));
 			ArrayList<ArrayList<String>> lessonsRegistered = stringsplit(studentStar.nextToken().trim(), "_");
 			ArrayList<ArrayList<String>> marksObtained = stringsplit(studentStar.nextToken().trim(), "_");
 
