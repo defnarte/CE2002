@@ -8,14 +8,14 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import consoleIO.ConsoleInputInterface;
-import grading.MarksEntryInterface;
+import consoleIO.MarksEntryInterface;
 import courses.ComponentWeightage;
 import courses.Course;
 import database.CombinedDB;
 import database.CourseDB;
 import database.StudentDB;
 import grading.ComponentResult;
+import grading.Grade;
 import lessons.Lesson;
 import registration.CourseRegistrationRecord;
 import universityMembers.Student;
@@ -327,17 +327,20 @@ public class SCRAMEApp
 					int courseIndex6 = courses.checkCourse(courseCode7);
 					if (courseIndex6 != -1)
 					{
-						ArrayList<CourseRegistrationRecord> courseRecords = courses.getCourseAl().get(courseIndex6)
-								.getRegistrations();
-						for (CourseRegistrationRecord courseRecord : courseRecords)
+						ArrayList<CourseRegistrationRecord> courseRecords = courses.getCourseAl().get(courseIndex6).getRegistrations();
+						for (CourseRegistrationRecord courseRecord:courseRecords)
 						{
 							double[] courseStat = new double[10];
-							ArrayList<ComponentResult> components = courseRecord.getOverallResults()
-									.getComponentResultList();
-							for (ComponentResult component : components)
+							ArrayList<ComponentResult> components = courseRecord.getOverallResults().getComponentResultList();
+							for (ComponentResult component:components) 
 							{
-
+						
 							}
+						}
+						for (int i = 0; i < 11; i++)
+						{
+							courseStat[i] = courseStat[i]/registrations.size() * 100;
+							System.out.printf("%s %.2f %% \n",Grade.valueOf(i),courseStat[i]);
 						}
 					}
 					break;
