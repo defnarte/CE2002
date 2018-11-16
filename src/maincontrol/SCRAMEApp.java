@@ -16,6 +16,7 @@ import creation.CreationHandler;
 import database.DatabaseIO;
 import database.FacultyDB;
 import database.CourseDB;
+import database.FacultyDB;
 import database.StudentDB;
 import grading.ComponentResult;
 import grading.Grade;
@@ -67,15 +68,18 @@ public class SCRAMEApp
 				case 2:
 					// Add a course
 					/**
-					 * TO-DO: get an actual faculty member
+					 * TO-DO: use an actual faculty database
 					 */
+					FacultyDB faculty = new FacultyDB();
+					ConsoleDisplay.displayFacultyMembers(faculty.getAllFacultyMembers());
+					
 					FacultyMember dummyFM = new FacultyMember("S1234567A","Jane Doe");
 
 					Course newCourse = CreationHandler.createCourse(dummyFM);
 					courses.addCourse(newCourse);
 					break;
 				case 3:
-					
+					// Register student for a course (this include registering for Tutorial/Lab classes)
 					System.out.println("Enter the student's ID: ");
 					String matriculationNumber2 = ConsoleInputInterface.consoleScanner.next();
 					if (!(checkInput(matriculationNumber2, 2)))
@@ -139,7 +143,9 @@ public class SCRAMEApp
 					} else
 						System.out.println("Student not found in database!");
 					break;
+					
 				case 4:
+					// Check available slot in a class (vacancy in a class)
 					System.out.println("Enter a course code: ");
 					String courseCode = ConsoleInputInterface.consoleScanner.next();
 					if (!(checkInput(courseCode, 2)))
@@ -176,7 +182,9 @@ public class SCRAMEApp
 					} else
 						System.out.println("Course not found in database!");
 					break;
+					
 				case 5:
+					// Print student list by lecture, tutorial or laboratory session for a course.
 					System.out.println("Enter a course code: ");
 					String courseCode3 = ConsoleInputInterface.consoleScanner.next();
 					if (!(checkInput(courseCode3, 2)))
@@ -233,6 +241,7 @@ public class SCRAMEApp
 					} else
 						System.out.println("Course not found in database!");
 					break;
+					
 				case 6: 
 					// Enter course assessment components weightage for a course
 					Course courseToEnterWeightage;
@@ -251,7 +260,9 @@ public class SCRAMEApp
 					CreationHandler.createCourseComponents(courseToEnterWeightage);
 					
 					break;
+					
 				case 7:
+					// Enter coursework mark inclusive of its components.
 					System.out.println("Enter a course code: ");
 					String courseCode5 = ConsoleInputInterface.consoleScanner.next();
 					if (!(checkInput(courseCode5, 2)))

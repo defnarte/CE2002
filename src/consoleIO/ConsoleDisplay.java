@@ -1,5 +1,9 @@
 package consoleIO;
 
+import java.util.ArrayList;
+
+import universityMembers.FacultyMember;
+
 public class ConsoleDisplay
 {
 	public static void printMainMenu()
@@ -11,5 +15,11 @@ public class ConsoleDisplay
 				+ "6.  Enter course assessment components weightage\n"
 				+ "7.  Enter coursework mark inclusive of its components.\n" + "8.  Enter exam mark\n"
 				+ "9.  Print course statistics\n" + "10. Print student transcript.\n" + "11. Quit");
+	}
+	
+	public static void displayFacultyMembers(ArrayList<FacultyMember> faculty)
+	{
+		for(FacultyMember facultyMem: faculty)
+			System.out.println(facultyMem);
 	}
 }

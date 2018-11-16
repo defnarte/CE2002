@@ -22,7 +22,32 @@ public class FacultyDB {
 	}
 	public FacultyMember getFacultyMember()
 	{
-		
+		ArrayList<String> facultyList = read(facultyFilename);
+		for (int i=0; i< facultyList.size(); i++)
+		{
+			String st = (String) facultyList.get(i);
+			StringTokenizer facultyStar = new StringTokenizer(st, SEPARATOR);
+			String name = facultyStar.nextToken().trim();
+			String id = facultyStar.nextToken().trim();
+			FacultyMember facultyMem = new FacultyMember(id,name);
+			faculty.add(facultyMem);
+		}
+		return faculty;
 	}
 	
+	public FacultyMember getFacultyMember(String facultyID)
+	{
+		for(FacultyMember facultyMem: faculty)
+		{
+			if(facultyMem.getID().equals(facultyID))
+				return facultyMem;
+		}
+		
+		return null;
+	}
+	
+	public ArrayList<FacultyMember> getAllFacultyMembers()
+	{
+		return faculty;
+	}
 }
