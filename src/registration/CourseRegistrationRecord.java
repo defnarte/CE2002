@@ -2,8 +2,8 @@ package registration;
 
 import java.util.ArrayList;
 import universityMembers.Student;
-import consoleIO.MarksEntryInterface;
 import courses.Course;
+import grading.MarksEntryInterface;
 import grading.OverallResults;
 import java.util.ArrayList;
 /**
