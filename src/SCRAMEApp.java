@@ -25,8 +25,8 @@ public class SCRAMEApp
 		
 		CombinedDB database = new CombinedDB();
 		CourseDB courses = new CourseDB(database.readCourseDB(courseFilename));
-		StudentDB students = new StudentDB(database.readStudentDB(studentFilename));
-		
+		StudentDB students = new StudentDB(database.readStudentDB(studentFilename,courses.getCourseAl()));
+				
 		System.out.println("Welcome to SCRAME");
 		
 		Scanner sc = new Scanner(System.in);
@@ -172,10 +172,7 @@ public class SCRAMEApp
 						System.out.println("Enter a lesson type to print by: ");
 						String lessonType = sc.next();
 						System.out.printf("All indexes for %s:\n",lessonType);
-						for (Lesson lesson : lessons) 
-						{
-							System.out.println(lesson.getLessonID());
-						}
+						courses.getCourseAl().get(courseIndex).printLessonList(lessonType);
 						System.out.println("Enter an index: ");
 						String lessonIndex2 = sc.next();
 						int vacancy = courses.getCourseAl().get(courseIndex).getLesson(lessonIndex2).getVacancy();
@@ -213,10 +210,7 @@ public class SCRAMEApp
 						System.out.println("Enter a lesson type to check vacancy: ");
 						String lessonType = sc.next();
 						System.out.printf("All indexes for %s:\n",lessonType);
-						for (Lesson lesson : lessons) 
-						{
-							System.out.println(lesson.getLessonID());
-						}
+						courses.getCourseAl().get(courseIndex2).printLessonList(lessonType);
 						System.out.println("Select an option:");
 						System.out.println("1 - Print student list by index");
 						System.out.println("2 - Print all students");
@@ -292,6 +286,7 @@ public class SCRAMEApp
 					}
 					break;
 				case 9:
+					break;
 				case 10:
 					System.out.println("Enter the student's ID: ");
 					String studentID = sc.next();

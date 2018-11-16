@@ -46,10 +46,10 @@ public class CourseRegistrationRecord
 	{
 		return overallResults;
 	}
-//	public void setOverallResults(OverallResults overallResults)
-//	{
-//		this.overallResults = overallResults;
-//	}
+	public void setOverallResults(OverallResults overallResults)
+	{
+		this.overallResults = overallResults;
+	}
 	public boolean setTargetComponentResult(String targetName, int rawMarks)
 	{
 		return this.overallResults.setTargetComponentResult(targetName, rawMarks);

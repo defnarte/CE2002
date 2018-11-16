@@ -57,6 +57,9 @@ public class Lesson
 		return vacancy;
 	}
 	public void enrolStudent() {
-		vacancy--;
+		if (vacancy > 0)
+			vacancy--;
+		else
+			System.out.println("Lesson is full!");
 	}
 }

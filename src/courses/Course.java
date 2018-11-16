@@ -204,7 +204,17 @@ public class Course
 	{
 		lessons.add(lesson);
 	}
-
+	
+	public void printLessonList(String lessonType)
+	{
+		for (Lesson lesson:lessons)
+		{
+			if (lesson.getLessonType().equals(lessonType))
+			{
+				System.out.println(lesson.getLessonID());
+			}
+		}
+	}
 	// TO-DO: move this method to a display class
 	public void printSomeStudents(String lessonID)
 	{

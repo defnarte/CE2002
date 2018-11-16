@@ -61,7 +61,7 @@ public class CombinedDB
 		return data;
 	}
 
-	public ArrayList<Student> readStudentDB(String studentFilename) throws IOException
+	public ArrayList<Student> readStudentDB(String studentFilename, ArrayList<Course> courses) throws IOException
 	{
 		ArrayList<String> studentStringArray = read(studentFilename);
 
@@ -81,7 +81,7 @@ public class CombinedDB
 
 			// For each of the courses for a particular student in the student text file
 			for (int k = 0; k < coursesEnrolled.size(); k++)
-			{
+			{	
 				// Check each of the courses in the courseDB
 				for (int j = 0; j < courses.size(); j++)
 				{
@@ -112,9 +112,9 @@ public class CombinedDB
 						/**
 						 * THis should not done in the DB class
 						 */
-//						OverallResults results = new OverallResults();
-//						results.setOverallResults(componentResultList);
-//						courseRecord.setResults(results);
+						OverallResults results = new OverallResults();
+						results.setOverallResults(componentResultList);
+						courseRecord.setOverallResults(results);
 
 						student.addCourse(courseRecord);
 						courses.get(j).addRegistration(courseRecord);
