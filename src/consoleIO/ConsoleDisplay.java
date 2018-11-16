@@ -6,7 +6,7 @@ import universityMembers.FacultyMember;
 
 public class ConsoleDisplay
 {
-	public static void printMainMenu()
+	public static void displayMainMenu()
 	{
 		System.out.println("Select an option:\n" + "1.  Add a student\n" + "2.  Add a course\n"
 				+ "3.  Register student for a course (this include registering for Tutorial/Lab classes)\n"

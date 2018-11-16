@@ -49,7 +49,7 @@ public class SCRAMEApp
 		int userChoice = 0;
 		do
 		{
-			ConsoleDisplay.printMainMenu();
+			ConsoleDisplay.displayMainMenu();
 
 			String userChoicePrompt = "Enter your choice:";
 			userChoice = ConsoleInputInterface.getUserPositiveIntInput(userChoicePrompt, 11);
