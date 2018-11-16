@@ -7,7 +7,7 @@ package grading;
  * @author Jason
  *
  */
-public interface IWeightedMarks
+public interface Weightable extends Markable
 {
 	double computeWeightedMarks();
 }

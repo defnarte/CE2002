@@ -9,7 +9,7 @@ import courses.ComponentWeightage;
  * @author Jason
  *
  */
-public class ComponentResult implements IWeightedMarks
+public class ComponentResult implements Weightable
 {
 	private ComponentWeightage weightage;
 	private int marks;
@@ -34,6 +34,7 @@ public class ComponentResult implements IWeightedMarks
 		return weightage.getWeightage();
 	}
 	
+	@Override
 	public double getMarks()
 	{
 		return marks;
@@ -41,6 +42,26 @@ public class ComponentResult implements IWeightedMarks
 	public void setMarks(int marks)
 	{
 		this.marks = marks;
+	}
+	
+	@Override
+	public Grade computeGrade()
+	{
+		int marks = (int) Math.round(getMarks());
+		if (marks < 40) 
+		{
+			return Grade.values()[0];
+		}
+		else if (marks >= 85)
+		{
+			return Grade.values()[10];
+		}
+		else 
+		{
+			// how does this work?
+			marks = ((int) Math.round(getMarks())-40)/5 + 1;
+			return Grade.values()[marks];
+		}
 	}
 	
 	@Override
