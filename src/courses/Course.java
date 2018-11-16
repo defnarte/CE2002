@@ -21,7 +21,6 @@ public class Course
 	private String name; // course name
 
 	private FacultyMember coordinator; // course coordinator
-	private int maxNumOfIntakes; // maximum number of student intakes for this course
 
 	private ArrayList<Lesson> lessons;
 	private ArrayList<ComponentWeightage> componentWeightageList;
@@ -37,22 +36,20 @@ public class Course
 	 * @param courseCoordinator
 	 * @param maxNumOfIntakes
 	 */
-	public Course(String courseCode, String courseName, int maxNumOfIntakes)
+	public Course(String courseCode, String courseName)
 	{
 		this.courseCode = courseCode;
 		this.name = courseName;
-		this.maxNumOfIntakes = maxNumOfIntakes;
 		
 		lessons = new ArrayList<Lesson>();
 		registrations = new ArrayList<CourseRegistrationRecord>();
 		componentWeightageList = new ArrayList<ComponentWeightage>();
 	}
-	public Course(String courseCode, String courseName, FacultyMember courseCoordinator, int maxNumOfIntakes)
+	public Course(String courseCode, String courseName, FacultyMember courseCoordinator)
 	{
 		this.courseCode = courseCode;
 		this.name = courseName;
 		this.coordinator = courseCoordinator;
-		this.maxNumOfIntakes = maxNumOfIntakes;
 
 		lessons = new ArrayList<Lesson>();
 		componentWeightageList = new ArrayList<ComponentWeightage>();
@@ -114,36 +111,6 @@ public class Course
 	public void setCoordinator(FacultyMember courseCoordinator)
 	{
 		this.coordinator = courseCoordinator;
-	}
-
-	/**
-	 * This method gets the number of vacancy (remaining slots for student intakes)
-	 * for this course. Number of vacancy is calculated through maximum number of
-	 * student intakes minus current number of student intakes (given by number of
-	 * registrations for this course).
-	 * 
-	 * @return vacancy
-	 */
-	public int getVacancy()
-	{
-		return maxNumOfIntakes - registrations.size();
-	}
-
-	/**
-	 * Setter for maximum number of intakes. Returns true if maximum number of
-	 * intakes is set successfully. Returns false if maximum number of intakes is
-	 * NOT set, as the number of students registered for this course is more than
-	 * the new maximum.
-	 * 
-	 */
-	public boolean setMaxNumOfIntakes(int maxNumOfIntakes)
-	{
-		if (maxNumOfIntakes > registrations.size())
-		{
-			this.maxNumOfIntakes = maxNumOfIntakes;
-			return true;
-		} else
-			return false;
 	}
 
 	public void addComponentWeightage(ComponentWeightage newComponent)
@@ -266,6 +233,6 @@ public class Course
 		}
 
 		return "---" + courseCode + ' ' + name + "---\nCourse Coordinator: " + coordinator
-				+ "\nmaximum number of intakes: " + maxNumOfIntakes + "\nComponents: \n" + componentString;
+				 + "\nComponents: \n" + componentString;
 	}
 }
