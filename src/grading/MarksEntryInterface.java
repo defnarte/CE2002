@@ -35,13 +35,10 @@ public class MarksEntryInterface
 			markEntrySucess = record.setTargetComponentResult(componentNameInput, rawMarks);
 			
 			if(markEntrySucess)
-			{
 				System.out.println("Mark entry successful");
-			}
 			else
-			{
 				System.out.println("Mark entry failed");
-			}
+			
 		} while(!markEntrySucess);
 		
 		System.out.println("Results for " + record.getRegisteredCourse().getCourseCode() + 
