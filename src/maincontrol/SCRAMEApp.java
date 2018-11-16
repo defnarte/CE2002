@@ -12,6 +12,7 @@ import consoleIO.ConsoleInputInterface;
 import grading.MarksEntryInterface;
 import courses.ComponentWeightage;
 import courses.Course;
+import creation.CreationHandler;
 import database.CombinedDB;
 import database.CourseDB;
 import database.StudentDB;
@@ -241,20 +242,23 @@ public class SCRAMEApp
 					} else
 						System.out.println("Course not found in database!");
 					break;
-				case 6:
-					System.out.println("Enter a course code: ");
-					String courseCode4 = ConsoleInputInterface.consoleScanner.next();
-					if (!(checkInput(courseCode4, 2)))
+				case 6: 
+					// Enter course assessment components weightage for a course
+					Course courseToEnterWeightage;
+					do
 					{
-						System.out.println("Error! Please enter only letters and digits.");
-						break;
-					}
-					int courseIndex3 = courses.checkCourse(courseCode4);
-					if (courseIndex3 != -1)
-					{
-
-					} else
-						System.out.println("Course not found in database!");
+						String courseEnterWeightagePrompt = "Enter course code: ";
+						String coursecodeToEnterWeightage = ConsoleInputInterface.getUserStringInput(courseEnterWeightagePrompt, 2);
+						
+						courseToEnterWeightage = courses.getCourse(coursecodeToEnterWeightage);
+						
+						if(courseToEnterWeightage == null)
+							System.out.println("Course not found in database!");
+						
+					} while(courseToEnterWeightage == null);
+					
+					CreationHandler.createCourseComponents(courseToEnterWeightage);
+					
 					break;
 				case 7:
 					System.out.println("Enter a course code: ");

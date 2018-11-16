@@ -19,7 +19,7 @@ public class CreationHandler
 {
 	public static Course createCourse(FacultyMember courseCoordinator)
 	{
-		Course newCourse = CreationInterface.getCourseMetadata();
+		Course newCourse = CreationInterface.setCourseMetadata();
 		newCourse.setCoordinator(courseCoordinator);
 		
 		createCourseComponents(newCourse);
@@ -39,7 +39,7 @@ public class CreationHandler
 		for (int componentIndex = 1; componentIndex <= numOfComponents; ++componentIndex)
 		{
 			ComponentWeightage newComponentWeightage = CreationInterface.
-					getComponentMetadata(componentIndex, componentsTotalWeightage);
+					setComponentMetadata(componentIndex, componentsTotalWeightage);
 			
 			componentsTotalWeightage -= newComponentWeightage.getWeightage();
 			
@@ -56,7 +56,7 @@ public class CreationHandler
 				for (int subComponentIndex = 1; subComponentIndex <= numOfSubcomponents; ++subComponentIndex)
 				{
 					ComponentWeightage newSubcomponentWeightage = 
-							CreationInterface.getSubcomponentMetadata(aggregateComponentWeightage, 
+							CreationInterface.setSubcomponentMetadata(aggregateComponentWeightage, 
 									subComponentIndex, subcomponentsTotalWeightage);
 					
 					subcomponentsTotalWeightage -= newSubcomponentWeightage.getWeightage();
