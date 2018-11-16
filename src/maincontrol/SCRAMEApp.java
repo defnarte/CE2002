@@ -13,7 +13,8 @@ import grading.MarksEntryInterface;
 import courses.ComponentWeightage;
 import courses.Course;
 import creation.CreationHandler;
-import database.CombinedDB;
+import database.DatabaseIO;
+import database.FacultyDB;
 import database.CourseDB;
 import database.StudentDB;
 import grading.ComponentResult;
@@ -36,10 +37,11 @@ public class SCRAMEApp
 	{
 		String studentFilename = "Students.txt";
 		String courseFilename = "Courses.txt";
+		String facultyFilename = "Faculty.txt";
 
-		CombinedDB database = new CombinedDB();
-		CourseDB courses = new CourseDB(database.readCourseDB(courseFilename));
-		StudentDB students = new StudentDB(database.readStudentDB(studentFilename, courses.getCourseAl()));
+		FacultyDB faculty = new FacultyDB(DatabaseIO.readFacultyDB(facultyFilename));
+		CourseDB courses = new CourseDB(DatabaseIO.readCourseDB(courseFilename,faculty.getFacultyAl()));
+		StudentDB students = new StudentDB(DatabaseIO.readStudentDB(studentFilename, courses.getCourseAl()));
 
 		System.out.println("Welcome to SCRAME");
 

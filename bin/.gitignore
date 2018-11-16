@@ -1,5 +1,9 @@
 /maincontrol/
 /database/
+<<<<<<< Updated upstream
 /consoleIO/
 /creation/
 /grading/
+=======
+/tests/
+>>>>>>> Stashed changes

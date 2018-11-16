@@ -24,17 +24,9 @@ import universityMembers.Student;
  * @author Isaac
  *
  */
-public class CombinedDB
+public class DatabaseIO
 {
-	private ArrayList<Student> students;
-	private ArrayList<Course> courses;
 	public static final String SEPARATOR = "|";
-
-	public CombinedDB()
-	{
-		this.students = new ArrayList<Student>();
-		this.courses = new ArrayList<Course>();
-	}
 
 	public static ArrayList<String> read(String filename) throws FileNotFoundException
 	{
@@ -53,10 +45,10 @@ public class CombinedDB
 		return data;
 	}
 
-	public ArrayList<Student> readStudentDB(String studentFilename, ArrayList<Course> courses) throws IOException
+	public static ArrayList<Student> readStudentDB(String studentFilename, ArrayList<Course> courses) throws IOException
 	{
 		ArrayList<String> studentStringArray = read(studentFilename);
-
+		ArrayList<Student> students = new ArrayList<Student>();
 		for (int i = 0; i < studentStringArray.size(); i++)
 		{
 			String st = (String) studentStringArray.get(i);
@@ -119,10 +111,10 @@ public class CombinedDB
 		return students;
 	}
 
-	public ArrayList<Course> readCourseDB(String courseFilename) throws IOException
+	public static ArrayList<Course> readCourseDB(String courseFilename, ArrayList<FacultyMember> faculty) throws IOException
 	{
 		ArrayList<String> courseStringArray = read(courseFilename);
-
+		ArrayList<Course> courses = new ArrayList<Course>();
 		for (int i = 0; i < courseStringArray.size(); i++)
 		{
 			String st = (String) courseStringArray.get(i);
@@ -130,10 +122,10 @@ public class CombinedDB
 
 			String courseCode = courseStar.nextToken().trim();
 			String courseName = courseStar.nextToken().trim();
+			String facultyName = courseStar.nextToken().trim();
 			int maxNumOfIntakes = Integer.parseInt(courseStar.nextToken().trim());
-			
-			FacultyMember dummy = new FacultyMember("S1234567A","dummy");
-			Course course = new Course(courseCode, courseName, dummy, maxNumOfIntakes);
+			FacultyMember facultymember = getFacultyMember(faculty name)
+			Course course = new Course(courseCode, courseName, facultymember, maxNumOfIntakes);
 
 			ArrayList<String> weightageString = new ArrayList<String>(
 					Arrays.asList(courseStar.nextToken().trim().split("\\s*,\\s*")));
@@ -160,6 +152,22 @@ public class CombinedDB
 			courses.add(course);
 		}
 		return courses;
+	}
+	
+	public static ArrayList<FacultyMember> readFacultyDB(String facultyFilename) throws FileNotFoundException 
+	{
+		ArrayList<String> facultyList = read(facultyFilename);
+		ArrayList<FacultyMember> faculty = new ArrayList<FacultyMember>();
+		for (int i=0; i< facultyList.size(); i++)
+		{
+			String st = (String) facultyList.get(i);
+			StringTokenizer facultyStar = new StringTokenizer(st, SEPARATOR);
+			String name = facultyStar.nextToken().trim();
+			String id = facultyStar.nextToken().trim();
+			FacultyMember facultymem = new FacultyMember(id,name);
+			faculty.add(facultymem);
+		}
+		return faculty;
 	}
 
 	public static ArrayList<ArrayList<String>> stringsplit(String st, String SEP)
