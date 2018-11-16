@@ -111,7 +111,7 @@ public class DatabaseIO
 		return students;
 	}
 
-	public static ArrayList<Course> readCourseDB(String courseFilename, ArrayList<FacultyMember> faculty) throws IOException
+	public static ArrayList<Course> readCourseDB(String courseFilename, FacultyDB facultyDB) throws IOException
 	{
 		ArrayList<String> courseStringArray = read(courseFilename);
 		ArrayList<Course> courses = new ArrayList<Course>();
@@ -122,10 +122,10 @@ public class DatabaseIO
 
 			String courseCode = courseStar.nextToken().trim();
 			String courseName = courseStar.nextToken().trim();
-			String facultyName = courseStar.nextToken().trim();
+			String facultyID = courseStar.nextToken().trim();
 			int maxNumOfIntakes = Integer.parseInt(courseStar.nextToken().trim());
-			FacultyMember facultymember = getFacultyMember(faculty name)
-			Course course = new Course(courseCode, courseName, facultymember, maxNumOfIntakes);
+			FacultyMember facultyMember = facultyDB.getFacultyMember(facultyID);
+			Course course = new Course(courseCode, courseName, facultyMember, maxNumOfIntakes);
 
 			ArrayList<String> weightageString = new ArrayList<String>(
 					Arrays.asList(courseStar.nextToken().trim().split("\\s*,\\s*")));

@@ -16,6 +16,7 @@ import universityMembers.Student;
  */
 public class CreationInterface
 {
+	
 	public static Student setStudentMetadata()
 	{
 		String studentIDPrompt = "Enter the student's ID:";

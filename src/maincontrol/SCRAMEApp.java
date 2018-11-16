@@ -41,7 +41,7 @@ public class SCRAMEApp
 		String facultyFilename = "Faculty.txt";
 
 		FacultyDB faculty = new FacultyDB(DatabaseIO.readFacultyDB(facultyFilename));
-		CourseDB courses = new CourseDB(DatabaseIO.readCourseDB(courseFilename,faculty.getFacultyAl()));
+		CourseDB courses = new CourseDB(DatabaseIO.readCourseDB(courseFilename,faculty));
 		StudentDB students = new StudentDB(DatabaseIO.readStudentDB(studentFilename, courses.getCourseAl()));
 
 		System.out.println("Welcome to SCRAME");
@@ -67,15 +67,11 @@ public class SCRAMEApp
 					break;
 				case 2:
 					// Add a course
-					/**
-					 * TO-DO: use an actual faculty database
-					 */
-					FacultyDB faculty = new FacultyDB();
+					System.out.println("List of all faculty members: ");
 					ConsoleDisplay.displayFacultyMembers(faculty.getAllFacultyMembers());
 					
-					FacultyMember dummyFM = new FacultyMember("S1234567A","Jane Doe");
-
-					Course newCourse = CreationHandler.createCourse(dummyFM);
+					FacultyMember courseCoordinator = CreationHandler.createFacultyMember(faculty);
+					Course newCourse = CreationHandler.createCourse(courseCoordinator);
 					courses.addCourse(newCourse);
 					break;
 				case 3:

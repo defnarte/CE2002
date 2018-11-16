@@ -4,6 +4,7 @@ import consoleIO.ConsoleInputInterface;
 import courses.AggregateComponentWeightage;
 import courses.ComponentWeightage;
 import courses.Course;
+import database.FacultyDB;
 import grading.Markable;
 import universityMembers.*;
 
@@ -17,6 +18,21 @@ import universityMembers.*;
  */
 public class CreationHandler
 {
+	public static FacultyMember createFacultyMember(FacultyDB faculty)
+	{
+		FacultyMember facultyMem;
+		
+		do
+		{
+			String courseCoordinatorPrompt = "Enter the ID of the course coordinator";
+			String facultyID = ConsoleInputInterface.getUserStringInput(courseCoordinatorPrompt, 2);
+			facultyMem = faculty.getFacultyMember(facultyID);
+			
+		} while(facultyMem ==null);
+		
+		return facultyMem;
+	}
+	
 	public static Student createStudent()
 	{
 		Student newStudent = CreationInterface.setStudentMetadata();

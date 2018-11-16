@@ -20,7 +20,7 @@ public class demo {
 		String courseFilename = "Courses.txt";
 		
 		DatabaseIO database = new DatabaseIO();
-		ArrayList<Course> courses = database.readCourseDB(courseFilename);
+		ArrayList<Course> courses = null/* = database.readCourseDB(courseFilename)*/;
 		ArrayList<Student> students = database.readStudentDB(studentFilename,courses);
 		
 		
