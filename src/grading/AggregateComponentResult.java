@@ -12,7 +12,7 @@ import courses.ComponentWeightage;
  * @author Jason
  *
  */
-public class AggregateComponentResult extends ComponentResult implements Weightable
+public class AggregateComponentResult extends ComponentResult
 {
 	ArrayList<ComponentResult> subcomponentResultList;
 	
