@@ -77,9 +77,9 @@ public class ConsoleInputInterface
 	 * This method keeps prompting the user to enter a Yes or No till the user enters Y or N.
 	 * 
 	 * Either the prompting message or an earlier message
-	 * should make it clear to the user what characters to legal to enter (Y, y ,N, n).
+	 * should make it clear to the user what characters are legal to enter (Y, y ,N, n).
 	 * 
-	 * This method then returns the boolean value.
+	 * This method then returns the boolean value (Yes -> true, No -> false).
 	 * 
 	 * @param promptMessage
 	 * @return userInput
@@ -102,7 +102,15 @@ public class ConsoleInputInterface
 		return (userInput == 'Y' || userInput == 'y');
 	}
 	
-	public static String getUserStringInput(String promptMessage, int type)
+	/**
+	 * This method keeps prompting the user to enter a String of the right format till the user do so.
+	 * 
+	 * This method then returns the String entered.
+	 * 
+	 * @param promptMessage, stringFormatType
+	 * @return userInput
+	 */
+	public static String getUserStringInput(String promptMessage, int stringFormatType)
 	{
 		String userInput;
 		
@@ -110,22 +118,22 @@ public class ConsoleInputInterface
 		{
 			System.out.println(promptMessage);
 			userInput = consoleScanner.nextLine();
-		} while(!checkInput(userInput,type));
+		} while(!checkInput(userInput,stringFormatType));
 		
 		return userInput;
 	}
-	private static boolean checkInput(String input, int type)
+	private static boolean checkInput(String input, int stringFormatType)
 	{
 		boolean stringMatch = false;
 		// Check letters and whitespace
-		if (type == 1)
+		if (stringFormatType == 1)
 		{
 			Pattern p = Pattern.compile("^[ A-Za-z]+$");
 			Matcher m = p.matcher(input);
 			stringMatch = m.matches();
 		}
 		// Check letters and digits
-		else if (type == 2)
+		else if (stringFormatType == 2)
 		{
 			Pattern p2 = Pattern.compile("^[A-Za-z0-9]+$");
 			Matcher m2 = p2.matcher(input);
