@@ -7,7 +7,7 @@ import java.util.Set;
 
 import consoleIO.ConsoleInputInterface;
 import courses.Course;
-import database.CombinedDB;
+import database.DatabaseIO;
 import grading.ComponentResult;
 import lessons.Lesson;
 import registration.CourseRegistrationRecord;
@@ -19,7 +19,7 @@ public class demo {
 		String studentFilename = "Students.txt";
 		String courseFilename = "Courses.txt";
 		
-		CombinedDB database = new CombinedDB();
+		DatabaseIO database = new DatabaseIO();
 		ArrayList<Course> courses = database.readCourseDB(courseFilename);
 		ArrayList<Student> students = database.readStudentDB(studentFilename,courses);
 		
