@@ -7,8 +7,8 @@ import courses.ComponentWeightage;
 
 /**
  * 
- * @version 1.1
- * @since 2018/11/12
+ * @version 1.2
+ * @since 2018/11/16
  * @author Jason
  *
  */
