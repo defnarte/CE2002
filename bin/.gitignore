@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 <<<<<<< HEAD
 /grading/
 /maincontrol/
@@ -10,10 +11,13 @@
 /lessons/
 /database/
 =======
-/maincontrol/
-/tests/
->>>>>>> master
 =======
+>>>>>>> Stashed changes
+/maincontrol/
 /grading/
+<<<<<<< Updated upstream
 >>>>>>> master
 /universityMembers/
+=======
+>>>>>>> Stashed changes
+/tests/
