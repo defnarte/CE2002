@@ -27,7 +27,7 @@ public class demo {
 		int index = 1;
 //		System.out.println(studentAl.get(index).getfullName());
 //		System.out.println(studentAl.get(index).getID());
-//		System.out.println(studentAl.get(index).getCoursesRegistered().get(1).getOverallResults().getOverallMarks());
+//		System.out.println(studentAl.get(index).getCoursesRegistered().get(1).getOverallResults().getMarks());
 //		
 //		System.out.println(courseAl.get(index).getLessons().get(index).getLessonID());
 //		System.out.println(courseAl.get(index).getLessons().get(index).getLessonType());
@@ -106,7 +106,7 @@ public class demo {
 				for (int j = 0; j<courseRegistrations.size(); j++) 
 				{
 					ArrayList<ComponentResult> resultsList = courseRegistrations.get(j).getOverallResults().getComponentResultList();
-					overall += courseRegistrations.get(j).getOverallResults().getOverallMarks();
+					overall += courseRegistrations.get(j).getOverallResults().getMarks();
 					for (int k=0; k<resultsList.size(); k++) {
 						mean[k] += resultsList.get(k).getMarks();
 					}
@@ -132,7 +132,7 @@ public class demo {
 				{
 					System.out.println(courseRegistered.getRegisteredCourse().getCourseCode() + " " 
 							+ courseRegistered.getRegisteredCourse().getName() + " "
-							+ courseRegistered.getOverallResults().getOverallMarks() + " "
+							+ courseRegistered.getOverallResults().getMarks() + " "
 							+ courseRegistered.getOverallResults().computeGrade());
 					ArrayList<ComponentResult> componentResultList = courseRegistered.getOverallResults().getComponentResultList();
 					for (ComponentResult componentResult:componentResultList) {

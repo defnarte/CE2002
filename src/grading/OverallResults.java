@@ -12,7 +12,7 @@ import courses.ComponentWeightage;
  * @author Jason
  *
  */
-public class OverallResults implements Gradeable
+public class OverallResults implements Markable
 {
 	private ArrayList<ComponentResult> componentResultList;
 	
@@ -46,7 +46,8 @@ public class OverallResults implements Gradeable
 		this.componentResultList = componentResultList;
 	}
 	
-	public double getOverallMarks()
+	@Override
+	public double getMarks()
 	{
 		double overallMarks = 0;
 		
@@ -79,19 +80,19 @@ public class OverallResults implements Gradeable
 	@Override
 	public Grade computeGrade()
 	{
-		int marks = (int) Math.round(getOverallMarks());
+		int marks = (int) Math.round(getMarks());
 		if (marks < 40) 
 		{
 			return Grade.values()[0];
 		}
-		else if (marks > 85)
+		else if (marks >= 85)
 		{
 			return Grade.values()[10];
 		}
 		else 
 		{
 			// how does this work?
-			marks = (int) (this.getOverallMarks()-40)/5 + 1;
+			marks = ((int) Math.round(getMarks())-40)/5 + 1;
 			return Grade.values()[marks];
 		}
 	}

@@ -304,7 +304,7 @@ public class SCRAMEApp
 							{
 								System.out.println(courseRegistered.getRegisteredCourse().getCourseCode() + " " 
 										+ courseRegistered.getRegisteredCourse().getName() + " "
-										+ courseRegistered.getOverallResults().getOverallMarks() + " "
+										+ courseRegistered.getOverallResults().getMarks() + " "
 										+ courseRegistered.getOverallResults().computeGrade());
 								ArrayList<ComponentResult> componentResultList = courseRegistered.getOverallResults().getComponentResultList();
 								for (ComponentResult componentResult:componentResultList) {
