@@ -244,6 +244,16 @@ public class Course
 			}
 		}
 	}
+	
+	public boolean checkStudent(String studentID) 
+	{
+		for (CourseRegistrationRecord registeredStudent:registrations) 
+		{
+			if (registeredStudent.getRegisteredStudent().getID().equals(studentID))
+				return true;
+		}
+		return false;
+	}
 
 	@Override
 	public String toString()

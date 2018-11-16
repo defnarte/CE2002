@@ -54,4 +54,16 @@ public class Student extends UniversityMember
 	{
 		return "Student[" + super.toString() + ']';
 	}
+	public int searchRecord(String courseID) 
+	{
+		int index = 0;
+		for (CourseRegistrationRecord registeredCourse:registeredCourses)
+		{
+			if (registeredCourse.getRegisteredCourse().getCourseCode().equals(courseID))
+				return index;
+			index++;
+		}
+		return -1;
+		
+	}
 }

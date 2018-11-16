@@ -1,3 +1,3 @@
 HY001|Stress|100|Exam,100|Lecture,4211,100
 MH1301|Pythagoras Theorem|30|Exam,100|Lecture,2121,30_Tutorial,1711,10_Tutorial,1712,10
-CE2002|OOP|50|Exam,70,MidTerm,30|Lecture,1102,30_Tutorial,2101,10_Tutorial,2102,10_Lab,2501,10_Lab,2502,10
+CE2002|OOP|50|Exam,70,Midterm Exam,30|Lecture,1102,30_Tutorial,2101,10_Tutorial,2102,10_Lab,2501,10_Lab,2502,10

@@ -7,6 +7,8 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import consoleIO.MarksEntryInterface;
+import courses.ComponentWeightage;
 import courses.Course;
 import database.CombinedDB;
 import database.CourseDB;
@@ -239,6 +241,7 @@ public class SCRAMEApp
 					}
 					else
 						System.out.println("Course not found in database!");
+					break;
 				case 6:
 					System.out.println("Enter a course code: ");
 					String courseCode4 = sc.next();
@@ -266,7 +269,37 @@ public class SCRAMEApp
 					int courseIndex4 = courses.checkCourse(courseCode5);
 					if (courseIndex4 != -1) 
 					{
-						
+						System.out.println("Enter the student's ID: ");
+						String matriculationNumber3 = sc.next();
+						if (!(checkInput(matriculationNumber3,2)))
+						{
+							System.out.println("Error! Please enter only letters and digits.");
+							break;
+						}
+						int studentIndex3 = students.checkStudent(matriculationNumber3);
+						if (studentIndex3 != -1) 
+						{
+							// Check the student is registered for the course
+							if (courses.getCourseAl().get(courseIndex4).checkStudent(matriculationNumber3))
+							{
+								ArrayList<ComponentWeightage> components = courses.getCourseAl().get(courseIndex4).getAllComponentsWeightage();
+								for (ComponentWeightage component:components) 
+								{
+									if (!component.getName().equals("Exam"))
+									{
+										int recordIndex = students.getStudentAl().get(studentIndex3).searchRecord(courseCode5);
+										{
+											MarksEntryInterface.enterMarks(students.getStudentAl().get(studentIndex3).getCoursesRegistered().get(recordIndex));
+										}
+										
+									}
+								}
+							}
+							else
+								System.out.println("Student not registered for this course!");	
+						}
+						else
+							System.out.println("Student not found in database!");
 					}
 					else
 						System.out.println("Course not found in database!");
@@ -286,6 +319,18 @@ public class SCRAMEApp
 					}
 					break;
 				case 9:
+					System.out.println("Enter the course code:");
+					String courseCode7 = sc.next();
+					if (!checkInput(courseCode7,2))
+					{
+						System.out.println("Error! Please enter only letters and digits.");
+						break;
+					}
+					int courseIndex6 = courses.checkCourse(courseCode7);
+					if (courseIndex6 != -1) 
+					{
+						
+					}
 					break;
 				case 10:
 					System.out.println("Enter the student's ID: ");
@@ -332,7 +377,7 @@ public class SCRAMEApp
 							"4.  Check available slot in a class (vacancy in a class)\n" + 
 							"5.  Print student list by lecture, tutorial or laboratory session for a course.\n" + 
 							"6.  Enter course assessment components weightage\n" + 
-							"7.  Enter coursework mark � inclusive of its components.\n" + 
+							"7.  Enter coursework mark inclusive of its components.\n" + 
 							"8.  Enter exam mark\n" + 
 							"9.  Print course statistics\n" + 
 							"10. Print student transcript.\n" +
