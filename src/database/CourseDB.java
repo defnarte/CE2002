@@ -2,8 +2,6 @@ package database;
 
 import java.util.ArrayList;
 import courses.Course;
-import lessons.Lesson;
-import universityMembers.Student;
 
 public class CourseDB {
 	ArrayList<Course> courses;

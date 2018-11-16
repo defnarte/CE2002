@@ -3,9 +3,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.Scanner;
 import java.util.Set;
 
+import consoleIO.ConsoleInputInterface;
 import courses.Course;
 import database.CombinedDB;
 import grading.ComponentResult;
@@ -24,7 +24,7 @@ public class demo {
 		ArrayList<Student> students = database.readStudentDB(studentFilename,courses);
 		
 		
-		int index = 1;
+//		int index = 1;
 //		System.out.println(studentAl.get(index).getfullName());
 //		System.out.println(studentAl.get(index).getID());
 //		System.out.println(studentAl.get(index).getCoursesRegistered().get(1).getOverallResults().getMarks());
@@ -34,9 +34,8 @@ public class demo {
 //		System.out.println(courseAl.get(index).getLessons().get(index).getTotalSize());
 //		System.out.println(courseAl.get(index).getLessons().get(index).getVacancy());
 		
-		Scanner sc = new Scanner(System.in);
 		System.out.println("Enter the course code: ");
-		String courseCode = sc.next();	
+		String courseCode = ConsoleInputInterface.consoleScanner.next();	
 		
 		// Tasks 4 and 5
 		for (int i=0; i<courses.size(); i++) 
@@ -58,7 +57,7 @@ public class demo {
 					System.out.println(it.next());
 				}
 				System.out.println("Enter a lesson type to print by: ");
-				String lessonType = sc.next();
+				String lessonType = ConsoleInputInterface.consoleScanner.next();
 				System.out.printf("All indexes for %s:\n",lessonType);
 				for (Lesson lesson : courses.get(i).getLessons()) 
 				{
@@ -68,12 +67,12 @@ public class demo {
 				System.out.println("1 - Print student list by index");
 				System.out.println("2 - Print all students");
 				System.out.println("3 - Check avaliable slot");
-				int choice = sc.nextInt();
+				int choice = ConsoleInputInterface.consoleScanner.nextInt();
 				switch (choice) 
 				{
 					case 1:
 						System.out.println("Enter an index: ");
-						String lessonIndex = sc.next();
+						String lessonIndex = ConsoleInputInterface.consoleScanner.next();
 						courses.get(i).printSomeStudents(lessonIndex);
 						break;
 					case 2:
@@ -81,7 +80,7 @@ public class demo {
 						break;
 					case 3: 
 						System.out.println("Enter an index: ");
-						String lessonIndex2 = sc.next();
+						String lessonIndex2 = ConsoleInputInterface.consoleScanner.next();
 						int vacancy = courses.get(i).getLesson(lessonIndex2).getVacancy();
 						int totalSize = courses.get(i).getLesson(lessonIndex2).getTotalSize();
 						System.out.printf("%s %d/%d\n",lessonIndex2,vacancy,totalSize);
@@ -93,7 +92,7 @@ public class demo {
 		}
 		// Tasks 9 and 10
 		System.out.println("Enter the course code: ");
-		String courseCode2 = sc.next();	
+		courseCode = ConsoleInputInterface.consoleScanner.next();	
 		for (int i=0; i<courses.size(); i++) 
 		{
 			if (courses.get(i).getCourseCode().equals(courseCode)) 
@@ -120,7 +119,7 @@ public class demo {
 			}
 		}
 		System.out.println("Enter the StudentID: ");
-		String studentID = sc.next();	
+		String studentID = ConsoleInputInterface.consoleScanner.next();	
 		for (int i=0; i<students.size(); i++) 
 		{
 			if (students.get(i).getID().equals(studentID)) 
