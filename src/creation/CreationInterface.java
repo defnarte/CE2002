@@ -3,6 +3,7 @@ package creation;
 import consoleIO.ConsoleInputInterface;
 import courses.*;
 import grading.Markable;
+import universityMembers.Student;
 
 /**
  * This class displays output and get input from the user to create classes.
@@ -15,8 +16,19 @@ import grading.Markable;
  */
 public class CreationInterface
 {
+	public static Student setStudentMetadata()
+	{
+		String studentIDPrompt = "Enter the student's ID:";
+		String studentID = ConsoleInputInterface.getUserStringInput(studentIDPrompt, 2);
+		
+		String studentNamePrompt = "Enter the name of the student:";
+		String studentName = ConsoleInputInterface.getUserStringInput(studentNamePrompt, 1);
+		
+		return new Student(studentID, studentName);
+	}
+	
 	/**
-	 * This method gets a Course's metadata from the user when the user is creating course.
+	 * This method sets a Course's metadata based on user input when the user is creating course.
 	 * course metadata:
 	 * 1. course code
 	 * 2. course name
@@ -41,7 +53,7 @@ public class CreationInterface
 	}
 	
 	/**
-	 * This method gets a Component's metadata from the user when the user is creating course's component.
+	 * This method sets a Component's metadata based on user input when the user is creating course's component.
 	 * component metadata:
 	 * 1. component metadata
 	 * 2. component weightage
@@ -71,6 +83,14 @@ public class CreationInterface
 			return new AggregateComponentWeightage(componentName, componentWeightage);
 	}
 	
+	/**
+	 * This method sets a Subcomponent's metadata based on user input when the user is creating Component's subcomponent.
+	 * subcomponent metadata:
+	 * 1. subcomponent metadata
+	 * 2. subcomponent weightage
+	 * 
+	 * @return newly created component of the right type
+	 */
 	public static ComponentWeightage setSubcomponentMetadata(AggregateComponentWeightage rootComponent, 
 			int indexWithinRoot, int subcomponentsTotalWeightage)
 	{

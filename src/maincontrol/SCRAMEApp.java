@@ -20,8 +20,16 @@ import grading.ComponentResult;
 import grading.Grade;
 import lessons.Lesson;
 import registration.CourseRegistrationRecord;
+import universityMembers.FacultyMember;
 import universityMembers.Student;
 
+/**
+ * This class is the main program that runs everything.
+ * 
+ * 
+ * @author SE1 Group 5
+ *
+ */
 public class SCRAMEApp
 {
 	public static void main(String args[]) throws IOException
@@ -46,23 +54,8 @@ public class SCRAMEApp
 			switch (userChoice)
 			{
 				case 1:
-					// Error check
-					System.out.println("Enter the name of the student: ");
-					String name = ConsoleInputInterface.consoleScanner.next();
-					if (!(checkInput(name, 1)))
-					{
-						System.out.println("Error! Please enter only letters and spaces.");
-						break;
-					}
-					// Error check
-					System.out.println("Enter the student's ID: ");
-					String matriculationNumber = ConsoleInputInterface.consoleScanner.next();
-					if (!(checkInput(matriculationNumber, 2)))
-					{
-						System.out.println("Error! Please enter only letters and digits.");
-						break;
-					}
-					Student student = new Student(matriculationNumber, name);
+					// Add a student
+					Student student = CreationHandler.createStudent();
 					students.addStudent(student);
 					// students.saveStudents("Students.txt");
 
@@ -70,22 +63,17 @@ public class SCRAMEApp
 					students.printStudentList();
 					break;
 				case 2:
-					System.out.println("Enter the name of the course: ");
-					String name2 = ConsoleInputInterface.consoleScanner.next();
-					if (!(checkInput(name2, 1)))
-					{
-						System.out.println("Error! Please enter only letters and spaces.");
-						break;
-					}
-					System.out.println("Enter the course code: ");
-					String courseCode2 = ConsoleInputInterface.consoleScanner.next();
-					if (!(checkInput(courseCode2, 2)))
-					{
-						System.out.println("Error! Please enter only letters and digits.");
-						break;
-					}
+					// Add a course
+					/**
+					 * TO-DO: get an actual faculty member
+					 */
+					FacultyMember dummyFM = new FacultyMember("S1234567A","Jane Doe");
+
+					Course newCourse = CreationHandler.createCourse(dummyFM);
+					courses.addCourse(newCourse);
 					break;
 				case 3:
+					
 					System.out.println("Enter the student's ID: ");
 					String matriculationNumber2 = ConsoleInputInterface.consoleScanner.next();
 					if (!(checkInput(matriculationNumber2, 2)))

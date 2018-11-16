@@ -5,18 +5,26 @@ import courses.AggregateComponentWeightage;
 import courses.ComponentWeightage;
 import courses.Course;
 import grading.Markable;
-import universityMembers.FacultyMember;
+import universityMembers.*;
 
 /**
  * This class handles the creation of other Classes.
  * 
- * @version 1.3
+ * @version 1.4
  * @since 2018/11/16
  * @author Jason
  *
  */
 public class CreationHandler
 {
+	public static Student createStudent()
+	{
+		Student newStudent = CreationInterface.setStudentMetadata();
+		System.out.println("\nCreated student:\n" + newStudent.toString());
+		
+		return newStudent;
+	}
+	
 	public static Course createCourse(FacultyMember courseCoordinator)
 	{
 		Course newCourse = CreationInterface.setCourseMetadata();

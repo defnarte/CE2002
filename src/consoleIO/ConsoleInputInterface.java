@@ -114,11 +114,22 @@ public class ConsoleInputInterface
 	{
 		String userInput;
 		
+		boolean isFormatCorrect = false;
 		do
 		{
 			System.out.println(promptMessage);
 			userInput = consoleScanner.nextLine();
-		} while(!checkInput(userInput,stringFormatType));
+			
+			isFormatCorrect = checkInput(userInput,stringFormatType);
+			
+			if(!isFormatCorrect)
+			{
+				if(stringFormatType == 1)
+					System.out.println("Error! Please enter only letters and spaces.");
+				else
+					System.out.println("Error! Please enter only letters and digits.");
+			}
+		} while(!isFormatCorrect);
 		
 		return userInput;
 	}
