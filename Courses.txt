@@ -1,3 +1,3 @@
-HY001|Negotiation|C111|100|Exam,100|Lecture,4211,100
+HY001|Negotiation|C111|Exam,100|Lecture,4211,100
 MH1301|Pythagoras Theorem|C120|Exam,100|Lecture,2121,30_Tutorial,1711,10_Tutorial,1712,10
 CE2002|OOP|C134|Exam,70,Midterm Exam,30|Lecture,1102,30_Tutorial,2101,10_Tutorial,2102,10_Lab,2501,10_Lab,2502,10
