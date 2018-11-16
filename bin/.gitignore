@@ -3,6 +3,11 @@
 /registration/
 /grading/
 /consoleIO/
+<<<<<<< HEAD
 /creation/
 /lessons/
 /database/
+=======
+/maincontrol/
+/tests/
+>>>>>>> master

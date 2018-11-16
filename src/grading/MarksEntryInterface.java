@@ -1,7 +1,7 @@
-package consoleIO;
+package grading;
 
+import consoleIO.ConsoleInputInterface;
 import courses.ComponentWeightage;
-import grading.Markable;
 import registration.*;
 
 /**
@@ -35,16 +35,20 @@ public class MarksEntryInterface
 			markEntrySucess = record.setTargetComponentResult(componentNameInput, rawMarks);
 			
 			if(markEntrySucess)
-			{
 				System.out.println("Mark entry successful");
-			}
 			else
-			{
 				System.out.println("Mark entry failed");
-			}
+			
 		} while(!markEntrySucess);
 		
 		System.out.println("Results for " + record.getRegisteredCourse().getCourseCode() + 
 							":\n" + record.getOverallResults());
+	}
+	
+	public static void enterMarks(ComponentResult componentResult)
+	{
+		String markEntryPrompt = "Enter the raw marks (out of " + Markable.MAX_MARKS +") for " + componentResult.getName() + ": ";
+		int rawMarks = ConsoleInputInterface.getUserPositiveIntInput(markEntryPrompt, Markable.MAX_MARKS);
+		componentResult.setMarks(rawMarks);
 	}
 }
