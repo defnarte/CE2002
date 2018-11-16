@@ -1,6 +1,8 @@
 package consoleIO;
 
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * This class gets input from the user. It handles possible bad input from the user
@@ -98,5 +100,37 @@ public class ConsoleInputInterface
 		} while(userInput != 'Y' || userInput != 'y' || userInput != 'N' || userInput != 'n');
 		
 		return (userInput == 'Y' || userInput == 'y');
+	}
+	
+	public static String getUserStringInput(String promptMessage, int type)
+	{
+		String userInput;
+		
+		do
+		{
+			System.out.println(promptMessage);
+			userInput = consoleScanner.nextLine();
+		} while(!checkInput(userInput,type));
+		
+		return userInput;
+	}
+	private static boolean checkInput(String input, int type)
+	{
+		boolean stringMatch = false;
+		// Check letters and whitespace
+		if (type == 1)
+		{
+			Pattern p = Pattern.compile("^[ A-Za-z]+$");
+			Matcher m = p.matcher(input);
+			stringMatch = m.matches();
+		}
+		// Check letters and digits
+		else if (type == 2)
+		{
+			Pattern p2 = Pattern.compile("^[A-Za-z0-9]+$");
+			Matcher m2 = p2.matcher(input);
+			stringMatch = m2.matches();
+		}
+		return stringMatch;
 	}
 }

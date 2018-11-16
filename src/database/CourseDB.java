@@ -3,41 +3,51 @@ package database;
 import java.util.ArrayList;
 import courses.Course;
 
-public class CourseDB {
+/**
+ * This class hold all the Courses.
+ * 
+ * @version 1.1
+ * @since 2018/11/16
+ * @author Isaac
+ *
+ */
+public class CourseDB
+{
 	ArrayList<Course> courses;
-	
-	public CourseDB(ArrayList<Course> courses) 
+
+	public CourseDB(ArrayList<Course> courses)
 	{
 		this.courses = courses;
 	}
-	
-	public ArrayList<Course> getCourseAl() 
+
+	public ArrayList<Course> getCourseAl()
 	{
 		return courses;
 	}
-	
-	public void addCourse(Course course) 
+
+	public void addCourse(Course course)
 	{
-		try 
+		try
 		{
-			for (Course registeredCourse:courses) 
+			for (Course registeredCourse : courses)
 			{
-				if (registeredCourse.getName().equals(course.getName()) || registeredCourse.getCourseCode().equals(course.getCourseCode())) 
+				if (registeredCourse.getName().equals(course.getName())
+						|| registeredCourse.getCourseCode().equals(course.getCourseCode()))
 				{
 					throw new Exception("Course Name/Code. already registered!");
 				}
 			}
 			courses.add(course);
-		}
-		catch (Exception e) {
+		} catch (Exception e)
+		{
 			System.out.println(e.getMessage());
 		}
 	}
-	
-	public int checkCourse(String courseCode) 
+
+	public int checkCourse(String courseCode)
 	{
 		int index = 0;
-		for (Course registeredCourse:courses) 
+		for (Course registeredCourse : courses)
 		{
 			if (registeredCourse.getCourseCode().equals(courseCode))
 				return index;
@@ -46,9 +56,20 @@ public class CourseDB {
 		}
 		return -1;
 	}
-	
-	public void printCourseList() {
-		for (Course registeredCourse:courses) 
+	public Course getCourse(String courseCode)
+	{
+		for (Course registeredCourse : courses)
+		{
+			if (registeredCourse.getCourseCode().equals(courseCode))
+				return registeredCourse;
+		}
+		
+		return null;
+	}
+
+	public void printCourseList()
+	{
+		for (Course registeredCourse : courses)
 		{
 			System.out.println(registeredCourse.getName() + " " + registeredCourse.getCourseCode());
 		}

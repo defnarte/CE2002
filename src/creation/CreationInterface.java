@@ -24,7 +24,7 @@ public class CreationInterface
 	 * 
 	 * @return newly created course
 	 */
-	public static Course getCourseMetadata()
+	public static Course setCourseMetadata()
 	{
 		System.out.println("\n---Creating new course---");
 
@@ -49,7 +49,7 @@ public class CreationInterface
 	 * 
 	 * @return newly created component of the right type
 	 */
-	public static ComponentWeightage getComponentMetadata(int componentIndex, int componentsTotalWeightage)
+	public static ComponentWeightage setComponentMetadata(int componentIndex, int componentsTotalWeightage)
 	{
 		System.out.println("\n---Creating component " + componentIndex + "---");
 
@@ -71,7 +71,7 @@ public class CreationInterface
 			return new AggregateComponentWeightage(componentName, componentWeightage);
 	}
 	
-	public static ComponentWeightage getSubcomponentMetadata(AggregateComponentWeightage rootComponent, 
+	public static ComponentWeightage setSubcomponentMetadata(AggregateComponentWeightage rootComponent, 
 			int indexWithinRoot, int subcomponentsTotalWeightage)
 	{
 		System.out.print("Enter the name of subcomponent " + indexWithinRoot + 
