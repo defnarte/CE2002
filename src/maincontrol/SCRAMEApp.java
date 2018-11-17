@@ -57,8 +57,6 @@ public class SCRAMEApp
 					// Add a student
 					student = CreationHandler.createStudent();
 					studentDB.addStudent(student);
-					// studentDB.saveStudents("Students.txt");
-
 					System.out.println("List of all studentDB:");
 					studentDB.printStudentList();
 					break;
@@ -71,7 +69,7 @@ public class SCRAMEApp
 					course = CreationHandler.createCourse(courseCoordinator);
 					CreationHandler.createLessons(course,courseDB);
 					courseDB.addCourse(course);
-
+					courseDB.printCourseList();
 					break;
 				case 3:
 					// Register student for a course (this include registering for Tutorial/Lab
@@ -93,7 +91,7 @@ public class SCRAMEApp
 						{
 							System.out.println("Register for " + uniqueLesson);
 							System.out.println("List of indexes:");
-							course.printLessonList(uniqueLesson);
+							course.printLessonList(uniqueLesson,true);
 
 							System.out.println("Select an index to register for:");
 							String lessonIndex = ConsoleInputInterface.consoleScanner.nextLine();
@@ -129,7 +127,7 @@ public class SCRAMEApp
 					System.out.println("Enter a lesson type to print by: ");
 					String lessonType = ConsoleInputInterface.consoleScanner.nextLine();
 					System.out.printf("All indexes for %s:\n", lessonType);
-					course.printLessonList(lessonType);
+					course.printLessonList(lessonType,false);
 					System.out.println("Enter an index: ");
 					String lessonIndex2 = ConsoleInputInterface.consoleScanner.nextLine();
 					int vacancy = course.getLesson(lessonIndex2).getVacancy();
@@ -159,7 +157,7 @@ public class SCRAMEApp
 					System.out.println("Enter a lesson type to check vacancy: ");
 					String lessonType2 = ConsoleInputInterface.consoleScanner.nextLine();
 					System.out.printf("All indexes for %s:\n", lessonType2);
-					course.printLessonList(lessonType2);
+					course.printLessonList(lessonType2,false);
 					System.out.println("Select an option:");
 					System.out.println("1 - Print student list by index");
 					System.out.println("2 - Print all studentDB");

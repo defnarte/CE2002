@@ -10,7 +10,6 @@ import courses.AggregateComponentWeightage;
 import courses.ComponentWeightage;
 import courses.Course;
 import database.CourseDB;
-import database.FacultyMemberDB;
 import grading.Markable;
 import lessons.Lesson;
 import universityMembers.*;

@@ -188,13 +188,16 @@ public class Course
 		lessons.add(lesson);
 	}
 	
-	public void printLessonList(String lessonType)
+	public void printLessonList(String lessonType,boolean full)
 	{
 		for (Lesson lesson:lessons)
 		{
-			if (lesson.getLessonType().equals(lessonType))
+			if (lesson.getLessonType().equals(lessonType) )
 			{
-				System.out.println(lesson.getLessonID());
+				if (full == true)
+					System.out.println(lesson.getLessonID() + " " + lesson.getVacancy() + "/" + lesson.getTotalSize());
+				else
+					System.out.println(lesson.getLessonID());
 			}
 		}
 	}

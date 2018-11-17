@@ -35,7 +35,7 @@ public class ConsoleDisplay
 	{
 		for (Course course : courses)
 		{
-			System.out.println(course.getName() + " " + course.getCourseCode());
+			System.out.println(course.getName() + " " + course.getCourseCode() + " - Instructor: " + course.getCoordinator().getfullName() + " " + course.getCoordinator().getID());
 		}
 	}
 	
@@ -85,7 +85,7 @@ public class ConsoleDisplay
 		 * Each index of courseStat correspond to a Grade (e.g. courseStat[0] -> Grade.F(0)).
 		 * For instance, courseStat[0] having a value of 2 means 2 Students got a Grade of F for this Course.
 		 */
-		int[] courseStat = new int[Grade.TOTAL_NUMBER_OF_GRADES.getValue()];
+		double[] courseStat = new double[Grade.TOTAL_NUMBER_OF_GRADES.getValue()];
 		
 		ArrayList<CourseRegistrationRecord> registrations = course.getRegistrations();
 		
@@ -96,7 +96,6 @@ public class ConsoleDisplay
 			for (CourseRegistrationRecord registration : registrations)
 			{
 				studentGrade = registration.getOverallResults().computeGrade();
-				
 				// the statement below increment the number of students who got a particular grade 
 				// at the corresponding index of courseStat
 				++courseStat[studentGrade.getValue()];
