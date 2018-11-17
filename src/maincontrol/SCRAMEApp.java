@@ -374,6 +374,9 @@ public class SCRAMEApp
 					
 				case 10: // case 11:
 					System.out.println("Thank you for using SCRAME\n" + "---Quitting SCRAME---");
+					
+					break;
+					
 				default:
 					System.out.println("Invalid option. Please enter your choice based on the options below: \n");
 					break;
