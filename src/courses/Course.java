@@ -1,6 +1,7 @@
 package courses;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 import creation.CreationHandler;
 import universityMembers.FacultyMember;
@@ -22,6 +23,7 @@ public class Course
 
 	private FacultyMember coordinator; // course coordinator
 
+	private HashSet<String> lessonTypes;
 	private ArrayList<Lesson> lessons;
 	private ArrayList<ComponentWeightage> componentWeightageList;
 	private ArrayList<CourseRegistrationRecord> registrations; // registrations for this course

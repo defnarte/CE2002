@@ -31,6 +31,14 @@ public class ConsoleDisplay
 			System.out.println(facultyMem);
 	}
 	
+	public static void displayCourses(ArrayList<Course> courses)
+	{
+		for (Course course : courses)
+		{
+			System.out.println(course.getName() + " " + course.getCourseCode());
+		}
+	}
+	
 	public static void displayRegisteredCourses(ArrayList<CourseRegistrationRecord> registeredCourses)
 	{
 		for(CourseRegistrationRecord registeredCourse: registeredCourses)

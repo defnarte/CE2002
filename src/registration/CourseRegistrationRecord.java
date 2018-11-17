@@ -50,9 +50,9 @@ public class CourseRegistrationRecord
 	{
 		this.overallResults = overallResults;
 	}
-	public boolean setTargetComponentResult(String targetName, int rawMarks)
+	public boolean setComponentResult(String targetName, int rawMarks)
 	{
-		return this.overallResults.setTargetComponentResult(targetName, rawMarks);
+		return overallResults.setComponentResult(targetName, rawMarks);
 	}
 	public void enterMarks()
 	{

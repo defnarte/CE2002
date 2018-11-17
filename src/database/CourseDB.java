@@ -1,6 +1,8 @@
 package database;
 
 import java.util.ArrayList;
+
+import consoleIO.ConsoleDisplay;
 import courses.Course;
 
 /**
@@ -13,7 +15,7 @@ import courses.Course;
  */
 public class CourseDB
 {
-	ArrayList<Course> courses;
+	private ArrayList<Course> courses;
 
 	/**
 	 * Constructor for CourseDB.
@@ -92,9 +94,6 @@ public class CourseDB
 
 	public void printCourseList()
 	{
-		for (Course registeredCourse : courses)
-		{
-			System.out.println(registeredCourse.getName() + " " + registeredCourse.getCourseCode());
-		}
+		ConsoleDisplay.displayCourses(courses);
 	}
 }

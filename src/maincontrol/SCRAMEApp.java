@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -15,8 +14,6 @@ import database.DatabaseIO;
 import database.FacultyMemberDB;
 import database.CourseDB;
 import database.StudentDB;
-import grading.ComponentResult;
-import grading.Grade;
 import lessons.Lesson;
 import registration.CourseRegistrationRecord;
 import universityMembers.FacultyMember;
@@ -37,9 +34,9 @@ public class SCRAMEApp
 		String courseFilename = "Courses.txt";
 		String facultyFilename = "Faculty.txt";
 
-		FacultyMemberDB faculty = new FacultyMemberDB(DatabaseIO.readFacultyDB(facultyFilename));
-		CourseDB courses = new CourseDB(DatabaseIO.readCourseDB(courseFilename, faculty));
-		StudentDB students = new StudentDB(DatabaseIO.readStudentDB(studentFilename, courses.getCourseAl()));
+		FacultyMemberDB facultyMemberDB = new FacultyMemberDB(DatabaseIO.readFacultyDB(facultyFilename));
+		CourseDB courseDB = new CourseDB(DatabaseIO.readCourseDB(courseFilename, facultyMemberDB));
+		StudentDB studentDB = new StudentDB(DatabaseIO.readStudentDB(studentFilename, courseDB.getCourseAl()));
 
 		System.out.println("Welcome to SCRAME");
 
@@ -51,283 +48,253 @@ public class SCRAMEApp
 			String userChoicePrompt = "Enter your choice:";
 			userChoice = ConsoleInputInterface.getUserPositiveIntInput(userChoicePrompt, 11);
 
+			Student student;
+			Course course;
+
 			switch (userChoice)
 			{
 				case 1:
 					// Add a student
-					Student student = CreationHandler.createStudent();
-					students.addStudent(student);
-					// students.saveStudents("Students.txt");
+					student = CreationHandler.createStudent();
+					studentDB.addStudent(student);
+					// studentDB.saveStudents("Students.txt");
 
-					System.out.println("List of all students:");
-					students.printStudentList();
+					System.out.println("List of all studentDB:");
+					studentDB.printStudentList();
 					break;
 				case 2:
 					// Add a course
 					System.out.println("List of all faculty members: ");
-					ConsoleDisplay.displayFacultyMembers(faculty.getAllFacultyMembers());
+					ConsoleDisplay.displayFacultyMembers(facultyMemberDB.getAllFacultyMembers());
 
-					FacultyMember courseCoordinator = ConsoleIO.getFacultyMemberFromDB(faculty);
-					Course newCourse = CreationHandler.createCourse(courseCoordinator);
-					CreationHandler.createLessons(newCourse);
-					courses.addCourse(newCourse);
-					
+					FacultyMember courseCoordinator = ConsoleIO.getFacultyMemberFromDB(facultyMemberDB);
+					course = CreationHandler.createCourse(courseCoordinator);
+					CreationHandler.createLessons(course);
+					courseDB.addCourse(course);
+
 					break;
 				case 3:
 					// Register student for a course (this include registering for Tutorial/Lab
 					// classes)
-					System.out.println("Enter the student's ID: ");
-					String matriculationNumber2 = ConsoleInputInterface.consoleScanner.nextLine();
-					if (!(checkInput(matriculationNumber2, 2)))
-					{
-						System.out.println("Error! Please enter only letters and digits.");
-						break;
-					}
-					int studentIndex = students.checkStudent(matriculationNumber2);
-					if (studentIndex != -1)
-					{
-						System.out.println("List of all courses:");
-						courses.printCourseList();
-						System.out.println("Enter a course code: ");
-						String courseCode = ConsoleInputInterface.consoleScanner.nextLine();
-						if (!(checkInput(courseCode, 2)))
-						{
-							System.out.println("Error! Please enter only letters and digits.");
-							break;
-						}
-						int courseIndex = courses.checkCourse(courseCode);
-						if (courseIndex != -1)
-						{
-							if (!courses.getCourseAl().get(courseIndex).checkStudent(matriculationNumber2))
-							{
-								System.out.printf("Registering %s into %s...\n", matriculationNumber2, courseCode);
-								// Code for adding a student into lessons
-								ArrayList<Lesson> lessons = courses.getCourseAl().get(courseIndex).getLessons();
-								ArrayList<String> lessonListType = new ArrayList<String>();
-								// Find all unique lesson types
-								for (int j = 0; j < lessons.size(); j++)
-								{
-									lessonListType.add(lessons.get(j).getLessonType());
-								}
-								Set<String> uniqueLessonType = new HashSet<String>(lessonListType);
-								Iterator<String> it = uniqueLessonType.iterator();
-								ArrayList<String> uniqueLessonListType = new ArrayList<String>();
-								while (it.hasNext())
-								{
-									uniqueLessonListType.add((String) it.next().toString());
-								}
-								System.out.println(uniqueLessonListType);
-								for (String uniqueLesson : uniqueLessonListType)
-								{
-									System.out.println("Register for " + uniqueLesson);
-									System.out.println("List of indexes:");
-									courses.getCourseAl().get(courseIndex).printLessonList(uniqueLesson);
+					// have to check if studentDB is empty
+					student = ConsoleIO.getStudentFromDB(studentDB);
 
-									System.out.println("Select an index to register for:");
-									String lessonIndex = ConsoleInputInterface.consoleScanner.nextLine();
-									while (!courses.getCourseAl().get(courseIndex).getLesson(lessonIndex)
-											.enrolStudent())
-									{
-										System.out.println("Choose another index:");
-										lessonIndex = ConsoleInputInterface.consoleScanner.nextLine();
-									}
-								}
-							} else
-								System.out.println("Student already registered in this course.");
-						} else
-							System.out.println("Course not found in database!");
+					System.out.println("List of all courses:");
+					courseDB.printCourseList();
+
+					course = ConsoleIO.getCourseFromDB(courseDB);
+
+					if (!course.checkStudent(student.getID()))
+					{
+						System.out.printf("Registering %s into %s...\n", student.getID(), course.getCourseCode());
+						// Code for adding a student into lessons
+						ArrayList<Lesson> lessons = course.getLessons();
+						ArrayList<String> lessonListType = new ArrayList<String>();
+						// Find all unique lesson types
+						for (int j = 0; j < lessons.size(); j++)
+						{
+							lessonListType.add(lessons.get(j).getLessonType());
+						}
+						HashSet<String> uniqueLessonType = new HashSet<String>(lessonListType);
+						Iterator<String> it = uniqueLessonType.iterator();
+						ArrayList<String> uniqueLessonListType = new ArrayList<String>();
+						while (it.hasNext())
+						{
+							uniqueLessonListType.add((String) it.next().toString());
+						}
+						System.out.println(uniqueLessonListType);
+						for (String uniqueLesson : uniqueLessonListType)
+						{
+							System.out.println("Register for " + uniqueLesson);
+							System.out.println("List of indexes:");
+							course.printLessonList(uniqueLesson);
+
+							System.out.println("Select an index to register for:");
+							String lessonIndex = ConsoleInputInterface.consoleScanner.nextLine();
+							while (!course.getLesson(lessonIndex).enrolStudent())
+							{
+								System.out.println("Choose another index:");
+								lessonIndex = ConsoleInputInterface.consoleScanner.nextLine();
+							}
+						}
 					} else
-						System.out.println("Student not found in database!");
+						System.out.println("Student already registered in this course.");
+
 					break;
 
 				case 4:
 					// Check available slot in a class (vacancy in a class)
-					System.out.println("Enter a course code: ");
-					String courseCode = ConsoleInputInterface.consoleScanner.nextLine();
-					if (!(checkInput(courseCode, 2)))
+					course = ConsoleIO.getCourseFromDB(courseDB);
+
+					System.out.println("All lesson types under this course: ");
+					ArrayList<Lesson> lessons = course.getLessons();
+					ArrayList<String> lessonListType = new ArrayList<String>();
+					for (int j = 0; j < lessons.size(); j++)
 					{
-						System.out.println("Error! Please enter only letters and digits.");
-						break;
+						lessonListType.add(lessons.get(j).getLessonType());
 					}
-					int courseIndex = courses.checkCourse(courseCode);
-					if (courseIndex != -1)
+					// Find all unique lesson types
+					HashSet<String> uniqueLessonType = new HashSet<String>(lessonListType);
+					Iterator<String> it = uniqueLessonType.iterator();
+					while (it.hasNext())
 					{
-						System.out.println("All lesson types under this course: ");
-						ArrayList<Lesson> lessons = courses.getCourseAl().get(courseIndex).getLessons();
-						ArrayList<String> lessonListType = new ArrayList<String>();
-						for (int j = 0; j < lessons.size(); j++)
-						{
-							lessonListType.add(lessons.get(j).getLessonType());
-						}
-						// Find all unique lesson types
-						Set<String> uniqueLessonType = new HashSet<String>(lessonListType);
-						Iterator<String> it = uniqueLessonType.iterator();
-						while (it.hasNext())
-						{
-							System.out.println(it.next());
-						}
-						System.out.println("Enter a lesson type to print by: ");
-						String lessonType = ConsoleInputInterface.consoleScanner.nextLine();
-						System.out.printf("All indexes for %s:\n", lessonType);
-						courses.getCourseAl().get(courseIndex).printLessonList(lessonType);
-						System.out.println("Enter an index: ");
-						String lessonIndex2 = ConsoleInputInterface.consoleScanner.nextLine();
-						int vacancy = courses.getCourseAl().get(courseIndex).getLesson(lessonIndex2).getVacancy();
-						int totalSize = courses.getCourseAl().get(courseIndex).getLesson(lessonIndex2).getTotalSize();
-						System.out.printf("%s %d/%d\n", lessonIndex2, vacancy, totalSize);
-					} else
-						System.out.println("Course not found in database!");
+						System.out.println(it.next());
+					}
+					System.out.println("Enter a lesson type to print by: ");
+					String lessonType = ConsoleInputInterface.consoleScanner.nextLine();
+					System.out.printf("All indexes for %s:\n", lessonType);
+					course.printLessonList(lessonType);
+					System.out.println("Enter an index: ");
+					String lessonIndex2 = ConsoleInputInterface.consoleScanner.nextLine();
+					int vacancy = course.getLesson(lessonIndex2).getVacancy();
+					int totalSize = course.getLesson(lessonIndex2).getTotalSize();
+					System.out.printf("%s %d/%d\n", lessonIndex2, vacancy, totalSize);
+
 					break;
 
 				case 5:
 					// Print student list by lecture, tutorial or laboratory session for a course.
-					System.out.println("Enter a course code: ");
-					String courseCode3 = ConsoleInputInterface.consoleScanner.nextLine();
-					if (!(checkInput(courseCode3, 2)))
-					{
-						System.out.println("Error! Please enter only letters and digits.");
-						break;
-					}
-					int courseIndex2 = courses.checkCourse(courseCode3);
-					if (courseIndex2 != -1)
-					{
-						System.out.println("All lesson types under this course: ");
-						ArrayList<Lesson> lessons = courses.getCourseAl().get(courseIndex2).getLessons();
-						ArrayList<String> lessonListType = new ArrayList<String>();
-						for (int j = 0; j < lessons.size(); j++)
-						{
-							lessonListType.add(lessons.get(j).getLessonType());
-						}
-						// Find all unique lesson types
-						Set<String> uniqueLessonType = new HashSet<String>(lessonListType);
-						Iterator<String> it = uniqueLessonType.iterator();
-						while (it.hasNext())
-						{
-							System.out.println(it.next());
-						}
-						System.out.println("Enter a lesson type to check vacancy: ");
-						String lessonType = ConsoleInputInterface.consoleScanner.nextLine();
-						System.out.printf("All indexes for %s:\n", lessonType);
-						courses.getCourseAl().get(courseIndex2).printLessonList(lessonType);
-						System.out.println("Select an option:");
-						System.out.println("1 - Print student list by index");
-						System.out.println("2 - Print all students");
-						int userChoice2 = ConsoleInputInterface.consoleScanner.nextInt();
-						switch (userChoice2)
-						{
-							case 1:
-								System.out.println("Enter an index: ");
-								String lessonIndex = ConsoleInputInterface.consoleScanner.nextLine();
-								if (!(checkInput(lessonIndex, 2)))
-								{
-									System.out.println("Error! Please enter only letters and digits.");
-									break;
-								}
+					course = ConsoleIO.getCourseFromDB(courseDB);
 
-								System.out.println(courses.getCourseAl().get(courseIndex2));
-								courses.getCourseAl().get(courseIndex2).printSomeStudents(lessonIndex);
+					System.out.println("All lesson types under this course: ");
+					ArrayList<Lesson> lessons2 = course.getLessons();
+					ArrayList<String> lessonListType2 = new ArrayList<String>();
+					for (int j = 0; j < lessons2.size(); j++)
+					{
+						lessonListType2.add(lessons2.get(j).getLessonType());
+					}
+					// Find all unique lesson types
+					HashSet<String> uniqueLessonType2 = new HashSet<String>(lessonListType2);
+					Iterator<String> it2 = uniqueLessonType2.iterator();
+					while (it2.hasNext())
+					{
+						System.out.println(it2.next());
+					}
+					System.out.println("Enter a lesson type to check vacancy: ");
+					String lessonType2 = ConsoleInputInterface.consoleScanner.nextLine();
+					System.out.printf("All indexes for %s:\n", lessonType2);
+					course.printLessonList(lessonType2);
+					System.out.println("Select an option:");
+					System.out.println("1 - Print student list by index");
+					System.out.println("2 - Print all studentDB");
+					int userChoice2 = ConsoleInputInterface.consoleScanner.nextInt();
+					switch (userChoice2)
+					{
+						case 1:
+							System.out.println("Enter an index: ");
+							String lessonIndex = ConsoleInputInterface.consoleScanner.nextLine();
+							if (!(checkInput(lessonIndex, 2)))
+							{
+								System.out.println("Error! Please enter only letters and digits.");
 								break;
-							case 2:
-								courses.getCourseAl().get(courseIndex2).printAllStudents(lessonType);
-								break;
-							default:
-								System.out.println("Invalid option.");
-								break;
-						}
-					} else
-						System.out.println("Course not found in database!");
+							}
+
+							System.out.println(course);
+							course.printSomeStudents(lessonIndex);
+							break;
+						case 2:
+							course.printAllStudents(lessonType2);
+							break;
+						default:
+							System.out.println("Invalid option.");
+							break;
+					}
+
 					break;
 
 				case 6:
 					// Enter course assessment components weightage for a course
-					Course courseToEnterWeightage = ConsoleIO.getCourseFromDB(courses);
+					course = ConsoleIO.getCourseFromDB(courseDB);
 
-					CreationHandler.createCourseComponents(courseToEnterWeightage);
+					CreationHandler.createCourseComponents(course);
 
 					break;
 
 				case 7: // incomplete
 					// Enter coursework mark inclusive of its components.
-					Student studentToEnterMarksFor = ConsoleIO.getStudentFromDB(students);
-					
+					student = ConsoleIO.getStudentFromDB(studentDB);
+
 					// have to check if student is currently taking any course at all
-					
+
 					System.out.println("Which course do you want to enter marks in?");
-					ConsoleDisplay.displayRegisteredCourses(studentToEnterMarksFor.getCoursesRegistered());
-					
-					CourseRegistrationRecord courseToEnterMarksFor = ConsoleIO.getCourseRegRecordFromStudent(studentToEnterMarksFor);
-					
-					courseToEnterMarksFor.enterMarks();
+					ConsoleDisplay.displayRegisteredCourses(student.getCoursesRegistered());
+
+					CourseRegistrationRecord courseRegRecord = ConsoleIO.getCourseRegRecordFromStudent(student);
+
+					courseRegRecord.enterMarks();
 
 					break;
-					
-//				case 8:
-//					System.out.println("Enter a course code: ");
-//					String courseCode8 = ConsoleInputInterface.consoleScanner.nextLine();
-//					if (!(checkInput(courseCode8, 2)))
-//					{
-//						System.out.println("Error! Please enter only letters and digits.");
-//						break;
-//					}
-//					int courseIndex5 = courses.checkCourse(courseCode8);
-//					if (courseIndex5 != -1)
-//					{
-//						System.out.println("Enter the student's ID: ");
-//						String matriculationNumber3 = ConsoleInputInterface.consoleScanner.nextLine();
-//						if (!(checkInput(matriculationNumber3, 2)))
-//						{
-//							System.out.println("Error! Please enter only letters and digits.");
-//							break;
-//						}
-//						int studentIndex3 = students.checkStudent(matriculationNumber3);
-//						if (studentIndex3 != -1)
-//						{
-//							// Check the student is registered for the course
-//							if (courses.getCourseAl().get(courseIndex5).checkStudent(matriculationNumber3))
-//							{
-//								ArrayList<ComponentWeightage> components = courses.getCourseAl().get(courseIndex5)
-//										.getAllComponentsWeightage();
-//								for (ComponentWeightage component : components)
-//								{
-//									if (component.getName().equals("Exam"))
-//									{
-//										int recordIndex = students.getStudentAl().get(studentIndex3)
-//												.searchRecord(courseCode8);
-//										{
-//											MarksEntryInterface.enterMarks(students.getStudentAl().get(studentIndex3)
-//													.getCoursesRegistered().get(recordIndex));
-//										}
-//
-//									}
-//								}
-//							} else
-//								System.out.println("Student not registered for this course!");
-//						} else
-//							System.out.println("Student not found in database!");
-//					} else
-//						System.out.println("Course not found in database!");
-//					
-//					break;
-					
-				case 8: //case 9:
+
+				// case 8:
+				// System.out.println("Enter a course code: ");
+				// String courseCode8 = ConsoleInputInterface.consoleScanner.nextLine();
+				// if (!(checkInput(courseCode8, 2)))
+				// {
+				// System.out.println("Error! Please enter only letters and digits.");
+				// break;
+				// }
+				// int courseIndex5 = courseDB.checkCourse(courseCode8);
+				// if (courseIndex5 != -1)
+				// {
+				// System.out.println("Enter the student's ID: ");
+				// String matriculationNumber3 =
+				// ConsoleInputInterface.consoleScanner.nextLine();
+				// if (!(checkInput(matriculationNumber3, 2)))
+				// {
+				// System.out.println("Error! Please enter only letters and digits.");
+				// break;
+				// }
+				// int studentIndex3 = studentDB.checkStudent(matriculationNumber3);
+				// if (studentIndex3 != -1)
+				// {
+				// // Check the student is registered for the course
+				// if
+				// (courseDB.getCourseAl().get(courseIndex5).checkStudent(matriculationNumber3))
+				// {
+				// ArrayList<ComponentWeightage> components =
+				// courseDB.getCourseAl().get(courseIndex5)
+				// .getAllComponentsWeightage();
+				// for (ComponentWeightage component : components)
+				// {
+				// if (component.getName().equals("Exam"))
+				// {
+				// int recordIndex = studentDB.getStudentAl().get(studentIndex3)
+				// .searchRecord(courseCode8);
+				// {
+				// MarksEntryInterface.enterMarks(studentDB.getStudentAl().get(studentIndex3)
+				// .getCoursesRegistered().get(recordIndex));
+				// }
+				//
+				// }
+				// }
+				// } else
+				// System.out.println("Student not registered for this course!");
+				// } else
+				// System.out.println("Student not found in database!");
+				// } else
+				// System.out.println("Course not found in database!");
+				//
+				// break;
+
+				case 8: // case 9:
 					// Print course statistics
-					Course courseToPrintStatsFor = ConsoleIO.getCourseFromDB(courses);
-					ConsoleDisplay.displayCourseStatistic(courseToPrintStatsFor);
-					
+					course = ConsoleIO.getCourseFromDB(courseDB);
+					ConsoleDisplay.displayCourseStatistic(course);
+
 					break;
-					
+
 				case 9: // case 10:
 					// Print student transcript
-					Student studentToPrintTranscriptFor = ConsoleIO.getStudentFromDB(students);
-					ConsoleDisplay.displayStudentTranscript(studentToPrintTranscriptFor);
-					
+					student = ConsoleIO.getStudentFromDB(studentDB);
+					ConsoleDisplay.displayStudentTranscript(student);
+
 					break;
-					
+
 				case 10: // case 11:
 					System.out.println("Thank you for using SCRAME\n" + "---Quitting SCRAME---");
-					
+
 					break;
-					
+
 				default:
 					System.out.println("Invalid option. Please enter your choice based on the options below: \n");
 					break;
