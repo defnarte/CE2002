@@ -112,7 +112,7 @@ public class DatabaseIO
 		return students;
 	}
 
-	public static ArrayList<Course> readCourseDB(String courseFilename, FacultyDB facultyDB) throws IOException
+	public static ArrayList<Course> readCourseDB(String courseFilename, FacultyMemberDB facultyDB) throws IOException
 	{
 		ArrayList<String> courseStringArray = read(courseFilename);
 		ArrayList<Course> courses = new ArrayList<Course>();

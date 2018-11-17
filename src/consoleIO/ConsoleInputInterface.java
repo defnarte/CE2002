@@ -4,7 +4,7 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import database.FacultyDB;
+import database.FacultyMemberDB;
 import database.StudentDB;
 import universityMembers.FacultyMember;
 import universityMembers.Student;
@@ -102,7 +102,7 @@ public class ConsoleInputInterface
 				userInput = consoleScanner.nextLine().charAt(0);
 			}
 			
-		} while(userInput != 'Y' || userInput != 'y' || userInput != 'N' || userInput != 'n');
+		} while(!(userInput == 'Y' || userInput == 'y' || userInput == 'N' || userInput == 'n'));
 		
 		return (userInput == 'Y' || userInput == 'y');
 	}
@@ -115,7 +115,7 @@ public class ConsoleInputInterface
 	 * @param promptMessage, stringFormatType
 	 * @return userInput
 	 */
-	public static String getUserStringInput(String promptMessage, int stringFormatType)
+	public static String getUserStringInput(String promptMessage, StringFormatType stringFormatType)
 	{
 		String userInput;
 		
@@ -125,13 +125,13 @@ public class ConsoleInputInterface
 			System.out.println(promptMessage);
 			userInput = consoleScanner.nextLine();
 			
-			isFormatCorrect = checkInput(userInput,stringFormatType);
+			isFormatCorrect = checkStringFormat(userInput,stringFormatType);
 			
 			if(!isFormatCorrect)
 			{
-				if(stringFormatType == 1)
+				if(stringFormatType == StringFormatType.ALPHABETICAL_AND_SPACE)
 					System.out.println("Error! Please enter only letters and spaces.");
-				else if (stringFormatType == 2)
+				else if (stringFormatType == StringFormatType.ALPHA_NUMERIC)
 					System.out.println("Error! Please enter only letters and digits.");
 				else
 					System.out.println("Error! Please enter only digits.");
@@ -140,24 +140,24 @@ public class ConsoleInputInterface
 		
 		return userInput;
 	}
-	private static boolean checkInput(String input, int stringFormatType)
+	private static boolean checkStringFormat(String input, StringFormatType stringFormatType)
 	{
 		boolean stringMatch = false;
 		// Check letters and whitespace
-		if (stringFormatType == 1)
+		if (stringFormatType == StringFormatType.ALPHABETICAL_AND_SPACE)
 		{
 			Pattern p = Pattern.compile("^[ A-Za-z]+$");
 			Matcher m = p.matcher(input);
 			stringMatch = m.matches();
 		}
 		// Check letters and digits
-		else if (stringFormatType == 2)
+		else if (stringFormatType == StringFormatType.ALPHA_NUMERIC)
 		{
 			Pattern p = Pattern.compile("^[A-Za-z0-9]+$");
 			Matcher m = p.matcher(input);
 			stringMatch = m.matches();
 		}
-		else if (stringFormatType == 3)
+		else if (stringFormatType == StringFormatType.NUMERIC)
 		{
 			Pattern p = Pattern.compile("^[0-9]+$");
 			Matcher m = p.matcher(input);

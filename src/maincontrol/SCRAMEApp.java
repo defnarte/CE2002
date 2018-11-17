@@ -12,7 +12,7 @@ import consoleIO.*;
 import courses.Course;
 import creation.CreationHandler;
 import database.DatabaseIO;
-import database.FacultyDB;
+import database.FacultyMemberDB;
 import database.CourseDB;
 import database.StudentDB;
 import grading.ComponentResult;
@@ -37,7 +37,7 @@ public class SCRAMEApp
 		String courseFilename = "Courses.txt";
 		String facultyFilename = "Faculty.txt";
 
-		FacultyDB faculty = new FacultyDB(DatabaseIO.readFacultyDB(facultyFilename));
+		FacultyMemberDB faculty = new FacultyMemberDB(DatabaseIO.readFacultyDB(facultyFilename));
 		CourseDB courses = new CourseDB(DatabaseIO.readCourseDB(courseFilename, faculty));
 		StudentDB students = new StudentDB(DatabaseIO.readStudentDB(studentFilename, courses.getCourseAl()));
 
@@ -239,19 +239,7 @@ public class SCRAMEApp
 
 				case 6:
 					// Enter course assessment components weightage for a course
-					Course courseToEnterWeightage;
-					do
-					{
-						String courseEnterWeightagePrompt = "Enter course code: ";
-						String coursecodeToEnterWeightage = ConsoleInputInterface
-								.getUserStringInput(courseEnterWeightagePrompt, StringFormatType.ALPHA_NUMERIC);
-
-						courseToEnterWeightage = courses.getCourse(coursecodeToEnterWeightage);
-
-						if (courseToEnterWeightage == null)
-							System.out.println("Course not found in database!");
-
-					} while (courseToEnterWeightage == null);
+					Course courseToEnterWeightage = ConsoleIO.getCourseFromDB(courses);
 
 					CreationHandler.createCourseComponents(courseToEnterWeightage);
 

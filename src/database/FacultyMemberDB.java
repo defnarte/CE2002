@@ -4,11 +4,11 @@ import java.util.ArrayList;
 
 import universityMembers.FacultyMember;
 
-public class FacultyDB {
+public class FacultyMemberDB {
 	private ArrayList<FacultyMember> faculty;
 	public static final String SEPARATOR = "|";
 			
-	public FacultyDB(ArrayList<FacultyMember> faculty)
+	public FacultyMemberDB(ArrayList<FacultyMember> faculty)
 	{
 		this.faculty = faculty;
 	}

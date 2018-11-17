@@ -1,7 +1,8 @@
 package consoleIO;
 
 import courses.Course;
-import database.FacultyDB;
+import database.CourseDB;
+import database.FacultyMemberDB;
 import database.StudentDB;
 import registration.CourseRegistrationRecord;
 import universityMembers.FacultyMember;
@@ -9,7 +10,26 @@ import universityMembers.Student;
 
 public class ConsoleIO
 {
-	public static FacultyMember getFacultyMemberFromDB(FacultyDB faculty)
+	public static Course getCourseFromDB(CourseDB courseDB)
+	{
+		Course course;
+		do
+		{
+			String coursecodePrompt = "Enter course code: ";
+			String coursecode = ConsoleInputInterface
+					.getUserStringInput(coursecodePrompt, StringFormatType.ALPHA_NUMERIC);
+
+			course = courseDB.getCourse(coursecode);
+
+			if (course == null)
+				System.out.println("Course not found in database!");
+
+		} while (course == null);
+		
+		return course;
+	}
+	
+	public static FacultyMember getFacultyMemberFromDB(FacultyMemberDB faculty)
 	{
 		FacultyMember facultyMember;
 		

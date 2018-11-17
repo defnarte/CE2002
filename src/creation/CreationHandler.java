@@ -7,7 +7,7 @@ import consoleIO.StringFormatType;
 import courses.AggregateComponentWeightage;
 import courses.ComponentWeightage;
 import courses.Course;
-import database.FacultyDB;
+import database.FacultyMemberDB;
 import grading.Markable;
 import lessons.Lesson;
 import universityMembers.*;

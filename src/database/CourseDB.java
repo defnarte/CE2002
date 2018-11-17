@@ -15,16 +15,31 @@ public class CourseDB
 {
 	ArrayList<Course> courses;
 
+	/**
+	 * Constructor for CourseDB.
+	 * 
+	 * @param courses
+	 */
 	public CourseDB(ArrayList<Course> courses)
 	{
 		this.courses = courses;
 	}
 
+	/**
+	 * This method gets all Courses stored in the Course database in the form of an ArrayList.
+	 * 
+	 * @return ArrayList of courses stored in database
+	 */
 	public ArrayList<Course> getCourseAl()
 	{
 		return courses;
 	}
 
+	/**
+	 * This method adds a new course into the Course database.
+	 * 
+	 * @param course
+	 */
 	public void addCourse(Course course)
 	{
 		try
@@ -44,6 +59,14 @@ public class CourseDB
 		}
 	}
 
+	/**
+	 * Checks if a Course is in the Course database base on the Course code,
+	 * and return the index of the Course in the ArrayList in which it is stored.
+	 * -1 is returned if the Course code cannot found in the ArrayList.
+	 * 
+	 * @param courseCode
+	 * @return index
+	 */
 	public int checkCourse(String courseCode)
 	{
 		int index = 0;
