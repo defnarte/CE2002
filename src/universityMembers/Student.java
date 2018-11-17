@@ -52,7 +52,7 @@ public class Student extends UniversityMember
 	{
 		for(CourseRegistrationRecord courseRecord: registeredCourses)
 		{
-			String existingCourseCode = courseRecord.getRegisteredCourse().getName();
+			String existingCourseCode = courseRecord.getRegisteredCourse().getCourseCode();
 			
 			if(existingCourseCode.equals(courseCode))
 				return courseRecord;

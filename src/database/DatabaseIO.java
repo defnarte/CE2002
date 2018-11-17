@@ -12,7 +12,6 @@ import java.util.Iterator;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
-import consoleIO.ConsoleInputInterface;
 import courses.*;
 import grading.ComponentResult;
 import grading.OverallResult;
