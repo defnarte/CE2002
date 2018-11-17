@@ -23,7 +23,7 @@ public class Course
 
 	private FacultyMember coordinator; // course coordinator
 
-	private HashSet<String> lessonTypes;
+	private ArrayList<String> lessonTypes;
 	private ArrayList<Lesson> lessons;
 	private ArrayList<ComponentWeightage> componentWeightageList;
 	private ArrayList<CourseRegistrationRecord> registrations; // registrations for this course
@@ -44,6 +44,7 @@ public class Course
 		this.name = courseName;
 		
 		lessons = new ArrayList<Lesson>();
+		lessonTypes = new ArrayList<String>();
 		registrations = new ArrayList<CourseRegistrationRecord>();
 		componentWeightageList = new ArrayList<ComponentWeightage>();
 	}
@@ -76,6 +77,14 @@ public class Course
 	{
 		this.courseCode = courseCode;
 	}
+	/**
+	 * Setter for lesson types.
+	 * @param uniqueLessonTypes
+	 */
+	public void setLessonTypes(ArrayList<String> uniqueLessonTypes)
+	{
+		this.lessonTypes = uniqueLessonTypes;
+	}
 
 	/**
 	 * Getter for course name.
@@ -85,6 +94,11 @@ public class Course
 	public String getName()
 	{
 		return name;
+	}
+	
+	public ArrayList<String> getLessonTypes()
+	{
+		return lessonTypes;
 	}
 
 	/**

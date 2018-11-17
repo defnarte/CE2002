@@ -5,6 +5,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
@@ -94,9 +96,6 @@ public class DatabaseIO
 							ComponentResult compResult = new ComponentResult(weightage, marks);
 							componentResultList.add(compResult);
 						}
-						/**
-						 * THis should not done in the DB class
-						 */
 						OverallResult results = new OverallResult();
 						results.setOverallResults(componentResultList);
 						courseRecord.setOverallResults(results);
@@ -138,17 +137,25 @@ public class DatabaseIO
 				j++;
 			}
 
+			HashSet<String> uniqueLessonType = new HashSet<String>();
 			ArrayList<ArrayList<String>> lessonList = stringsplit(courseStar.nextToken().trim(), "_");
 			for (int k = 0; k < lessonList.size(); k++)
 			{
 				ArrayList<String> lessonString = lessonList.get(k);
 				String lessonType = lessonString.get(0);
+				uniqueLessonType.add(lessonType);
 				String lessonID = lessonString.get(1);
 				int totalSize = Integer.parseInt(lessonString.get(2));
-				// int vacancy = Integer.parseInt(lessonString.get(3));
 				Lesson lesson = new Lesson(lessonID, lessonType, totalSize);
 				course.addLesson(lesson);
 			}
+			Iterator<String> it = uniqueLessonType.iterator();
+			ArrayList<String> uniqueLessonTypeList = new ArrayList<String>();
+			while (it.hasNext())
+			{
+				uniqueLessonTypeList.add((String) it.next().toString());
+			}
+			course.setLessonTypes(uniqueLessonTypeList);
 			courses.add(course);
 		}
 		return courses;

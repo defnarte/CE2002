@@ -1,6 +1,8 @@
 package creation;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
 
 import consoleIO.ConsoleInputInterface;
 import consoleIO.StringFormatType;
@@ -100,11 +102,13 @@ public class CreationHandler
 	public static void createLessons(Course course) 
 	{
 		ArrayList<Lesson> lessons = new ArrayList<Lesson>();
+		HashSet<String> uniqueLessonType = new HashSet<String>();
 		boolean choice = true;
 		do
 		{
 			String lessonType = ConsoleInputInterface.
 					getUserStringInput("Enter the type of lesson to add:",StringFormatType.ALPHABETICAL_AND_SPACE);
+			uniqueLessonType.add(lessonType);
 			String numOfLessonsPrompt = "Enter the number of " + lessonType + "s to add:";
 			int numOfLessons = ConsoleInputInterface.getUserPositiveIntInput(numOfLessonsPrompt);
 			for (int i = 1; i <= numOfLessons; i++)
@@ -121,5 +125,13 @@ public class CreationHandler
 		{
 			course.addLesson(lesson);
 		}
+		Iterator<String> it = uniqueLessonType.iterator();
+		ArrayList<String> uniqueLessonTypeList = new ArrayList<String>();
+		while (it.hasNext())
+		{
+			uniqueLessonTypeList.add((String) it.next().toString());
+		}
+		course.setLessonTypes(uniqueLessonTypeList);
+		
 	}
 }

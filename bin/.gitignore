@@ -1,9 +1,4 @@
-/consoleIO/
-/creation/
 /database/
-/grading/
-/maincontrol/
-/registration/
-/universityMembers/
-/lessons/
 /courses/
+/maincontrol/
+/creation/

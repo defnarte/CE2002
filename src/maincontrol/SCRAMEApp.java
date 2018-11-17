@@ -88,21 +88,7 @@ public class SCRAMEApp
 					{
 						System.out.printf("Registering %s into %s...\n", student.getID(), course.getCourseCode());
 						// Code for adding a student into lessons
-						ArrayList<Lesson> lessons = course.getLessons();
-						ArrayList<String> lessonListType = new ArrayList<String>();
-						// Find all unique lesson types
-						for (int j = 0; j < lessons.size(); j++)
-						{
-							lessonListType.add(lessons.get(j).getLessonType());
-						}
-						HashSet<String> uniqueLessonType = new HashSet<String>(lessonListType);
-						Iterator<String> it = uniqueLessonType.iterator();
-						ArrayList<String> uniqueLessonListType = new ArrayList<String>();
-						while (it.hasNext())
-						{
-							uniqueLessonListType.add((String) it.next().toString());
-						}
-						System.out.println(uniqueLessonListType);
+						ArrayList<String> uniqueLessonListType = course.getLessonTypes();
 						for (String uniqueLesson : uniqueLessonListType)
 						{
 							System.out.println("Register for " + uniqueLesson);
