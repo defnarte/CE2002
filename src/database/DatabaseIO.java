@@ -3,6 +3,8 @@ package database;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.OutputStream;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -83,7 +85,15 @@ public class DatabaseIO
 						// Change the vacancy of the lessons enrolled accordingly
 						for (String lesson : lessonsRegisteredCourse)
 						{
+							PrintStream originalStream = System.out;
+							PrintStream dummyStream = new PrintStream(new OutputStream(){
+							    public void write(int b) {
+							    }
+							});
+							System.setOut(dummyStream);
 							courses.get(j).getLesson(lesson).enrolStudent();
+							System.setOut(originalStream);
+							
 						}
 						// Additionally, add the marks scored by the student for this course
 						ArrayList<String> marksObtainedCourse = marksObtained.get(k);
@@ -190,5 +200,4 @@ public class DatabaseIO
 		}
 		return stringList;
 	}
-	
 }

@@ -9,6 +9,7 @@ import consoleIO.StringFormatType;
 import courses.AggregateComponentWeightage;
 import courses.ComponentWeightage;
 import courses.Course;
+import database.CourseDB;
 import database.FacultyMemberDB;
 import grading.Markable;
 import lessons.Lesson;
@@ -99,7 +100,7 @@ public class CreationHandler
 		}
 
 	}
-	public static void createLessons(Course course) 
+	public static void createLessons(Course course,CourseDB courses) 
 	{
 		ArrayList<Lesson> lessons = new ArrayList<Lesson>();
 		HashSet<String> uniqueLessonType = new HashSet<String>();
@@ -115,6 +116,10 @@ public class CreationHandler
 			{
 				System.out.println("Getting input for " + lessonType + " " + i);
 				String lessonID = ConsoleInputInterface.getUserStringInput("Enter lessonID:",StringFormatType.NUMERIC);
+				while (courses.checkLesson(lessonID))
+				{
+					lessonID = ConsoleInputInterface.getUserStringInput("LessonID already registered. Please enter a different lessonID:",StringFormatType.NUMERIC);
+				}
 				int totalSize = ConsoleInputInterface.getUserPositiveIntInput("Enter number of vacancies:");
 				Lesson lesson = new Lesson(lessonID,lessonType,totalSize);
 				lessons.add(lesson);

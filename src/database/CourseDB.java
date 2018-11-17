@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import consoleIO.ConsoleDisplay;
 import courses.Course;
+import lessons.Lesson;
 
 /**
  * This class hold all the Courses.
@@ -81,6 +82,21 @@ public class CourseDB
 		}
 		return -1;
 	}
+	
+	public boolean checkLesson(String lessonID)
+	{
+		for (Course registeredCourse:courses)
+		{
+			ArrayList<Lesson> lessons = registeredCourse.getLessons();
+			for (Lesson lesson:lessons)
+			{
+				if(lesson.getLessonID().equals(lessonID))
+					return true;
+			}
+		}
+		return false;	
+	}
+	
 	public Course getCourse(String courseCode)
 	{
 		for (Course registeredCourse : courses)

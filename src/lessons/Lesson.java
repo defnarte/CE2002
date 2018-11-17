@@ -60,6 +60,7 @@ public class Lesson
 	public boolean enrolStudent() {
 		if (vacancy > 0)
 		{
+			System.out.println("Student successfully enrolled.");
 			vacancy--;
 			return true;
 		}

@@ -69,7 +69,7 @@ public class SCRAMEApp
 
 					FacultyMember courseCoordinator = ConsoleIO.getFacultyMemberFromDB(facultyMemberDB);
 					course = CreationHandler.createCourse(courseCoordinator);
-					CreationHandler.createLessons(course);
+					CreationHandler.createLessons(course,courseDB);
 					courseDB.addCourse(course);
 
 					break;
