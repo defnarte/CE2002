@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 
+import consoleIO.ConsoleIO;
 import consoleIO.ConsoleInputInterface;
 import consoleIO.StringFormatType;
 import courses.AggregateComponentWeightage;
@@ -13,6 +14,7 @@ import database.CourseDB;
 import database.StudentDB;
 import grading.Markable;
 import lessons.Lesson;
+import registration.CourseRegistrationRecord;
 import universityMembers.*;
 
 /**
@@ -138,5 +140,69 @@ public class CreationHandler
 		}
 		course.setLessonTypes(uniqueLessonTypeList);
 		
+	}
+	public static void createRegistration(Student student,CourseDB courseDB)
+	{
+		System.out.println("List of all courses:");
+		courseDB.printCourseList();
+
+		Course course = ConsoleIO.getCourseFromDB(courseDB);
+		boolean[] full = new boolean[course.getLessonTypes().size()];
+		for (Lesson lesson:course.getLessons())
+		{
+			for (String lessonType:course.getLessonTypes())
+			{
+				int index = 0;
+				if (lesson.getLessonType().equals(lessonType))
+				{
+					// As long as there is a vacancy for the lessonType, proceed to check the next lessonType.
+					if (lesson.getVacancy() != 0)
+					{
+						full[index] = false;
+						continue;
+					}
+				}
+				index++;
+			}
+		}
+		boolean vacant = false;
+		for (boolean vacancy:full)
+		{
+			// If any lessonType is full, the student is unable to register for the course.
+			if (vacancy == false)
+			{
+				vacant = false;
+				break;
+			}
+		}
+		if (!course.checkStudent(student.getID()))
+		{
+			if (!vacant)
+			{
+				ArrayList<String> lessonsEnrolled = new ArrayList<String>();
+				for (String uniqueLesson : course.getLessonTypes())
+				{
+					System.out.println("Register for " + uniqueLesson);
+					System.out.println("List of indexes:");
+					course.printLessonList(uniqueLesson,true);
+	
+					System.out.println("Select an index to register for:");
+					String lessonIndex = ConsoleInputInterface.consoleScanner.nextLine();
+					while (!course.getLesson(lessonIndex).enrolStudent())
+					{
+						System.out.println("Choose another index:");
+						lessonIndex = ConsoleInputInterface.consoleScanner.nextLine();
+					}
+					lessonsEnrolled.add(lessonIndex);
+				}
+				CourseRegistrationRecord newRegistration = new CourseRegistrationRecord(student,course,lessonsEnrolled);
+				student.addCourse(newRegistration);
+				course.addRegistration(newRegistration);
+			}
+			else
+				System.out.println("Course is full.");
+		}
+		else
+			System.out.println("Student already registered in this course.");
 	}
 }

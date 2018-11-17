@@ -76,34 +76,7 @@ public class SCRAMEApp
 					// classes)
 					// have to check if studentDB is empty
 					student = ConsoleIO.getStudentFromDB(studentDB);
-
-					System.out.println("List of all courses:");
-					courseDB.printCourseList();
-
-					course = ConsoleIO.getCourseFromDB(courseDB);
-
-					if (!course.checkStudent(student.getID()))
-					{
-						System.out.printf("Registering %s into %s...\n", student.getID(), course.getCourseCode());
-						// Code for adding a student into lessons
-						ArrayList<String> uniqueLessonListType = course.getLessonTypes();
-						for (String uniqueLesson : uniqueLessonListType)
-						{
-							System.out.println("Register for " + uniqueLesson);
-							System.out.println("List of indexes:");
-							course.printLessonList(uniqueLesson,true);
-
-							System.out.println("Select an index to register for:");
-							String lessonIndex = ConsoleInputInterface.consoleScanner.nextLine();
-							while (!course.getLesson(lessonIndex).enrolStudent())
-							{
-								System.out.println("Choose another index:");
-								lessonIndex = ConsoleInputInterface.consoleScanner.nextLine();
-							}
-						}
-					} else
-						System.out.println("Student already registered in this course.");
-
+					CreationHandler.createRegistration(student,courseDB);
 					break;
 
 				case 4:
