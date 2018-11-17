@@ -10,6 +10,7 @@ import courses.AggregateComponentWeightage;
 import courses.ComponentWeightage;
 import courses.Course;
 import database.CourseDB;
+import database.StudentDB;
 import grading.Markable;
 import lessons.Lesson;
 import universityMembers.*;
@@ -24,17 +25,17 @@ import universityMembers.*;
  */
 public class CreationHandler
 {
-	public static Student createStudent()
+	public static Student createStudent(StudentDB studentDB)
 	{
-		Student newStudent = CreationInterface.setStudentMetadata();
+		Student newStudent = CreationInterface.setStudentMetadata(studentDB);
 		System.out.println("\nCreated student:\n" + newStudent.toString());
 		
 		return newStudent;
 	}
 	
-	public static Course createCourse(FacultyMember courseCoordinator)
+	public static Course createCourse(FacultyMember courseCoordinator, CourseDB courseDB)
 	{
-		Course newCourse = CreationInterface.setCourseMetadata();
+		Course newCourse = CreationInterface.setCourseMetadata(courseDB);
 		newCourse.setCoordinator(courseCoordinator);
 		
 //		createCourseComponents(newCourse);

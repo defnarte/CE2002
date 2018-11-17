@@ -55,7 +55,7 @@ public class SCRAMEApp
 			{
 				case 1:
 					// Add a student
-					student = CreationHandler.createStudent();
+					student = CreationHandler.createStudent(studentDB);
 					studentDB.addStudent(student);
 					System.out.println("List of all studentDB:");
 					studentDB.printStudentList();
@@ -66,7 +66,7 @@ public class SCRAMEApp
 					ConsoleDisplay.displayFacultyMembers(facultyMemberDB.getAllFacultyMembers());
 
 					FacultyMember courseCoordinator = ConsoleIO.getFacultyMemberFromDB(facultyMemberDB);
-					course = CreationHandler.createCourse(courseCoordinator);
+					course = CreationHandler.createCourse(courseCoordinator,courseDB);
 					CreationHandler.createLessons(course,courseDB);
 					courseDB.addCourse(course);
 					courseDB.printCourseList();

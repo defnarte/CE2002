@@ -3,6 +3,8 @@ package creation;
 import consoleIO.ConsoleInputInterface;
 import consoleIO.StringFormatType;
 import courses.*;
+import database.CourseDB;
+import database.StudentDB;
 import grading.Markable;
 import universityMembers.Student;
 
@@ -18,14 +20,23 @@ import universityMembers.Student;
 public class CreationInterface
 {
 	
-	public static Student setStudentMetadata()
+	public static Student setStudentMetadata(StudentDB studentDB)
 	{
-		String studentIDPrompt = "Enter the student's ID:";
-		String studentID = ConsoleInputInterface.getUserStringInput(studentIDPrompt, StringFormatType.ALPHA_NUMERIC);
-		
 		String studentNamePrompt = "Enter the name of the student:";
 		String studentName = ConsoleInputInterface.getUserStringInput(studentNamePrompt, StringFormatType.ALPHABETICAL_AND_SPACE);
+		while (studentDB.checkStudentName(studentName))
+		{
+			studentNamePrompt = "Name already registered. Enter the student's name:";
+			studentName = ConsoleInputInterface.getUserStringInput(studentNamePrompt, StringFormatType.ALPHA_NUMERIC);
+		}
 		
+		String studentIDPrompt = "Enter the student's ID:";
+		String studentID = ConsoleInputInterface.getUserStringInput(studentIDPrompt, StringFormatType.ALPHA_NUMERIC);
+		while (studentDB.checkStudentID(studentID))
+		{
+			studentIDPrompt = "ID already registered. Enter the student's ID:";
+			studentID = ConsoleInputInterface.getUserStringInput(studentIDPrompt, StringFormatType.ALPHA_NUMERIC);
+		}
 		return new Student(studentID, studentName);
 	}
 	
@@ -38,15 +49,27 @@ public class CreationInterface
 	 * 
 	 * @return newly created course
 	 */
-	public static Course setCourseMetadata()
+	public static Course setCourseMetadata(CourseDB courseDB)
 	{
 		System.out.println("\n---Creating new course---");
 
 		System.out.print("Enter course code: ");
 		String courseCode = ConsoleInputInterface.consoleScanner.nextLine();
+		
+		while (courseDB.checkCourseCode(courseCode))
+		{
+			System.out.print("Course code already registered. Enter course code: ");
+			courseCode = ConsoleInputInterface.consoleScanner.nextLine();
+		}
 
 		System.out.print("Enter course name: ");
 		String courseName = ConsoleInputInterface.consoleScanner.nextLine();
+		
+		while (courseDB.checkCourseName(courseName))
+		{
+			System.out.print("Course name already registered. Enter course name: ");
+			courseName = ConsoleInputInterface.consoleScanner.nextLine();
+		}
 
 		return new Course(courseCode, courseName);
 	}

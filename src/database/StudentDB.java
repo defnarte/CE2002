@@ -38,18 +38,52 @@ public class StudentDB
 		}
 	}
 
-	public int checkStudent(String studentID)
+	public boolean checkStudentName(String studentName)
 	{
-		int index = 0;
+		for (Student registeredStudent : students)
+		{
+			if (registeredStudent.getfullName().equals(studentName))
+				return true;
+		}
+		return false;
+	}
+	
+	public boolean checkStudentID(String studentID)
+	{
 		for (Student registeredStudent : students)
 		{
 			if (registeredStudent.getID().equals(studentID))
-				return index;
-			else
-				index++;
+				return true;
 		}
-		return -1;
+		return false;
 	}
+		
+	
+//	public int checkStudentName(String studentName)
+//	{
+//		int index = 0;
+//		for (Student registeredStudent : students)
+//		{
+//			if (registeredStudent.getfullName().equals(studentName))
+//				return index;
+//			else
+//				index++;
+//		}
+//		return -1;
+//	}
+//	
+//	public int checkStudentID(String studentID)
+//	{
+//		int index = 0;
+//		for (Student registeredStudent : students)
+//		{
+//			if (registeredStudent.getID().equals(studentID))
+//				return index;
+//			else
+//				index++;
+//		}
+//		return -1;
+//	}
 	
 	public Student getStudent(String studentID)
 	{

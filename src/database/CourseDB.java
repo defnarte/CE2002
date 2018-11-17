@@ -70,18 +70,39 @@ public class CourseDB
 	 * @param courseCode
 	 * @return index
 	 */
-	public int checkCourse(String courseCode)
+	
+	public boolean checkCourseCode(String courseCode)
 	{
-		int index = 0;
 		for (Course registeredCourse : courses)
 		{
 			if (registeredCourse.getCourseCode().equals(courseCode))
-				return index;
-			else
-				index++;
+				return true;
 		}
-		return -1;
+		return false;
 	}
+	
+	public boolean checkCourseName(String courseName)
+	{
+		for (Course registeredCourse : courses)
+		{
+			if (registeredCourse.getName().equals(courseName))
+				return true;
+		}
+		return false;
+	}
+	
+//	public int checkCourse(String courseCode)
+//	{
+//		int index = 0;
+//		for (Course registeredCourse : courses)
+//		{
+//			if (registeredCourse.getCourseCode().equals(courseCode))
+//				return index;
+//			else
+//				index++;
+//		}
+//		return -1;
+//	}
 	
 	public boolean checkLesson(String lessonID)
 	{
