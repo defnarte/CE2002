@@ -246,7 +246,7 @@ public class SCRAMEApp
 
 					break;
 
-				case 7:
+				case 7: // incomplete
 					// Enter coursework mark inclusive of its components.
 					Student studentToEnterMarksFor = ConsoleIO.getStudentFromDB(students);
 					

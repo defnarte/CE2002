@@ -63,11 +63,11 @@ public class OverallResult implements Markable
 		return componentResultList;
 	}
 	
-	public boolean setTargetComponentResult(String targetName, int rawMarks)
+	public boolean setComponentResult(String componentName, int rawMarks)
 	{
 		for(ComponentResult componentResult: componentResultList)
 		{
-			if(componentResult.getName().equals(targetName) && !(componentResult instanceof AggregateComponentResult))
+			if(componentResult.getName().equals(componentName) && !(componentResult instanceof AggregateComponentResult))
 			{
 				componentResult.setMarks(rawMarks);
 				return true;
@@ -75,6 +75,19 @@ public class OverallResult implements Markable
 		}
 		
 		return false;
+	}
+	
+	public ComponentResult getComponentResult(String componentName)
+	{
+		for(ComponentResult componentResult: componentResultList)
+		{
+			if(componentResult.getName().equals(componentName))
+			{
+				return componentResult;
+			}
+		}
+		
+		return null;
 	}
 	
 	@Override

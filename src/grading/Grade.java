@@ -21,7 +21,8 @@ public enum Grade
 	D(1), D_PLUS(2),
 	C(3), C_PLUS(4),
 	B_MINUS(5), B(6), B_PLUS(7),
-	A_MINUS(8), A(9), A_PLUS(10);
+	A_MINUS(8), A(9), A_PLUS(10),
+	TOTAL_NUMBER_OF_GRADES(11);
 	
 	private Integer value;
 	private static Map<Integer,Grade> map = new HashMap<>();

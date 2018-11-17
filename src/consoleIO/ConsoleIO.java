@@ -1,5 +1,6 @@
 package consoleIO;
 
+import courses.ComponentWeightage;
 import courses.Course;
 import database.CourseDB;
 import database.FacultyMemberDB;
@@ -81,5 +82,29 @@ public class ConsoleIO
 		} while(courseRegRecord == null);
 		
 		return courseRegRecord;
+	}
+	
+	public static ComponentWeightage getComponentWeightageFromCourse(Course course)
+	{
+		ComponentWeightage component = null;
+		
+		do
+		{
+			String componentNamePrompt = "Enter the name of the component: ";
+			String componentName = ConsoleInputInterface.
+					getUserStringInput(componentNamePrompt, StringFormatType.ALPHABETICAL_AND_SPACE);
+			
+			for(ComponentWeightage existingComponent: course.getAllComponentsWeightage())
+			{
+				if(existingComponent.getName().equals(componentName))
+					return existingComponent;
+			}
+			
+			if(component == null)
+				System.out.println(componentName + " is not a component of " + course.getCourseCode() + ' ' + course.getName());
+			
+		} while(component == null);
+		
+		return null;
 	}
 }
