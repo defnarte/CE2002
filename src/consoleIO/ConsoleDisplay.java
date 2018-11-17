@@ -2,7 +2,9 @@ package consoleIO;
 
 import java.util.ArrayList;
 
+import courses.Course;
 import grading.ComponentResult;
+import grading.Grade;
 import universityMembers.FacultyMember;
 import universityMembers.Student;
 import registration.CourseRegistrationRecord;
@@ -53,6 +55,61 @@ public class ConsoleDisplay
 			{
 				System.out.println("       " + componentResult.getName() + " " + componentResult.getMarks());
 			}
+		}
+	}
+	
+	public static void displayCourseStatistic(Course course)
+	{
+		System.out.println("Show grade percentage for:");
+		System.out.println("1 - Overall");
+		System.out.println("2 - Exam only");
+		System.out.println("3 - Coursework only");
+		int choice = ConsoleInputInterface.consoleScanner.nextInt();
+		
+		double[] courseStat = new double[11];
+		ArrayList<CourseRegistrationRecord> registrations = course.getRegistrations();
+		switch (choice)
+		{
+			case 1:
+				for (CourseRegistrationRecord registration : registrations)
+				{
+					courseStat[registration.getOverallResults().computeGrade().getValue()]++;
+				}
+				break;
+				
+			case 2:
+				for (CourseRegistrationRecord registration : registrations)
+				{
+					int index = 0;
+					if (registration.getOverallResults().getComponentResultList().get(index).getName()
+							.equals("Exam"))
+						courseStat[registration.getOverallResults().getComponentResultList().get(index)
+								.computeGrade().getValue()]++;
+					index++;
+				}
+				break;
+				
+			case 3:
+				for (CourseRegistrationRecord registration : registrations)
+				{
+					int index = 0;
+					if (registration.getOverallResults().getComponentResultList().get(index).getName()
+							.equals("Exam"))
+						courseStat[registration.getOverallResults().getComponentResultList().get(index)
+								.computeGrade().getValue()]++;
+					index++;
+					
+				}
+				break;
+				
+			default:
+				break;
+		}
+		
+		for (int i = 0; i < 11; i++)
+		{
+			courseStat[i] = courseStat[i] / registrations.size() * 100;
+			System.out.printf("%s %.2f %%\n", Grade.valueOf(i), courseStat[i]);
 		}
 	}
 }
