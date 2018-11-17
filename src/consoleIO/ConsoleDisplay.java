@@ -2,7 +2,9 @@ package consoleIO;
 
 import java.util.ArrayList;
 
+import grading.ComponentResult;
 import universityMembers.FacultyMember;
+import universityMembers.Student;
 import registration.CourseRegistrationRecord;
 
 public class ConsoleDisplay
@@ -30,5 +32,27 @@ public class ConsoleDisplay
 	{
 		for(CourseRegistrationRecord registeredCourse: registeredCourses)
 			System.out.println(registeredCourse);
+	}
+	
+	public static void displayStudentTranscript(Student student)
+	{
+		System.out.println("Printing Student Transcript for " + student + ":");
+		
+		ArrayList<CourseRegistrationRecord> coursesRegistered = student.getCoursesRegistered();
+		
+		for (CourseRegistrationRecord courseRegistered : coursesRegistered)
+		{
+			System.out.println(courseRegistered.getRegisteredCourse().getCourseCode() + " "
+					+ courseRegistered.getRegisteredCourse().getName() + " "
+					+ courseRegistered.getOverallResults().getMarks() + " "
+					+ courseRegistered.getOverallResults().computeGrade());
+			ArrayList<ComponentResult> componentResultList = courseRegistered.getOverallResults()
+					.getComponentResultList();
+			
+			for (ComponentResult componentResult : componentResultList)
+			{
+				System.out.println("       " + componentResult.getName() + " " + componentResult.getMarks());
+			}
+		}
 	}
 }

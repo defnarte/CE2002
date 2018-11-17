@@ -366,36 +366,10 @@ public class SCRAMEApp
 					break;
 					
 				case 9: //case 10:
-					System.out.println("Enter the student's ID: ");
-					String studentID = ConsoleInputInterface.consoleScanner.next();
-					if (!(checkInput(studentID, 2)))
-					{
-						System.out.println("Error! Please enter only letters and digits.");
-						break;
-					}
-					int studentIndex2 = students.checkStudent(studentID);
-					if (studentIndex2 != -1)
-					{
-						System.out.println(
-								"Printing Student Transcript for " + students.getStudentAl().get(studentIndex2).getID()
-										+ ", " + students.getStudentAl().get(studentIndex2).getfullName() + ":");
-						ArrayList<CourseRegistrationRecord> coursesRegistered = students.getStudentAl()
-								.get(studentIndex2).getCoursesRegistered();
-						for (CourseRegistrationRecord courseRegistered : coursesRegistered)
-						{
-							System.out.println(courseRegistered.getRegisteredCourse().getCourseCode() + " "
-									+ courseRegistered.getRegisteredCourse().getName() + " "
-									+ courseRegistered.getOverallResults().getMarks() + " "
-									+ courseRegistered.getOverallResults().computeGrade());
-							ArrayList<ComponentResult> componentResultList = courseRegistered.getOverallResults()
-									.getComponentResultList();
-							for (ComponentResult componentResult : componentResultList)
-							{
-								System.out.println(
-										"       " + componentResult.getName() + " " + componentResult.getMarks());
-							}
-						}
-					}
+					// Print student transcript
+					Student studentToPrintTranscriptFor = ConsoleIO.getStudentFromDB(students);
+					ConsoleDisplay.displayStudentTranscript(studentToPrintTranscriptFor);
+					
 					break;
 					
 				case 10: // case 11:
