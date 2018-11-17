@@ -194,7 +194,7 @@ public class Course
 		{
 			if (lesson.getLessonType().equals(lessonType))
 			{
-				System.out.println(lesson.getLessonID());
+				System.out.println(lesson.getLessonID() + " " + lesson.getVacancy() + "/" + lesson.getTotalSize());
 			}
 		}
 	}
