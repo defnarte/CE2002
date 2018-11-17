@@ -154,27 +154,26 @@ public class SCRAMEApp
 					{
 						System.out.println(it2.next());
 					}
-					System.out.println("Enter a lesson type to check vacancy: ");
-					String lessonType2 = ConsoleInputInterface.consoleScanner.nextLine();
+					String lessonType2 = ConsoleInputInterface.getUserStringInput("Enter a lesson type to check vacancy: ", StringFormatType.ALPHA_NUMERIC);
+					while (!course.checkLessonType(lessonType2))
+					{
+						lessonType2 = ConsoleInputInterface.getUserStringInput("Invalid lesson type. Enter a lesson type to check vacancy: ", StringFormatType.ALPHA_NUMERIC);
+					}
 					System.out.printf("All indexes for %s:\n", lessonType2);
 					course.printLessonList(lessonType2,false);
-					System.out.println("Select an option:");
-					System.out.println("1 - Print student list by index");
-					System.out.println("2 - Print all studentDB");
-					int userChoice2 = ConsoleInputInterface.consoleScanner.nextInt();
+					String promptMessage = "Select an option:\n"
+					+ "1 - Print student list by index\n"
+					+ "2 - Print all studentDB\n";
+					int userChoice2 = ConsoleInputInterface.getUserPositiveIntInput(promptMessage,2);
 					switch (userChoice2)
 					{
 						case 1:
-							System.out.println("Enter an index: ");
-							String lessonIndex = ConsoleInputInterface.consoleScanner.nextLine();
-							if (!(checkInput(lessonIndex, 2)))
+							String lessonID = ConsoleInputInterface.getUserStringInput("Enter an index: ",StringFormatType.ALPHA_NUMERIC);
+							while (!courseDB.checkLesson(lessonID))
 							{
-								System.out.println("Error! Please enter only letters and digits.");
-								break;
+								lessonID = ConsoleInputInterface.getUserStringInput("Invalid index. Enter an index: ",StringFormatType.ALPHA_NUMERIC);
 							}
-
-							System.out.println(course);
-							course.printSomeStudents(lessonIndex);
+							course.printSomeStudents(lessonID);
 							break;
 						case 2:
 							course.printAllStudents(lessonType2);

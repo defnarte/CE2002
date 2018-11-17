@@ -241,6 +241,15 @@ public class Course
 		return false;
 	}
 
+	public boolean checkLessonType(String lessonType)
+	{
+		for (String uniqueLessonType:lessonTypes)
+		{
+			if (lessonType.equals(uniqueLessonType))
+				return true;
+		}
+		return false;
+	}
 	@Override
 	public String toString()
 	{
