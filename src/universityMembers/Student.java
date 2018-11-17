@@ -48,6 +48,18 @@ public class Student extends UniversityMember
 	{
 		registeredCourses.remove(courseRegistrationRecord);
 	}
+	public CourseRegistrationRecord getCourseRegistrationRecord(String courseCode)
+	{
+		for(CourseRegistrationRecord courseRecord: registeredCourses)
+		{
+			String existingCourseCode = courseRecord.getRegisteredCourse().getName();
+			
+			if(existingCourseCode.equals(courseCode))
+				return courseRecord;
+		}
+			
+		return null;
+	}
 	
 	@Override
 	public String toString()

@@ -1,43 +1,47 @@
 package database;
 
 import java.util.ArrayList;
+
+import universityMembers.Student;
 import universityMembers.Student;
 
-public class StudentDB {
+public class StudentDB
+{
 	ArrayList<Student> students;
-	
-	public StudentDB(ArrayList<Student> students) 
+
+	public StudentDB(ArrayList<Student> students)
 	{
 		this.students = students;
 	}
-	
-	public ArrayList<Student> getStudentAl() 
+
+	public ArrayList<Student> getStudentAl()
 	{
 		return students;
 	}
-	
-	public void addStudent(Student student) 
+
+	public void addStudent(Student student)
 	{
-		try 
+		try
 		{
-			for (Student registeredStudent:students) 
+			for (Student registeredStudent : students)
 			{
-				if (registeredStudent.getfullName().equals(student.getfullName()) || registeredStudent.getID().equals(student.getID())) 
+				if (registeredStudent.getfullName().equals(student.getfullName())
+						|| registeredStudent.getID().equals(student.getID()))
 				{
 					throw new Exception("Student/Matriculation No. already registered!");
 				}
 			}
 			students.add(student);
-		}
-		catch (Exception e) {
+		} catch (Exception e)
+		{
 			System.out.println(e.getMessage());
 		}
 	}
-	
-	public int checkStudent(String studentID) 
+
+	public int checkStudent(String studentID)
 	{
 		int index = 0;
-		for (Student registeredStudent:students) 
+		for (Student registeredStudent : students)
 		{
 			if (registeredStudent.getID().equals(studentID))
 				return index;
@@ -47,9 +51,20 @@ public class StudentDB {
 		return -1;
 	}
 	
-	public void printStudentList() 
+	public Student getStudent(String studentID)
 	{
-		for (Student student:students) 
+		for(Student student: students)
+		{
+			if(student.getID().equals(studentID))
+				return student;
+		}
+		
+		return null;
+	}
+
+	public void printStudentList()
+	{
+		for (Student student : students)
 		{
 			System.out.println(student.getfullName() + " " + student.getID());
 		}

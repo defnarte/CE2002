@@ -1,6 +1,7 @@
 package creation;
 
 import consoleIO.ConsoleInputInterface;
+import consoleIO.StringFormatType;
 import courses.*;
 import grading.Markable;
 import universityMembers.Student;
@@ -20,10 +21,10 @@ public class CreationInterface
 	public static Student setStudentMetadata()
 	{
 		String studentIDPrompt = "Enter the student's ID:";
-		String studentID = ConsoleInputInterface.getUserStringInput(studentIDPrompt, 2);
+		String studentID = ConsoleInputInterface.getUserStringInput(studentIDPrompt, StringFormatType.ALPHA_NUMERIC);
 		
 		String studentNamePrompt = "Enter the name of the student:";
-		String studentName = ConsoleInputInterface.getUserStringInput(studentNamePrompt, 1);
+		String studentName = ConsoleInputInterface.getUserStringInput(studentNamePrompt, StringFormatType.ALPHABETICAL_AND_SPACE);
 		
 		return new Student(studentID, studentName);
 	}

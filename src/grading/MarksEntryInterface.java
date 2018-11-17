@@ -13,42 +13,31 @@ import registration.*;
  */
 public class MarksEntryInterface
 {
-	public static void enterMarks(CourseRegistrationRecord record)
+	public static void enterMarksForCourse(CourseRegistrationRecord record)
 	{
-		boolean markEntrySucess = false;
-		
-		do
-		{
-			System.out.println("For which component (or subcomponent) do you want to enter marks?");
-			
-			for(ComponentWeightage componentWeightage: record.getRegisteredCourse().getAllComponentsWeightage())
-			{
-				System.out.println(componentWeightage);
-			}
-			
-			System.out.print("Enter your choice: ");
-			String componentNameInput = ConsoleInputInterface.consoleScanner.nextLine();
-			
-			String markEntryPrompt = "Enter the raw marks (out of " + Markable.MAX_MARKS +") for " + componentNameInput + ": ";
-			int rawMarks = ConsoleInputInterface.getUserPositiveIntInput(markEntryPrompt, Markable.MAX_MARKS);
-			
-			markEntrySucess = record.setTargetComponentResult(componentNameInput, rawMarks);
-			
-			if(markEntrySucess)
-				System.out.println("Mark entry successful");
-			else
-				System.out.println("Mark entry failed");
-			
-		} while(!markEntrySucess);
+		for(ComponentResult componentResult: record.getOverallResults().getComponentResultList())
+			enterMarksForComponent(componentResult);
 		
 		System.out.println("Results for " + record.getRegisteredCourse().getCourseCode() + 
 							":\n" + record.getOverallResults());
 	}
 	
-	public static void enterMarks(ComponentResult componentResult)
+	private static void enterMarksForComponent(ComponentResult componentResult)
 	{
-		String markEntryPrompt = "Enter the raw marks (out of " + Markable.MAX_MARKS +") for " + componentResult.getName() + ": ";
-		int rawMarks = ConsoleInputInterface.getUserPositiveIntInput(markEntryPrompt, Markable.MAX_MARKS);
-		componentResult.setMarks(rawMarks);
+		if(componentResult instanceof AggregateComponentResult)
+		{
+			AggregateComponentResult aggregateComponentResult = (AggregateComponentResult) componentResult;
+			
+			for(ComponentResult subcomponentResult: aggregateComponentResult.getSubcomponentResultList())
+				enterMarksForComponent(subcomponentResult);
+		}
+		else
+		{
+			String markEntryPrompt = "Enter the raw marks (out of " + Markable.MAX_MARKS + 
+					") for " + componentResult.getName() + ": ";
+			int rawMarks = ConsoleInputInterface.getUserPositiveIntInput(markEntryPrompt, Markable.MAX_MARKS);
+			componentResult.setMarks(rawMarks);
+		}
 	}
+
 }

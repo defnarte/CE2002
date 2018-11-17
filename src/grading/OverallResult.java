@@ -12,15 +12,15 @@ import courses.ComponentWeightage;
  * @author Jason
  *
  */
-public class OverallResults implements Markable
+public class OverallResult implements Markable
 {
 	private ArrayList<ComponentResult> componentResultList;
 	
-	public OverallResults()
+	public OverallResult()
 	{
 		this.componentResultList = new ArrayList<ComponentResult>();
 	}
-	public OverallResults(ArrayList<ComponentWeightage> componentWeightageList)
+	public OverallResult(ArrayList<ComponentWeightage> componentWeightageList)
 	{
 		componentResultList = new ArrayList<ComponentResult>();
 		

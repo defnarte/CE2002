@@ -3,6 +3,7 @@ package creation;
 import java.util.ArrayList;
 
 import consoleIO.ConsoleInputInterface;
+import consoleIO.StringFormatType;
 import courses.AggregateComponentWeightage;
 import courses.ComponentWeightage;
 import courses.Course;
@@ -21,21 +22,6 @@ import universityMembers.*;
  */
 public class CreationHandler
 {
-	public static FacultyMember createFacultyMember(FacultyDB faculty)
-	{
-		FacultyMember facultyMem;
-		
-		do
-		{
-			String courseCoordinatorPrompt = "Enter the ID of the course coordinator";
-			String facultyID = ConsoleInputInterface.getUserStringInput(courseCoordinatorPrompt, 2);
-			facultyMem = faculty.getFacultyMember(facultyID);
-			
-		} while(facultyMem ==null);
-		
-		return facultyMem;
-	}
-	
 	public static Student createStudent()
 	{
 		Student newStudent = CreationInterface.setStudentMetadata();
@@ -49,7 +35,7 @@ public class CreationHandler
 		Course newCourse = CreationInterface.setCourseMetadata();
 		newCourse.setCoordinator(courseCoordinator);
 		
-		createCourseComponents(newCourse);
+//		createCourseComponents(newCourse);
 
 		System.out.println("\nCreated course:\n" + newCourse.toString());
 		
@@ -117,13 +103,14 @@ public class CreationHandler
 		boolean choice = true;
 		do
 		{
-			String lessonType = ConsoleInputInterface.getUserStringInput("Enter the type of lesson to add:",1);
+			String lessonType = ConsoleInputInterface.
+					getUserStringInput("Enter the type of lesson to add:",StringFormatType.ALPHABETICAL_AND_SPACE);
 			String numOfLessonsPrompt = "Enter the number of " + lessonType + "s to add:";
 			int numOfLessons = ConsoleInputInterface.getUserPositiveIntInput(numOfLessonsPrompt);
 			for (int i = 1; i <= numOfLessons; i++)
 			{
 				System.out.println("Getting input for " + lessonType + " " + i);
-				String lessonID = ConsoleInputInterface.getUserStringInput("Enter lessonID:",3);
+				String lessonID = ConsoleInputInterface.getUserStringInput("Enter lessonID:",StringFormatType.NUMERIC);
 				int totalSize = ConsoleInputInterface.getUserPositiveIntInput("Enter number of vacancies:");
 				Lesson lesson = new Lesson(lessonID,lessonType,totalSize);
 				lessons.add(lesson);

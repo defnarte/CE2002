@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import universityMembers.Student;
 import courses.Course;
 import grading.MarksEntryInterface;
-import grading.OverallResults;
+import grading.OverallResult;
 
 /**
  * 
@@ -18,14 +18,14 @@ public class CourseRegistrationRecord
 	private Student registeredStudent;
 	private Course registeredCourse;
 	private ArrayList<String> lessons;
-	private OverallResults overallResults;
+	private OverallResult overallResults;
 	
 	public CourseRegistrationRecord(Student student, Course course, ArrayList<String> lessons)
 	{
 		this.registeredStudent = student;
 		this.registeredCourse = course;
 		this.lessons = lessons;
-		this.overallResults = new OverallResults(course.getAllComponentsWeightage());
+		this.overallResults = new OverallResult(course.getAllComponentsWeightage());
 	}
 	
 	public Student getRegisteredStudent()
@@ -42,11 +42,11 @@ public class CourseRegistrationRecord
 		return lessons;
 	}
 	
-	public OverallResults getOverallResults()
+	public OverallResult getOverallResults()
 	{
 		return overallResults;
 	}
-	public void setOverallResults(OverallResults overallResults)
+	public void setOverallResults(OverallResult overallResults)
 	{
 		this.overallResults = overallResults;
 	}
@@ -56,7 +56,7 @@ public class CourseRegistrationRecord
 	}
 	public void enterMarks()
 	{
-		MarksEntryInterface.enterMarks(this);
+		MarksEntryInterface.enterMarksForCourse(this);
 	}
 	
 	@Override

@@ -8,9 +8,10 @@ import java.util.Arrays;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
+import consoleIO.ConsoleInputInterface;
 import courses.*;
 import grading.ComponentResult;
-import grading.OverallResults;
+import grading.OverallResult;
 import lessons.Lesson;
 import registration.CourseRegistrationRecord;
 import universityMembers.FacultyMember;
@@ -96,7 +97,7 @@ public class DatabaseIO
 						/**
 						 * THis should not done in the DB class
 						 */
-						OverallResults results = new OverallResults();
+						OverallResult results = new OverallResult();
 						results.setOverallResults(componentResultList);
 						courseRecord.setOverallResults(results);
 
@@ -122,9 +123,9 @@ public class DatabaseIO
 
 			String courseCode = courseStar.nextToken().trim();
 			String courseName = courseStar.nextToken().trim();
-			String facultyID = courseStar.nextToken().trim();
-			FacultyMember facultyMember = facultyDB.getFacultyMember(facultyID);
-			Course course = new Course(courseCode, courseName, facultyMember);
+			String studentID = courseStar.nextToken().trim();
+			FacultyMember studentber = facultyDB.getFacultyMember(studentID);
+			Course course = new Course(courseCode, courseName, studentber);
 
 			ArrayList<String> weightageString = new ArrayList<String>(
 					Arrays.asList(courseStar.nextToken().trim().split("\\s*,\\s*")));
@@ -169,7 +170,7 @@ public class DatabaseIO
 		return faculty;
 	}
 
-	public static ArrayList<ArrayList<String>> stringsplit(String st, String SEP)
+	private static ArrayList<ArrayList<String>> stringsplit(String st, String SEP)
 	{
 		StringTokenizer star = new StringTokenizer(st, SEP);
 		ArrayList<ArrayList<String>> stringList = new ArrayList<ArrayList<String>>();
@@ -182,4 +183,5 @@ public class DatabaseIO
 		}
 		return stringList;
 	}
+	
 }

@@ -3,6 +3,7 @@ package consoleIO;
 import java.util.ArrayList;
 
 import universityMembers.FacultyMember;
+import registration.CourseRegistrationRecord;
 
 public class ConsoleDisplay
 {
@@ -13,13 +14,21 @@ public class ConsoleDisplay
 				+ "4.  Check available slot in a class (vacancy in a class)\n"
 				+ "5.  Print student list by lecture, tutorial or laboratory session for a course.\n"
 				+ "6.  Enter course assessment components weightage\n"
-				+ "7.  Enter coursework mark inclusive of its components.\n" + "8.  Enter exam mark\n"
-				+ "9.  Print course statistics\n" + "10. Print student transcript.\n" + "11. Quit");
+				+ "7.  Enter marks for course taken by student\n"
+				+ "8.  Print course statistics\n" + "9. Print student transcript.\n" + "10. Quit");
+//				+ "7.  Enter coursework mark inclusive of its components.\n" + "8.  Enter exam mark\n"
+//				+ "9.  Print course statistics\n" + "10. Print student transcript.\n" + "11. Quit");
 	}
 	
 	public static void displayFacultyMembers(ArrayList<FacultyMember> faculty)
 	{
 		for(FacultyMember facultyMem: faculty)
 			System.out.println(facultyMem);
+	}
+	
+	public static void displayRegisteredCourses(ArrayList<CourseRegistrationRecord> registeredCourses)
+	{
+		for(CourseRegistrationRecord registeredCourse: registeredCourses)
+			System.out.println(registeredCourse);
 	}
 }

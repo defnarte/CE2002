@@ -14,7 +14,7 @@ import courses.ComponentWeightage;
  */
 public class AggregateComponentResult extends ComponentResult
 {
-	ArrayList<ComponentResult> subcomponentResultList;
+	private ArrayList<ComponentResult> subcomponentResultList;
 	
 	public AggregateComponentResult(AggregateComponentWeightage weightage)
 	{
@@ -67,6 +67,11 @@ public class AggregateComponentResult extends ComponentResult
 		}
 		
 		return false;
+	}
+	
+	public ArrayList<ComponentResult> getSubcomponentResultList()
+	{
+		return subcomponentResultList;
 	}
 	
 	public int getWeightage()

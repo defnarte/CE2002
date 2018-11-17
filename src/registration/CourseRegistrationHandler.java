@@ -26,8 +26,8 @@ public class CourseRegistrationHandler
 {
 	public static CourseRegistrationRecord register(Student student, Course course)
 	{
-		if(course.getVacancy() == 0)
-			return null; // RegistrationOutcome.NO_VACANCY;
+//		if(course.getVacancy() == 0)
+//			return null; // RegistrationOutcome.NO_VACANCY;
 		
 		/**
 		 * Checks if student is already registered for this course this semester.

@@ -1,10 +1,6 @@
 package database;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Scanner;
-import java.util.StringTokenizer;
 
 import universityMembers.FacultyMember;
 
@@ -35,11 +31,11 @@ public class FacultyDB {
 //		return faculty;
 //	}
 	
-	public FacultyMember getFacultyMember(String facultyID)
+	public FacultyMember getFacultyMember(String facultyMemberID)
 	{
 		for(FacultyMember facultyMem: faculty)
 		{
-			if(facultyMem.getID().equals(facultyID))
+			if(facultyMem.getID().equals(facultyMemberID))
 				return facultyMem;
 		}
 		
