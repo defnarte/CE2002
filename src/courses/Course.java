@@ -167,11 +167,11 @@ public class Course
 		registrations.remove(courseRegistrationRecord);
 	}
 
-	public Lesson getLesson(String lessonID)
+	public Lesson getLesson(int lessonID)
 	{
 		for (Lesson lesson : lessons)
 		{
-			if (lesson.getLessonID().equals(lessonID))
+			if (lesson.getLessonID() == lessonID)
 				return lesson;
 		}
 		System.out.println("LessonID not found.");
@@ -198,7 +198,7 @@ public class Course
 		ConsoleDisplay.displayCourseLessonByTypeWithVacancy(this, lessonType);
 	}
 	
-	public void printStudentsInSpecificLesson(String lessonID)
+	public void printStudentsInSpecificLesson(int lessonID)
 	{
 		ConsoleDisplay.displayStudentsInSpecificLesson(this, lessonID);
 	}

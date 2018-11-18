@@ -17,14 +17,14 @@ public class Registration
 {
 	private Student registeredStudent;
 	private Course registeredCourse;
-	private ArrayList<String> lessons;
+	private ArrayList<Integer> lessonIDArrayList;
 	private OverallResult overallResult;
 	
-	public Registration(Student student, Course course, ArrayList<String> lessons)
+	public Registration(Student student, Course course, ArrayList<Integer> lessonIDArrayList)
 	{
 		this.registeredStudent = student;
 		this.registeredCourse = course;
-		this.lessons = lessons;
+		this.lessonIDArrayList = lessonIDArrayList;
 		this.overallResult = new OverallResult(course.getAllComponentsWeightage());
 	}
 	
@@ -37,9 +37,9 @@ public class Registration
 	{
 		return registeredCourse;
 	}
-	public ArrayList<String> getLessonArrayList() 
+	public ArrayList<Integer> getLessonArrayList() 
 	{
-		return lessons;
+		return lessonIDArrayList;
 	}
 	
 	public OverallResult getOverallResult()

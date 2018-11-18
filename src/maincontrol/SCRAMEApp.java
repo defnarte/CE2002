@@ -130,7 +130,7 @@ public class SCRAMEApp
 						
 						if(printingChoice == 1)
 						{
-							String lessonID = ConsoleIOHandler.getLessonIDFromUser(courseDB);
+							int lessonID = ConsoleIOHandler.getLessonIDFromUser(courseDB);
 							course.printStudentsInSpecificLesson(lessonID);
 						}
 						else

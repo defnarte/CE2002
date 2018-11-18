@@ -148,17 +148,17 @@ public class ConsoleDisplay
 		}
 	}
 	
-	public static void displayStudentsInSpecificLesson(Course course, String lessonID)
+	public static void displayStudentsInSpecificLesson(Course course, int lessonID)
 	{
 		System.out.println("List of students in " + lessonID + ":");
 		
 		for (Registration registration: course.getRegistrationRecords())
 		{
-			ArrayList<String> registeredLessons = registration.getLessonArrayList();
+			ArrayList<Integer> registeredLessonIDArrayList = registration.getLessonArrayList();
 			
-			for (String registeredLessonID: registeredLessons)
+			for (Integer registeredLessonID: registeredLessonIDArrayList)
 			{
-				if (registeredLessonID.equals(lessonID))
+				if (registeredLessonID == lessonID)
 					System.out.println(registration.getRegisteredStudent());
 			}
 		}
@@ -170,7 +170,7 @@ public class ConsoleDisplay
 		{
 			if (lesson.getLessonType().equals(lessonType))
 			{
-				String lessonID = lesson.getLessonID();
+				int lessonID = lesson.getLessonID();
 				displayStudentsInSpecificLesson(course,lessonID);
 			}
 		}

@@ -1,5 +1,6 @@
 package creation;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 
 import consoleIO.ConsoleInputInterface;
@@ -134,11 +135,12 @@ public class CreationInterface
 	
 	public static String createLessonTypeForCourse(Course course, HashSet<String> uniqueLessonTypes)
 	{
+		String lessonTypePrompt = "Enter the type of lesson to add: ";
 		String lessonType;
 		boolean addLessonTypeSuccess;
+		
 		do
 		{
-			String lessonTypePrompt = "Enter the type of lesson to add: ";
 			lessonType = ConsoleInputInterface.
 					getUserStringInput(lessonTypePrompt, StringFormatType.ALPHABETICAL_AND_SPACE);
 			addLessonTypeSuccess = uniqueLessonTypes.add(lessonType);
@@ -153,12 +155,13 @@ public class CreationInterface
 	
 	public static Lesson createLessonForCourse(CourseDB courseDB, String lessonType, int lessonIndex)
 	{
-		String lessonID;
+		String lessonIDPrompt = "Enter lessonID for " + lessonType + ' ' + lessonIndex + ": ";
+		int lessonID;
 		boolean lessonExists;
+		
 		do
 		{
-			String lessonIDPrompt = "Enter lessonID for " + lessonType + ' ' + lessonIndex + ": ";
-			lessonID = ConsoleInputInterface.getUserStringInput(lessonIDPrompt,StringFormatType.NUMERIC);
+			lessonID = ConsoleInputInterface.getUserPositiveIntInput(lessonIDPrompt);
 			
 			lessonExists = courseDB.checkLessonExists(lessonID);
 		
@@ -169,5 +172,34 @@ public class CreationInterface
 		
 		int totalSize = ConsoleInputInterface.getUserPositiveIntInput("Enter number of vacancies:");
 		return new Lesson(lessonID,lessonType,totalSize);
+	}
+	
+	public static ArrayList<Integer> createRegisteredLessonArrayList(Course course)
+	{
+		ArrayList<Integer> registeredLessonArrayList = new ArrayList<Integer>();
+		
+		for (String lessonType : course.getLessonTypes())
+		{
+			System.out.println("List of lessonID for " + lessonType + ":");
+			course.printLessonsByType(lessonType);
+			
+			String lessonIDPrompt = "Enter lessonID of " + lessonType + "to register for: ";
+			int lessonID;
+			boolean lessonHasVacancy;
+			
+			do
+			{
+				lessonID = ConsoleInputInterface.getUserPositiveIntInput(lessonIDPrompt);
+				
+				lessonHasVacancy = course.getLesson(lessonID).decrementVacancy();
+				if(!lessonHasVacancy)
+					System.out.println(lessonID + " has no more vacancy.");
+				
+			} while(!lessonHasVacancy);
+				
+			registeredLessonArrayList.add(lessonID);
+		}
+		
+		return registeredLessonArrayList;
 	}
 }

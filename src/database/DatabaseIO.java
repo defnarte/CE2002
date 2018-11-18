@@ -64,7 +64,7 @@ public class DatabaseIO
 
 			ArrayList<String> coursesEnrolled = new ArrayList<String>(
 			Arrays.asList(studentStar.nextToken().trim().split("\\s*,\\s*")));
-			ArrayList<ArrayList<String>> lessonsRegistered = stringsplit(studentStar.nextToken().trim(), "_");
+			ArrayList<ArrayList<Integer>> lessonsRegistered = stringsplit(studentStar.nextToken().trim(), "_");
 			ArrayList<ArrayList<String>> marksObtained = stringsplit(studentStar.nextToken().trim(), "_");
 
 			// For each of the courses for a particular student in the student text file
@@ -78,7 +78,7 @@ public class DatabaseIO
 					if (courses.get(j).getCourseCode().equals(coursesEnrolled.get(k)))
 					{
 						// Include the lessons the student registered for
-						ArrayList<String> lessonsRegisteredCourse = lessonsRegistered.get(k);
+						ArrayList<Integer> lessonsRegisteredCourse = lessonsRegistered.get(k);
 						Registration courseRecord = new Registration(student, courses.get(j),
 								lessonsRegisteredCourse);
 						// Change the vacancy of the lessons enrolled accordingly

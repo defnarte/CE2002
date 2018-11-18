@@ -121,15 +121,14 @@ public class ConsoleIOHandler
 		return ConsoleInputInterface.getUserStringInput(lessonTypePrompt, StringFormatType.ALPHABETICAL_AND_SPACE);
 	}
 	
-	public static String getLessonIDFromUser(CourseDB courseDB)
+	public static int getLessonIDFromUser(CourseDB courseDB)
 	{
 		String lessonIDPrompt = "Enter lesson ID: ";
-		String lessonID;
+		int lessonID;
 		boolean lessonExists;
 		do
 		{
-			lessonID = ConsoleInputInterface.
-					getUserStringInput(lessonIDPrompt,StringFormatType.ALPHA_NUMERIC);
+			lessonID = ConsoleInputInterface.getUserPositiveIntInput(lessonIDPrompt);
 			lessonExists = courseDB.checkLessonExists(lessonID);
 			
 			if(!lessonExists)

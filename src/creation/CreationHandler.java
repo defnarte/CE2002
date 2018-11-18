@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 
+import consoleIO.ConsoleDisplay;
 import consoleIO.ConsoleIOHandler;
 import consoleIO.ConsoleInputInterface;
 import consoleIO.StringFormatType;
@@ -19,10 +20,6 @@ import universityMembers.*;
 
 /**
  * This class handles the creation of other Classes.
- * 
- * @version 1.4
- * @since 2018/11/16
- * @author Jason
  *
  */
 public class CreationHandler
@@ -31,19 +28,19 @@ public class CreationHandler
 	{
 		Student newStudent = CreationInterface.setStudentMetadata(studentDB);
 		System.out.println("\nCreated student:\n" + newStudent.toString());
-		
+
 		return newStudent;
 	}
-	
+
 	public static Course createCourse(FacultyMember courseCoordinator, CourseDB courseDB)
 	{
 		Course newCourse = CreationInterface.setCourseMetadata(courseDB);
 		newCourse.setCoordinator(courseCoordinator);
-		
-//		createCourseComponents(newCourse);
+
+		// createCourseComponents(newCourse);
 
 		System.out.println("\nCreated course:\n" + newCourse.toString());
-		
+
 		return newCourse;
 	}
 
@@ -56,152 +53,145 @@ public class CreationHandler
 
 		for (int componentIndex = 1; componentIndex <= numOfComponents; ++componentIndex)
 		{
-			ComponentWeightage newComponentWeightage = CreationInterface.
-					setComponentMetadata(componentIndex, componentsTotalWeightage);
-			
+			ComponentWeightage newComponentWeightage = CreationInterface.setComponentMetadata(componentIndex,
+					componentsTotalWeightage);
+
 			componentsTotalWeightage -= newComponentWeightage.getWeightage();
-			
+
 			if (newComponentWeightage instanceof AggregateComponentWeightage)
 			{
 				AggregateComponentWeightage aggregateComponentWeightage = (AggregateComponentWeightage) newComponentWeightage;
 
-				String numOfSubcomponentsPrompt = "Enter number of subcomponents for " + 
-													newComponentWeightage.getName() + ": ";
+				String numOfSubcomponentsPrompt = "Enter number of subcomponents for " + newComponentWeightage.getName()
+						+ ": ";
 				int numOfSubcomponents = ConsoleInputInterface.getUserPositiveIntInput(numOfSubcomponentsPrompt);
 
 				int subcomponentsTotalWeightage = Markable.MAX_MARKS;
 
 				for (int subComponentIndex = 1; subComponentIndex <= numOfSubcomponents; ++subComponentIndex)
 				{
-					ComponentWeightage newSubcomponentWeightage = 
-							CreationInterface.setSubcomponentMetadata(aggregateComponentWeightage, 
-									subComponentIndex, subcomponentsTotalWeightage);
-					
+					ComponentWeightage newSubcomponentWeightage = CreationInterface.setSubcomponentMetadata(
+							aggregateComponentWeightage, subComponentIndex, subcomponentsTotalWeightage);
+
 					subcomponentsTotalWeightage -= newSubcomponentWeightage.getWeightage();
-					
+
 					aggregateComponentWeightage.addSubcomponentWeightage(newSubcomponentWeightage);
-					
-					if(subcomponentsTotalWeightage == 0)
+
+					if (subcomponentsTotalWeightage == 0)
 					{
-						//System.out.println(); // just printing newline
+						// System.out.println(); // just printing newline
 						break;
 					}
-						
+
 				}
 
-				
 			}
-			
+
 			course.addComponentWeightage(newComponentWeightage);
-			
-			if(componentsTotalWeightage == 0)
+
+			if (componentsTotalWeightage == 0)
 			{
-				//System.out.println(); // just printing newline
+				// System.out.println(); // just printing newline
 				break;
 			}
 		}
 
 	}
-	public static void createLessons(Course course, CourseDB courseDB) 
+
+	public static void createLessons(Course course, CourseDB courseDB)
 	{
 		ArrayList<Lesson> lessons = new ArrayList<Lesson>();
-		HashSet<String> uniqueLessonTypes = new HashSet<String>();
-		
+		HashSet<String> lessonTypeTypes = new HashSet<String>();
+
 		boolean userChoice;
 		do
 		{
-			String lessonType = CreationInterface.createLessonTypeForCourse(course, uniqueLessonTypes);
-			
+			String lessonType = CreationInterface.createLessonTypeForCourse(course, lessonTypeTypes);
+
 			String numOfLessonsPrompt = "Enter the number of " + lessonType + "s to add:";
 			int numOfLessons = ConsoleInputInterface.getUserPositiveIntInput(numOfLessonsPrompt);
-			
-			for (int lessonIndex = 1; lessonIndex <= numOfLessons; ++lessonIndex)
+
+			for (int lessonID = 1; lessonID <= numOfLessons; ++lessonID)
 			{
-				Lesson lesson = CreationInterface.createLessonForCourse(courseDB, lessonType, lessonIndex);
+				Lesson lesson = CreationInterface.createLessonForCourse(courseDB, lessonType, lessonID);
 				lessons.add(lesson);
 			}
-			
+
 			userChoice = ConsoleInputInterface.getUserBooleanInput("Do you want to add another lesson (Y/N)? ");
-			
+
 		} while (userChoice);
-		
-		for (Lesson lesson:lessons) 
+
+		for (Lesson lesson : lessons)
 		{
 			course.addLesson(lesson);
 		}
-		
-		Iterator<String> it = uniqueLessonTypes.iterator();
-		ArrayList<String> uniqueLessonTypeList = new ArrayList<String>();
+
+		Iterator<String> it = lessonTypeTypes.iterator();
+		ArrayList<String> lessonTypeTypeList = new ArrayList<String>();
 		while (it.hasNext())
 		{
-			uniqueLessonTypeList.add((String) it.next().toString());
+			lessonTypeTypeList.add((String) it.next().toString());
 		}
-		
-		course.setLessonTypes(uniqueLessonTypeList);
-		
+
+		course.setLessonTypes(lessonTypeTypeList);
+
 	}
-	public static void createRegistration(Student student,CourseDB courseDB)
+
+	public static void createRegistration(Student student, CourseDB courseDB)
 	{
 		System.out.println("List of all courses:");
 		courseDB.printCourseList();
 
 		Course course = ConsoleIOHandler.getCourseFromDB(courseDB);
-		boolean[] full = new boolean[course.getLessonTypes().size()];
-		for (Lesson lesson:course.getLessons())
+
+		if (course.checkStudent(student.getID()))
 		{
-			for (String lessonType:course.getLessonTypes())
+			System.out.println("Student already registered in this course.");
+			return;
+		}
+
+		boolean[] isLessonTypeFullArray = new boolean[course.getLessonTypes().size()];
+		for (int i = 0; i < isLessonTypeFullArray.length; ++i)
+		{
+			isLessonTypeFullArray[i] = true;
+		}
+
+		for (Lesson lesson : course.getLessons())
+		{
+			for (String lessonType : course.getLessonTypes())
 			{
-				int index = 0;
+				int lessonTypeIndex = 0;
+
 				if (lesson.getLessonType().equals(lessonType))
 				{
-					// As long as there is a vacancy for the lessonType, proceed to check the next lessonType.
-					if (lesson.getVacancy() != 0)
+					// As long as there is a vacancy for the lessonType, proceed to check the next
+					// lessonType.
+					if (lesson.getVacancy() > 0)
 					{
-						full[index] = false;
+						isLessonTypeFullArray[lessonTypeIndex] = false;
 						continue;
 					}
 				}
-				index++;
+				++lessonTypeIndex;
 			}
 		}
-		boolean vacant = false;
-		for (boolean vacancy:full)
+
+		for (boolean isLessonTypeFull : isLessonTypeFullArray)
 		{
 			// If any lessonType is full, the student is unable to register for the course.
-			if (vacancy == false)
+			if (isLessonTypeFull)
 			{
-				vacant = false;
-				break;
-			}
-		}
-		if (!course.checkStudent(student.getID()))
-		{
-			if (!vacant)
-			{
-				ArrayList<String> lessonsEnrolled = new ArrayList<String>();
-				for (String uniqueLesson : course.getLessonTypes())
-				{
-					System.out.println("Register for " + uniqueLesson);
-					System.out.println("List of indexes:");
-					course.printLessonsByType(uniqueLesson); // true
-	
-					System.out.println("Select an index to register for:");
-					String lessonIndex = ConsoleInputInterface.consoleScanner.nextLine();
-					while (!course.getLesson(lessonIndex).registerStudent())
-					{
-						System.out.println("Choose another index: ");
-						lessonIndex = ConsoleInputInterface.consoleScanner.nextLine();
-					}
-					lessonsEnrolled.add(lessonIndex);
-				}
-				Registration newRegistration = new Registration(student,course,lessonsEnrolled);
-				student.addCourseRegistration(newRegistration);
-				course.addStudentRegistration(newRegistration);
-			}
-			else
 				System.out.println("Course is full.");
+				return;
+			}
 		}
-		else
-			System.out.println("Student already registered in this course.");
+
+		ArrayList<Integer> registeredLessonArrayList = CreationInterface.createRegisteredLessonArrayList(course);
+		
+		Registration newRegistration = new Registration(student, course, registeredLessonArrayList);
+		
+		student.addCourseRegistration(newRegistration);
+		course.addStudentRegistration(newRegistration);
+
 	}
 }

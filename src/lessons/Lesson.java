@@ -18,13 +18,13 @@ package lessons;
  */
 public class Lesson
 {
-	private String lessonID;
+	private int lessonID;
 	private String lessonType;
 	private int totalSize;
 	private int vacancy;
 
 	// Used when loading an existing database
-	public Lesson(String lessonID, String lessonType, int totalSize, int vacancy)
+	public Lesson(int lessonID, String lessonType, int totalSize, int vacancy)
 	{
 		this.lessonID = lessonID;
 		this.lessonType = lessonType;
@@ -33,7 +33,7 @@ public class Lesson
 	}
 
 	// Used when creating a new lesson
-	public Lesson(String lessonID, String lessonType, int totalSize)
+	public Lesson(int lessonID, String lessonType, int totalSize)
 	{
 		this.lessonID = lessonID;
 		this.lessonType = lessonType;
@@ -41,7 +41,7 @@ public class Lesson
 		this.vacancy = totalSize;
 	}
 
-	public String getLessonID()
+	public int getLessonID()
 	{
 		return lessonID;
 	}
@@ -61,7 +61,7 @@ public class Lesson
 		return vacancy;
 	}
 
-	public boolean registerStudent()
+	public boolean decrementVacancy()
 	{
 		if (vacancy > 0)
 		{
@@ -75,19 +75,19 @@ public class Lesson
 		}
 	}
 
-	public boolean deregisterStudent()
-	{
-		if (vacancy <= 0)
-		{
-			// System.out.println("Lesson has no students!");
-			return false;
-		} else
-		{
-			// System.out.println("Student successfully registered.");
-			vacancy++;
-			return true;
-		}
-	}
+//	public boolean deregisterStudent()
+//	{
+//		if (vacancy <= 0)
+//		{
+//			// System.out.println("Lesson has no students!");
+//			return false;
+//		} else
+//		{
+//			// System.out.println("Student successfully deregistered.");
+//			vacancy++;
+//			return true;
+//		}
+//	}
 	
 	@Override
 	public String toString()

@@ -73,14 +73,14 @@ public class CourseDB
 		return false;
 	}
 	
-	public boolean checkLessonExists(String lessonID)
+	public boolean checkLessonExists(int lessonID)
 	{
 		for (Course registeredCourse:courses)
 		{
 			ArrayList<Lesson> lessons = registeredCourse.getLessons();
 			for (Lesson lesson:lessons)
 			{
-				if(lesson.getLessonID().equals(lessonID))
+				if(lesson.getLessonID() == lessonID)
 					return true;
 			}
 		}
