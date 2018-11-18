@@ -64,8 +64,8 @@ public class DatabaseIO
 
 			ArrayList<String> coursesEnrolled = new ArrayList<String>(
 			Arrays.asList(studentStar.nextToken().trim().split("\\s*,\\s*")));
-			ArrayList<ArrayList<Integer>> lessonsRegistered = stringsplit(studentStar.nextToken().trim(), "_");
-			ArrayList<ArrayList<String>> marksObtained = stringsplit(studentStar.nextToken().trim(), "_");
+			ArrayList<ArrayList<Integer>> lessonsRegistered = integerSplit(studentStar.nextToken().trim(), "_");
+			ArrayList<ArrayList<String>> marksObtained = stringSplit(studentStar.nextToken().trim(), "_");
 
 			// For each of the courses for a particular student in the student text file
 			for (int k = 0; k < coursesEnrolled.size(); k++)
@@ -82,7 +82,7 @@ public class DatabaseIO
 						Registration courseRecord = new Registration(student, courses.get(j),
 								lessonsRegisteredCourse);
 						// Change the vacancy of the lessons enrolled accordingly
-						for (String lesson : lessonsRegisteredCourse)
+						for (Integer lesson : lessonsRegisteredCourse)
 						{
 							PrintStream originalStream = System.out;
 							PrintStream dummyStream = new PrintStream(new OutputStream(){
@@ -90,7 +90,7 @@ public class DatabaseIO
 							    }
 							});
 							System.setOut(dummyStream);
-							courses.get(j).getLesson(lesson).registerStudent();
+							courses.get(j).getLesson(lesson).decrementVacancy();
 							System.setOut(originalStream);
 							
 						}
@@ -147,13 +147,13 @@ public class DatabaseIO
 			}
 
 			HashSet<String> uniqueLessonType = new HashSet<String>();
-			ArrayList<ArrayList<String>> lessonList = stringsplit(courseStar.nextToken().trim(), "_");
+			ArrayList<ArrayList<String>> lessonList = stringSplit(courseStar.nextToken().trim(), "_");
 			for (int k = 0; k < lessonList.size(); k++)
 			{
 				ArrayList<String> lessonString = lessonList.get(k);
 				String lessonType = lessonString.get(0);
 				uniqueLessonType.add(lessonType);
-				String lessonID = lessonString.get(1);
+				int lessonID = Integer.parseInt(lessonString.get(1));
 				int totalSize = Integer.parseInt(lessonString.get(2));
 				Lesson lesson = new Lesson(lessonID, lessonType, totalSize);
 				course.addLesson(lesson);
@@ -186,7 +186,7 @@ public class DatabaseIO
 		return faculty;
 	}
 
-	private static ArrayList<ArrayList<String>> stringsplit(String st, String SEP)
+	private static ArrayList<ArrayList<String>> stringSplit(String st, String SEP)
 	{
 		StringTokenizer star = new StringTokenizer(st, SEP);
 		ArrayList<ArrayList<String>> stringList = new ArrayList<ArrayList<String>>();
@@ -198,5 +198,24 @@ public class DatabaseIO
 			stringList.add(arrlist);
 		}
 		return stringList;
+	}
+	
+	private static ArrayList<ArrayList<Integer>> integerSplit(String st, String SEP)
+	{
+		StringTokenizer star = new StringTokenizer(st, SEP);
+		ArrayList<ArrayList<Integer>> intListFull = new ArrayList<ArrayList<Integer>>();
+		int n = star.countTokens();
+		for (int j = 0; j < n; j++)
+		{
+			ArrayList<String> arrlist = new ArrayList<String>(
+					Arrays.asList(star.nextToken().trim().split("\\s*,\\s*")));
+			ArrayList<Integer> intList = new ArrayList<Integer>(); 
+			for (String stringValue:arrlist)
+			{
+				intList.add(Integer.parseInt(stringValue));
+			}
+			intListFull.add(intList);
+		}
+		return intListFull;
 	}
 }
