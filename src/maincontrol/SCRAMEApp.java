@@ -141,10 +141,12 @@ public class SCRAMEApp
 					switch (userChoice2)
 					{
 						case 1:
-							String lessonID = ConsoleInputInterface.getUserStringInput("Enter an index: ",StringFormatType.ALPHA_NUMERIC);
-							while (!courseDB.checkLesson(lessonID))
+							String lessonID = ConsoleInputInterface.
+								getUserStringInput("Enter an index: ",StringFormatType.ALPHA_NUMERIC);
+							while (!courseDB.checkLessonExists(lessonID))
 							{
-								lessonID = ConsoleInputInterface.getUserStringInput("Invalid index. Enter an index: ",StringFormatType.ALPHA_NUMERIC);
+								lessonID = ConsoleInputInterface.
+										getUserStringInput("Invalid index. Enter an index: ",StringFormatType.ALPHA_NUMERIC);
 							}
 							course.printSomeStudents(lessonID);
 							break;

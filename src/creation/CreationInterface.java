@@ -1,11 +1,14 @@
 package creation;
 
+import java.util.HashSet;
+
 import consoleIO.ConsoleInputInterface;
 import consoleIO.StringFormatType;
 import courses.*;
 import database.CourseDB;
 import database.StudentDB;
 import grading.Markable;
+import lessons.Lesson;
 import universityMembers.Student;
 
 /**
@@ -127,5 +130,44 @@ public class CreationInterface
 				getUserPositiveIntInput(subcomponentWeightagePrompt,subcomponentsTotalWeightage);
 
 		return new ComponentWeightage(subcomponentName, subcomponentWeightage);
+	}
+	
+	public static String createLessonTypeForCourse(Course course, HashSet<String> uniqueLessonTypes)
+	{
+		String lessonType;
+		boolean addLessonTypeSuccess;
+		do
+		{
+			String lessonTypePrompt = "Enter the type of lesson to add: ";
+			lessonType = ConsoleInputInterface.
+					getUserStringInput(lessonTypePrompt, StringFormatType.ALPHABETICAL_AND_SPACE);
+			addLessonTypeSuccess = uniqueLessonTypes.add(lessonType);
+			
+			if(!addLessonTypeSuccess)
+				System.out.println(course + " already has " + lessonType + " lessons");
+			
+		} while(!addLessonTypeSuccess);
+		
+		return lessonType;
+	}
+	
+	public static Lesson createLessonForCourse(CourseDB courseDB, String lessonType, int lessonIndex)
+	{
+		String lessonID;
+		boolean lessonAlreadyExists;
+		do
+		{
+			String lessonIDPrompt = "Enter lessonID for " + lessonType + ' ' + lessonIndex + ": ";
+			lessonID = ConsoleInputInterface.getUserStringInput(lessonIDPrompt,StringFormatType.NUMERIC);
+			
+			lessonAlreadyExists = courseDB.checkLessonExists(lessonID);
+		
+			if(lessonAlreadyExists)
+				System.out.println(lessonID + " already exists in course database");
+		
+		} while(lessonAlreadyExists);
+		
+		int totalSize = ConsoleInputInterface.getUserPositiveIntInput("Enter number of vacancies:");
+		return new Lesson(lessonID,lessonType,totalSize);
 	}
 }

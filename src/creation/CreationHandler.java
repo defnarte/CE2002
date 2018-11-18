@@ -102,42 +102,22 @@ public class CreationHandler
 		}
 
 	}
-	public static void createLessons(Course course,CourseDB courses) 
+	public static void createLessons(Course course, CourseDB courseDB) 
 	{
 		ArrayList<Lesson> lessons = new ArrayList<Lesson>();
 		HashSet<String> uniqueLessonTypes = new HashSet<String>();
 		
-		boolean userChoice = true;
+		boolean userChoice;
 		do
 		{
-			String lessonType;
-			boolean addLessonTypeSuccess;
-			do
-			{
-				String lessonTypePrompt = "Enter the type of lesson to add: ";
-				lessonType = ConsoleInputInterface.
-						getUserStringInput(lessonTypePrompt, StringFormatType.ALPHABETICAL_AND_SPACE);
-				addLessonTypeSuccess = uniqueLessonTypes.add(lessonType);
-				
-				if(!addLessonTypeSuccess)
-					System.out.println(course + " already has " + lessonType + " lessons");
-				
-			} while(!addLessonTypeSuccess);
+			String lessonType = CreationInterface.createLessonTypeForCourse(course, uniqueLessonTypes);
 			
-			// Jason's bookmark
 			String numOfLessonsPrompt = "Enter the number of " + lessonType + "s to add:";
 			int numOfLessons = ConsoleInputInterface.getUserPositiveIntInput(numOfLessonsPrompt);
 			
-			for (int i = 1; i <= numOfLessons; i++)
+			for (int lessonIndex = 1; lessonIndex <= numOfLessons; ++lessonIndex)
 			{
-				System.out.println("Getting input for " + lessonType + " " + i);
-				String lessonID = ConsoleInputInterface.getUserStringInput("Enter lessonID:",StringFormatType.NUMERIC);
-				while (courses.checkLesson(lessonID))
-				{
-					lessonID = ConsoleInputInterface.getUserStringInput("LessonID already registered. Please enter a different lessonID:",StringFormatType.NUMERIC);
-				}
-				int totalSize = ConsoleInputInterface.getUserPositiveIntInput("Enter number of vacancies:");
-				Lesson lesson = new Lesson(lessonID,lessonType,totalSize);
+				Lesson lesson = CreationInterface.createLessonForCourse(courseDB, lessonType, lessonIndex);
 				lessons.add(lesson);
 			}
 			
@@ -149,12 +129,14 @@ public class CreationHandler
 		{
 			course.addLesson(lesson);
 		}
+		
 		Iterator<String> it = uniqueLessonTypes.iterator();
 		ArrayList<String> uniqueLessonTypeList = new ArrayList<String>();
 		while (it.hasNext())
 		{
 			uniqueLessonTypeList.add((String) it.next().toString());
 		}
+		
 		course.setLessonTypes(uniqueLessonTypeList);
 		
 	}

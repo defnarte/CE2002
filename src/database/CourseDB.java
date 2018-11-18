@@ -73,38 +73,7 @@ public class CourseDB
 		return false;
 	}
 	
-//	public boolean checkCourseNameExists(String courseName)
-//	{
-//		for (Course registeredCourse : courses)
-//		{
-//			if (registeredCourse.getName().equals(courseName))
-//				return true;
-//		}
-//		return false;
-//	}
-	
-	/**
-	 * Checks if a Course is in the Course database base on the Course code,
-	 * and return the index of the Course in the ArrayList in which it is stored.
-	 * -1 is returned if the Course code cannot found in the ArrayList.
-	 * 
-	 * @param courseCode
-	 * @return index
-	 */
-//	public int checkCourse(String courseCode)
-//	{
-//		int index = 0;
-//		for (Course registeredCourse : courses)
-//		{
-//			if (registeredCourse.getCourseCode().equals(courseCode))
-//				return index;
-//			else
-//				index++;
-//		}
-//		return -1;
-//	}
-	
-	public boolean checkLesson(String lessonID)
+	public boolean checkLessonExists(String lessonID)
 	{
 		for (Course registeredCourse:courses)
 		{
