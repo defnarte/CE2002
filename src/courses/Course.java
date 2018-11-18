@@ -198,34 +198,14 @@ public class Course
 		ConsoleDisplay.displayCourseLessonByTypeWithVacancy(this, lessonType);
 	}
 	
-	// TO-DO: move this method to a display class
 	public void printStudentsInSpecificLesson(String lessonID)
 	{
-		System.out.println("List of students:");
-		for (int i = 0; i < registrations.size(); i++)
-		{
-			ArrayList<String> studentLessons = registrations.get(i).getLessonArrayList();
-			for (int j = 0; j < studentLessons.size(); j++)
-			{
-				if (studentLessons.get(j).equals(lessonID))
-				{
-					System.out.println(registrations.get(i).getRegisteredStudent().getfullName());
-				}
-			}
-		}
+		ConsoleDisplay.displayStudentsInSpecificLesson(this, lessonID);
 	}
 	
-	// TO-DO: move this method to a display class
-	public void printAllStudentsOfALessonType(String lessonType)
+	public void printAllStudents(String lessonType)
 	{
-		for (Lesson lesson : lessons)
-		{
-			if (lesson.getLessonType().equals(lessonType))
-			{
-				String lessonID = lesson.getLessonID();
-				printStudentsInSpecificLesson(lessonID);
-			}
-		}
+		ConsoleDisplay.displayAllStudentsInCourse(this, lessonType);
 	}
 	
 	public boolean checkStudent(String studentID) 

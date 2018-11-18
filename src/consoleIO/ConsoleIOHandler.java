@@ -40,7 +40,8 @@ public class ConsoleIOHandler
 		do
 		{
 			String courseCoordinatorPrompt = "Enter the ID of the faculty member: ";
-			String facultyMemberID = ConsoleInputInterface.getUserStringInput(courseCoordinatorPrompt, StringFormatType.ALPHA_NUMERIC);
+			String facultyMemberID = ConsoleInputInterface.
+					getUserStringInput(courseCoordinatorPrompt, StringFormatType.ALPHA_NUMERIC);
 			facultyMember = facultyDB.getFacultyMember(facultyMemberID);
 			
 			if(facultyMember == null)
@@ -131,7 +132,7 @@ public class ConsoleIOHandler
 					getUserStringInput(lessonIDPrompt,StringFormatType.ALPHA_NUMERIC);
 			lessonExists = courseDB.checkLessonExists(lessonID);
 			
-			if(lessonExists)
+			if(!lessonExists)
 				System.out.println(lessonID + " does not exist in course database");
 			
 		} while (!lessonExists);

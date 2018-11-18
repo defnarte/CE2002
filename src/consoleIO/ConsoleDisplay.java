@@ -147,4 +147,32 @@ public class ConsoleDisplay
 					System.out.println(lesson + " [" + lesson.getVacancy() + '/' + lesson.getTotalSize() + ']');
 		}
 	}
+	
+	public static void displayStudentsInSpecificLesson(Course course, String lessonID)
+	{
+		System.out.println("List of students in " + lessonID + ":");
+		
+		for (Registration registration: course.getRegistrationRecords())
+		{
+			ArrayList<String> registeredLessons = registration.getLessonArrayList();
+			
+			for (String registeredLessonID: registeredLessons)
+			{
+				if (registeredLessonID.equals(lessonID))
+					System.out.println(registration.getRegisteredStudent());
+			}
+		}
+	}
+	
+	public static void displayAllStudentsInCourse(Course course, String lessonType)
+	{
+		for (Lesson lesson: course.getLessons())
+		{
+			if (lesson.getLessonType().equals(lessonType))
+			{
+				String lessonID = lesson.getLessonID();
+				displayStudentsInSpecificLesson(course,lessonID);
+			}
+		}
+	}
 }

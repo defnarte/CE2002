@@ -120,11 +120,12 @@ public class SCRAMEApp
 						
 						lessonType = ConsoleIOHandler.getLessonTypeFromUser();
 						
-						course.printLessonsByType(lessonType); // false
+						course.printLessonsByType(lessonType);
 						
-						String promptMessage = "Select an option:\n"
-						+ "1 - Print student list for a specific " + lessonType + "\n"
-						+ "2 - Print all " + lessonType + " students";
+						String promptMessage = "Display options:\n" + 
+								"1 - Display students in a specific " + lessonType + "\n" + 
+								"2 - Display all " + lessonType + " students\n" + 
+								"Select an option: ";
 						int printingChoice = ConsoleInputInterface.getUserPositiveIntInput(promptMessage,2);
 						
 						if(printingChoice == 1)
@@ -133,7 +134,7 @@ public class SCRAMEApp
 							course.printStudentsInSpecificLesson(lessonID);
 						}
 						else
-							course.printAllStudentsOfALessonType(lessonType);
+							course.printAllStudents(lessonType);
 					}
 
 					break;
