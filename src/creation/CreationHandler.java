@@ -110,11 +110,12 @@ public class CreationHandler
 		boolean userChoice = true;
 		do
 		{
+			String lessonType;
 			boolean addLessonTypeSuccess;
 			do
 			{
 				String lessonTypePrompt = "Enter the type of lesson to add: ";
-				String lessonType = ConsoleInputInterface.
+				lessonType = ConsoleInputInterface.
 						getUserStringInput(lessonTypePrompt, StringFormatType.ALPHABETICAL_AND_SPACE);
 				addLessonTypeSuccess = uniqueLessonTypes.add(lessonType);
 				
@@ -123,7 +124,7 @@ public class CreationHandler
 				
 			} while(!addLessonTypeSuccess);
 			
-			
+			// Jason's bookmark
 			String numOfLessonsPrompt = "Enter the number of " + lessonType + "s to add:";
 			int numOfLessons = ConsoleInputInterface.getUserPositiveIntInput(numOfLessonsPrompt);
 			
