@@ -1,11 +1,6 @@
 package maincontrol;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import consoleIO.*;
 import courses.Course;
@@ -14,7 +9,6 @@ import database.DatabaseIO;
 import database.FacultyMemberDB;
 import database.CourseDB;
 import database.StudentDB;
-import lessons.Lesson;
 import registration.Registration;
 import universityMembers.FacultyMember;
 import universityMembers.Student;

@@ -3,7 +3,6 @@ package database;
 import java.util.ArrayList;
 
 import universityMembers.Student;
-import universityMembers.Student;
 
 public class StudentDB
 {

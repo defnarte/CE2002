@@ -1,7 +1,6 @@
 package grading;
 
 import consoleIO.ConsoleInputInterface;
-import courses.ComponentWeightage;
 import registration.*;
 
 /**

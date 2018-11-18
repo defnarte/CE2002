@@ -4,10 +4,8 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 
-import consoleIO.ConsoleDisplay;
 import consoleIO.ConsoleIOHandler;
 import consoleIO.ConsoleInputInterface;
-import consoleIO.StringFormatType;
 import courses.AggregateComponentWeightage;
 import courses.ComponentWeightage;
 import courses.Course;

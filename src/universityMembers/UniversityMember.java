@@ -2,10 +2,6 @@ package universityMembers;
 
 /**
  * This class holds information of a member of the university.
- * 
- * @version 1.0
- * @since 2018/11/10
- * @author Jason
  *
  */
 public class UniversityMember
@@ -35,7 +31,7 @@ public class UniversityMember
 		return id;
 	}
 	// No Setter for identification number; 
-	// Every record is tied to its identification number.
+	// Every record is tied to its identification number, permanently
 	
 	/**
 	 * Getter for member's full name.
@@ -57,6 +53,10 @@ public class UniversityMember
 	}
 	
 	@Override
+	/**
+	 * Overrided toString to return identification number and full name of university member.
+	 * 
+	 */
 	public String toString()
 	{
 		return id + ' ' + fullName;

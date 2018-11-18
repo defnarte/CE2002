@@ -4,11 +4,6 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import database.FacultyMemberDB;
-import database.StudentDB;
-import universityMembers.FacultyMember;
-import universityMembers.Student;
-
 /**
  * This class gets input from the user. It handles possible bad input from the user
  * 

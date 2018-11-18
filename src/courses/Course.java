@@ -1,7 +1,6 @@
 package courses;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 
 import consoleIO.ConsoleDisplay;
 import creation.CreationHandler;
