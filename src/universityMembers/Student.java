@@ -1,6 +1,6 @@
 package universityMembers;
 
-import registration.CourseRegistrationRecord;
+import registration.Registration;
 
 import java.util.ArrayList;
 
@@ -14,7 +14,7 @@ import java.util.ArrayList;
  */
 public class Student extends UniversityMember
 {
-	private ArrayList<CourseRegistrationRecord> registeredCourses;
+	private ArrayList<Registration> registeredCourses;
 	
 	/**
 	 * Constructor for student that initialises his/her identification number (based on matriculation number)
@@ -26,22 +26,22 @@ public class Student extends UniversityMember
 	public Student(String matricNum, String fullName)
 	{
 		super(matricNum,fullName);
-		registeredCourses = new ArrayList<CourseRegistrationRecord>();
+		registeredCourses = new ArrayList<Registration>();
 	}
 
 	// TO-DO: add comments
-	public void addCourseRegistration(CourseRegistrationRecord newCourseRegistrationRecord)
+	public void addCourseRegistration(Registration newCourseRegistrationRecord)
 	{
 		registeredCourses.add(newCourseRegistrationRecord);
 	}
-	public void dropCourseRegistration(CourseRegistrationRecord courseRegistrationRecord)
+	public void dropCourseRegistration(Registration courseRegistrationRecord)
 	{
 		registeredCourses.remove(courseRegistrationRecord);
 	}
 	
-	public CourseRegistrationRecord getCourseRegistrationRecord(String courseCode)
+	public Registration getCourseRegistrationRecord(String courseCode)
 	{
-		for(CourseRegistrationRecord courseRecord: registeredCourses)
+		for(Registration courseRecord: registeredCourses)
 		{
 			String existingCourseCode = courseRecord.getRegisteredCourse().getCourseCode();
 			
@@ -56,7 +56,7 @@ public class Student extends UniversityMember
 	 * 
 	 * @return registeredCourses
 	 */
-	public ArrayList<CourseRegistrationRecord> getCourseRegRecordArrayList()
+	public ArrayList<Registration> getCourseRegRecordArrayList()
 	{
 		return registeredCourses;
 	}

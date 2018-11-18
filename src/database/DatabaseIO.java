@@ -16,7 +16,7 @@ import courses.*;
 import grading.ComponentResult;
 import grading.OverallResult;
 import lessons.Lesson;
-import registration.CourseRegistrationRecord;
+import registration.Registration;
 import universityMembers.FacultyMember;
 import universityMembers.Student;
 
@@ -79,7 +79,7 @@ public class DatabaseIO
 					{
 						// Include the lessons the student registered for
 						ArrayList<String> lessonsRegisteredCourse = lessonsRegistered.get(k);
-						CourseRegistrationRecord courseRecord = new CourseRegistrationRecord(student, courses.get(j),
+						Registration courseRecord = new Registration(student, courses.get(j),
 								lessonsRegisteredCourse);
 						// Change the vacancy of the lessons enrolled accordingly
 						for (String lesson : lessonsRegisteredCourse)

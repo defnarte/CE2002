@@ -14,7 +14,7 @@ import database.CourseDB;
 import database.StudentDB;
 import grading.Markable;
 import lessons.Lesson;
-import registration.CourseRegistrationRecord;
+import registration.Registration;
 import universityMembers.*;
 
 /**
@@ -183,7 +183,7 @@ public class CreationHandler
 				{
 					System.out.println("Register for " + uniqueLesson);
 					System.out.println("List of indexes:");
-					course.printLessonByType(uniqueLesson); // true
+					course.printLessonsByType(uniqueLesson); // true
 	
 					System.out.println("Select an index to register for:");
 					String lessonIndex = ConsoleInputInterface.consoleScanner.nextLine();
@@ -194,7 +194,7 @@ public class CreationHandler
 					}
 					lessonsEnrolled.add(lessonIndex);
 				}
-				CourseRegistrationRecord newRegistration = new CourseRegistrationRecord(student,course,lessonsEnrolled);
+				Registration newRegistration = new Registration(student,course,lessonsEnrolled);
 				student.addCourseRegistration(newRegistration);
 				course.addStudentRegistration(newRegistration);
 			}

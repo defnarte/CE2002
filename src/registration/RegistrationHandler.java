@@ -22,9 +22,9 @@ import courses.Course;
 //	DEREGISTRATION_SUCCESS,
 //}
 
-public class CourseRegistrationHandler
+public class RegistrationHandler
 {
-	public static CourseRegistrationRecord register(Student student, Course course)
+	public static Registration register(Student student, Course course)
 	{
 //		if(course.getVacancy() == 0)
 //			return null; // RegistrationOutcome.NO_VACANCY;
@@ -32,13 +32,13 @@ public class CourseRegistrationHandler
 		/**
 		 * Checks if student is already registered for this course this semester.
 		 */
-		for(CourseRegistrationRecord registration: course.getRegistrationRecords())
+		for(Registration registration: course.getRegistrationRecords())
 		{
 			if(registration.getRegisteredStudent() == student)
 				return null; // RegistrationOutcome.ALREADY_REGISTERED;
 		}
 		
-		CourseRegistrationRecord newRegistration = new CourseRegistrationRecord(student,course,null);
+		Registration newRegistration = new Registration(student,course,null);
 		student.addCourseRegistration(newRegistration);
 		course.addStudentRegistration(newRegistration);
 		
@@ -55,7 +55,7 @@ public class CourseRegistrationHandler
 		 * Should NOT check from student's end as the student may have taken the course before,
 		 * but failed the course and have to re-take it.
 		 */
-		for(CourseRegistrationRecord registration: course.getRegistrationRecords())
+		for(Registration registration: course.getRegistrationRecords())
 		{
 			if(registration.getRegisteredStudent() == student)
 			{

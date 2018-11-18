@@ -8,7 +8,7 @@ import grading.ComponentResult;
 import grading.Grade;
 import lessons.Lesson;
 import universityMembers.*;
-import registration.CourseRegistrationRecord;
+import registration.Registration;
 
 public class ConsoleDisplay
 {
@@ -41,9 +41,9 @@ public class ConsoleDisplay
 		}
 	}
 	
-	public static void displayRegisteredCourses(ArrayList<CourseRegistrationRecord> courseRegRecordArrayList)
+	public static void displayRegisteredCourses(ArrayList<Registration> courseRegRecordArrayList)
 	{
-		for(CourseRegistrationRecord courseRegRecord: courseRegRecordArrayList)
+		for(Registration courseRegRecord: courseRegRecordArrayList)
 			System.out.println(courseRegRecord);
 	}
 	
@@ -51,9 +51,9 @@ public class ConsoleDisplay
 	{
 		System.out.println("Printing Student Transcript for " + student + ":");
 		
-		ArrayList<CourseRegistrationRecord> courseRegRecordArrayList = student.getCourseRegRecordArrayList();
+		ArrayList<Registration> courseRegRecordArrayList = student.getCourseRegRecordArrayList();
 		
-		for (CourseRegistrationRecord courseRegRecord : courseRegRecordArrayList)
+		for (Registration courseRegRecord : courseRegRecordArrayList)
 		{
 			System.out.println(courseRegRecord.getRegisteredCourse() + " "
 					+ courseRegRecord.getOverallResult().getMarks() + " "
@@ -87,13 +87,13 @@ public class ConsoleDisplay
 		 */
 		double[] courseStat = new double[Grade.TOTAL_NUMBER_OF_GRADES.getValue()];
 		
-		ArrayList<CourseRegistrationRecord> registrations = course.getRegistrationRecords();
+		ArrayList<Registration> registrations = course.getRegistrationRecords();
 		
 		Grade studentGrade;
 		
 		if(userChoice == 1)
 		{
-			for (CourseRegistrationRecord registration : registrations)
+			for (Registration registration : registrations)
 			{
 				studentGrade = registration.getOverallResult().computeGrade();
 				// the statement below increment the number of students who got a particular grade 
@@ -109,7 +109,7 @@ public class ConsoleDisplay
 			ComponentWeightage componentToPrintStatFor = ConsoleIOHandler.getComponentWeightageFromCourse(course);
 			String nameOfComponentToPrintStatFor = componentToPrintStatFor.getName();
 			
-			for (CourseRegistrationRecord registration : registrations)
+			for (Registration registration : registrations)
 			{
 				ComponentResult studentResult = registration.getOverallResult().getComponentResult(nameOfComponentToPrintStatFor);
 				studentGrade = studentResult.computeGrade();
@@ -136,6 +136,15 @@ public class ConsoleDisplay
 		{
 			if (lesson.getLessonType().equals(lessonType) )
 					System.out.println(lesson);
+		}
+	}
+	
+	public static void displayCourseLessonByTypeWithVacancy(Course course, String lessonType)
+	{
+		for (Lesson lesson:course.getLessons())
+		{
+			if (lesson.getLessonType().equals(lessonType) )
+					System.out.println(lesson + " [" + lesson.getVacancy() + '/' + lesson.getTotalSize() + ']');
 		}
 	}
 }

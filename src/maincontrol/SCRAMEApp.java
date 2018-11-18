@@ -15,7 +15,7 @@ import database.FacultyMemberDB;
 import database.CourseDB;
 import database.StudentDB;
 import lessons.Lesson;
-import registration.CourseRegistrationRecord;
+import registration.Registration;
 import universityMembers.FacultyMember;
 import universityMembers.Student;
 
@@ -50,6 +50,7 @@ public class SCRAMEApp
 
 			Student student;
 			Course course;
+			String lessonType;
 
 			switch (userChoice)
 			{
@@ -84,65 +85,34 @@ public class SCRAMEApp
 					course = ConsoleIOHandler.getCourseFromDB(courseDB);
 					ConsoleDisplay.displayCourseLessonTypes(course);
 					
-					String lessonTypePrompt = "Enter a lesson type to print by: ";
-					String lessonType = ConsoleInputInterface.
-							getUserStringInput(lessonTypePrompt, StringFormatType.ALPHABETICAL_AND_SPACE);
+					lessonType = ConsoleIOHandler.getLessonTypeFromUser();
 					
 					System.out.println("All indexes for " + lessonType + ": ");
-					course.printLessonByType(lessonType);
+					course.printLessonsByTypeWithVacancy(lessonType);
 
 					break;
 
 				case 5:
 					// Print student list by lecture, tutorial or laboratory session for a course.
 					course = ConsoleIOHandler.getCourseFromDB(courseDB);
-
-					System.out.println("All lesson types under this course: ");
-					ArrayList<Lesson> lessons2 = course.getLessons();
-					ArrayList<String> lessonListType2 = new ArrayList<String>();
-					for (int j = 0; j < lessons2.size(); j++)
-					{
-						lessonListType2.add(lessons2.get(j).getLessonType());
-					}
-					// Find all unique lesson types
-					HashSet<String> uniqueLessonType2 = new HashSet<String>(lessonListType2);
-					Iterator<String> it2 = uniqueLessonType2.iterator();
-					while (it2.hasNext())
-					{
-						System.out.println(it2.next());
-					}
-					String lessonType2 = ConsoleInputInterface.getUserStringInput("Enter a lesson type to check vacancy: ", StringFormatType.ALPHA_NUMERIC);
-					while (!course.checkLessonType(lessonType2))
-					{
-						lessonType2 = ConsoleInputInterface.getUserStringInput("Invalid lesson type. Enter a lesson type to check vacancy: ", StringFormatType.ALPHA_NUMERIC);
-					}
-					System.out.printf("All indexes for %s:\n", lessonType2);
-					course.printLessonByType(lessonType2); // false
+					ConsoleDisplay.displayCourseLessonTypes(course);
+					
+					lessonType = ConsoleIOHandler.getLessonTypeFromUser();
+					
+					course.printLessonsByType(lessonType); // false
 					
 					String promptMessage = "Select an option:\n"
-					+ "1 - Print student list by index\n"
-					+ "2 - Print all studentDB\n";
-					int userChoice2 = ConsoleInputInterface.getUserPositiveIntInput(promptMessage,2);
+					+ "1 - Print student list for a specific " + lessonType + "\n"
+					+ "2 - Print all " + lessonType + " students";
+					int printingChoice = ConsoleInputInterface.getUserPositiveIntInput(promptMessage,2);
 					
-					switch (userChoice2)
+					if(printingChoice == 1)
 					{
-						case 1:
-							String lessonID = ConsoleInputInterface.
-								getUserStringInput("Enter an index: ",StringFormatType.ALPHA_NUMERIC);
-							while (!courseDB.checkLessonExists(lessonID))
-							{
-								lessonID = ConsoleInputInterface.
-										getUserStringInput("Invalid index. Enter an index: ",StringFormatType.ALPHA_NUMERIC);
-							}
-							course.printSomeStudents(lessonID);
-							break;
-						case 2:
-							course.printAllStudents(lessonType2);
-							break;
-						default:
-							System.out.println("Invalid option.");
-							break;
+						String lessonID = ConsoleIOHandler.getLessonIDFromUser(courseDB);
+						course.printStudentsInSpecificLesson(lessonID);
 					}
+					else
+						course.printAllStudentsOfALessonType(lessonType);
 
 					break;
 
@@ -166,7 +136,7 @@ public class SCRAMEApp
 						System.out.println("Which course do you want to enter marks in?");
 						ConsoleDisplay.displayRegisteredCourses(student.getCourseRegRecordArrayList());
 
-						CourseRegistrationRecord courseRegRecord = ConsoleIOHandler.getCourseRegRecordFromStudent(student);
+						Registration courseRegRecord = ConsoleIOHandler.getCourseRegRecordFromStudent(student);
 
 						courseRegRecord.enterMarks();
 					}

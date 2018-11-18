@@ -13,7 +13,7 @@ import registration.*;
  */
 public class MarksEntryInterface
 {
-	public static void enterMarksForCourse(CourseRegistrationRecord record)
+	public static void enterMarksForCourse(Registration record)
 	{
 		for(ComponentResult componentResult: record.getOverallResult().getComponentResultList())
 			enterMarksForComponent(componentResult);

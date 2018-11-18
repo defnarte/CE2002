@@ -13,14 +13,14 @@ import grading.OverallResult;
  * @author Jason
  *
  */
-public class CourseRegistrationRecord
+public class Registration
 {
 	private Student registeredStudent;
 	private Course registeredCourse;
 	private ArrayList<String> lessons;
 	private OverallResult overallResult;
 	
-	public CourseRegistrationRecord(Student student, Course course, ArrayList<String> lessons)
+	public Registration(Student student, Course course, ArrayList<String> lessons)
 	{
 		this.registeredStudent = student;
 		this.registeredCourse = course;

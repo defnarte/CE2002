@@ -5,7 +5,7 @@ import courses.Course;
 import database.CourseDB;
 import database.FacultyMemberDB;
 import database.StudentDB;
-import registration.CourseRegistrationRecord;
+import registration.Registration;
 import universityMembers.FacultyMember;
 import universityMembers.Student;
 
@@ -70,11 +70,11 @@ public class ConsoleIOHandler
 		return student;
 	}
 	
-	public static CourseRegistrationRecord getCourseRegRecordFromStudent(Student student)
+	public static Registration getCourseRegRecordFromStudent(Student student)
 	{
 		ConsoleDisplay.displayRegisteredCourses(student.getCourseRegRecordArrayList());
 		
-		CourseRegistrationRecord courseRegRecord;
+		Registration courseRegRecord;
 		do
 		{
 			String courseCodePrompt = "Enter the course code: ";
@@ -112,5 +112,30 @@ public class ConsoleIOHandler
 		} while(component == null);
 		
 		return null;
+	}
+	
+	public static String getLessonTypeFromUser()
+	{
+		String lessonTypePrompt = "Enter lesson type: ";
+		return ConsoleInputInterface.getUserStringInput(lessonTypePrompt, StringFormatType.ALPHABETICAL_AND_SPACE);
+	}
+	
+	public static String getLessonIDFromUser(CourseDB courseDB)
+	{
+		String lessonIDPrompt = "Enter lesson ID: ";
+		String lessonID;
+		boolean lessonExists;
+		do
+		{
+			lessonID = ConsoleInputInterface.
+					getUserStringInput(lessonIDPrompt,StringFormatType.ALPHA_NUMERIC);
+			lessonExists = courseDB.checkLessonExists(lessonID);
+			
+			if(lessonExists)
+				System.out.println(lessonID + " does not exist in course database");
+			
+		} while (!lessonExists);
+		
+		return lessonID;
 	}
 }

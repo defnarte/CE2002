@@ -6,7 +6,7 @@ import java.util.HashSet;
 import consoleIO.ConsoleDisplay;
 import creation.CreationHandler;
 import universityMembers.FacultyMember;
-import registration.CourseRegistrationRecord;
+import registration.Registration;
 import lessons.Lesson;
 
 /**
@@ -27,7 +27,7 @@ public class Course
 	private ArrayList<String> lessonTypes;
 	private ArrayList<Lesson> lessons;
 	private ArrayList<ComponentWeightage> componentWeightageList;
-	private ArrayList<CourseRegistrationRecord> registrations; // registrations for this course
+	private ArrayList<Registration> registrations; // registrations for this course
 
 	/**
 	 * Constructor for course that initialises the course's code, name, coordinator
@@ -46,7 +46,7 @@ public class Course
 		
 		lessons = new ArrayList<Lesson>();
 		lessonTypes = new ArrayList<String>();
-		registrations = new ArrayList<CourseRegistrationRecord>();
+		registrations = new ArrayList<Registration>();
 		componentWeightageList = new ArrayList<ComponentWeightage>();
 	}
 	public Course(String courseCode, String courseName, FacultyMember courseCoordinator)
@@ -58,7 +58,7 @@ public class Course
 		lessons = new ArrayList<Lesson>();
 		lessonTypes = new ArrayList<String>();
 		componentWeightageList = new ArrayList<ComponentWeightage>();
-		registrations = new ArrayList<CourseRegistrationRecord>();
+		registrations = new ArrayList<Registration>();
 	}
 
 	/**
@@ -151,18 +151,18 @@ public class Course
 	 * 
 	 * @return registrations
 	 */
-	public ArrayList<CourseRegistrationRecord> getRegistrationRecords()
+	public ArrayList<Registration> getRegistrationRecords()
 	{
 		return registrations;
 	}
 
 	// TO-DO: add comments
-	public void addStudentRegistration(CourseRegistrationRecord newCourseRegistrationRecord)
+	public void addStudentRegistration(Registration newCourseRegistrationRecord)
 	{
 		registrations.add(newCourseRegistrationRecord);
 	}
 
-	public void dropStudentRegistration(CourseRegistrationRecord courseRegistrationRecord)
+	public void dropStudentRegistration(Registration courseRegistrationRecord)
 	{
 		registrations.remove(courseRegistrationRecord);
 	}
@@ -188,13 +188,18 @@ public class Course
 		lessons.add(lesson);
 	}
 	
-	public void printLessonByType(String lessonType)
+	public void printLessonsByType(String lessonType)
 	{
 		ConsoleDisplay.displayCourseLessonByType(this, lessonType);
 	}
 	
+	public void printLessonsByTypeWithVacancy(String lessonType)
+	{
+		ConsoleDisplay.displayCourseLessonByTypeWithVacancy(this, lessonType);
+	}
+	
 	// TO-DO: move this method to a display class
-	public void printSomeStudents(String lessonID)
+	public void printStudentsInSpecificLesson(String lessonID)
 	{
 		System.out.println("List of students:");
 		for (int i = 0; i < registrations.size(); i++)
@@ -211,21 +216,21 @@ public class Course
 	}
 	
 	// TO-DO: move this method to a display class
-	public void printAllStudents(String lessonType)
+	public void printAllStudentsOfALessonType(String lessonType)
 	{
 		for (Lesson lesson : lessons)
 		{
 			if (lesson.getLessonType().equals(lessonType))
 			{
 				String lessonID = lesson.getLessonID();
-				printSomeStudents(lessonID);
+				printStudentsInSpecificLesson(lessonID);
 			}
 		}
 	}
 	
 	public boolean checkStudent(String studentID) 
 	{
-		for (CourseRegistrationRecord registeredStudent:registrations) 
+		for (Registration registeredStudent:registrations) 
 		{
 			if (registeredStudent.getRegisteredStudent().getID().equals(studentID))
 				return true;

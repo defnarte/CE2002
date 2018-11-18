@@ -92,6 +92,6 @@ public class Lesson
 	@Override
 	public String toString()
 	{
-		return lessonType + ' ' + lessonID + " [" + vacancy + '/' + totalSize + ']';
+		return lessonType + ' ' + lessonID;
 	}
 }

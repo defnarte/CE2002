@@ -154,18 +154,18 @@ public class CreationInterface
 	public static Lesson createLessonForCourse(CourseDB courseDB, String lessonType, int lessonIndex)
 	{
 		String lessonID;
-		boolean lessonAlreadyExists;
+		boolean lessonExists;
 		do
 		{
 			String lessonIDPrompt = "Enter lessonID for " + lessonType + ' ' + lessonIndex + ": ";
 			lessonID = ConsoleInputInterface.getUserStringInput(lessonIDPrompt,StringFormatType.NUMERIC);
 			
-			lessonAlreadyExists = courseDB.checkLessonExists(lessonID);
+			lessonExists = courseDB.checkLessonExists(lessonID);
 		
-			if(lessonAlreadyExists)
+			if(lessonExists)
 				System.out.println(lessonID + " already exists in course database");
 		
-		} while(lessonAlreadyExists);
+		} while(lessonExists);
 		
 		int totalSize = ConsoleInputInterface.getUserPositiveIntInput("Enter number of vacancies:");
 		return new Lesson(lessonID,lessonType,totalSize);
