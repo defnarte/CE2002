@@ -3,6 +3,7 @@ package courses;
 import java.util.ArrayList;
 import java.util.HashSet;
 
+import consoleIO.ConsoleDisplay;
 import creation.CreationHandler;
 import universityMembers.FacultyMember;
 import registration.CourseRegistrationRecord;
@@ -187,19 +188,11 @@ public class Course
 		lessons.add(lesson);
 	}
 	
-	public void printLessonList(String lessonType,boolean full)
+	public void printLessonByType(String lessonType)
 	{
-		for (Lesson lesson:lessons)
-		{
-			if (lesson.getLessonType().equals(lessonType) )
-			{
-				if (full == true)
-					System.out.println(lesson.getLessonID() + " " + lesson.getVacancy() + "/" + lesson.getTotalSize());
-				else
-					System.out.println(lesson.getLessonID());
-			}
-		}
+		ConsoleDisplay.displayCourseLessonByType(this, lessonType);
 	}
+	
 	// TO-DO: move this method to a display class
 	public void printSomeStudents(String lessonID)
 	{
@@ -252,13 +245,6 @@ public class Course
 	@Override
 	public String toString()
 	{
-		String componentString = "";
-
-		for (ComponentWeightage component : componentWeightageList)
-		{
-			componentString += component.toString();
-		}
-
 		return "Course[" + courseCode + ' ' + name + ']';
 	}
 }

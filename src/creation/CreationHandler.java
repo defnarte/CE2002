@@ -183,7 +183,7 @@ public class CreationHandler
 				{
 					System.out.println("Register for " + uniqueLesson);
 					System.out.println("List of indexes:");
-					course.printLessonList(uniqueLesson,true);
+					course.printLessonByType(uniqueLesson); // true
 	
 					System.out.println("Select an index to register for:");
 					String lessonIndex = ConsoleInputInterface.consoleScanner.nextLine();

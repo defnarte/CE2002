@@ -6,6 +6,7 @@ import courses.ComponentWeightage;
 import courses.Course;
 import grading.ComponentResult;
 import grading.Grade;
+import lessons.Lesson;
 import universityMembers.*;
 import registration.CourseRegistrationRecord;
 
@@ -14,15 +15,15 @@ public class ConsoleDisplay
 	public static void displayMainMenu()
 	{
 		System.out.println("Select an option:\n" + 
-				"1.  Add a student\n" + 
-				"2.  Add a course\n" + 
-				"3.  Register student for a course (this include registering for Tutorial/Lab classes)\n" + 
-				"4.  Check available slot in a class (vacancy in a class)\n" + 
-				"5.  Print student list by lecture, tutorial or laboratory session for a course.\n" + 
-				"6.  Enter course assessment components weightage\n" + 
-				"7.  Enter marks for course taken by student\n" + 
+				"1.  Add a student to student database\n" + 
+				"2.  Add a course to course database\n" + 
+				"3.  Register student for a course (includes registering lessons)\n" + 
+				"4.  Check available slot (vacancy) by lesson type in a course\n" + 
+				"5.  Print student list by lesson type for a course.\n" + 
+				"6.  Enter course assessment components weightage for a course\n" + 
+				"7.  Enter marks for a course taken a by student\n" + 
 				"8.  Print course statistics\n" + 
-				"9.  Print student transcript.\n" + 
+				"9.  Print a student transcript.\n" + 
 				"10. Quit");
 	}
 	
@@ -119,5 +120,22 @@ public class ConsoleDisplay
 		
 		for (int i = 0; i < Grade.TOTAL_NUMBER_OF_GRADES.getValue(); ++i)
 			System.out.printf("%s %.2f %%\n", Grade.valueOf(i), (courseStat[i]/ registrations.size() * 100.0));
+	}
+	
+	public static void displayCourseLessonTypes(Course course)
+	{
+		System.out.println("All lesson types under this course: ");
+		
+		for(String lessonType: course.getLessonTypes())
+			System.out.println(lessonType);
+	}
+	
+	public static void displayCourseLessonByType(Course course, String lessonType)
+	{
+		for (Lesson lesson:course.getLessons())
+		{
+			if (lesson.getLessonType().equals(lessonType) )
+					System.out.println(lesson);
+		}
 	}
 }

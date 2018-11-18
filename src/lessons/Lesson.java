@@ -88,4 +88,10 @@ public class Lesson
 			return true;
 		}
 	}
+	
+	@Override
+	public String toString()
+	{
+		return lessonType + ' ' + lessonID + " [" + vacancy + '/' + totalSize + ']';
+	}
 }

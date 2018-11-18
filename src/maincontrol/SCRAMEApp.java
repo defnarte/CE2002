@@ -82,30 +82,14 @@ public class SCRAMEApp
 				case 4:
 					// Check available slot in a class (vacancy in a class)
 					course = ConsoleIOHandler.getCourseFromDB(courseDB);
-
-					System.out.println("All lesson types under this course: ");
-					ArrayList<Lesson> lessons = course.getLessons();
-					ArrayList<String> lessonListType = new ArrayList<String>();
-					for (int j = 0; j < lessons.size(); j++)
-					{
-						lessonListType.add(lessons.get(j).getLessonType());
-					}
-					// Find all unique lesson types
-					HashSet<String> uniqueLessonType = new HashSet<String>(lessonListType);
-					Iterator<String> it = uniqueLessonType.iterator();
-					while (it.hasNext())
-					{
-						System.out.println(it.next());
-					}
-					System.out.println("Enter a lesson type to print by: ");
-					String lessonType = ConsoleInputInterface.consoleScanner.nextLine();
-					System.out.printf("All indexes for %s:\n", lessonType);
-					course.printLessonList(lessonType,false);
-					System.out.println("Enter an index: ");
-					String lessonIndex2 = ConsoleInputInterface.consoleScanner.nextLine();
-					int vacancy = course.getLesson(lessonIndex2).getVacancy();
-					int totalSize = course.getLesson(lessonIndex2).getTotalSize();
-					System.out.printf("%s %d/%d\n", lessonIndex2, vacancy, totalSize);
+					ConsoleDisplay.displayCourseLessonTypes(course);
+					
+					String lessonTypePrompt = "Enter a lesson type to print by: ";
+					String lessonType = ConsoleInputInterface.
+							getUserStringInput(lessonTypePrompt, StringFormatType.ALPHABETICAL_AND_SPACE);
+					
+					System.out.println("All indexes for " + lessonType + ": ");
+					course.printLessonByType(lessonType);
 
 					break;
 
@@ -133,11 +117,13 @@ public class SCRAMEApp
 						lessonType2 = ConsoleInputInterface.getUserStringInput("Invalid lesson type. Enter a lesson type to check vacancy: ", StringFormatType.ALPHA_NUMERIC);
 					}
 					System.out.printf("All indexes for %s:\n", lessonType2);
-					course.printLessonList(lessonType2,false);
+					course.printLessonByType(lessonType2); // false
+					
 					String promptMessage = "Select an option:\n"
 					+ "1 - Print student list by index\n"
 					+ "2 - Print all studentDB\n";
 					int userChoice2 = ConsoleInputInterface.getUserPositiveIntInput(promptMessage,2);
+					
 					switch (userChoice2)
 					{
 						case 1:
@@ -168,18 +154,22 @@ public class SCRAMEApp
 
 					break;
 
-				case 7: // incomplete
+				case 7:
 					// Enter course component marks.
 					student = ConsoleIOHandler.getStudentFromDB(studentDB);
 
-					// have to check if student is currently taking any course at all
+					// check if student is currently taking any course at all
+					if(student.getCourseRegRecordArrayList().isEmpty())
+						System.out.println(student + " is not registered for any course currently.");
+					else
+					{
+						System.out.println("Which course do you want to enter marks in?");
+						ConsoleDisplay.displayRegisteredCourses(student.getCourseRegRecordArrayList());
 
-					System.out.println("Which course do you want to enter marks in?");
-					ConsoleDisplay.displayRegisteredCourses(student.getCourseRegRecordArrayList());
+						CourseRegistrationRecord courseRegRecord = ConsoleIOHandler.getCourseRegRecordFromStudent(student);
 
-					CourseRegistrationRecord courseRegRecord = ConsoleIOHandler.getCourseRegRecordFromStudent(student);
-
-					courseRegRecord.enterMarks();
+						courseRegRecord.enterMarks();
+					}
 
 					break;
 
@@ -212,23 +202,4 @@ public class SCRAMEApp
 		ConsoleInputInterface.consoleScanner.close();
 	}
 
-	public static boolean checkInput(String input, int type)
-	{
-		boolean b = false;
-		// Check letters and whitespace
-		if (type == 1)
-		{
-			Pattern p = Pattern.compile("^[ A-Za-z]+$");
-			Matcher m = p.matcher(input);
-			b = m.matches();
-		}
-		// Check letters and digits
-		else if (type == 2)
-		{
-			Pattern p2 = Pattern.compile("^[A-Za-z0-9]+$");
-			Matcher m2 = p2.matcher(input);
-			b = m2.matches();
-		}
-		return b;
-	}
 }
