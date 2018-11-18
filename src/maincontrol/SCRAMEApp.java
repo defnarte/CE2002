@@ -58,69 +58,96 @@ public class SCRAMEApp
 					// Add a student
 					student = CreationHandler.createStudent(studentDB);
 					studentDB.addStudent(student);
-					System.out.println("List of all studentDB:");
+					System.out.println("List of all students:");
 					studentDB.printStudentList();
 					break;
 				case 2:
 					// Add a course
 					System.out.println("List of all faculty members: ");
 					ConsoleDisplay.displayUniversityMembers(facultyMemberDB.getFacultyAl());
-
 					FacultyMember courseCoordinator = ConsoleIOHandler.getFacultyMemberFromDB(facultyMemberDB);
+					
 					course = CreationHandler.createCourse(courseCoordinator,courseDB);
 					CreationHandler.createLessons(course,courseDB);
 					courseDB.addCourse(course);
+					
 					courseDB.printCourseList();
 					break;
 				case 3:
-					// Register student for a course (this include registering for Tutorial/Lab
-					// classes)
-					// have to check if studentDB is empty
-					student = ConsoleIOHandler.getStudentFromDB(studentDB);
-					CreationHandler.createRegistration(student,courseDB);
+					// Register student for a course (this include registering for lessons)
+					if(studentDB.getStudentAl().isEmpty())
+					{
+						System.out.println("No students exist in student database.");
+					}
+					else
+					{
+						student = ConsoleIOHandler.getStudentFromDB(studentDB);
+						CreationHandler.createRegistration(student,courseDB);
+					}
+					
 					break;
 
 				case 4:
-					// Check available slot in a class (vacancy in a class)
-					course = ConsoleIOHandler.getCourseFromDB(courseDB);
-					ConsoleDisplay.displayCourseLessonTypes(course);
+					// Check available slot(vacancy) in lessons of a certain type in a course
+					if(courseDB.getCourseAl().isEmpty())
+					{
+						System.out.println("No courses exist in course database.");
+					}
+					else
+					{
+						course = ConsoleIOHandler.getCourseFromDB(courseDB);
+						ConsoleDisplay.displayCourseLessonTypes(course);
+						
+						lessonType = ConsoleIOHandler.getLessonTypeFromUser();
+						
+						System.out.println("All indexes for " + lessonType + ": ");
+						course.printLessonsByTypeWithVacancy(lessonType);
+					}
 					
-					lessonType = ConsoleIOHandler.getLessonTypeFromUser();
-					
-					System.out.println("All indexes for " + lessonType + ": ");
-					course.printLessonsByTypeWithVacancy(lessonType);
-
 					break;
 
 				case 5:
-					// Print student list by lecture, tutorial or laboratory session for a course.
-					course = ConsoleIOHandler.getCourseFromDB(courseDB);
-					ConsoleDisplay.displayCourseLessonTypes(course);
-					
-					lessonType = ConsoleIOHandler.getLessonTypeFromUser();
-					
-					course.printLessonsByType(lessonType); // false
-					
-					String promptMessage = "Select an option:\n"
-					+ "1 - Print student list for a specific " + lessonType + "\n"
-					+ "2 - Print all " + lessonType + " students";
-					int printingChoice = ConsoleInputInterface.getUserPositiveIntInput(promptMessage,2);
-					
-					if(printingChoice == 1)
+					// Print student list by lesson type, or in a specific lesson of a certain type for a course.
+					if(courseDB.getCourseAl().isEmpty())
 					{
-						String lessonID = ConsoleIOHandler.getLessonIDFromUser(courseDB);
-						course.printStudentsInSpecificLesson(lessonID);
+						System.out.println("No courses exist in course database.");
 					}
 					else
-						course.printAllStudentsOfALessonType(lessonType);
+					{
+						course = ConsoleIOHandler.getCourseFromDB(courseDB);
+						ConsoleDisplay.displayCourseLessonTypes(course);
+						
+						lessonType = ConsoleIOHandler.getLessonTypeFromUser();
+						
+						course.printLessonsByType(lessonType); // false
+						
+						String promptMessage = "Select an option:\n"
+						+ "1 - Print student list for a specific " + lessonType + "\n"
+						+ "2 - Print all " + lessonType + " students";
+						int printingChoice = ConsoleInputInterface.getUserPositiveIntInput(promptMessage,2);
+						
+						if(printingChoice == 1)
+						{
+							String lessonID = ConsoleIOHandler.getLessonIDFromUser(courseDB);
+							course.printStudentsInSpecificLesson(lessonID);
+						}
+						else
+							course.printAllStudentsOfALessonType(lessonType);
+					}
 
 					break;
 
 				case 6:
 					// Enter course assessment components weightage for a course
-					course = ConsoleIOHandler.getCourseFromDB(courseDB);
-
-					CreationHandler.createCourseComponents(course);
+					if(courseDB.getCourseAl().isEmpty())
+					{
+						System.out.println("No courses exist in course database.");
+					}
+					else
+					{
+						course = ConsoleIOHandler.getCourseFromDB(courseDB);
+						CreationHandler.createCourseComponents(course);
+					}
 
 					break;
 
@@ -145,15 +172,31 @@ public class SCRAMEApp
 
 				case 8:
 					// Print course statistics
-					course = ConsoleIOHandler.getCourseFromDB(courseDB);
-					ConsoleDisplay.displayCourseStatistic(course);
+					
+					if(courseDB.getCourseAl().isEmpty())
+					{
+						System.out.println("No courses exist in course database.");
+					}
+					else
+					{
+						course = ConsoleIOHandler.getCourseFromDB(courseDB);
+						ConsoleDisplay.displayCourseStatistic(course);
+					}
 
 					break;
 
 				case 9:
 					// Print student transcript
-					student = ConsoleIOHandler.getStudentFromDB(studentDB);
-					ConsoleDisplay.displayStudentTranscript(student);
+					
+					if(studentDB.getStudentAl().isEmpty())
+					{
+						System.out.println("No students exist in student database.");
+					}
+					else
+					{
+						student = ConsoleIOHandler.getStudentFromDB(studentDB);
+						ConsoleDisplay.displayStudentTranscript(student);
+					}
 
 					break;
 
