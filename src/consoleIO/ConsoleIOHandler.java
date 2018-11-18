@@ -34,12 +34,13 @@ public class ConsoleIOHandler
 	
 	public static FacultyMember getFacultyMemberFromDB(FacultyMemberDB facultyDB)
 	{
+		System.out.println("List of all faculty members: ");
 		ConsoleDisplay.displayUniversityMembers(facultyDB.getFacultyAl());
-		
+
+		String courseCoordinatorPrompt = "Enter the ID of the faculty member: ";
 		FacultyMember facultyMember;
 		do
 		{
-			String courseCoordinatorPrompt = "Enter the ID of the faculty member: ";
 			String facultyMemberID = ConsoleInputInterface.
 					getUserStringInput(courseCoordinatorPrompt, StringFormatType.ALPHA_NUMERIC);
 			facultyMember = facultyDB.getFacultyMember(facultyMemberID);
@@ -56,10 +57,10 @@ public class ConsoleIOHandler
 	{
 		ConsoleDisplay.displayUniversityMembers(studentDB.getStudentAl());
 		
+		String studentIDPrompt = "Enter the student's ID: ";
 		Student student;
 		do
 		{
-			String studentIDPrompt = "Enter the student's ID: ";
 			String studentID = ConsoleInputInterface.getUserStringInput(studentIDPrompt, StringFormatType.ALPHA_NUMERIC);
 			student = studentDB.getStudent(studentID);
 			

@@ -92,7 +92,8 @@ public class CreationInterface
 		System.out.println("\n---Creating component " + componentIndex + "---");
 
 		String componentNamePrompt = "Enter the name of component " + componentIndex + ": ";
-		String componentName = ConsoleInputInterface.getUserStringInput(componentNamePrompt, StringFormatType.ALPHABETICAL_AND_SPACE);
+		String componentName = ConsoleInputInterface.
+				getUserStringInput(componentNamePrompt, StringFormatType.ALPHABETICAL_AND_SPACE);
 
 		String componentWeightagePrompt = "Enter the weightage of " + componentName + 
 				" out of " + Markable.MAX_MARKS +" (" + componentsTotalWeightage + " remaining): ";
@@ -181,9 +182,9 @@ public class CreationInterface
 		for (String lessonType : course.getLessonTypes())
 		{
 			System.out.println("List of lessonID for " + lessonType + ":");
-			course.printLessonsByType(lessonType);
+			course.printLessonsByTypeWithVacancy(lessonType);
 			
-			String lessonIDPrompt = "Enter lessonID of " + lessonType + "to register for: ";
+			String lessonIDPrompt = "Enter lessonID of " + lessonType + " to register for: ";
 			int lessonID;
 			boolean lessonHasVacancy;
 			

@@ -2,10 +2,6 @@ package universityMembers;
 
 /**
  * This class holds information of a university faculty member.
- * 
- * @version 1.1
- * @since 2018/11/12
- * @author Jason
  *
  */
 public class FacultyMember extends UniversityMember
@@ -23,6 +19,10 @@ public class FacultyMember extends UniversityMember
 	}
 	
 	@Override
+	/**
+	 * Overrided toString that returns "Faculty Member[id fullName]"
+	 * 
+	 */
 	public String toString()
 	{
 		return "Faculty Member[" + super.toString() + ']';

@@ -54,7 +54,7 @@ public class UniversityMember
 	
 	@Override
 	/**
-	 * Overrided toString to return identification number and full name of university member.
+	 * Overrided toString that returns identification number and full name of university member.
 	 * 
 	 */
 	public String toString()

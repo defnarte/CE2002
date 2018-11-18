@@ -14,7 +14,7 @@ public class ConsoleDisplay
 {
 	public static void displayMainMenu()
 	{
-		System.out.println("Select an option:\n" + 
+		System.out.println("\nSelect an option:\n" + 
 				"1.  Add a student to student database\n" + 
 				"2.  Add a course to course database\n" + 
 				"3.  Register student for a course (includes registering lessons)\n" + 

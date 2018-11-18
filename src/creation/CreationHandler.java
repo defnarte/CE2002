@@ -137,9 +137,6 @@ public class CreationHandler
 
 	public static void createRegistration(Student student, CourseDB courseDB)
 	{
-		System.out.println("List of all courses:");
-		courseDB.printCourseList();
-
 		Course course = ConsoleIOHandler.getCourseFromDB(courseDB);
 
 		if (course.checkStudent(student.getID()))
@@ -154,26 +151,21 @@ public class CreationHandler
 			isLessonTypeFullArray[i] = true;
 		}
 
-		for (Lesson lesson : course.getLessons())
+		int lessonTypeFullArrayIndex = 0;
+		
+		for(String lessonType: course.getLessonTypes())
 		{
-			for (String lessonType : course.getLessonTypes())
+			for(Lesson lesson: course.getLessons())
 			{
-				int lessonTypeIndex = 0;
-
-				if (lesson.getLessonType().equals(lessonType))
+				if(lesson.getLessonType().equals(lessonType) && lesson.getVacancy() > 0)
 				{
-					// As long as there is a vacancy for the lessonType, proceed to check the next
-					// lessonType.
-					if (lesson.getVacancy() > 0)
-					{
-						isLessonTypeFullArray[lessonTypeIndex] = false;
-						continue;
-					}
+					isLessonTypeFullArray[lessonTypeFullArrayIndex] = false;
+					break;
 				}
-				++lessonTypeIndex;
 			}
+			
+			++lessonTypeFullArrayIndex;
 		}
-
 		for (boolean isLessonTypeFull : isLessonTypeFullArray)
 		{
 			// If any lessonType is full, the student is unable to register for the course.
@@ -190,6 +182,7 @@ public class CreationHandler
 		
 		student.addCourseRegistration(newRegistration);
 		course.addStudentRegistration(newRegistration);
-
+		
+		System.out.println(student + " is registered for " + course);
 	}
 }

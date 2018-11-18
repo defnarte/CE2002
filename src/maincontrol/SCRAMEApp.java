@@ -58,8 +58,6 @@ public class SCRAMEApp
 					break;
 				case 2:
 					// Add a course
-					System.out.println("List of all faculty members: ");
-					ConsoleDisplay.displayUniversityMembers(facultyMemberDB.getFacultyAl());
 					FacultyMember courseCoordinator = ConsoleIOHandler.getFacultyMemberFromDB(facultyMemberDB);
 					
 					course = CreationHandler.createCourse(courseCoordinator,courseDB);

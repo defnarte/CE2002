@@ -14,7 +14,7 @@ public class Student extends UniversityMember
 	
 	/**
 	 * Constructor for student that initialises his/her identification number (based on matriculation number)
-	 * and full name.
+	 * and full name based on parameters passed in. 
 	 * 
 	 * @param matricNum
 	 * @param fullName
