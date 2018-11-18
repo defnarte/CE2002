@@ -90,7 +90,7 @@ public class DatabaseIO
 							    }
 							});
 							System.setOut(dummyStream);
-							courses.get(j).getLesson(lesson).enrolStudent();
+							courses.get(j).getLesson(lesson).registerStudent();
 							System.setOut(originalStream);
 							
 						}
@@ -107,10 +107,10 @@ public class DatabaseIO
 						}
 						OverallResult results = new OverallResult();
 						results.setOverallResults(componentResultList);
-						courseRecord.setOverallResults(results);
+						courseRecord.setOverallResult(results);
 
-						student.addCourse(courseRecord);
-						courses.get(j).addRegistration(courseRecord);
+						student.addCourseRegistration(courseRecord);
+						courses.get(j).addStudentRegistration(courseRecord);
 					}
 
 				}

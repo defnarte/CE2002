@@ -48,17 +48,21 @@ public class ComponentResult implements Weightable
 	public Grade computeGrade()
 	{
 		int marks = (int) Math.round(getMarks());
+		
 		if (marks < 40) 
 		{
+			// Grade: F
 			return Grade.values()[0];
 		}
 		else if (marks >= 85)
 		{
+			// Grade: A+
 			return Grade.values()[10];
 		}
 		else 
 		{
-			// how does this work?
+			// Grade: D to A, with mark interval of 5
+			// range from 40 to 84
 			marks = ((int) Math.round(getMarks())-40)/5 + 1;
 			return Grade.values()[marks];
 		}

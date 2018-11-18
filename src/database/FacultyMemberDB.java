@@ -41,9 +41,4 @@ public class FacultyMemberDB {
 		
 		return null;
 	}
-	
-	public ArrayList<FacultyMember> getAllFacultyMembers()
-	{
-		return faculty;
-	}
 }

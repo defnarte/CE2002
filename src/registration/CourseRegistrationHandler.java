@@ -39,8 +39,8 @@ public class CourseRegistrationHandler
 		}
 		
 		CourseRegistrationRecord newRegistration = new CourseRegistrationRecord(student,course,null);
-		student.addCourse(newRegistration);
-		course.addRegistration(newRegistration);
+		student.addCourseRegistration(newRegistration);
+		course.addStudentRegistration(newRegistration);
 		
 		return newRegistration; // RegistrationOutcome.REGISTRATION_SUCCESS;
 	}
@@ -59,8 +59,8 @@ public class CourseRegistrationHandler
 		{
 			if(registration.getRegisteredStudent() == student)
 			{
-				student.dropCourse(registration);
-				course.dropRegistration(registration);
+				student.dropCourseRegistration(registration);
+				course.dropStudentRegistration(registration);
 				
 				return true; // DeregistrationOutcome.DEREGISTRATION_SUCCESS;
 			}

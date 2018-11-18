@@ -22,21 +22,22 @@ public class CreationInterface
 	
 	public static Student setStudentMetadata(StudentDB studentDB)
 	{
+		// no duplicate student id (matriculation number) allowed
+		String studentIDPrompt = "Enter the student's ID:";
+		String studentID;
+		do
+		{
+			studentID = ConsoleInputInterface.getUserStringInput(studentIDPrompt, StringFormatType.ALPHA_NUMERIC);
+			
+			if(studentDB.checkStudentIDExists(studentID))
+				System.out.println("Student ID already exist in student database.");
+			
+		} while(studentDB.checkStudentIDExists(studentID));
+		
+		// students can share the same name
 		String studentNamePrompt = "Enter the name of the student:";
 		String studentName = ConsoleInputInterface.getUserStringInput(studentNamePrompt, StringFormatType.ALPHABETICAL_AND_SPACE);
-		while (studentDB.checkStudentName(studentName))
-		{
-			studentNamePrompt = "Name already registered. Enter the student's name:";
-			studentName = ConsoleInputInterface.getUserStringInput(studentNamePrompt, StringFormatType.ALPHA_NUMERIC);
-		}
 		
-		String studentIDPrompt = "Enter the student's ID:";
-		String studentID = ConsoleInputInterface.getUserStringInput(studentIDPrompt, StringFormatType.ALPHA_NUMERIC);
-		while (studentDB.checkStudentID(studentID))
-		{
-			studentIDPrompt = "ID already registered. Enter the student's ID:";
-			studentID = ConsoleInputInterface.getUserStringInput(studentIDPrompt, StringFormatType.ALPHA_NUMERIC);
-		}
 		return new Student(studentID, studentName);
 	}
 	
@@ -53,23 +54,22 @@ public class CreationInterface
 	{
 		System.out.println("\n---Creating new course---");
 
-		System.out.print("Enter course code: ");
-		String courseCode = ConsoleInputInterface.consoleScanner.nextLine();
-		
-		while (courseDB.checkCourseCode(courseCode))
+		// no duplicate course code allowed
+		String courseCodePrompt = "Enter course code: ";
+		String courseCode;
+		do
 		{
-			System.out.print("Course code already registered. Enter course code: ");
-			courseCode = ConsoleInputInterface.consoleScanner.nextLine();
-		}
+			courseCode = ConsoleInputInterface.getUserStringInput(courseCodePrompt, StringFormatType.ALPHA_NUMERIC);
+			
+			if(courseDB.checkCourseCodeExists(courseCode))
+				System.out.println("Course code already exist in course database");
+			
+		} while(courseDB.checkCourseCodeExists(courseCode));
 
-		System.out.print("Enter course name: ");
-		String courseName = ConsoleInputInterface.consoleScanner.nextLine();
+		// courses can share the same name
+		String courseNamePrompt ="Enter course name: ";
+		String courseName = ConsoleInputInterface.getUserStringInput(courseNamePrompt, StringFormatType.ALPHABETICAL_AND_SPACE);
 		
-		while (courseDB.checkCourseName(courseName))
-		{
-			System.out.print("Course name already registered. Enter course name: ");
-			courseName = ConsoleInputInterface.consoleScanner.nextLine();
-		}
 
 		return new Course(courseCode, courseName);
 	}
@@ -87,13 +87,13 @@ public class CreationInterface
 	{
 		System.out.println("\n---Creating component " + componentIndex + "---");
 
-		System.out.print("Enter the name of component " + componentIndex + ": ");
-		String componentName = ConsoleInputInterface.consoleScanner.nextLine();
+		String componentNamePrompt = "Enter the name of component " + componentIndex + ": ";
+		String componentName = ConsoleInputInterface.getUserStringInput(componentNamePrompt, StringFormatType.ALPHABETICAL_AND_SPACE);
 
 		String componentWeightagePrompt = "Enter the weightage of " + componentName + 
 				" out of " + Markable.MAX_MARKS +" (" + componentsTotalWeightage + " remaining): ";
-		int componentWeightage = ConsoleInputInterface.getUserPositiveIntInput(componentWeightagePrompt,
-				componentsTotalWeightage);
+		int componentWeightage = ConsoleInputInterface.
+				getUserPositiveIntInput(componentWeightagePrompt,componentsTotalWeightage);
 
 		String typeOfComponentPrompt = "Is " + componentName
 				+ ":\n(1) standalone, or \n(2) made up of subcomponents?\nEnter your choice: ";
@@ -116,16 +116,15 @@ public class CreationInterface
 	public static ComponentWeightage setSubcomponentMetadata(AggregateComponentWeightage rootComponent, 
 			int indexWithinRoot, int subcomponentsTotalWeightage)
 	{
-		System.out.print("Enter the name of subcomponent " + indexWithinRoot + 
-				" within " + rootComponent.getName() + ": ");
+		String subcomponentNamePrompt = "Enter the name of subcomponent " + indexWithinRoot + 
+				" within " + rootComponent.getName() + ": ";
+		String subcomponentName = ConsoleInputInterface.
+				getUserStringInput(subcomponentNamePrompt, StringFormatType.ALPHABETICAL_AND_SPACE);
 
-		String subcomponentName = ConsoleInputInterface.consoleScanner.nextLine();
-
-		String subcomponentWeightagePrompt = "Enter the weightage of " + subcomponentName + " within "
-				+ rootComponent.getName() + " out of " + Markable.MAX_MARKS + " ("
-				+ subcomponentsTotalWeightage + " remaining): ";
-		int subcomponentWeightage = ConsoleInputInterface.getUserPositiveIntInput(subcomponentWeightagePrompt,
-				subcomponentsTotalWeightage);
+		String subcomponentWeightagePrompt = "Enter the weightage of " + subcomponentName + " within " + 
+				rootComponent.getName() + " out of " + Markable.MAX_MARKS + " (" + subcomponentsTotalWeightage + " remaining): ";
+		int subcomponentWeightage = ConsoleInputInterface.
+				getUserPositiveIntInput(subcomponentWeightagePrompt,subcomponentsTotalWeightage);
 
 		return new ComponentWeightage(subcomponentName, subcomponentWeightage);
 	}

@@ -15,11 +15,11 @@ public class MarksEntryInterface
 {
 	public static void enterMarksForCourse(CourseRegistrationRecord record)
 	{
-		for(ComponentResult componentResult: record.getOverallResults().getComponentResultList())
+		for(ComponentResult componentResult: record.getOverallResult().getComponentResultList())
 			enterMarksForComponent(componentResult);
 		
 		System.out.println("Results for " + record.getRegisteredCourse().getCourseCode() + 
-							":\n" + record.getOverallResults());
+							":\n" + record.getOverallResult());
 	}
 	
 	private static void enterMarksForComponent(ComponentResult componentResult)

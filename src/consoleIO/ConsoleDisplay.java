@@ -6,8 +6,7 @@ import courses.ComponentWeightage;
 import courses.Course;
 import grading.ComponentResult;
 import grading.Grade;
-import universityMembers.FacultyMember;
-import universityMembers.Student;
+import universityMembers.*;
 import registration.CourseRegistrationRecord;
 
 public class ConsoleDisplay
@@ -20,46 +19,44 @@ public class ConsoleDisplay
 				+ "5.  Print student list by lecture, tutorial or laboratory session for a course.\n"
 				+ "6.  Enter course assessment components weightage\n"
 				+ "7.  Enter marks for course taken by student\n"
-				+ "8.  Print course statistics\n" + "9. Print student transcript.\n" + "10. Quit");
+				+ "8.  Print course statistics\n" + "9.  Print student transcript.\n" + "10. Quit");
 //				+ "7.  Enter coursework mark inclusive of its components.\n" + "8.  Enter exam mark\n"
 //				+ "9.  Print course statistics\n" + "10. Print student transcript.\n" + "11. Quit");
 	}
 	
-	public static void displayFacultyMembers(ArrayList<FacultyMember> faculty)
+	public static <T> void displayUniversityMembers(ArrayList<T> uniMemArrayList)
 	{
-		for(FacultyMember facultyMem: faculty)
-			System.out.println(facultyMem);
+		for(T uniMember: uniMemArrayList)
+			System.out.println(uniMember);
 	}
 	
-	public static void displayCourses(ArrayList<Course> courses)
+	public static void displayCourses(ArrayList<Course> courseArrayList)
 	{
-		for (Course course : courses)
+		for (Course course : courseArrayList)
 		{
-			System.out.println(course.getName() + " " + course.getCourseCode() + " - Instructor: " + course.getCoordinator().getfullName() + " " + course.getCoordinator().getID());
+			System.out.println(course  + " - course coordinator: " + course.getCoordinator());
 		}
 	}
 	
-	public static void displayRegisteredCourses(ArrayList<CourseRegistrationRecord> registeredCourses)
+	public static void displayRegisteredCourses(ArrayList<CourseRegistrationRecord> courseRegRecordArrayList)
 	{
-		for(CourseRegistrationRecord registeredCourse: registeredCourses)
-			System.out.println(registeredCourse);
+		for(CourseRegistrationRecord courseRegRecord: courseRegRecordArrayList)
+			System.out.println(courseRegRecord);
 	}
 	
 	public static void displayStudentTranscript(Student student)
 	{
 		System.out.println("Printing Student Transcript for " + student + ":");
 		
-		ArrayList<CourseRegistrationRecord> coursesRegistered = student.getCoursesRegistered();
+		ArrayList<CourseRegistrationRecord> courseRegRecordArrayList = student.getCourseRegRecordArrayList();
 		
-		for (CourseRegistrationRecord courseRegistered : coursesRegistered)
+		for (CourseRegistrationRecord courseRegRecord : courseRegRecordArrayList)
 		{
-			System.out.println(courseRegistered.getRegisteredCourse().getCourseCode() + " "
-					+ courseRegistered.getRegisteredCourse().getName() + " "
-					+ courseRegistered.getOverallResults().getMarks() + " "
-					+ courseRegistered.getOverallResults().computeGrade());
-			ArrayList<ComponentResult> componentResultList = courseRegistered.getOverallResults()
-					.getComponentResultList();
+			System.out.println(courseRegRecord.getRegisteredCourse() + " "
+					+ courseRegRecord.getOverallResult().getMarks() + " "
+					+ courseRegRecord.getOverallResult().computeGrade());
 			
+			ArrayList<ComponentResult> componentResultList = courseRegRecord.getOverallResult().getComponentResultList();
 			for (ComponentResult componentResult : componentResultList)
 			{
 				System.out.println("       " + componentResult.getName() + " " + componentResult.getMarks());
@@ -67,12 +64,12 @@ public class ConsoleDisplay
 		}
 	}
 	
-	public static void displayCourseComponent(Course course)
+	public static void displayCourseComponents(Course course)
 	{
-		System.out.println(course.getCourseCode() + ' ' + course.getName() + " components: ");
+		System.out.println(course + "'s components (with weightage): ");
 		
-		for(ComponentWeightage component: course.getAllComponentsWeightage())
-			System.out.println(component);
+		for(ComponentWeightage componentWeightage: course.getAllComponentsWeightage())
+			System.out.println(componentWeightage);
 	}
 	
 	public static void displayCourseStatistic(Course course)
@@ -95,7 +92,7 @@ public class ConsoleDisplay
 		{
 			for (CourseRegistrationRecord registration : registrations)
 			{
-				studentGrade = registration.getOverallResults().computeGrade();
+				studentGrade = registration.getOverallResult().computeGrade();
 				// the statement below increment the number of students who got a particular grade 
 				// at the corresponding index of courseStat
 				++courseStat[studentGrade.getValue()];
@@ -103,15 +100,15 @@ public class ConsoleDisplay
 		}
 		else
 		{
-			displayCourseComponent(course);
+			displayCourseComponents(course);
 			
 			// have to check if the course even has any components first
-			ComponentWeightage componentToPrintStatFor = ConsoleIO.getComponentWeightageFromCourse(course);
+			ComponentWeightage componentToPrintStatFor = ConsoleIOHandler.getComponentWeightageFromCourse(course);
 			String nameOfComponentToPrintStatFor = componentToPrintStatFor.getName();
 			
 			for (CourseRegistrationRecord registration : registrations)
 			{
-				ComponentResult studentResult = registration.getOverallResults().getComponentResult(nameOfComponentToPrintStatFor);
+				ComponentResult studentResult = registration.getOverallResult().getComponentResult(nameOfComponentToPrintStatFor);
 				studentGrade = studentResult.computeGrade();
 				
 				++courseStat[studentGrade.getValue()];

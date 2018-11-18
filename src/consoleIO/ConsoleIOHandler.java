@@ -9,10 +9,12 @@ import registration.CourseRegistrationRecord;
 import universityMembers.FacultyMember;
 import universityMembers.Student;
 
-public class ConsoleIO
+public class ConsoleIOHandler
 {
 	public static Course getCourseFromDB(CourseDB courseDB)
 	{
+		ConsoleDisplay.displayCourses(courseDB.getCourseAl());
+		
 		Course course;
 		do
 		{
@@ -30,15 +32,16 @@ public class ConsoleIO
 		return course;
 	}
 	
-	public static FacultyMember getFacultyMemberFromDB(FacultyMemberDB faculty)
+	public static FacultyMember getFacultyMemberFromDB(FacultyMemberDB facultyDB)
 	{
-		FacultyMember facultyMember;
+		ConsoleDisplay.displayUniversityMembers(facultyDB.getFacultyAl());
 		
+		FacultyMember facultyMember;
 		do
 		{
-			String courseCoordinatorPrompt = "Enter the ID of the course coordinator";
+			String courseCoordinatorPrompt = "Enter the ID of the faculty member: ";
 			String facultyMemberID = ConsoleInputInterface.getUserStringInput(courseCoordinatorPrompt, StringFormatType.ALPHA_NUMERIC);
-			facultyMember = faculty.getFacultyMember(facultyMemberID);
+			facultyMember = facultyDB.getFacultyMember(facultyMemberID);
 			
 			if(facultyMember == null)
 				System.out.println("Faculty member not found in database!");
@@ -50,8 +53,9 @@ public class ConsoleIO
 	
 	public static Student getStudentFromDB(StudentDB studentDB)
 	{
-		Student student;
+		ConsoleDisplay.displayUniversityMembers(studentDB.getStudentAl());
 		
+		Student student;
 		do
 		{
 			String studentIDPrompt = "Enter the student's ID: ";
@@ -68,8 +72,9 @@ public class ConsoleIO
 	
 	public static CourseRegistrationRecord getCourseRegRecordFromStudent(Student student)
 	{
-		CourseRegistrationRecord courseRegRecord;
+		ConsoleDisplay.displayRegisteredCourses(student.getCourseRegRecordArrayList());
 		
+		CourseRegistrationRecord courseRegRecord;
 		do
 		{
 			String courseCodePrompt = "Enter the course code: ";
@@ -86,8 +91,9 @@ public class ConsoleIO
 	
 	public static ComponentWeightage getComponentWeightageFromCourse(Course course)
 	{
-		ComponentWeightage component = null;
+		ConsoleDisplay.displayCourseComponents(course);
 		
+		ComponentWeightage component = null;
 		do
 		{
 			String componentNamePrompt = "Enter the name of the component: ";

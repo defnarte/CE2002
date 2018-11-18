@@ -1,5 +1,6 @@
 package lessons;
 //enum LessonType
+
 //{
 //	LECTURE,
 //	TUTORIAL,
@@ -7,7 +8,8 @@ package lessons;
 //}
 
 /**
- * This entity class holds information regarding an instance of Lesson in an instance of Course
+ * This entity class holds information regarding an instance of Lesson in an
+ * instance of Course
  * 
  * @version 1.1
  * @since 2018/11/09
@@ -22,14 +24,17 @@ public class Lesson
 	private int vacancy;
 
 	// Used when loading an existing database
-	public Lesson(String lessonID, String lessonType,int totalSize, int vacancy) {
+	public Lesson(String lessonID, String lessonType, int totalSize, int vacancy)
+	{
 		this.lessonID = lessonID;
 		this.lessonType = lessonType;
 		this.totalSize = totalSize;
 		this.vacancy = vacancy;
 	}
+
 	// Used when creating a new lesson
-	public Lesson(String lessonID, String lessonType,int totalSize) {
+	public Lesson(String lessonID, String lessonType, int totalSize)
+	{
 		this.lessonID = lessonID;
 		this.lessonType = lessonType;
 		this.totalSize = totalSize;
@@ -40,34 +45,47 @@ public class Lesson
 	{
 		return lessonID;
 	}
+
 	public String getLessonType()
 	{
 		return lessonType;
 	}
 
-//	public LessonType getLessonType()
-//	{
-//		return lessonType;
-//	}
-	public int getTotalSize() {
+	public int getTotalSize()
+	{
 		return totalSize;
 	}
-	
+
 	public int getVacancy()
 	{
 		return vacancy;
 	}
-	public boolean enrolStudent() {
+
+	public boolean registerStudent()
+	{
 		if (vacancy > 0)
 		{
-			System.out.println("Student successfully enrolled.");
+			// System.out.println("Student successfully registered.");
 			vacancy--;
 			return true;
-		}
-		else
+		} else
 		{
-			System.out.println("Lesson is full!");
+			// System.out.println("Lesson is full!");
 			return false;
+		}
+	}
+
+	public boolean deregisterStudent()
+	{
+		if (vacancy <= 0)
+		{
+			// System.out.println("Lesson has no students!");
+			return false;
+		} else
+		{
+			// System.out.println("Student successfully registered.");
+			vacancy++;
+			return true;
 		}
 	}
 }

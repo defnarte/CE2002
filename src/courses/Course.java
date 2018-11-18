@@ -157,12 +157,12 @@ public class Course
 	}
 
 	// TO-DO: add comments
-	public void addRegistration(CourseRegistrationRecord newCourseRegistrationRecord)
+	public void addStudentRegistration(CourseRegistrationRecord newCourseRegistrationRecord)
 	{
 		registrations.add(newCourseRegistrationRecord);
 	}
 
-	public void dropRegistration(CourseRegistrationRecord courseRegistrationRecord)
+	public void dropStudentRegistration(CourseRegistrationRecord courseRegistrationRecord)
 	{
 		registrations.remove(courseRegistrationRecord);
 	}
@@ -207,7 +207,7 @@ public class Course
 		System.out.println("List of students:");
 		for (int i = 0; i < registrations.size(); i++)
 		{
-			ArrayList<String> studentLessons = registrations.get(i).getLessonList();
+			ArrayList<String> studentLessons = registrations.get(i).getLessonArrayList();
 			for (int j = 0; j < studentLessons.size(); j++)
 			{
 				if (studentLessons.get(j).equals(lessonID))
@@ -260,7 +260,6 @@ public class Course
 			componentString += component.toString();
 		}
 
-		return "---" + courseCode + ' ' + name + "---\nCourse Coordinator: " + coordinator
-				 + "\nComponents: \n" + componentString;
+		return "Course[" + courseCode + ' ' + name + ']';
 	}
 }

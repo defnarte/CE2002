@@ -28,26 +28,17 @@ public class Student extends UniversityMember
 		super(matricNum,fullName);
 		registeredCourses = new ArrayList<CourseRegistrationRecord>();
 	}
-	
-	/**
-	 * Getter for courses this student has registered for.
-	 * 
-	 * @return registeredCourses
-	 */
-	public ArrayList<CourseRegistrationRecord> getCoursesRegistered()
-	{
-		return registeredCourses;
-	}
-	
+
 	// TO-DO: add comments
-	public void addCourse(CourseRegistrationRecord newCourseRegistrationRecord)
+	public void addCourseRegistration(CourseRegistrationRecord newCourseRegistrationRecord)
 	{
 		registeredCourses.add(newCourseRegistrationRecord);
 	}
-	public void dropCourse(CourseRegistrationRecord courseRegistrationRecord)
+	public void dropCourseRegistration(CourseRegistrationRecord courseRegistrationRecord)
 	{
 		registeredCourses.remove(courseRegistrationRecord);
 	}
+	
 	public CourseRegistrationRecord getCourseRegistrationRecord(String courseCode)
 	{
 		for(CourseRegistrationRecord courseRecord: registeredCourses)
@@ -60,22 +51,31 @@ public class Student extends UniversityMember
 			
 		return null;
 	}
+	/**
+	 * Getter for courses this student has registered for.
+	 * 
+	 * @return registeredCourses
+	 */
+	public ArrayList<CourseRegistrationRecord> getCourseRegRecordArrayList()
+	{
+		return registeredCourses;
+	}
 	
 	@Override
 	public String toString()
 	{
 		return "Student[" + super.toString() + ']';
 	}
-	public int searchRecord(String courseID) 
-	{
-		int index = 0;
-		for (CourseRegistrationRecord registeredCourse:registeredCourses)
-		{
-			if (registeredCourse.getRegisteredCourse().getCourseCode().equals(courseID))
-				return index;
-			index++;
-		}
-		return -1;
-		
-	}
+//	public int searchRecord(String courseID) 
+//	{
+//		int index = 0;
+//		for (CourseRegistrationRecord registeredCourse:registeredCourses)
+//		{
+//			if (registeredCourse.getRegisteredCourse().getCourseCode().equals(courseID))
+//				return index;
+//			index++;
+//		}
+//		return -1;
+//		
+//	}
 }

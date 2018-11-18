@@ -18,14 +18,14 @@ public class CourseRegistrationRecord
 	private Student registeredStudent;
 	private Course registeredCourse;
 	private ArrayList<String> lessons;
-	private OverallResult overallResults;
+	private OverallResult overallResult;
 	
 	public CourseRegistrationRecord(Student student, Course course, ArrayList<String> lessons)
 	{
 		this.registeredStudent = student;
 		this.registeredCourse = course;
 		this.lessons = lessons;
-		this.overallResults = new OverallResult(course.getAllComponentsWeightage());
+		this.overallResult = new OverallResult(course.getAllComponentsWeightage());
 	}
 	
 	public Student getRegisteredStudent()
@@ -37,23 +37,20 @@ public class CourseRegistrationRecord
 	{
 		return registeredCourse;
 	}
-	public ArrayList<String> getLessonList() 
+	public ArrayList<String> getLessonArrayList() 
 	{
 		return lessons;
 	}
 	
-	public OverallResult getOverallResults()
+	public OverallResult getOverallResult()
 	{
-		return overallResults;
+		return overallResult;
 	}
-	public void setOverallResults(OverallResult overallResults)
+	public void setOverallResult(OverallResult overallResults)
 	{
-		this.overallResults = overallResults;
+		this.overallResult = overallResults;
 	}
-	public boolean setComponentResult(String targetName, int rawMarks)
-	{
-		return overallResults.setComponentResult(targetName, rawMarks);
-	}
+
 	public void enterMarks()
 	{
 		MarksEntryInterface.enterMarksForCourse(this);
@@ -65,7 +62,5 @@ public class CourseRegistrationRecord
 		return "CourseRegistrationRecord [student: " + registeredStudent.toString() + ", course: " + 
 				registeredCourse.getCourseCode() + ' ' + registeredCourse.getName() + ']';
 	}
-	public void printStudent() {
-		
-	}
+
 }

@@ -38,17 +38,17 @@ public class StudentDB
 		}
 	}
 
-	public boolean checkStudentName(String studentName)
-	{
-		for (Student registeredStudent : students)
-		{
-			if (registeredStudent.getfullName().equals(studentName))
-				return true;
-		}
-		return false;
-	}
+//	public boolean checkStudentNameExists(String studentName)
+//	{
+//		for (Student registeredStudent : students)
+//		{
+//			if (registeredStudent.getfullName().equals(studentName))
+//				return true;
+//		}
+//		return false;
+//	}
 	
-	public boolean checkStudentID(String studentID)
+	public boolean checkStudentIDExists(String studentID)
 	{
 		for (Student registeredStudent : students)
 		{

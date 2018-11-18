@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 
-import consoleIO.ConsoleIO;
+import consoleIO.ConsoleIOHandler;
 import consoleIO.ConsoleInputInterface;
 import consoleIO.StringFormatType;
 import courses.AggregateComponentWeightage;
@@ -146,7 +146,7 @@ public class CreationHandler
 		System.out.println("List of all courses:");
 		courseDB.printCourseList();
 
-		Course course = ConsoleIO.getCourseFromDB(courseDB);
+		Course course = ConsoleIOHandler.getCourseFromDB(courseDB);
 		boolean[] full = new boolean[course.getLessonTypes().size()];
 		for (Lesson lesson:course.getLessons())
 		{
@@ -188,16 +188,16 @@ public class CreationHandler
 	
 					System.out.println("Select an index to register for:");
 					String lessonIndex = ConsoleInputInterface.consoleScanner.nextLine();
-					while (!course.getLesson(lessonIndex).enrolStudent())
+					while (!course.getLesson(lessonIndex).registerStudent())
 					{
-						System.out.println("Choose another index:");
+						System.out.println("Choose another index: ");
 						lessonIndex = ConsoleInputInterface.consoleScanner.nextLine();
 					}
 					lessonsEnrolled.add(lessonIndex);
 				}
 				CourseRegistrationRecord newRegistration = new CourseRegistrationRecord(student,course,lessonsEnrolled);
-				student.addCourse(newRegistration);
-				course.addRegistration(newRegistration);
+				student.addCourseRegistration(newRegistration);
+				course.addStudentRegistration(newRegistration);
 			}
 			else
 				System.out.println("Course is full.");

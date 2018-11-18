@@ -45,7 +45,7 @@ public class SCRAMEApp
 		{
 			ConsoleDisplay.displayMainMenu();
 
-			String userChoicePrompt = "Enter your choice:";
+			String userChoicePrompt = "Enter your choice: ";
 			userChoice = ConsoleInputInterface.getUserPositiveIntInput(userChoicePrompt, 11);
 
 			Student student;
@@ -63,9 +63,9 @@ public class SCRAMEApp
 				case 2:
 					// Add a course
 					System.out.println("List of all faculty members: ");
-					ConsoleDisplay.displayFacultyMembers(facultyMemberDB.getAllFacultyMembers());
+					ConsoleDisplay.displayUniversityMembers(facultyMemberDB.getFacultyAl());
 
-					FacultyMember courseCoordinator = ConsoleIO.getFacultyMemberFromDB(facultyMemberDB);
+					FacultyMember courseCoordinator = ConsoleIOHandler.getFacultyMemberFromDB(facultyMemberDB);
 					course = CreationHandler.createCourse(courseCoordinator,courseDB);
 					CreationHandler.createLessons(course,courseDB);
 					courseDB.addCourse(course);
@@ -75,13 +75,13 @@ public class SCRAMEApp
 					// Register student for a course (this include registering for Tutorial/Lab
 					// classes)
 					// have to check if studentDB is empty
-					student = ConsoleIO.getStudentFromDB(studentDB);
+					student = ConsoleIOHandler.getStudentFromDB(studentDB);
 					CreationHandler.createRegistration(student,courseDB);
 					break;
 
 				case 4:
 					// Check available slot in a class (vacancy in a class)
-					course = ConsoleIO.getCourseFromDB(courseDB);
+					course = ConsoleIOHandler.getCourseFromDB(courseDB);
 
 					System.out.println("All lesson types under this course: ");
 					ArrayList<Lesson> lessons = course.getLessons();
@@ -111,7 +111,7 @@ public class SCRAMEApp
 
 				case 5:
 					// Print student list by lecture, tutorial or laboratory session for a course.
-					course = ConsoleIO.getCourseFromDB(courseDB);
+					course = ConsoleIOHandler.getCourseFromDB(courseDB);
 
 					System.out.println("All lesson types under this course: ");
 					ArrayList<Lesson> lessons2 = course.getLessons();
@@ -160,93 +160,42 @@ public class SCRAMEApp
 
 				case 6:
 					// Enter course assessment components weightage for a course
-					course = ConsoleIO.getCourseFromDB(courseDB);
+					course = ConsoleIOHandler.getCourseFromDB(courseDB);
 
 					CreationHandler.createCourseComponents(course);
 
 					break;
 
 				case 7: // incomplete
-					// Enter coursework mark inclusive of its components.
-					student = ConsoleIO.getStudentFromDB(studentDB);
+					// Enter course component marks.
+					student = ConsoleIOHandler.getStudentFromDB(studentDB);
 
 					// have to check if student is currently taking any course at all
 
 					System.out.println("Which course do you want to enter marks in?");
-					ConsoleDisplay.displayRegisteredCourses(student.getCoursesRegistered());
+					ConsoleDisplay.displayRegisteredCourses(student.getCourseRegRecordArrayList());
 
-					CourseRegistrationRecord courseRegRecord = ConsoleIO.getCourseRegRecordFromStudent(student);
+					CourseRegistrationRecord courseRegRecord = ConsoleIOHandler.getCourseRegRecordFromStudent(student);
 
 					courseRegRecord.enterMarks();
 
 					break;
 
-				// case 8:
-				// System.out.println("Enter a course code: ");
-				// String courseCode8 = ConsoleInputInterface.consoleScanner.nextLine();
-				// if (!(checkInput(courseCode8, 2)))
-				// {
-				// System.out.println("Error! Please enter only letters and digits.");
-				// break;
-				// }
-				// int courseIndex5 = courseDB.checkCourse(courseCode8);
-				// if (courseIndex5 != -1)
-				// {
-				// System.out.println("Enter the student's ID: ");
-				// String matriculationNumber3 =
-				// ConsoleInputInterface.consoleScanner.nextLine();
-				// if (!(checkInput(matriculationNumber3, 2)))
-				// {
-				// System.out.println("Error! Please enter only letters and digits.");
-				// break;
-				// }
-				// int studentIndex3 = studentDB.checkStudent(matriculationNumber3);
-				// if (studentIndex3 != -1)
-				// {
-				// // Check the student is registered for the course
-				// if
-				// (courseDB.getCourseAl().get(courseIndex5).checkStudent(matriculationNumber3))
-				// {
-				// ArrayList<ComponentWeightage> components =
-				// courseDB.getCourseAl().get(courseIndex5)
-				// .getAllComponentsWeightage();
-				// for (ComponentWeightage component : components)
-				// {
-				// if (component.getName().equals("Exam"))
-				// {
-				// int recordIndex = studentDB.getStudentAl().get(studentIndex3)
-				// .searchRecord(courseCode8);
-				// {
-				// MarksEntryInterface.enterMarks(studentDB.getStudentAl().get(studentIndex3)
-				// .getCoursesRegistered().get(recordIndex));
-				// }
-				//
-				// }
-				// }
-				// } else
-				// System.out.println("Student not registered for this course!");
-				// } else
-				// System.out.println("Student not found in database!");
-				// } else
-				// System.out.println("Course not found in database!");
-				//
-				// break;
-
-				case 8: // case 9:
+				case 8:
 					// Print course statistics
-					course = ConsoleIO.getCourseFromDB(courseDB);
+					course = ConsoleIOHandler.getCourseFromDB(courseDB);
 					ConsoleDisplay.displayCourseStatistic(course);
 
 					break;
 
-				case 9: // case 10:
+				case 9:
 					// Print student transcript
-					student = ConsoleIO.getStudentFromDB(studentDB);
+					student = ConsoleIOHandler.getStudentFromDB(studentDB);
 					ConsoleDisplay.displayStudentTranscript(student);
 
 					break;
 
-				case 10: // case 11:
+				case 10:
 					System.out.println("Thank you for using SCRAME\n" + "---Quitting SCRAME---");
 
 					break;
