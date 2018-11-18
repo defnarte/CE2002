@@ -105,15 +105,28 @@ public class CreationHandler
 	public static void createLessons(Course course,CourseDB courses) 
 	{
 		ArrayList<Lesson> lessons = new ArrayList<Lesson>();
-		HashSet<String> uniqueLessonType = new HashSet<String>();
-		boolean choice = true;
+		HashSet<String> uniqueLessonTypes = new HashSet<String>();
+		
+		boolean userChoice = true;
 		do
 		{
-			String lessonType = ConsoleInputInterface.
-					getUserStringInput("Enter the type of lesson to add:",StringFormatType.ALPHABETICAL_AND_SPACE);
-			uniqueLessonType.add(lessonType);
+			boolean addLessonTypeSuccess;
+			do
+			{
+				String lessonTypePrompt = "Enter the type of lesson to add: ";
+				String lessonType = ConsoleInputInterface.
+						getUserStringInput(lessonTypePrompt, StringFormatType.ALPHABETICAL_AND_SPACE);
+				addLessonTypeSuccess = uniqueLessonTypes.add(lessonType);
+				
+				if(!addLessonTypeSuccess)
+					System.out.println(course + " already has " + lessonType + " lessons");
+				
+			} while(!addLessonTypeSuccess);
+			
+			
 			String numOfLessonsPrompt = "Enter the number of " + lessonType + "s to add:";
 			int numOfLessons = ConsoleInputInterface.getUserPositiveIntInput(numOfLessonsPrompt);
+			
 			for (int i = 1; i <= numOfLessons; i++)
 			{
 				System.out.println("Getting input for " + lessonType + " " + i);
@@ -126,13 +139,16 @@ public class CreationHandler
 				Lesson lesson = new Lesson(lessonID,lessonType,totalSize);
 				lessons.add(lesson);
 			}
-			choice = ConsoleInputInterface.getUserBooleanInput("Do you want to add another lesson (Y/N)? ");
-		} while (choice);
+			
+			userChoice = ConsoleInputInterface.getUserBooleanInput("Do you want to add another lesson (Y/N)? ");
+			
+		} while (userChoice);
+		
 		for (Lesson lesson:lessons) 
 		{
 			course.addLesson(lesson);
 		}
-		Iterator<String> it = uniqueLessonType.iterator();
+		Iterator<String> it = uniqueLessonTypes.iterator();
 		ArrayList<String> uniqueLessonTypeList = new ArrayList<String>();
 		while (it.hasNext())
 		{

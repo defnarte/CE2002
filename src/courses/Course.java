@@ -55,6 +55,7 @@ public class Course
 		this.coordinator = courseCoordinator;
 
 		lessons = new ArrayList<Lesson>();
+		lessonTypes = new ArrayList<String>();
 		componentWeightageList = new ArrayList<ComponentWeightage>();
 		registrations = new ArrayList<CourseRegistrationRecord>();
 	}
@@ -77,14 +78,6 @@ public class Course
 	{
 		this.courseCode = courseCode;
 	}
-	/**
-	 * Setter for lesson types.
-	 * @param uniqueLessonTypes
-	 */
-	public void setLessonTypes(ArrayList<String> uniqueLessonTypes)
-	{
-		this.lessonTypes = uniqueLessonTypes;
-	}
 
 	/**
 	 * Getter for course name.
@@ -95,12 +88,6 @@ public class Course
 	{
 		return name;
 	}
-	
-	public ArrayList<String> getLessonTypes()
-	{
-		return lessonTypes;
-	}
-
 	/**
 	 * Setter for course name.
 	 * 
@@ -109,7 +96,7 @@ public class Course
 	{
 		this.name = courseName;
 	}
-
+	
 	/**
 	 * Getter for course coordinator.
 	 * 
@@ -119,7 +106,6 @@ public class Course
 	{
 		return coordinator;
 	}
-
 	/**
 	 * Setter for course coordinator.
 	 * 
@@ -127,6 +113,19 @@ public class Course
 	public void setCoordinator(FacultyMember courseCoordinator)
 	{
 		this.coordinator = courseCoordinator;
+	}
+	
+	public ArrayList<String> getLessonTypes()
+	{
+		return lessonTypes;
+	}
+	/**
+	 * Setter for lesson types.
+	 * @param uniqueLessonTypes
+	 */
+	public void setLessonTypes(ArrayList<String> uniqueLessonTypes)
+	{
+		this.lessonTypes = uniqueLessonTypes;
 	}
 
 	public void addComponentWeightage(ComponentWeightage newComponent)
@@ -151,7 +150,7 @@ public class Course
 	 * 
 	 * @return registrations
 	 */
-	public ArrayList<CourseRegistrationRecord> getRegistrations()
+	public ArrayList<CourseRegistrationRecord> getRegistrationRecords()
 	{
 		return registrations;
 	}

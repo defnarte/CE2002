@@ -32,7 +32,7 @@ public class CourseRegistrationHandler
 		/**
 		 * Checks if student is already registered for this course this semester.
 		 */
-		for(CourseRegistrationRecord registration: course.getRegistrations())
+		for(CourseRegistrationRecord registration: course.getRegistrationRecords())
 		{
 			if(registration.getRegisteredStudent() == student)
 				return null; // RegistrationOutcome.ALREADY_REGISTERED;
@@ -55,7 +55,7 @@ public class CourseRegistrationHandler
 		 * Should NOT check from student's end as the student may have taken the course before,
 		 * but failed the course and have to re-take it.
 		 */
-		for(CourseRegistrationRecord registration: course.getRegistrations())
+		for(CourseRegistrationRecord registration: course.getRegistrationRecords())
 		{
 			if(registration.getRegisteredStudent() == student)
 			{
