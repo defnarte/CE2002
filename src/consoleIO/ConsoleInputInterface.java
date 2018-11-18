@@ -49,7 +49,7 @@ public class ConsoleInputInterface
 	
 	/**
 	 * This method keeps prompting the user to enter a positive integer input 
-	 * till the user enters a positive integer that is lower than the upperbound.
+	 * till the user enters a positive integer that is lower than or equal to the upperbound.
 	 * 
 	 * Either the prompting message or an earlier message
 	 * should make it clear to the user what the upperbound is.

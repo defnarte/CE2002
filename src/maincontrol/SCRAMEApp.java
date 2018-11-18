@@ -22,12 +22,13 @@ import universityMembers.Student;
 /**
  * This class is the main program that runs everything.
  * 
- * 
  * @author SE1 Group 5
  *
  */
 public class SCRAMEApp
 {
+	private static final int MAX_USER_CHOICE = 10;
+	
 	public static void main(String args[]) throws IOException
 	{
 		String studentFilename = "Students.txt";
@@ -37,16 +38,16 @@ public class SCRAMEApp
 		FacultyMemberDB facultyMemberDB = new FacultyMemberDB(DatabaseIO.readFacultyDB(facultyFilename));
 		CourseDB courseDB = new CourseDB(DatabaseIO.readCourseDB(courseFilename, facultyMemberDB));
 		StudentDB studentDB = new StudentDB(DatabaseIO.readStudentDB(studentFilename, courseDB.getCourseAl()));
+		
+		System.out.println("---Welcome to SCRAME---");
 
-		System.out.println("Welcome to SCRAME");
-
-		int userChoice = 0;
+		int userChoice;
 		do
 		{
 			ConsoleDisplay.displayMainMenu();
 
 			String userChoicePrompt = "Enter your choice: ";
-			userChoice = ConsoleInputInterface.getUserPositiveIntInput(userChoicePrompt, 11);
+			userChoice = ConsoleInputInterface.getUserPositiveIntInput(userChoicePrompt, MAX_USER_CHOICE);
 
 			Student student;
 			Course course;
@@ -210,7 +211,7 @@ public class SCRAMEApp
 					break;
 			}
 
-		} while (userChoice != 10);
+		} while (userChoice != MAX_USER_CHOICE);
 
 		ConsoleInputInterface.consoleScanner.close();
 	}
