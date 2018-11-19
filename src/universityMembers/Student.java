@@ -25,16 +25,27 @@ public class Student extends UniversityMember
 		registeredCourses = new ArrayList<Registration>();
 	}
 
-	// TO-DO: add comments
+	/**
+	 * Add a registration to university member's registered courses.
+	 * @param newRegistration The new registration record.
+	 */
 	public void addCourseRegistration(Registration newRegistration)
 	{
 		registeredCourses.add(newRegistration);
 	}
+	/**
+	 * Remove a registration from a student's registered courses.
+	 * @param courseRegistrationRecord The course registration record to be removed.
+	 */
 	public void dropCourseRegistration(Registration courseRegistrationRecord)
 	{
 		registeredCourses.remove(courseRegistrationRecord);
 	}
-	
+	/**
+	 * Get the Course Registration Record corresponding to the requested course code.
+	 * @param courseCode This is course code requested by the user.
+	 * @return Course Registration Record corresponding to the requested course code.
+	 */
 	public Registration getCourseRegistrationRecord(String courseCode)
 	{
 		for(Registration courseRecord: registeredCourses)
@@ -58,20 +69,11 @@ public class Student extends UniversityMember
 	}
 	
 	@Override
+	/**
+	 * Overrided toString that returns the student.
+	 */
 	public String toString()
 	{
 		return "Student[" + super.toString() + ']';
 	}
-//	public int searchRecord(String courseID) 
-//	{
-//		int index = 0;
-//		for (CourseRegistrationRecord registeredCourse:registeredCourses)
-//		{
-//			if (registeredCourse.getRegisteredCourse().getCourseCode().equals(courseID))
-//				return index;
-//			index++;
-//		}
-//		return -1;
-//		
-//	}
 }

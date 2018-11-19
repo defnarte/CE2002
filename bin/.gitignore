@@ -1,12 +1,8 @@
-/creation/
-/maincontrol/
-/database/
-<<<<<<< HEAD
-=======
-/grading/
-/registration/
-/universityMembers/
->>>>>>> master
 /consoleIO/
-/lessons/
 /courses/
+/database/
+/maincontrol/
+/universityMembers/
+/registration/
+/lessons/
+/grading/

@@ -7,6 +7,8 @@ package grading;
  * @author Jason
  *
  */
+// Interface markable which allows for the getting of marks and computation of grades. 
+// The MAX_MARKS is 100 (static final).
 public interface Markable
 {
 	public static final int MAX_MARKS = 100;

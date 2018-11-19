@@ -16,6 +16,9 @@ public class OverallResult implements Markable
 {
 	private ArrayList<ComponentResult> componentResultList;
 	
+	/**
+	 * Default constructor for OverallResult
+	 */
 	public OverallResult()
 	{
 		this.componentResultList = new ArrayList<ComponentResult>();

@@ -23,7 +23,13 @@ public class Lesson
 	private int totalSize;
 	private int vacancy;
 
-	// Used when loading an existing database
+	/**
+	 * Constructor for lesson (used when loading an existing lesson)
+	 * @param lessonID This is the ID of the lesson.
+	 * @param lessonType This is the type of the lesson.
+	 * @param totalSize This is the total size of the lesson.
+	 * @param vacancy This is the vacancy of the lesson.
+	 */
 	public Lesson(int lessonID, String lessonType, int totalSize, int vacancy)
 	{
 		this.lessonID = lessonID;
@@ -31,8 +37,12 @@ public class Lesson
 		this.totalSize = totalSize;
 		this.vacancy = vacancy;
 	}
-
-	// Used when creating a new lesson
+	/**
+	 * Constructor for lesson (used when creating a new lesson)
+	 * @param lessonID This is the ID of the lesson.
+	 * @param lessonType This is the type of the lesson.
+	 * @param totalSize This is the total size of the lesson.
+	 */
 	public Lesson(int lessonID, String lessonType, int totalSize)
 	{
 		this.lessonID = lessonID;
@@ -40,27 +50,42 @@ public class Lesson
 		this.totalSize = totalSize;
 		this.vacancy = totalSize;
 	}
-
+	/**
+	 * Get the ID of the lesson.
+	 * @return ID of the lesson
+	 */
 	public int getLessonID()
 	{
 		return lessonID;
 	}
-
+	/**
+	 * Get the type of the lesson.
+	 * @return Type of the lesson
+	 */
 	public String getLessonType()
 	{
 		return lessonType;
 	}
-
+	/**
+	 * Get the total size of the lesson.
+	 * @return Total size of the lesson.
+	 */
 	public int getTotalSize()
 	{
 		return totalSize;
 	}
-
+	/**
+	 * Get the vacancy of the lesson.
+	 * @return Vacancy of the lesson.
+	 */
 	public int getVacancy()
 	{
 		return vacancy;
 	}
-
+	/**
+	 * Enrol a student in the lesson
+	 * @return Boolean whether the student was successfully registered.
+	 */
 	public boolean decrementVacancy()
 	{
 		if (vacancy > 0)
@@ -74,21 +99,10 @@ public class Lesson
 			return false;
 		}
 	}
-
-//	public boolean deregisterStudent()
-//	{
-//		if (vacancy <= 0)
-//		{
-//			// System.out.println("Lesson has no students!");
-//			return false;
-//		} else
-//		{
-//			// System.out.println("Student successfully deregistered.");
-//			vacancy++;
-//			return true;
-//		}
-//	}
 	
+	/**
+	 * Overrided toString() which returns the lessonType and lessonID;
+	 */
 	@Override
 	public String toString()
 	{

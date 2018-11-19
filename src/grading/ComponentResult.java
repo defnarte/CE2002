@@ -14,36 +14,61 @@ public class ComponentResult implements Weightable
 	private ComponentWeightage weightage;
 	private int marks;
 	
+	/**
+	 * Constructor for Component Result
+	 * @param weightage The weightage of the component.
+	 * @param marks The marks scored for the component.
+	 */
 	public ComponentResult(ComponentWeightage weightage, int marks)
 	{
 		this.weightage = weightage;
 		this.marks = marks;
 	}
+	/**
+	 * Constructor for component result (without marks)
+	 * @param weightage The weightage of the component.
+	 */
 	public ComponentResult(ComponentWeightage weightage)
 	{
 		this.weightage = weightage;
 		this.marks = 0;
 	}
-	
+	/**
+	 * Get the name of the component
+	 * @return The name of the component.
+	 */
 	public String getName()
 	{
 		return weightage.getName();
 	}
+	/**
+	 * Get the weightage of the component
+	 * @return The weightage of the component.
+	 */
 	public int getWeightage()
 	{
 		return weightage.getWeightage();
 	}
 	
 	@Override
+	/**
+	 * Get the marks scored for the component. Overrides the interface Markable method of the same name.
+	 */
 	public double getMarks()
 	{
 		return marks;
 	}
+	/**
+	 * Set the marks scored for this component.
+	 * @param marks The marks scored for this component.
+	 */
 	public void setMarks(int marks)
 	{
 		this.marks = marks;
 	}
-	
+	/**
+	 * Compute the grade obtained for the component. Overrides the interface Markable method of the same name.
+	 */
 	@Override
 	public Grade computeGrade()
 	{
@@ -69,12 +94,18 @@ public class ComponentResult implements Weightable
 	}
 	
 	@Override
+	/**
+	 * Compute the weighted marks. Overrides the interface Weightable method of the same name.
+	 */
 	public double computeWeightedMarks()
 	{
 		return getWeightage() * marks / 100.0;
 	}
 	
 	@Override
+	/**
+	 * Overrided toString() to return the name of component, weightage and the marks scored.
+	 */
 	public String toString()
 	{
 		return getName() + " (" + getWeightage() + "%): " + String.format("%.1f", (double)marks);

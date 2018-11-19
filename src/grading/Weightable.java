@@ -7,6 +7,7 @@ package grading;
  * @author Jason
  *
  */
+// Interface weightable which allows for the computation of marks.
 public interface Weightable extends Markable
 {
 	double computeWeightedMarks();

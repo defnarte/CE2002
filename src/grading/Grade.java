@@ -25,12 +25,18 @@ public enum Grade
 	TOTAL_NUMBER_OF_GRADES(11);
 	
 	private Integer value;
+	// Create a mapping from a grade to a value (ordering)
 	private static Map<Integer,Grade> map = new HashMap<>();
 	
+	/**
+	 * Constructor for grade, which assigns a value (ordering) to a grade.
+	 * @param value
+	 */
 	private Grade(int value) 
 	{
 		this.value = value;
 	}
+	// 
     static 
     {
         for (Grade grade : Grade.values()) 
@@ -38,10 +44,19 @@ public enum Grade
             map.put(grade.value, grade);
         }
     }
+    /**
+     * Return the grade corresponding to the value.
+     * @param The value of the grade.
+     * @return Grade corresponding to the value.
+     */
     public static Grade valueOf(int grade) 
     {
     	return (Grade) map.get(grade);
     }
+    /**
+     * Return the value corresponding to the grade.
+     * @return The value corresponding to the grade
+     */
     public int getValue() 
     {
     	return value;
