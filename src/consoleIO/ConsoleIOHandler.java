@@ -81,7 +81,8 @@ public class ConsoleIOHandler
 		do
 		{
 			String courseCodePrompt = "Enter the course code: ";
-			String courseCode = ConsoleInputInterface.getUserStringInput(courseCodePrompt, StringFormatType.ALPHA_NUMERIC);
+			String courseCode = ConsoleInputInterface.
+					getUserStringInput(courseCodePrompt, StringFormatType.ALPHA_NUMERIC);
 			courseRegRecord = student.getCourseRegistrationRecord(courseCode);
 			
 			if(courseRegRecord == null)
@@ -110,7 +111,8 @@ public class ConsoleIOHandler
 			}
 			
 			if(component == null)
-				System.out.println(componentName + " is not a component of " + course.getCourseCode() + ' ' + course.getName());
+				System.out.println(componentName + " is not a component of " + 
+						course.getCourseCode() + ' ' + course.getName());
 			
 		} while(component == null);
 		
