@@ -27,7 +27,7 @@ public class CreationInterface
 	public static Student setStudentMetadata(StudentDB studentDB)
 	{
 		// no duplicate student id (matriculation number) allowed
-		String studentIDPrompt = "Enter the student's ID:";
+		String studentIDPrompt = "Enter the student's ID: ";
 		String studentID;
 		do
 		{
@@ -39,7 +39,7 @@ public class CreationInterface
 		} while(studentDB.checkStudentIDExists(studentID));
 		
 		// students can share the same name
-		String studentNamePrompt = "Enter the name of the student:";
+		String studentNamePrompt = "Enter the name of the student: ";
 		String studentName = ConsoleInputInterface.getUserStringInput(studentNamePrompt, StringFormatType.ALPHABETICAL_AND_SPACE);
 		
 		return new Student(studentID, studentName);
@@ -126,8 +126,9 @@ public class CreationInterface
 		String subcomponentName = ConsoleInputInterface.
 				getUserStringInput(subcomponentNamePrompt, StringFormatType.ALPHABETICAL_AND_SPACE);
 
-		String subcomponentWeightagePrompt = "Enter the weightage of " + subcomponentName + " within " + 
-				rootComponent.getName() + " out of " + Markable.MAX_MARKS + " (" + subcomponentsTotalWeightage + " remaining): ";
+		String subcomponentWeightagePrompt = "Enter the weightage of " + subcomponentName + 
+				" within " + rootComponent.getName() + " out of " + Markable.MAX_MARKS + " (" + 
+					subcomponentsTotalWeightage + " remaining): ";
 		int subcomponentWeightage = ConsoleInputInterface.
 				getUserPositiveIntInput(subcomponentWeightagePrompt,subcomponentsTotalWeightage);
 
@@ -147,7 +148,7 @@ public class CreationInterface
 			addLessonTypeSuccess = uniqueLessonTypes.add(lessonType);
 			
 			if(!addLessonTypeSuccess)
-				System.out.println(course + " already has " + lessonType + " lessons");
+				System.out.println(course + " already has " + lessonType + " lessons.");
 			
 		} while(!addLessonTypeSuccess);
 		
@@ -167,11 +168,11 @@ public class CreationInterface
 			lessonExists = courseDB.checkLessonExists(lessonID);
 		
 			if(lessonExists)
-				System.out.println(lessonID + " already exists in course database");
+				System.out.println(lessonID + " already exists in course database.");
 		
 		} while(lessonExists);
 		
-		int totalSize = ConsoleInputInterface.getUserPositiveIntInput("Enter number of vacancies:");
+		int totalSize = ConsoleInputInterface.getUserPositiveIntInput("Enter number of vacancies: ");
 		return new Lesson(lessonID,lessonType,totalSize);
 	}
 	

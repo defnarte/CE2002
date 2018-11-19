@@ -133,7 +133,7 @@ public class ConsoleIOHandler
 			lessonExists = courseDB.checkLessonExists(lessonID);
 			
 			if(!lessonExists)
-				System.out.println(lessonID + " does not exist in course database");
+				System.out.println(lessonID + " does not exist in course database.");
 			
 		} while (!lessonExists);
 		

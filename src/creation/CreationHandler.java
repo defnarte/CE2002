@@ -25,7 +25,7 @@ public class CreationHandler
 	public static Student createStudent(StudentDB studentDB)
 	{
 		Student newStudent = CreationInterface.setStudentMetadata(studentDB);
-		System.out.println("\nCreated student:\n" + newStudent.toString());
+		System.out.println("\nCreated student:\n" + newStudent.toString() + '\n');
 
 		return newStudent;
 	}
@@ -35,7 +35,7 @@ public class CreationHandler
 		Course newCourse = CreationInterface.setCourseMetadata(courseDB);
 		newCourse.setCoordinator(courseCoordinator);
 
-		// createCourseComponents(newCourse);
+		createLessons(newCourse,courseDB);
 
 		System.out.println("\nCreated course:\n" + newCourse.toString());
 
@@ -141,7 +141,7 @@ public class CreationHandler
 
 		if (course.checkStudent(student.getID()))
 		{
-			System.out.println("Student already registered in this course.");
+			System.out.println("Student already registered for " + course);
 			return;
 		}
 
