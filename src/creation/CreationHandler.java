@@ -30,6 +30,12 @@ public class CreationHandler
 		return newStudent;
 	}
 
+	/**
+	 * Create a new course to be added to the course database.
+	 * @param courseCoordinator The coordinator for the new course.
+	 * @param courseDB The course database.
+	 * @return The new course.
+	 */
 	public static Course createCourse(FacultyMember courseCoordinator, CourseDB courseDB)
 	{
 		Course newCourse = CreationInterface.setCourseMetadata(courseDB);
@@ -42,6 +48,10 @@ public class CreationHandler
 		return newCourse;
 	}
 
+	/**
+	 * Create the course components for a course.
+	 * @param course The course for which the course components will be created for.
+	 */
 	public static void createCourseComponents(Course course)
 	{
 		course.clearComponentsWeightage();
@@ -96,7 +106,11 @@ public class CreationHandler
 		}
 
 	}
-
+	/**
+	 * Create the lessons for a course.
+	 * @param course The course which the lessons will be created for.
+	 * @param courseDB The course database.
+	 */
 	public static void createLessons(Course course, CourseDB courseDB)
 	{
 		ArrayList<Lesson> lessons = new ArrayList<Lesson>();
@@ -135,7 +149,11 @@ public class CreationHandler
 		course.setLessonTypes(lessonTypeTypeList);
 
 	}
-
+	/**
+	 * Register a student for a course from the course database.
+	 * @param student The student registering for a course.
+	 * @param courseDB The course database.
+	 */
 	public static void createRegistration(Student student, CourseDB courseDB)
 	{
 		Course course = ConsoleIOHandler.getCourseFromDB(courseDB);

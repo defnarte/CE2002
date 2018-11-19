@@ -23,7 +23,14 @@ import universityMembers.Student;
  */
 public class CreationInterface
 {
-	
+	/**
+	 * This method sets a Student's metadata based on user input when the user is creating student.
+	 * student metadata:
+	 * 1. studentID
+	 * 2. student's full name
+	 * 
+	 * @return newly created student
+	 */
 	public static Student setStudentMetadata(StudentDB studentDB)
 	{
 		// no duplicate student id (matriculation number) allowed
@@ -137,7 +144,12 @@ public class CreationInterface
 
 		return new ComponentWeightage(subcomponentName, subcomponentWeightage);
 	}
-	
+	/**
+	 * Create a new lesson type for the course.
+	 * @param course A course.
+	 * @param uniqueLessonTypes The unique lesson types for a course.
+	 * @return A new lesson type.
+	 */
 	public static String createLessonTypeForCourse(Course course, HashSet<String> uniqueLessonTypes)
 	{
 		String lessonTypePrompt = "Enter the type of lesson to add: ";
@@ -157,7 +169,13 @@ public class CreationInterface
 		
 		return lessonType;
 	}
-	
+	/**
+	 * Create a lesson under a course.
+	 * @param courseDB The course database.
+	 * @param lessonType The type of the lesson.
+	 * @param lessonIndex The index of the lesson eg 1st lesson, 2nd lesson
+	 * @return A lesson.
+	 */
 	public static Lesson createLessonForCourse(CourseDB courseDB, String lessonType, int lessonIndex)
 	{
 		String lessonIDPrompt = "Enter lessonID for " + lessonType + ' ' + lessonIndex + ": ";
@@ -178,7 +196,11 @@ public class CreationInterface
 		int totalSize = ConsoleInputInterface.getUserPositiveIntInput("Enter number of vacancies: ");
 		return new Lesson(lessonID,lessonType,totalSize);
 	}
-	
+	/**
+	 * Register a student for lessonIDs in a course.
+	 * @param course A course.
+	 * @return ArrayList containing all registered lessonIDs.
+	 */
 	public static ArrayList<Integer> createRegisteredLessonArrayList(Course course)
 	{
 		ArrayList<Integer> registeredLessonArrayList = new ArrayList<Integer>();
