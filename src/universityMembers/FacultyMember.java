@@ -10,8 +10,8 @@ public class FacultyMember extends UniversityMember
 	 * Constructor for faculty member that initialises his/her identification number (based on his/her faculty ID)
 	 *  and full name.
 	 * 
-	 * @param facultyID
-	 * @param fullName
+	 * @param facultyID faculty member ID
+	 * @param fullName faculty member full name
 	 */
 	public FacultyMember(String facultyID, String fullName)
 	{
