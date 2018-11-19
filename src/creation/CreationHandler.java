@@ -44,6 +44,7 @@ public class CreationHandler
 
 	public static void createCourseComponents(Course course)
 	{
+		course.clearComponentsWeightage();
 		String numOfComponentsPrompt = "Enter number of components for " + course.getCourseCode() + ": ";
 		int numOfComponents = ConsoleInputInterface.getUserPositiveIntInput(numOfComponentsPrompt);
 

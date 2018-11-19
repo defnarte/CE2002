@@ -113,7 +113,7 @@ public class SCRAMEApp
 						
 						course.printLessonsByType(lessonType);
 						
-						String promptMessage = "Display options:\n" + 
+						String promptMessage = "\nDisplay options:\n" + 
 								"1 - Display students in a specific " + lessonType + "\n" + 
 								"2 - Display all " + lessonType + " students\n" + 
 								"Select an option: ";
@@ -140,6 +140,9 @@ public class SCRAMEApp
 					{
 						course = ConsoleIOHandler.getCourseFromDB(courseDB);
 						CreationHandler.createCourseComponents(course);
+						
+						System.out.println();
+						ConsoleDisplay.displayCourseComponentsWithWeightage(course);
 					}
 
 					break;

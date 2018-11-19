@@ -178,7 +178,7 @@ public class ConsoleDisplay
 	
 	public static void displayStudentsInSpecificLesson(Course course, int lessonID)
 	{
-		System.out.println("List of students in " + lessonID + ":");
+		System.out.println("\nList of students in " + lessonID + ":");
 		
 		for (Registration registration: course.getRegistrationRecords())
 		{

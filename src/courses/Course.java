@@ -133,11 +133,9 @@ public class Course
 		componentWeightageList.add(newComponent);
 	}
 
-	public void setAllComponentsWeightage()
+	public void clearComponentsWeightage()
 	{
 		componentWeightageList = new ArrayList<ComponentWeightage>();
-
-		CreationHandler.createCourseComponents(this);
 	}
 
 	public ArrayList<ComponentWeightage> getAllComponentsWeightage()
