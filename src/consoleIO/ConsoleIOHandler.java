@@ -55,6 +55,7 @@ public class ConsoleIOHandler
 	
 	public static Student getStudentFromDB(StudentDB studentDB)
 	{
+		System.out.println("\nList of all students: ");
 		ConsoleDisplay.displayUniversityMembers(studentDB.getStudentAl());
 		
 		String studentIDPrompt = "Enter the student's ID: ";
@@ -93,7 +94,7 @@ public class ConsoleIOHandler
 	
 	public static ComponentWeightage getComponentWeightageFromCourse(Course course)
 	{
-		ConsoleDisplay.displayCourseComponents(course);
+		ConsoleDisplay.displayCourseComponentsWithWeightage(course);
 		
 		ComponentWeightage component = null;
 		do
