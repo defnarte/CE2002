@@ -36,7 +36,7 @@ public class ConsoleDisplay
 	
 	public static void displayCourses(ArrayList<Course> courseArrayList)
 	{
-		System.out.println("List of courses: ");
+		System.out.println("\nList of courses: ");
 		
 		for (Course course : courseArrayList)
 		{
@@ -46,7 +46,7 @@ public class ConsoleDisplay
 	
 	public static void displayCoursesWithCoordinators(ArrayList<Course> courseArrayList)
 	{
-		System.out.println("List of courses (with their respective course coordinators): ");
+		System.out.println("\nList of courses (with their respective course coordinators): ");
 		
 		for (Course course : courseArrayList)
 		{
@@ -152,7 +152,7 @@ public class ConsoleDisplay
 	
 	public static void displayCourseLessonTypes(Course course)
 	{
-		System.out.println("All lesson types under this course: ");
+		System.out.println("\nAll lesson types under this course: ");
 		
 		for(String lessonType: course.getLessonTypes())
 			System.out.println(lessonType);

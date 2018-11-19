@@ -182,7 +182,7 @@ public class CreationInterface
 		
 		for (String lessonType : course.getLessonTypes())
 		{
-			System.out.println("List of lessonID for " + lessonType + ":");
+			System.out.println("\nList of lessonID for " + lessonType + ":");
 			course.printLessonsByTypeWithVacancy(lessonType);
 			
 			String lessonIDPrompt = "Enter lessonID of " + lessonType + " to register for: ";
@@ -198,10 +198,9 @@ public class CreationInterface
 					System.out.println(lessonID + " has no more vacancy.");
 				
 			} while(!lessonHasVacancy);
-				
+			System.out.println("Student successfully registered for " + lessonID);
 			registeredLessonArrayList.add(lessonID);
 		}
-		
 		return registeredLessonArrayList;
 	}
 }
