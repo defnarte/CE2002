@@ -98,7 +98,8 @@ public class ConsoleDisplay
 	
 	public static void displayCourseStatistic(Course course)
 	{
-		String userChoicePrompt = "Show grade percentage for: \n1 - Overall \n2 - A particular component";
+		System.out.println("\nShow grade percentage for: \n1 - Overall \n2 - A particular component");
+		String userChoicePrompt = "Enter your choice: ";
 		int userChoice = ConsoleInputInterface.getUserPositiveIntInput(userChoicePrompt, 2);
 
 		/**
