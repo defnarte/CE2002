@@ -8,16 +8,28 @@ public class StudentDB
 {
 	ArrayList<Student> students;
 
+	/**
+	 * Constructor for student database.
+	 * @param students The ArrayList containing all students.
+	 */
 	public StudentDB(ArrayList<Student> students)
 	{
 		this.students = students;
 	}
 
+	/**
+	 * Get the student ArrayList i.e complete database.
+	 * @return The ArrayList containing all students.
+	 */
 	public ArrayList<Student> getStudentAl()
 	{
 		return students;
 	}
 
+	/**
+	 * Add a student to the database.
+	 * @param student The student.
+	 */
 	public void addStudent(Student student)
 	{
 		try
@@ -36,17 +48,11 @@ public class StudentDB
 			System.out.println(e.getMessage());
 		}
 	}
-
-//	public boolean checkStudentNameExists(String studentName)
-//	{
-//		for (Student registeredStudent : students)
-//		{
-//			if (registeredStudent.getfullName().equals(studentName))
-//				return true;
-//		}
-//		return false;
-//	}
-	
+	/**
+	 * Check if a student exists in the database.
+	 * @param studentID The ID of the student.
+	 * @return Boolean as to whether the student exists in the database.
+	 */
 	public boolean checkStudentIDExists(String studentID)
 	{
 		for (Student registeredStudent : students)
@@ -56,34 +62,12 @@ public class StudentDB
 		}
 		return false;
 	}
-		
 	
-//	public int checkStudentName(String studentName)
-//	{
-//		int index = 0;
-//		for (Student registeredStudent : students)
-//		{
-//			if (registeredStudent.getfullName().equals(studentName))
-//				return index;
-//			else
-//				index++;
-//		}
-//		return -1;
-//	}
-//	
-//	public int checkStudentID(String studentID)
-//	{
-//		int index = 0;
-//		for (Student registeredStudent : students)
-//		{
-//			if (registeredStudent.getID().equals(studentID))
-//				return index;
-//			else
-//				index++;
-//		}
-//		return -1;
-//	}
-	
+	/**
+	 * Get the student whose ID corresponds to the requested ID.
+	 * @param studentID The ID of the student.
+	 * @return Student whose ID corresponds to the requested ID.
+	 */
 	public Student getStudent(String studentID)
 	{
 		for(Student student: students)
@@ -94,7 +78,9 @@ public class StudentDB
 		
 		return null;
 	}
-
+	/**
+	 * Print all students, their name and their ID.
+	 */
 	public void printStudentList()
 	{
 		for (Student student : students)

@@ -61,8 +61,11 @@ public class CourseDB
 			System.out.println(e.getMessage());
 		}
 	}
-
-
+	/**
+	 * Check a course code has already been registered in the course database.
+	 * @param courseCode The course code of the course.
+	 * @return Boolean whether the course code has already been registered in the course database.
+	 */
 	public boolean checkCourseCodeExists(String courseCode)
 	{
 		for (Course registeredCourse : courses)
@@ -72,7 +75,11 @@ public class CourseDB
 		}
 		return false;
 	}
-	
+	/**
+	 * 
+	 * @param lessonID The ID of the lesson.
+	 * @return Boolean whether the lesson exists in any one of the courses in the course database.
+	 */
 	public boolean checkLessonExists(int lessonID)
 	{
 		for (Course registeredCourse:courses)
@@ -86,7 +93,11 @@ public class CourseDB
 		}
 		return false;	
 	}
-	
+	/**
+	 * Get the course whose course code corresponds to the requested course code.
+	 * @param courseCode The course code of the course.
+	 * @return The course whose course code corresponds to the requested course code.
+	 */
 	public Course getCourse(String courseCode)
 	{
 		for (Course registeredCourse : courses)
@@ -97,12 +108,16 @@ public class CourseDB
 		
 		return null;
 	}
-
+	/**
+	 * Print the list of all courses in the course database.
+	 */
 	public void printCourseList()
 	{
 		ConsoleDisplay.displayCourses(courses);
 	}
-	
+	/**
+	 * Print the list of all courses in the course database, together with the coordinator of the course.
+	 */
 	public void printCourseListWithCoordinator()
 	{
 		ConsoleDisplay.displayCoursesWithCoordinators(courses);

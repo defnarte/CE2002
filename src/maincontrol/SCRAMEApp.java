@@ -157,7 +157,6 @@ public class SCRAMEApp
 					else
 					{
 						System.out.println("Which course do you want to enter marks in?");
-						ConsoleDisplay.displayRegisteredCourses(student.getCourseRegRecordArrayList());
 
 						Registration courseRegRecord = ConsoleIOHandler.getCourseRegRecordFromStudent(student);
 

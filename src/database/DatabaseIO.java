@@ -32,6 +32,12 @@ public class DatabaseIO
 {
 	public static final String SEPARATOR = "|";
 
+	/**
+	 * Create an ArrayList of strings, each string corresponding to a line in the text file.
+	 * @param filename The file name of the text file.
+	 * @return ArrayList of strings, each string corresponding to a single line in the text file.
+	 * @throws FileNotFoundException
+	 */
 	public static ArrayList<String> read(String filename) throws FileNotFoundException
 	{
 		Scanner sc = new Scanner(new FileInputStream(filename));
@@ -49,6 +55,13 @@ public class DatabaseIO
 		return data;
 	}
 
+	/**
+	 * Creates the studentDB from Students.txt.
+	 * @param studentFilename The filename of the text file holding all students.
+	 * @param courses The ArrayList of all courses. 
+	 * @return The student database.
+	 * @throws IOException 
+	 */
 	public static ArrayList<Student> readStudentDB(String studentFilename, ArrayList<Course> courses) throws IOException
 	{
 		ArrayList<String> studentStringArray = read(studentFilename);
@@ -120,6 +133,13 @@ public class DatabaseIO
 		return students;
 	}
 
+	/**
+	 * Creates the courseDB from Course.txt.
+	 * @param courseFilename The filename of the text file holding all courses.
+	 * @param facultyDB The faculty database. 
+	 * @return The course database.
+	 * @throws IOException
+	 */
 	public static ArrayList<Course> readCourseDB(String courseFilename, FacultyMemberDB facultyDB) throws IOException
 	{
 		ArrayList<String> courseStringArray = read(courseFilename);
@@ -145,7 +165,6 @@ public class DatabaseIO
 				course.addComponentWeightage(component);
 				j++;
 			}
-
 			HashSet<String> uniqueLessonType = new HashSet<String>();
 			ArrayList<ArrayList<String>> lessonList = stringSplit(courseStar.nextToken().trim(), "_");
 			for (int k = 0; k < lessonList.size(); k++)
@@ -169,7 +188,12 @@ public class DatabaseIO
 		}
 		return courses;
 	}
-	
+	/**
+	 * Creates the facultyDB from Faculty.txt
+	 * @param facultyFilename The filename of the text file holding all faculty members.
+	 * @return The faculty database.
+	 * @throws FileNotFoundException
+	 */
 	public static ArrayList<FacultyMember> readFacultyDB(String facultyFilename) throws FileNotFoundException 
 	{
 		ArrayList<String> facultyList = read(facultyFilename);
@@ -185,7 +209,13 @@ public class DatabaseIO
 		}
 		return faculty;
 	}
-
+	/**
+	 * This code takes a string containing primary and secondary separators. It first splits the string
+	 * using the primary separator. Each element is then split using the secondary separator, forming its own group.
+	 * @param st A string containing both a primary and secondary separator.
+	 * @param SEP SEP Secondary separator.
+	 * @return Array of grouped strings
+	 */
 	private static ArrayList<ArrayList<String>> stringSplit(String st, String SEP)
 	{
 		StringTokenizer star = new StringTokenizer(st, SEP);
@@ -199,7 +229,13 @@ public class DatabaseIO
 		}
 		return stringList;
 	}
-	
+	/**
+	 * This code takes a string containing primary and secondary separators. It first splits the string
+	 * using the primary separator. Each element is then split using the secondary separator, forming its own group.
+	 * @param st A string containing both a primary and secondary separator.
+	 * @param SEP Secondary separator.
+	 * @return Array of grouped integers 
+	 */
 	private static ArrayList<ArrayList<Integer>> integerSplit(String st, String SEP)
 	{
 		StringTokenizer star = new StringTokenizer(st, SEP);
