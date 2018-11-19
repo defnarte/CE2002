@@ -113,13 +113,6 @@ public class OverallResult implements Markable
 	@Override
 	public String toString()
 	{
-		String overallResultsString = "";
-		
-		for(ComponentResult componentResult: componentResultList)
-		{
-			overallResultsString += componentResult.toString();
-		}
-		
-		return overallResultsString;
+		return "Overall Result: " + getMarks() + "% (Grade: " + computeGrade() + ')';
 	}
 }

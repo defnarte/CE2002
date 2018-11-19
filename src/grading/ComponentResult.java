@@ -77,6 +77,6 @@ public class ComponentResult implements Weightable
 	@Override
 	public String toString()
 	{
-		return getName() + " (" + getWeightage() + "%): " + String.format("%.1f", (double)marks) + '\n';
+		return getName() + " (" + getWeightage() + "%): " + String.format("%.1f", (double)marks);
 	}
 }

@@ -68,28 +68,24 @@ public class ConsoleDisplay
 		
 		for (Registration courseRegRecord : courseRegRecordArrayList)
 		{
-			System.out.println(courseRegRecord.getRegisteredCourse() + "\n" + "Overall result: "
-					+ courseRegRecord.getOverallResult().getMarks() + "% Grade: "
-					+ courseRegRecord.getOverallResult().computeGrade());
+			System.out.println(courseRegRecord.getRegisteredCourse() + "\n" + courseRegRecord.getOverallResult());
 			
 			ArrayList<ComponentResult> componentResultList = courseRegRecord.getOverallResult().getComponentResultList();
 			
-			for (ComponentResult componentResult : componentResultList)
-			{
-				System.out.println("\t" + componentResult.getName() + ": " + componentResult.getMarks() + '%');
-				
-				if(componentResult instanceof AggregateComponentResult)
-				{
-					AggregateComponentResult aggregateComponentResult = (AggregateComponentResult)componentResult;
-				}
-			}
+			displayComponentResult(componentResultList);
 			
 			System.out.println("---------------------------------");
 		}
 	}
 	private static void displayComponentResult(ArrayList<ComponentResult> componentResultList)
 	{
-		
+		for (ComponentResult componentResult : componentResultList)
+		{
+			if(componentResult instanceof AggregateComponentResult)
+				System.out.println((AggregateComponentResult)componentResult);
+			else
+				System.out.println(componentResult);
+		}
 	}
 	
 	public static void displayCourseComponentsWithWeightage(Course course)

@@ -197,7 +197,7 @@ public class SCRAMEApp
 					break;
 
 				case 10:
-					System.out.println("Thank you for using SCRAME\n" + "---Quitting SCRAME---");
+					System.out.println("\nThank you for using SCRAME\n" + "---Quitting SCRAME---");
 
 					break;
 
