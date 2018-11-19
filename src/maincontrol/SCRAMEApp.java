@@ -156,10 +156,9 @@ public class SCRAMEApp
 						System.out.println(student + " is not registered for any course currently.");
 					else
 					{
-						System.out.println("Which course do you want to enter marks in?");
-
+						System.out.println("\nWhich course do you want to enter marks in?");
 						Registration courseRegRecord = ConsoleIOHandler.getCourseRegRecordFromStudent(student);
-
+						System.out.println(); // print line break
 						courseRegRecord.enterMarks();
 					}
 

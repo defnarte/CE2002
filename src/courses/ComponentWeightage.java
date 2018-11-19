@@ -46,6 +46,6 @@ public class ComponentWeightage
 	@Override
 	public String toString()
 	{
-		return name + " (" + weightage + "%)\n";
+		return name + " (" + weightage + "%)";
 	}
 }

@@ -26,9 +26,9 @@ public class Student extends UniversityMember
 	}
 
 	// TO-DO: add comments
-	public void addCourseRegistration(Registration newCourseRegistrationRecord)
+	public void addCourseRegistration(Registration newRegistration)
 	{
-		registeredCourses.add(newCourseRegistrationRecord);
+		registeredCourses.add(newRegistration);
 	}
 	public void dropCourseRegistration(Registration courseRegistrationRecord)
 	{

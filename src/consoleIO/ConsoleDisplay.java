@@ -70,7 +70,8 @@ public class ConsoleDisplay
 		{
 			System.out.println(courseRegRecord.getRegisteredCourse() + "\n" + courseRegRecord.getOverallResult());
 			
-			ArrayList<ComponentResult> componentResultList = courseRegRecord.getOverallResult().getComponentResultList();
+			ArrayList<ComponentResult> componentResultList = courseRegRecord.
+					getOverallResult().getComponentResultList();
 			
 			displayComponentResult(componentResultList);
 			
@@ -90,7 +91,7 @@ public class ConsoleDisplay
 	
 	public static void displayCourseComponentsWithWeightage(Course course)
 	{
-		System.out.println(course + "'s components (with weightage): ");
+		System.out.println("\n" + course + "'s components (with weightage): ");
 		
 		for(ComponentWeightage componentWeightage: course.getAllComponentsWeightage())
 			System.out.println(componentWeightage);
@@ -125,8 +126,6 @@ public class ConsoleDisplay
 		}
 		else
 		{
-			displayCourseComponentsWithWeightage(course);
-			
 			// have to check if the course even has any components first
 			ComponentWeightage componentToPrintStatFor = ConsoleIOHandler.getComponentWeightageFromCourse(course);
 			String nameOfComponentToPrintStatFor = componentToPrintStatFor.getName();
@@ -143,7 +142,8 @@ public class ConsoleDisplay
 		
 		System.out.println("\nGrade\t| Percentage of students\n" + "--------------------------------");
 		for (int i = Grade.TOTAL_NUMBER_OF_GRADES.getValue() -1; i >= 0; --i)
-			System.out.printf("%s\t| %.2f %%\t\t\n", Grade.valueOf(i), (courseStat[i]/ registrations.size() * 100.0));
+			System.out.printf("%s\t| %.2f %%\t\t\n", Grade.valueOf(i), 
+					(courseStat[i]/ registrations.size() * 100.0));
 		System.out.println("--------------------------------");
 	}
 	
