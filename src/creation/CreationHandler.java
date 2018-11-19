@@ -140,7 +140,7 @@ public class CreationHandler
 	{
 		Course course = ConsoleIOHandler.getCourseFromDB(courseDB);
 
-		if (course.checkStudent(student.getID()))
+		if (course.checkStudentRegistered(student.getID()))
 		{
 			System.out.println("Student already registered for " + course);
 			return;

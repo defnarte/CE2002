@@ -167,7 +167,7 @@ public class ConsoleDisplay
 		 */
 		double[] courseStat = new double[Grade.TOTAL_NUMBER_OF_GRADES.getValue()];
 		
-		ArrayList<Registration> registrations = course.getRegistrationRecords();
+		ArrayList<Registration> registrations = course.getRegistrations();
 		
 		Grade studentGrade;
 		
@@ -261,7 +261,7 @@ public class ConsoleDisplay
 	{
 		System.out.println("\nList of students in " + lessonID + ":");
 		
-		for (Registration registration: course.getRegistrationRecords())
+		for (Registration registration: course.getRegistrations())
 		{
 			ArrayList<Integer> registeredLessonIDArrayList = registration.getLessonArrayList();
 			
