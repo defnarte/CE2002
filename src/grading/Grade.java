@@ -3,18 +3,25 @@ package grading;
 import java.util.HashMap;
 import java.util.Map;
 
-//Grade Scoring Table
-//A+	85 to 100	marks	10
-//A 	80 to 84 	marks	9
-//A- 	75 to 79 	marks	8
-//B+ 	70 to 74 	marks	7
-//B 	65 to 69 	marks	6
-//B- 	60 to 64 	marks	5
-//C+ 	55 to 59 	marks	4
-//C 	50 to 54 	marks	3
-//C- 	45 to 49 	marks	2
-//D 	40 to 44 	marks	1	
-//F 	 0 to 39 	marks	0
+
+/**
+ * This enumerator holds the possible Grade that can be obtained for a Component Result,
+ * as well as their values.
+ * 
+ * ---Grade Scoring Table---
+ * A+	85 to 100	marks	10
+ * A 	80 to 84 	marks	9
+ * A- 	75 to 79 	marks	8
+ * B+ 	70 to 74 	marks	7
+ * B 	65 to 69 	marks	6
+ * B- 	60 to 64 	marks	5
+ * C+ 	55 to 59 	marks	4
+ * C 	50 to 54 	marks	3
+ * C- 	45 to 49 	marks	2
+ * D 	40 to 44 	marks	1	
+ * F 	 0 to 39 	marks	0
+ *
+ */
 public enum Grade
 {
 	F(0),

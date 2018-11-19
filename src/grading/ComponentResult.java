@@ -3,11 +3,8 @@ package grading;
 import courses.ComponentWeightage;
 
 /**
+ * This entity class holds the result obtained for a Course's Component, and its weightage.
  * 
- * @version 1.1
- * @since 2018/11/16
- * @author Jason
- *
  */
 public class ComponentResult implements Weightable
 {
@@ -67,7 +64,8 @@ public class ComponentResult implements Weightable
 		this.marks = marks;
 	}
 	/**
-	 * Compute the grade obtained for the component. Overrides the interface Markable method of the same name.
+	 * Compute the grade obtained for the component based on the Grade Scoring Table in Grade enumerator. 
+	 * Overrides the interface Markable method of the same name.
 	 */
 	@Override
 	public Grade computeGrade()

@@ -6,11 +6,8 @@ import courses.AggregateComponentWeightage;
 import courses.ComponentWeightage;
 
 /**
+ * This entity class holds the overall result obtained by a Student for a certain Course.
  * 
- * @version 1.2
- * @since 2018/11/16
- * @author Jason
- *
  */
 public class OverallResult implements Markable
 {
@@ -23,6 +20,12 @@ public class OverallResult implements Markable
 	{
 		this.componentResultList = new ArrayList<ComponentResult>();
 	}
+	/**
+	 * This constructor takes in componentWeightageList as template for initialisation of its
+	 * componentResultList.
+	 * 
+	 * @param componentWeightageList
+	 */
 	public OverallResult(ArrayList<ComponentWeightage> componentWeightageList)
 	{
 		componentResultList = new ArrayList<ComponentResult>();
@@ -44,12 +47,21 @@ public class OverallResult implements Markable
 		}
 	}
 	
+	/**
+	 * Setter for componentResultList.
+	 * 
+	 * @param componentResultList
+	 */
 	public void setOverallResults(ArrayList<ComponentResult> componentResultList)
 	{
 		this.componentResultList = componentResultList;
 	}
 	
 	@Override
+	/**
+	 * Overrided getMarks method that return an overall marks that takes all components and their
+	 * weightages into account.
+	 */
 	public double getMarks()
 	{
 		double overallMarks = 0;
@@ -61,11 +73,24 @@ public class OverallResult implements Markable
 		
 		return overallMarks;
 	}
+	/**
+	 * Getter for componentResultList.
+	 * 
+	 * @return ArrayList of ComponentResult
+	 */
 	public ArrayList<ComponentResult> getComponentResultList()
 	{
 		return componentResultList;
 	}
 	
+	/**
+	 * This method searches for a ComponentResult that matches the target name passed in as parameter,
+	 * and set its marks to raw marks.
+	 * 
+	 * @param componentName
+	 * @param rawMarks
+	 * @return true if Component Result has been found and set, and false otherwise
+	 */
 	public boolean setComponentResult(String componentName, int rawMarks)
 	{
 		for(ComponentResult componentResult: componentResultList)
@@ -80,6 +105,13 @@ public class OverallResult implements Markable
 		return false;
 	}
 	
+	/**
+	 * This method returns a Component that matches the target name passed in, 
+	 * or null if the Component cannot be found.
+	 * 
+	 * @param componentName
+	 * @return ComponentResult that matches the target name, or null if ComponentResult cannot be found
+	 */
 	public ComponentResult getComponentResult(String componentName)
 	{
 		for(ComponentResult componentResult: componentResultList)
@@ -94,6 +126,11 @@ public class OverallResult implements Markable
 	}
 	
 	@Override
+	/**
+	 * Overrided computeGrade method that return a Grade based on the the overall marks and the Grade Scoring Table.
+	 * 
+	 * @return Grade that student got for a Course
+	 */
 	public Grade computeGrade()
 	{
 		int marks = (int) Math.round(getMarks());
@@ -114,6 +151,11 @@ public class OverallResult implements Markable
 	}
 	
 	@Override
+	/**
+	 * Overrided toString method that returns the overall marks obtained as well as the corresponding Grade as String.
+	 * 
+	 * @return overall marks and Grade
+	 */
 	public String toString()
 	{
 		return "Overall Result: " + getMarks() + "% (Grade: " + computeGrade() + ')';
