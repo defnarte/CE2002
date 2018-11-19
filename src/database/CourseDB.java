@@ -102,4 +102,9 @@ public class CourseDB
 	{
 		ConsoleDisplay.displayCourses(courses);
 	}
+	
+	public void printCourseListWithCoordinator()
+	{
+		ConsoleDisplay.displayCoursesWithCoordinators(courses);
+	}
 }

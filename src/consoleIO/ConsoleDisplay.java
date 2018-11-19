@@ -35,6 +35,18 @@ public class ConsoleDisplay
 	
 	public static void displayCourses(ArrayList<Course> courseArrayList)
 	{
+		System.out.println("List of courses: ");
+		
+		for (Course course : courseArrayList)
+		{
+			System.out.println(course);
+		}
+	}
+	
+	public static void displayCoursesWithCoordinators(ArrayList<Course> courseArrayList)
+	{
+		System.out.println("List of courses (with their respective course coordinators): ");
+		
 		for (Course course : courseArrayList)
 		{
 			System.out.println(course  + " - course coordinator: " + course.getCoordinator());

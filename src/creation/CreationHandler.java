@@ -37,7 +37,7 @@ public class CreationHandler
 
 		createLessons(newCourse,courseDB);
 
-		System.out.println("\nCreated course:\n" + newCourse.toString());
+		System.out.println("\nCreated course:\n" + newCourse + '\n');
 
 		return newCourse;
 	}
