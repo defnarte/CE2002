@@ -21,7 +21,7 @@ import universityMembers.Student;
  */
 public class SCRAMEApp
 {
-	private static final int MAX_USER_CHOICE = 10;
+	private static final int MAX_MENU_CHOICE = 10;
 	
 	public static void main(String args[]) throws IOException
 	{
@@ -40,8 +40,7 @@ public class SCRAMEApp
 		{
 			ConsoleDisplay.displayMainMenu();
 
-			String userChoicePrompt = "Enter your choice: ";
-			userChoice = ConsoleInputInterface.getUserPositiveIntInput(userChoicePrompt, MAX_USER_CHOICE);
+			userChoice = ConsoleIOHandler.getPosIntChoiceFromUser(MAX_MENU_CHOICE);
 
 			Student student;
 			Course course;
@@ -204,7 +203,7 @@ public class SCRAMEApp
 					break;
 			}
 
-		} while (userChoice != MAX_USER_CHOICE);
+		} while (userChoice != MAX_MENU_CHOICE);
 
 		ConsoleInputInterface.consoleScanner.close();
 	}

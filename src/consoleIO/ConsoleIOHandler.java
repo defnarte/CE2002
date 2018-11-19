@@ -9,8 +9,31 @@ import registration.Registration;
 import universityMembers.FacultyMember;
 import universityMembers.Student;
 
+/**
+ * This control class handles most (by right it should be all, but we screwed up) logic for input/output.
+ *
+ */
 public class ConsoleIOHandler
 {
+	/**
+	 * This method gets a positive integer from the user when the user has to make a choice (that is numbered).
+	 * 
+	 * @param upperbound
+	 * @return positive integer entered by user
+	 */
+	public static int getPosIntChoiceFromUser(int upperbound)
+	{
+		String userChoicePrompt = "Enter your choice: ";
+		return ConsoleInputInterface.getUserPositiveIntInput(userChoicePrompt, upperbound);
+	}
+	
+	/**
+	 * This method gets a course code from the user and return the Course from the Course database
+	 * with the corresponding Course code.
+	 * 
+	 * @param courseDB
+	 * @return a valid Course that the user is looking for
+	 */
 	public static Course getCourseFromDB(CourseDB courseDB)
 	{
 		ConsoleDisplay.displayCourses(courseDB.getCourseAl());
@@ -32,10 +55,17 @@ public class ConsoleIOHandler
 		return course;
 	}
 	
-	public static FacultyMember getFacultyMemberFromDB(FacultyMemberDB facultyDB)
+	/**
+	 * This method gets a Faculty Member ID from the user and returns the Faculty from
+	 * FacultyMember database who has the corresponding ID.
+	 * 
+	 * @param facultyMemberDB
+	 * @return a valid FacultyMember whom the user is looking for
+	 */
+	public static FacultyMember getFacultyMemberFromDB(FacultyMemberDB facultyMemberDB)
 	{
 		System.out.println("List of all faculty members: ");
-		ConsoleDisplay.displayUniversityMembers(facultyDB.getFacultyAl());
+		ConsoleDisplay.displayUniversityMembers(facultyMemberDB.getFacultyAl());
 
 		String courseCoordinatorPrompt = "Enter the ID of the faculty member: ";
 		FacultyMember facultyMember;
@@ -43,7 +73,7 @@ public class ConsoleIOHandler
 		{
 			String facultyMemberID = ConsoleInputInterface.
 					getUserStringInput(courseCoordinatorPrompt, StringFormatType.ALPHA_NUMERIC);
-			facultyMember = facultyDB.getFacultyMember(facultyMemberID);
+			facultyMember = facultyMemberDB.getFacultyMember(facultyMemberID);
 			
 			if(facultyMember == null)
 				System.out.println("Faculty member not found in database!");
@@ -53,6 +83,13 @@ public class ConsoleIOHandler
 		return facultyMember;
 	}
 	
+	/**
+	 * This method gets a StudentID from the user and returns the Student from Student database
+	 * who has the corresponding ID.
+	 * 
+	 * @param studentDB
+	 * @return a valid Student whom the user is looking for
+	 */
 	public static Student getStudentFromDB(StudentDB studentDB)
 	{
 		System.out.println("\nList of all students: ");
@@ -62,7 +99,8 @@ public class ConsoleIOHandler
 		Student student;
 		do
 		{
-			String studentID = ConsoleInputInterface.getUserStringInput(studentIDPrompt, StringFormatType.ALPHA_NUMERIC);
+			String studentID = ConsoleInputInterface.
+					getUserStringInput(studentIDPrompt, StringFormatType.ALPHA_NUMERIC);
 			student = studentDB.getStudent(studentID);
 			
 			if(student == null)
@@ -73,9 +111,16 @@ public class ConsoleIOHandler
 		return student;
 	}
 	
+	/**
+	 * This methods gets a Course code from the user and return the Registration record, from 
+	 * a particular Student, which has the corresponding Course code.
+	 * 
+	 * @param student
+	 * @return a valid Registration record that the user is looking for
+	 */
 	public static Registration getCourseRegRecordFromStudent(Student student)
 	{
-		ConsoleDisplay.displayRegisteredCourses(student.getCourseRegRecordArrayList());
+		ConsoleDisplay.displayRegistrations(student.getCourseRegRecordArrayList());
 		
 		Registration courseRegRecord;
 		do
@@ -93,6 +138,13 @@ public class ConsoleIOHandler
 		return courseRegRecord;
 	}
 	
+	/**
+	 * This method gets a Component name from the user and returns a Component (weightage), from
+	 * a particular Course, which has the corresponding name.
+	 * 
+	 * @param course
+	 * @return a valid Component(weightage) the user is looking for.
+	 */
 	public static ComponentWeightage getComponentWeightageFromCourse(Course course)
 	{
 		ConsoleDisplay.displayCourseComponentsWithWeightage(course);
@@ -119,12 +171,23 @@ public class ConsoleIOHandler
 		return null;
 	}
 	
+	/**
+	 * This method gets and returns a particular Lesson type (as a String) entered by the user.
+	 * 
+	 * @return Lesson type entered by user
+	 */
 	public static String getLessonTypeFromUser()
 	{
 		String lessonTypePrompt = "Enter lesson type: ";
 		return ConsoleInputInterface.getUserStringInput(lessonTypePrompt, StringFormatType.ALPHABETICAL_AND_SPACE);
 	}
 	
+	/**
+	 * This method gets and returns a Lesson ID (as an int) entered by the user which exists in Course database.
+	 * 
+	 * @param courseDB
+	 * @return a valid Lesson ID the user is looking for
+	 */
 	public static int getLessonIDFromUser(CourseDB courseDB)
 	{
 		String lessonIDPrompt = "Enter lesson ID: ";

@@ -8,10 +8,6 @@ import lessons.Lesson;
 
 /**
  * This class hold all the Courses.
- * 
- * @version 1.1
- * @since 2018/11/16
- * @author Isaac
  *
  */
 public class CourseDB

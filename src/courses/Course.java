@@ -11,10 +11,6 @@ import lessons.Lesson;
 /**
  * This class holds information of a course.
  * 
- * @version 1.2
- * @since 2018/11/12
- * @author Jason
- *
  */
 public class Course
 {

@@ -5,11 +5,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * This class gets input from the user. It handles possible bad input from the user
- * 
- * @version 1.1
- * @since 2018/11/13
- * @author Jason
+ * This boundary class gets input from the user via the console. It handles possible bad input from the user
  *
  */
 public class ConsoleInputInterface
@@ -137,6 +133,13 @@ public class ConsoleInputInterface
 		
 		return userInput;
 	}
+	/**
+	 * This methods check if an input string conforms to a particular StringFormatType.
+	 * 
+	 * @param input
+	 * @param stringFormatType
+	 * @return true if input conforms to StringFormatType, and false otherwise
+	 */
 	private static boolean checkStringFormat(String input, StringFormatType stringFormatType)
 	{
 		boolean stringMatch = false;
