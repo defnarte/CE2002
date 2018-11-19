@@ -40,7 +40,8 @@ public class CreationInterface
 		
 		// students can share the same name
 		String studentNamePrompt = "Enter the name of the student: ";
-		String studentName = ConsoleInputInterface.getUserStringInput(studentNamePrompt, StringFormatType.ALPHABETICAL_AND_SPACE);
+		String studentName = ConsoleInputInterface.
+				getUserStringInput(studentNamePrompt, StringFormatType.ALPHABETICAL_AND_SPACE);
 		
 		return new Student(studentID, studentName);
 	}
@@ -111,7 +112,9 @@ public class CreationInterface
 	}
 	
 	/**
-	 * This method sets a Subcomponent's metadata based on user input when the user is creating Component's subcomponent.
+	 * This method sets a Subcomponent's metadata based on user input 
+	 * when the user is creating Component's subcomponent.
+	 * 
 	 * subcomponent metadata:
 	 * 1. subcomponent metadata
 	 * 2. subcomponent weightage
@@ -187,17 +190,24 @@ public class CreationInterface
 			
 			String lessonIDPrompt = "Enter lessonID of " + lessonType + " to register for: ";
 			int lessonID;
-			boolean lessonHasVacancy;
+			boolean lessonHasVacancy = false;
 			
 			do
 			{
 				lessonID = ConsoleInputInterface.getUserPositiveIntInput(lessonIDPrompt);
 				
-				lessonHasVacancy = course.getLesson(lessonID).decrementVacancy();
-				if(!lessonHasVacancy)
-					System.out.println(lessonID + " has no more vacancy.");
-				
+				if(course.getLesson(lessonID) == null)
+					System.out.println("Invalid lessonID.");
+				else
+				{
+					lessonHasVacancy = course.getLesson(lessonID).decrementVacancy();
+					
+					if(!lessonHasVacancy)
+						System.out.println(lessonID + " has no more vacancy.");
+				}
 			} while(!lessonHasVacancy);
+			
+			
 			System.out.println("Student successfully registered for " + lessonID);
 			registeredLessonArrayList.add(lessonID);
 		}
